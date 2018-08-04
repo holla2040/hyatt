@@ -557,61 +557,56 @@ Source: http://www.microchip.com .. 39637a.pdf</description>
 <rectangle x1="-1.7355" y1="-1.7355" x2="1.7355" y2="1.7355" layer="31"/>
 </package>
 <package name="SWITCH-DTMF-3-LED">
-<pad name="B_1" x="-6.1" y="2.9" drill="0.9"/>
-<wire x1="-8.7" y1="8.7" x2="8.7" y2="8.7" width="0.254" layer="21"/>
-<wire x1="8.7" y1="8.7" x2="8.7" y2="-8.7" width="0.254" layer="21"/>
-<wire x1="8.7" y1="-8.7" x2="-8.7" y2="-8.7" width="0.254" layer="21"/>
-<wire x1="-8.7" y1="-8.7" x2="-8.7" y2="8.7" width="0.254" layer="21"/>
-<wire x1="-1.905" y1="-2.54" x2="1.905" y2="-2.54" width="0.2032" layer="21"/>
-<wire x1="-1.905" y1="-2.54" x2="1.905" y2="-2.54" width="0.254" layer="21" curve="-286.260205"/>
-<wire x1="0" y1="1.143" x2="1.143" y2="0" width="0.1524" layer="51" curve="-90"/>
-<wire x1="-1.143" y1="0" x2="0" y2="-1.143" width="0.1524" layer="51" curve="90"/>
-<wire x1="0" y1="1.651" x2="1.651" y2="0" width="0.1524" layer="51" curve="-90"/>
-<wire x1="-1.651" y1="0" x2="0" y2="-1.651" width="0.1524" layer="51" curve="90"/>
-<wire x1="0" y1="2.159" x2="2.159" y2="0" width="0.1524" layer="51" curve="-90"/>
-<wire x1="-2.159" y1="0" x2="0" y2="-2.159" width="0.1524" layer="51" curve="90"/>
-<circle x="0" y="0" radius="2.54" width="0.1524" layer="21"/>
-<pad name="B_A" x="0" y="1.27" drill="0.8128" shape="octagon" rot="R270"/>
-<pad name="B_C" x="0" y="-1.27" drill="0.8128" shape="octagon" rot="R270"/>
-<pad name="B_2" x="6.1" y="4" drill="0.9"/>
-<pad name="A_1" x="-23.5" y="2.9" drill="0.9"/>
-<wire x1="-26.1" y1="8.7" x2="-8.7" y2="8.7" width="0.254" layer="21"/>
-<wire x1="-8.7" y1="8.7" x2="-8.7" y2="-8.7" width="0.254" layer="21"/>
-<wire x1="-8.7" y1="-8.7" x2="-26.1" y2="-8.7" width="0.254" layer="21"/>
-<wire x1="-26.1" y1="-8.7" x2="-26.1" y2="8.7" width="0.254" layer="21"/>
-<wire x1="-19.305" y1="-2.54" x2="-15.495" y2="-2.54" width="0.2032" layer="21"/>
-<wire x1="-19.305" y1="-2.54" x2="-15.495" y2="-2.54" width="0.254" layer="21" curve="-286.260205"/>
-<wire x1="-17.4" y1="1.143" x2="-16.257" y2="0" width="0.1524" layer="51" curve="-90"/>
-<wire x1="-18.543" y1="0" x2="-17.4" y2="-1.143" width="0.1524" layer="51" curve="90"/>
-<wire x1="-17.4" y1="1.651" x2="-15.749" y2="0" width="0.1524" layer="51" curve="-90"/>
-<wire x1="-19.051" y1="0" x2="-17.4" y2="-1.651" width="0.1524" layer="51" curve="90"/>
-<wire x1="-17.4" y1="2.159" x2="-15.241" y2="0" width="0.1524" layer="51" curve="-90"/>
-<wire x1="-19.559" y1="0" x2="-17.4" y2="-2.159" width="0.1524" layer="51" curve="90"/>
-<circle x="-17.4" y="0" radius="2.54" width="0.1524" layer="21"/>
-<pad name="A_A" x="-17.4" y="1.27" drill="0.8128" shape="octagon" rot="R270"/>
-<pad name="A_C" x="-17.4" y="-1.27" drill="0.8128" shape="octagon" rot="R270"/>
-<pad name="A_2" x="-11.3" y="4" drill="0.9"/>
-<pad name="C_1" x="11.3" y="2.9" drill="0.9"/>
-<wire x1="8.7" y1="8.7" x2="26.1" y2="8.7" width="0.254" layer="21"/>
-<wire x1="26.1" y1="8.7" x2="26.1" y2="-8.7" width="0.254" layer="21"/>
-<wire x1="26.1" y1="-8.7" x2="8.7" y2="-8.7" width="0.254" layer="21"/>
-<wire x1="8.7" y1="-8.7" x2="8.7" y2="8.7" width="0.254" layer="21"/>
-<wire x1="15.495" y1="-2.54" x2="19.305" y2="-2.54" width="0.2032" layer="21"/>
-<wire x1="15.495" y1="-2.54" x2="19.305" y2="-2.54" width="0.254" layer="21" curve="-286.260205"/>
-<wire x1="17.4" y1="1.143" x2="18.543" y2="0" width="0.1524" layer="51" curve="-90"/>
-<wire x1="16.257" y1="0" x2="17.4" y2="-1.143" width="0.1524" layer="51" curve="90"/>
-<wire x1="17.4" y1="1.651" x2="19.051" y2="0" width="0.1524" layer="51" curve="-90"/>
-<wire x1="15.749" y1="0" x2="17.4" y2="-1.651" width="0.1524" layer="51" curve="90"/>
-<wire x1="17.4" y1="2.159" x2="19.559" y2="0" width="0.1524" layer="51" curve="-90"/>
-<wire x1="15.241" y1="0" x2="17.4" y2="-2.159" width="0.1524" layer="51" curve="90"/>
-<circle x="17.4" y="0" radius="2.54" width="0.1524" layer="21"/>
-<pad name="C_A" x="17.4" y="1.27" drill="0.8128" shape="octagon" rot="R270"/>
-<pad name="C_C" x="17.4" y="-1.27" drill="0.8128" shape="octagon" rot="R270"/>
-<pad name="C_2" x="23.5" y="4" drill="0.9"/>
-<text x="0.5" y="7" size="1.778" layer="21" align="center">B</text>
-<text x="-17" y="7" size="1.778" layer="21" align="center">A</text>
-<text x="18" y="7.5" size="1.778" layer="21" align="center">C</text>
-<text x="-22" y="10" size="1.778" layer="25" align="center">&gt;NAME</text>
+<pad name="B_1" x="19.9" y="11.6" drill="0.9"/>
+<wire x1="52.2577" y1="0" x2="52.2577" y2="17.4151" width="0.254" layer="21"/>
+<wire x1="24.19" y1="6.09" x2="28" y2="6.09" width="0.2032" layer="21"/>
+<wire x1="24.19" y1="6.09" x2="28" y2="6.09" width="0.254" layer="21" curve="-286.260205"/>
+<wire x1="26.095" y1="9.773" x2="27.238" y2="8.63" width="0.1524" layer="51" curve="-90"/>
+<wire x1="24.952" y1="8.63" x2="26.095" y2="7.487" width="0.1524" layer="51" curve="90"/>
+<wire x1="26.095" y1="10.281" x2="27.746" y2="8.63" width="0.1524" layer="51" curve="-90"/>
+<wire x1="24.444" y1="8.63" x2="26.095" y2="6.979" width="0.1524" layer="51" curve="90"/>
+<wire x1="26.095" y1="10.789" x2="28.254" y2="8.63" width="0.1524" layer="51" curve="-90"/>
+<wire x1="23.936" y1="8.63" x2="26.095" y2="6.471" width="0.1524" layer="51" curve="90"/>
+<circle x="26.095" y="8.8" radius="2.54" width="0.1524" layer="21"/>
+<pad name="B_A" x="26.067" y="10.07" drill="0.8128" shape="octagon" rot="R270"/>
+<pad name="B_C" x="26.067" y="7.53" drill="0.8128" shape="square" rot="R270"/>
+<pad name="B_2" x="32.2707" y="12.75" drill="0.9"/>
+<pad name="A_1" x="2.4159" y="11.6" drill="0.9"/>
+<wire x1="0" y1="17.4151" x2="52.2577" y2="17.4151" width="0.254" layer="21"/>
+<wire x1="52.2577" y1="17.4151" x2="52.2577" y2="0" width="0.254" layer="21"/>
+<wire x1="52.2577" y1="0" x2="0" y2="0" width="0.254" layer="21"/>
+<wire x1="0" y1="0" x2="0" y2="17.4151" width="0.254" layer="21"/>
+<wire x1="6.7392" y1="6.217" x2="10.5492" y2="6.217" width="0.2032" layer="21"/>
+<wire x1="6.7392" y1="6.217" x2="10.5492" y2="6.217" width="0.254" layer="21" curve="-286.260205"/>
+<wire x1="8.695" y1="9.773" x2="9.838" y2="8.63" width="0.1524" layer="51" curve="-90"/>
+<wire x1="7.552" y1="8.63" x2="8.695" y2="7.487" width="0.1524" layer="51" curve="90"/>
+<wire x1="8.695" y1="10.281" x2="10.346" y2="8.63" width="0.1524" layer="51" curve="-90"/>
+<wire x1="7.044" y1="8.63" x2="8.695" y2="6.979" width="0.1524" layer="51" curve="90"/>
+<wire x1="8.695" y1="10.789" x2="10.854" y2="8.63" width="0.1524" layer="51" curve="-90"/>
+<wire x1="6.536" y1="8.63" x2="8.695" y2="6.471" width="0.1524" layer="51" curve="90"/>
+<circle x="8.67" y="8.8" radius="2.54" width="0.1524" layer="21"/>
+<pad name="A_A" x="8.66" y="10.07" drill="0.8128" shape="octagon" rot="R270"/>
+<pad name="A_C" x="8.6677" y="7.53" drill="0.8128" shape="square" rot="R270"/>
+<pad name="A_2" x="14.83" y="12.75" drill="0.9"/>
+<pad name="C_1" x="37.3677" y="11.6" drill="0.9"/>
+<wire x1="41.59" y1="6.09" x2="45.4" y2="6.09" width="0.2032" layer="21"/>
+<wire x1="41.59" y1="6.09" x2="45.4" y2="6.09" width="0.254" layer="21" curve="-286.260205"/>
+<wire x1="43.495" y1="9.773" x2="44.638" y2="8.63" width="0.1524" layer="51" curve="-90"/>
+<wire x1="42.352" y1="8.63" x2="43.495" y2="7.487" width="0.1524" layer="51" curve="90"/>
+<wire x1="43.495" y1="10.281" x2="45.146" y2="8.63" width="0.1524" layer="51" curve="-90"/>
+<wire x1="41.844" y1="8.63" x2="43.495" y2="6.979" width="0.1524" layer="51" curve="90"/>
+<wire x1="43.495" y1="10.789" x2="45.654" y2="8.63" width="0.1524" layer="51" curve="-90"/>
+<wire x1="41.336" y1="8.63" x2="43.495" y2="6.471" width="0.1524" layer="51" curve="90"/>
+<circle x="43.495" y="8.8" radius="2.54" width="0.1524" layer="21"/>
+<pad name="C_A" x="43.62" y="10.07" drill="0.8128" shape="octagon" rot="R270"/>
+<pad name="C_C" x="43.62" y="7.53" drill="0.8128" shape="square" rot="R270"/>
+<pad name="C_2" x="49.712" y="12.75" drill="0.9"/>
+<text x="26.595" y="15.63" size="1.778" layer="21" align="center">B</text>
+<text x="9.095" y="15.63" size="1.778" layer="21" align="center">A</text>
+<text x="44.095" y="16.13" size="1.778" layer="21" align="center">C</text>
+<text x="4.095" y="18.63" size="1.778" layer="25" align="center">&gt;NAME</text>
+<wire x1="17.372" y1="0.038" x2="17.372" y2="17.3" width="0.254" layer="21"/>
+<wire x1="34.898" y1="0.038" x2="34.898" y2="17.3" width="0.254" layer="21"/>
 </package>
 <package name="WEMOS-D1-MINI">
 <description>WeMos.cc
@@ -4468,6 +4463,10 @@ SMD TSOP6238TT</description>
 <sheets>
 <sheet>
 <plain>
+<text x="7.62" y="208.28" size="1.778" layer="97" align="top-left">TODO
+fix mounting holes
+add tp for unused micro pins
+connect knob switches</text>
 </plain>
 <instances>
 <instance part="FRAME1" gate="G$1" x="0" y="0"/>
