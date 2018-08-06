@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="yes"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
+<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="yes" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="no" active="no"/>
 <layer number="2" name="Route2" color="1" fill="3" visible="no" active="no"/>
@@ -612,10 +612,10 @@ Source: http://www.microchip.com .. 39637a.pdf</description>
 <description>WeMos.cc
 D1 mini
 ESP8266 module</description>
-<wire x1="9.17" y1="15.216" x2="9.17" y2="9.416" width="0.127" layer="21"/>
-<wire x1="-6.83" y1="9.416" x2="-6.83" y2="15.216" width="0.127" layer="21"/>
+<wire x1="9.17" y1="15.216" x2="9.17" y2="9.416" width="0.254" layer="21"/>
+<wire x1="-6.83" y1="9.416" x2="-6.83" y2="15.216" width="0.254" layer="21"/>
 <wire x1="-6.83" y1="15.216" x2="9.17" y2="15.216" width="0.127" layer="21"/>
-<wire x1="-6.83" y1="9.416" x2="9.17" y2="9.416" width="0.127" layer="21"/>
+<wire x1="-6.83" y1="9.416" x2="9.17" y2="9.416" width="0.254" layer="21"/>
 <pad name="5V" x="12.7" y="-10.16" drill="1.016" diameter="1.8288" shape="long"/>
 <pad name="GND" x="12.7" y="-7.62" drill="1.016" diameter="1.8288" shape="long"/>
 <pad name="D4" x="12.7" y="-5.08" drill="1.016" diameter="1.8288" shape="long"/>
@@ -632,49 +632,30 @@ ESP8266 module</description>
 <pad name="D0" x="-10.16" y="2.54" drill="1.016" diameter="1.8288" shape="long" rot="R180"/>
 <pad name="A0" x="-10.16" y="5.08" drill="1.016" diameter="1.8288" shape="long" rot="R180"/>
 <pad name="RESET" x="-10.16" y="7.62" drill="1.016" diameter="1.8288" shape="long" rot="R180"/>
-<text x="-2.54" y="-13.335" size="1.4224" layer="21">WeMos.cc
-D1 mini</text>
-<text x="12.7" y="-17.78" size="1.4224" layer="25" align="bottom-right">&gt;Name</text>
-<wire x1="-6.8326" y1="9.4234" x2="-6.8326" y2="-8.89" width="0.127" layer="21"/>
+<text x="12.7" y="-17.78" size="1.4224" layer="25" ratio="20" align="bottom-right">&gt;Name</text>
+<wire x1="-6.8326" y1="9.4234" x2="-6.8326" y2="-8.89" width="0.254" layer="21"/>
 <wire x1="9.144" y1="9.4234" x2="9.1694" y2="9.4234" width="0.127" layer="21"/>
-<wire x1="9.1694" y1="9.4234" x2="9.1694" y2="-8.89" width="0.127" layer="21"/>
-<wire x1="13.97" y1="12.7" x2="13.97" y2="-19.05" width="0.127" layer="21"/>
-<wire x1="-8.89" y1="15.24" x2="11.43" y2="15.24" width="0.127" layer="21"/>
-<wire x1="-11.43" y1="12.7" x2="-8.89" y2="15.24" width="0.127" layer="21" curve="-90"/>
-<wire x1="11.43" y1="15.24" x2="13.97" y2="12.7" width="0.127" layer="21" curve="-90"/>
-<wire x1="-11.43" y1="12.7" x2="-11.43" y2="-19.05" width="0.127" layer="21"/>
-<wire x1="-11.43" y1="-19.05" x2="13.97" y2="-19.05" width="0.127" layer="21"/>
-<wire x1="-6.8326" y1="-8.89" x2="9.144" y2="-8.89" width="0.127" layer="21"/>
-<text x="-8.89" y="7.62" size="0.762" layer="25" align="center-left">RST</text>
-<text x="-8.89" y="5.08" size="0.762" layer="25" align="center-left">A0</text>
-<text x="-8.89" y="2.54" size="0.762" layer="25" align="center-left">D0</text>
-<text x="-8.89" y="0" size="0.762" layer="25" align="center-left">D5</text>
-<text x="-8.89" y="-2.54" size="0.762" layer="25" align="center-left">D6</text>
-<text x="-8.89" y="-5.08" size="0.762" layer="25" align="center-left">D7</text>
-<text x="-8.89" y="-7.62" size="0.762" layer="25" align="center-left">D8</text>
-<text x="-8.89" y="-10.16" size="0.762" layer="25" align="center-left">3V3</text>
-<text x="11.43" y="-10.16" size="0.762" layer="25" rot="R180" align="center-left">5V</text>
-<text x="11.43" y="-7.62" size="0.762" layer="25" rot="R180" align="center-left">GND</text>
-<text x="11.43" y="-5.08" size="0.762" layer="25" rot="R180" align="center-left">D4</text>
-<text x="11.43" y="-2.54" size="0.762" layer="25" rot="R180" align="center-left">D3</text>
-<text x="11.43" y="0" size="0.762" layer="25" rot="R180" align="center-left">D2</text>
-<text x="11.43" y="2.54" size="0.762" layer="25" rot="R180" align="center-left">D1</text>
-<text x="11.43" y="5.08" size="0.762" layer="25" rot="R180" align="center-left">RX</text>
-<text x="11.43" y="7.62" size="0.762" layer="25" rot="R180" align="center-left">TX</text>
+<wire x1="9.1694" y1="9.4234" x2="9.1694" y2="-8.89" width="0.254" layer="21"/>
+<wire x1="13.97" y1="12.7" x2="13.97" y2="-19.05" width="0.254" layer="21"/>
+<wire x1="-8.89" y1="15.24" x2="11.43" y2="15.24" width="0.254" layer="21"/>
+<wire x1="-11.43" y1="12.7" x2="-8.89" y2="15.24" width="0.254" layer="21" curve="-90"/>
+<wire x1="11.43" y1="15.24" x2="13.97" y2="12.7" width="0.254" layer="21" curve="-90"/>
+<wire x1="-11.43" y1="12.7" x2="-11.43" y2="-19.05" width="0.254" layer="21"/>
+<wire x1="-11.43" y1="-19.05" x2="13.97" y2="-19.05" width="0.254" layer="21"/>
+<wire x1="-6.8326" y1="-8.89" x2="9.144" y2="-8.89" width="0.254" layer="21"/>
+<text x="-7.62" y="6.35" size="1.016" layer="25" ratio="20" rot="R90" align="center-left">RST</text>
+<text x="-7.366" y="-11.43" size="1.016" layer="25" ratio="20" rot="R90" align="center-left">3V3</text>
+<text x="10.16" y="-9.525" size="1.016" layer="25" ratio="20" rot="R270" align="center-left">5V</text>
+<text x="10.16" y="-6.35" size="1.016" layer="25" ratio="20" rot="R270" align="center-left">GND</text>
+<text x="9.906" y="5.842" size="1.016" layer="25" ratio="20" rot="R270" align="center-left">RX</text>
+<text x="9.906" y="8.636" size="1.016" layer="25" ratio="20" rot="R270" align="center-left">TX</text>
 <wire x1="-2.54" y1="-19.05" x2="5.08" y2="-19.05" width="0.2032" layer="21"/>
-<wire x1="5.08" y1="-19.05" x2="5.08" y2="-13.97" width="0.2032" layer="21"/>
-<wire x1="5.08" y1="-13.97" x2="-2.54" y2="-13.97" width="0.2032" layer="21"/>
-<wire x1="-2.54" y1="-13.97" x2="-2.54" y2="-19.05" width="0.2032" layer="21"/>
-<text x="1.27" y="12.7" size="1.4224" layer="25" align="center">ANTENNA
-KEEP CLEAR</text>
-<text x="1.27" y="-16.51" size="1.016" layer="25" align="center">USB
+<wire x1="5.08" y1="-19.05" x2="5.08" y2="-13.97" width="0.254" layer="21"/>
+<wire x1="5.08" y1="-13.97" x2="-2.54" y2="-13.97" width="0.254" layer="21"/>
+<wire x1="-2.54" y1="-13.97" x2="-2.54" y2="-19.05" width="0.254" layer="21"/>
+<text x="1.27" y="12.7" size="1.016" layer="25" ratio="20" align="center">ANTENNA</text>
+<text x="1.27" y="-16.51" size="1.016" layer="25" ratio="20" align="center">USB
 MICRO</text>
-<wire x1="-6.35" y1="-12.7" x2="-10.16" y2="-12.7" width="0.2032" layer="21"/>
-<wire x1="-10.16" y1="-12.7" x2="-10.16" y2="-17.78" width="0.2032" layer="21"/>
-<wire x1="-10.16" y1="-17.78" x2="-6.35" y2="-17.78" width="0.2032" layer="21"/>
-<wire x1="-6.35" y1="-17.78" x2="-6.35" y2="-12.7" width="0.2032" layer="21"/>
-<text x="-8.255" y="-15.24" size="0.635" layer="25" align="center">RESET
-SWITCH</text>
 </package>
 <package name="1X04">
 <wire x1="6.985" y1="1.27" x2="8.255" y2="1.27" width="0.2032" layer="21"/>
@@ -5102,8 +5083,8 @@ Various fiducial points for machine vision alignment.</description>
 <instance part="R2" gate="G$1" x="35.56" y="12.7" rot="R90"/>
 <instance part="R1" gate="G$1" x="35.56" y="7.62" rot="R90"/>
 <instance part="C2" gate="G$1" x="38.1" y="7.62"/>
-<instance part="GND35" gate="1" x="27.94" y="101.6" rot="MR0"/>
-<instance part="P+8" gate="G$1" x="27.94" y="111.76" rot="MR0"/>
+<instance part="GND35" gate="1" x="27.94" y="104.14" rot="MR0"/>
+<instance part="P+8" gate="G$1" x="27.94" y="114.3" rot="MR0"/>
 <instance part="FID1" gate="G$1" x="246.38" y="43.18"/>
 <instance part="FID2" gate="G$1" x="251.46" y="43.18"/>
 <instance part="GND" gate="G$1" x="162.56" y="30.48"/>
@@ -5116,7 +5097,7 @@ Various fiducial points for machine vision alignment.</description>
 <instance part="J6" gate="G$1" x="10.16" y="127"/>
 <instance part="J26" gate="G$1" x="106.68" y="10.16"/>
 <instance part="J24" gate="G$1" x="91.44" y="25.4"/>
-<instance part="J7" gate="G$1" x="22.86" y="106.68"/>
+<instance part="J7" gate="G$1" x="22.86" y="109.22"/>
 <instance part="J5" gate="G$1" x="10.16" y="142.24"/>
 </instances>
 <busses>
@@ -6588,8 +6569,8 @@ Various fiducial points for machine vision alignment.</description>
 <net name="CPU_SPARE_IO_0" class="0">
 <segment>
 <pinref part="J7" gate="G$1" pin="3"/>
-<wire x1="27.94" y1="106.68" x2="33.02" y2="106.68" width="0.1524" layer="91"/>
-<label x="33.02" y="106.68" size="1.016" layer="95" xref="yes"/>
+<wire x1="27.94" y1="109.22" x2="33.02" y2="109.22" width="0.1524" layer="91"/>
+<label x="33.02" y="109.22" size="1.016" layer="95" xref="yes"/>
 </segment>
 <segment>
 <pinref part="U2" gate="G$1" pin="P15_0"/>
@@ -6600,8 +6581,8 @@ Various fiducial points for machine vision alignment.</description>
 <net name="CPU_SPARE_IO_1" class="0">
 <segment>
 <pinref part="J7" gate="G$1" pin="2"/>
-<wire x1="27.94" y1="104.14" x2="33.02" y2="104.14" width="0.1524" layer="91"/>
-<label x="33.02" y="104.14" size="1.016" layer="95" xref="yes"/>
+<wire x1="27.94" y1="106.68" x2="33.02" y2="106.68" width="0.1524" layer="91"/>
+<label x="33.02" y="106.68" size="1.016" layer="95" xref="yes"/>
 </segment>
 <segment>
 <pinref part="U2" gate="G$1" pin="P15_1"/>
