@@ -215,7 +215,7 @@
 <wire x1="-8.89" y1="33.02" x2="-8.89" y2="-33.02" width="0.254" layer="21"/>
 <wire x1="-8.89" y1="-33.02" x2="-11.43" y2="-33.02" width="0.254" layer="21"/>
 <wire x1="-11.43" y1="-33.02" x2="-11.43" y2="33.02" width="0.254" layer="21"/>
-<text x="-8.382" y="31.115" size="1.27" layer="21" ratio="12">2.0</text>
+<text x="-8.255" y="31.75" size="1.016" layer="21" ratio="12" align="center-left">2.0</text>
 <pad name="VCC" x="10.16" y="31.75" drill="0.9" diameter="1.6764" shape="square"/>
 <pad name="GND@2" x="10.16" y="29.21" drill="0.9" diameter="1.6764"/>
 <pad name="XRES" x="10.16" y="26.67" drill="0.9" diameter="1.6764"/>
@@ -245,7 +245,7 @@
 <wire x1="11.43" y1="33.02" x2="11.43" y2="-33.02" width="0.254" layer="21"/>
 <wire x1="11.43" y1="-33.02" x2="8.89" y2="-33.02" width="0.254" layer="21"/>
 <wire x1="8.89" y1="-33.02" x2="8.89" y2="33.02" width="0.254" layer="21"/>
-<text x="4.572" y="31.115" size="1.27" layer="21" ratio="12">VCC</text>
+<text x="8.255" y="31.75" size="1.016" layer="21" ratio="12" align="center-right">VCC</text>
 <pad name="0.0" x="10.16" y="6.35" drill="0.9" diameter="1.6764"/>
 <wire x1="-12.7" y1="34.29" x2="-3.81" y2="34.29" width="0.254" layer="21"/>
 <wire x1="-3.81" y1="34.29" x2="3.81" y2="34.29" width="0.254" layer="21"/>
@@ -265,7 +265,7 @@
 <wire x1="-6.35" y1="-34.29" x2="-6.35" y2="-31.75" width="0.254" layer="21"/>
 <wire x1="-6.35" y1="-31.75" x2="6.35" y2="-31.75" width="0.254" layer="21"/>
 <wire x1="6.35" y1="-31.75" x2="6.35" y2="-34.29" width="0.254" layer="21"/>
-<text x="0" y="12.7" size="1.27" layer="21" ratio="12" align="center">CY8CKIT-059
+<text x="0" y="12.7" size="1.016" layer="21" ratio="21" align="center">CY8CKIT-059
 PSoC 5LP</text>
 <circle x="0" y="-20.32" radius="1.27" width="0.254" layer="21"/>
 <wire x1="3.81" y1="-22.86" x2="3.81" y2="-17.78" width="0.254" layer="21"/>
@@ -279,7 +279,7 @@ PSoC 5LP</text>
 <wire x1="6" y1="-74.5" x2="6" y2="-63.73" width="0.254" layer="47"/>
 <wire x1="6" y1="-63.73" x2="12.7" y2="-63.73" width="0.254" layer="47"/>
 <wire x1="12.7" y1="-63.73" x2="12.7" y2="-34.29" width="0.254" layer="47"/>
-<text x="7.112" y="-32.385" size="1.27" layer="21" ratio="12">G</text>
+<text x="8.382" y="-31.75" size="1.016" layer="21" ratio="12" align="center-right">G</text>
 </package>
 <package name="DIL28-3">
 <description>&lt;B&gt;Dual In Line&lt;/B&gt;&lt;p&gt;
@@ -6618,8 +6618,8 @@ Various fiducial points for machine vision alignment.</description>
 </sheet>
 </sheets>
 <errors>
-<approved hash="206,1,314.96,185.42,!IO_INT,,,,,"/>
-<approved hash="206,1,314.96,129.54,!IO_INT,,,,,"/>
+<approved hash="206,1,170.18,187.96,!IO_INT,,,,,"/>
+<approved hash="206,1,170.18,132.08,!IO_INT,,,,,"/>
 </errors>
 </schematic>
 </drawing>
