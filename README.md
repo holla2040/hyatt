@@ -1,5 +1,6 @@
 # hyatt
-A CNC wood router based on OpenBuilds WorkBee 1010 and PSoC GRBL. 
+A CNC wood router based on OpenBuilds WorkBee 1010, [CY8CKIT-059](http://www.cypress.com/documentation/development-kitsboards/cy8ckit-059-psoc-5lp-prototyping-kit-onboard-programmer-and) and [PSoC GRBL](https://github.com/bdring/Grbl_USB_Native). 
+
 ![WorkBee](images/workbee-cnc.jpg)
 
 ![schematic](images/schematic.png)
