@@ -11,6 +11,10 @@ Project named after Dale Hyatt, the one of the original K&F guitar amp cabinet m
 
 ![board](images/board.png)
 
+---
+
+Getting boards from "JLCPCB"(https://jlcpcb.com/), $2 for 10 boards + $18 DHL US shipping.
+
 ![PCB Component Side](images/hyatt-PCB-component-v1.0-180804.png)
 
 ![PCB Solder Side](images/hyatt-PCB-solder-v1.0-180804.png)
