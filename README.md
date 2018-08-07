@@ -10,3 +10,7 @@ Project named after Dale Hyatt, the one of the original K&F guitar amp cabinet m
 ![schematic](images/schematic.png)
 
 ![board](images/board.png)
+
+![PCB Component Side](images/hyatt-PCB-component-v1.0-180804.png)
+
+![PCB Solder Side](images/hyatt-PCB-solder-v1.0-180804.png)
