@@ -9,6 +9,8 @@ A CNC wood router based on OpenBuilds WorkBee 1010, [Cypress PSoC 5LP CY8CKIT-05
 
 ![board](images/board.png)
 
+![pins](images/psoc5pins.png)
+
 ---
 
 Getting boards from [JLCPCB](https://jlcpcb.com/), $2 for 10 boards + $18 DHL US shipping.
