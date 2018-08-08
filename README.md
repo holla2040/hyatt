@@ -3,6 +3,8 @@ A CNC wood router based on OpenBuilds WorkBee 1010, [Cypress PSoC 5LP CY8CKIT-05
 
 ![WorkBee](images/workbee-cnc.jpg)
 
+![cy8ckit](images/cy8ckit-059.jpg)
+
 ![schematic](images/schematic.png)
 
 ![board](images/board.png)
