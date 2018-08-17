@@ -612,49 +612,49 @@ Source: http://www.microchip.com .. 39637a.pdf</description>
 <description>WeMos.cc
 D1 mini
 ESP8266 module</description>
-<wire x1="9.17" y1="15.216" x2="9.17" y2="9.416" width="0.254" layer="21"/>
-<wire x1="-6.83" y1="9.416" x2="-6.83" y2="15.216" width="0.254" layer="21"/>
-<wire x1="-6.83" y1="15.216" x2="9.17" y2="15.216" width="0.127" layer="21"/>
-<wire x1="-6.83" y1="9.416" x2="9.17" y2="9.416" width="0.254" layer="21"/>
-<pad name="5V" x="12.7" y="-10.16" drill="1.016" diameter="1.8288" shape="long"/>
-<pad name="GND" x="12.7" y="-7.62" drill="1.016" diameter="1.8288" shape="long"/>
-<pad name="D4" x="12.7" y="-5.08" drill="1.016" diameter="1.8288" shape="long"/>
-<pad name="D3" x="12.7" y="-2.54" drill="1.016" diameter="1.8288" shape="long"/>
-<pad name="D2" x="12.7" y="0" drill="1.016" diameter="1.8288" shape="long"/>
-<pad name="D1" x="12.7" y="2.54" drill="1.016" diameter="1.8288" shape="long"/>
-<pad name="RX" x="12.7" y="5.08" drill="1.016" diameter="1.8288" shape="long"/>
-<pad name="TX" x="12.7" y="7.62" drill="1.016" diameter="1.8288" shape="long"/>
-<pad name="3V3" x="-10.16" y="-10.16" drill="1.016" diameter="1.8288" shape="long" rot="R180"/>
-<pad name="D8" x="-10.16" y="-7.62" drill="1.016" diameter="1.8288" shape="long" rot="R180"/>
-<pad name="D7" x="-10.16" y="-5.08" drill="1.016" diameter="1.8288" shape="long" rot="R180"/>
-<pad name="D6" x="-10.16" y="-2.54" drill="1.016" diameter="1.8288" shape="long" rot="R180"/>
-<pad name="D5" x="-10.16" y="0" drill="1.016" diameter="1.8288" shape="long" rot="R180"/>
-<pad name="D0" x="-10.16" y="2.54" drill="1.016" diameter="1.8288" shape="long" rot="R180"/>
-<pad name="A0" x="-10.16" y="5.08" drill="1.016" diameter="1.8288" shape="long" rot="R180"/>
-<pad name="RESET" x="-10.16" y="7.62" drill="1.016" diameter="1.8288" shape="long" rot="R180"/>
-<text x="12.7" y="-17.78" size="1.4224" layer="25" ratio="20" align="bottom-right">&gt;Name</text>
-<wire x1="-6.8326" y1="9.4234" x2="-6.8326" y2="-8.89" width="0.254" layer="21"/>
-<wire x1="9.144" y1="9.4234" x2="9.1694" y2="9.4234" width="0.127" layer="21"/>
-<wire x1="9.1694" y1="9.4234" x2="9.1694" y2="-8.89" width="0.254" layer="21"/>
-<wire x1="13.97" y1="12.7" x2="13.97" y2="-19.05" width="0.254" layer="21"/>
-<wire x1="-8.89" y1="15.24" x2="11.43" y2="15.24" width="0.254" layer="21"/>
-<wire x1="-11.43" y1="12.7" x2="-8.89" y2="15.24" width="0.254" layer="21" curve="-90"/>
-<wire x1="11.43" y1="15.24" x2="13.97" y2="12.7" width="0.254" layer="21" curve="-90"/>
-<wire x1="-11.43" y1="12.7" x2="-11.43" y2="-19.05" width="0.254" layer="21"/>
-<wire x1="-11.43" y1="-19.05" x2="13.97" y2="-19.05" width="0.254" layer="21"/>
-<wire x1="-6.8326" y1="-8.89" x2="9.144" y2="-8.89" width="0.254" layer="21"/>
-<text x="-7.62" y="6.35" size="1.016" layer="25" ratio="20" rot="R90" align="center-left">RST</text>
-<text x="-7.366" y="-11.43" size="1.016" layer="25" ratio="20" rot="R90" align="center-left">3V3</text>
-<text x="10.16" y="-9.525" size="1.016" layer="25" ratio="20" rot="R270" align="center-left">5V</text>
-<text x="10.16" y="-6.35" size="1.016" layer="25" ratio="20" rot="R270" align="center-left">GND</text>
-<text x="9.906" y="5.842" size="1.016" layer="25" ratio="20" rot="R270" align="center-left">RX</text>
-<text x="9.906" y="8.636" size="1.016" layer="25" ratio="20" rot="R270" align="center-left">TX</text>
-<wire x1="-2.54" y1="-19.05" x2="5.08" y2="-19.05" width="0.2032" layer="21"/>
-<wire x1="5.08" y1="-19.05" x2="5.08" y2="-13.97" width="0.254" layer="21"/>
-<wire x1="5.08" y1="-13.97" x2="-2.54" y2="-13.97" width="0.254" layer="21"/>
-<wire x1="-2.54" y1="-13.97" x2="-2.54" y2="-19.05" width="0.254" layer="21"/>
-<text x="1.27" y="12.7" size="1.016" layer="25" ratio="20" align="center">ANTENNA</text>
-<text x="1.27" y="-16.51" size="1.016" layer="25" ratio="20" align="center">USB
+<wire x1="7.9" y1="15.216" x2="7.9" y2="9.416" width="0.254" layer="21"/>
+<wire x1="-8.1" y1="9.416" x2="-8.1" y2="15.216" width="0.254" layer="21"/>
+<wire x1="-8.1" y1="15.216" x2="7.9" y2="15.216" width="0.127" layer="21"/>
+<wire x1="-8.1" y1="9.416" x2="7.9" y2="9.416" width="0.254" layer="21"/>
+<pad name="5V" x="11.43" y="-10.16" drill="1.016" diameter="1.9304"/>
+<pad name="GND" x="11.43" y="-7.62" drill="1.016" diameter="1.9304"/>
+<pad name="D4" x="11.43" y="-5.08" drill="1.016" diameter="1.9304"/>
+<pad name="D3" x="11.43" y="-2.54" drill="1.016" diameter="1.9304"/>
+<pad name="D2" x="11.43" y="0" drill="1.016" diameter="1.9304"/>
+<pad name="D1" x="11.43" y="2.54" drill="1.016" diameter="1.9304"/>
+<pad name="RX" x="11.43" y="5.08" drill="1.016" diameter="1.9304"/>
+<pad name="TX" x="11.43" y="7.62" drill="1.016" diameter="1.9304"/>
+<pad name="3V3" x="-11.43" y="-10.16" drill="1.016" diameter="1.9304" rot="R180"/>
+<pad name="D8" x="-11.43" y="-7.62" drill="1.016" diameter="1.9304" rot="R180"/>
+<pad name="D7" x="-11.43" y="-5.08" drill="1.016" diameter="1.9304" rot="R180"/>
+<pad name="D6" x="-11.43" y="-2.54" drill="1.016" diameter="1.9304" rot="R180"/>
+<pad name="D5" x="-11.43" y="0" drill="1.016" diameter="1.9304" rot="R180"/>
+<pad name="D0" x="-11.43" y="2.54" drill="1.016" diameter="1.9304" rot="R180"/>
+<pad name="A0" x="-11.43" y="5.08" drill="1.016" diameter="1.9304" rot="R180"/>
+<pad name="RESET" x="-11.43" y="7.62" drill="1.016" diameter="1.9304" rot="R180"/>
+<text x="12.192" y="-18.542" size="1.4224" layer="25" ratio="20" align="bottom-right">&gt;Name</text>
+<wire x1="-8.1026" y1="9.4234" x2="-8.1026" y2="-8.89" width="0.254" layer="21"/>
+<wire x1="7.874" y1="9.4234" x2="7.8994" y2="9.4234" width="0.127" layer="21"/>
+<wire x1="7.8994" y1="9.4234" x2="7.8994" y2="-8.89" width="0.254" layer="21"/>
+<wire x1="12.7" y1="12.7" x2="12.7" y2="-19.05" width="0.254" layer="21"/>
+<wire x1="-10.16" y1="15.24" x2="10.16" y2="15.24" width="0.254" layer="21"/>
+<wire x1="-12.7" y1="12.7" x2="-10.16" y2="15.24" width="0.254" layer="21" curve="-90"/>
+<wire x1="10.16" y1="15.24" x2="12.7" y2="12.7" width="0.254" layer="21" curve="-90"/>
+<wire x1="-12.7" y1="12.7" x2="-12.7" y2="-19.05" width="0.254" layer="21"/>
+<wire x1="-12.7" y1="-19.05" x2="12.7" y2="-19.05" width="0.254" layer="21"/>
+<wire x1="-8.1026" y1="-8.89" x2="7.874" y2="-8.89" width="0.254" layer="21"/>
+<text x="-13.081" y="7.62" size="1.016" layer="25" ratio="20" rot="R90" align="bottom-center">RST</text>
+<text x="-12.954" y="-10.16" size="1.016" layer="25" ratio="20" rot="R90" align="bottom-center">3V3</text>
+<text x="12.954" y="-10.033" size="1.016" layer="25" ratio="20" rot="R270" align="bottom-center">5V</text>
+<text x="12.954" y="-7.62" size="1.016" layer="25" ratio="20" rot="R270" align="bottom-center">GND</text>
+<text x="12.954" y="5.08" size="1.016" layer="25" ratio="20" rot="R270" align="bottom-center">RX</text>
+<text x="12.954" y="7.62" size="1.016" layer="25" ratio="20" rot="R270" align="bottom-center">TX</text>
+<wire x1="-3.81" y1="-19.05" x2="3.81" y2="-19.05" width="0.2032" layer="21"/>
+<wire x1="3.81" y1="-19.05" x2="3.81" y2="-13.97" width="0.254" layer="21"/>
+<wire x1="3.81" y1="-13.97" x2="-3.81" y2="-13.97" width="0.254" layer="21"/>
+<wire x1="-3.81" y1="-13.97" x2="-3.81" y2="-19.05" width="0.254" layer="21"/>
+<text x="0" y="12.7" size="1.016" layer="25" ratio="20" align="center">ANTENNA</text>
+<text x="0" y="-16.51" size="1.016" layer="25" ratio="20" align="center">USB
 MICRO</text>
 </package>
 <package name="1X04">
@@ -3684,7 +3684,7 @@ Source: http://ww1.microchip.com/downloads/en/DeviceDoc/21952a.pdf</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="RADIO-WEMOS-D1-MINI" prefix="WEMOS" uservalue="yes">
+<deviceset name="RADIO-WEMOS-D1-MINI" prefix="W" uservalue="yes">
 <description>WeMos.cc
 D1 mini
 ESP8266 module</description>
@@ -4987,6 +4987,9 @@ Various fiducial points for machine vision alignment.</description>
 <text x="175.26" y="33.02" size="2.54" layer="97" align="top-left">Hyatt Controller</text>
 <text x="177.8" y="10.16" size="2.54" layer="97" align="top-left">180804</text>
 <text x="261.62" y="10.16" size="2.54" layer="97" align="top-left">v1.0</text>
+<text x="134.62" y="81.28" size="1.778" layer="97">TODO
+Mounting holes are aligned
+pushbutton switch positions are off</text>
 </plain>
 <instances>
 <instance part="FRAME1" gate="G$1" x="0" y="0"/>
