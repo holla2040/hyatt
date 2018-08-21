@@ -13,7 +13,7 @@
 <v>Output</v>
 </TreeKeys>
 <TreeStates>
-<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="mcp23017\mcp23017\Header Files">
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="mcp23017\mcp23017\TopDesign">
 <ExpandedNodeIds>
 <v>mcp23017</v>
 <v>mcp23017\mcp23017</v>
@@ -178,10 +178,6 @@
 <v>mcp23017\mcp23017\PSoC 5LP Architecture TRM</v>
 <v>mcp23017\mcp23017\CY8C58LP Family Datasheet</v>
 <v>mcp23017\mcp23017\System Reference Guides</v>
-<v>mcp23017\mcp23017\System Reference Guides\cy_boot_v5_70</v>
-<v>mcp23017\mcp23017\cy_pins_v2_20</v>
-<v>mcp23017\mcp23017\cy_pins_v2_20\cy_pins_v2_20.pdf</v>
-<v>mcp23017\mcp23017\I2C_v3_50.pdf</v>
 </ExpandedNodeIds>
 <VisibleNodeIds>
 <v>mcp23017</v>
@@ -189,10 +185,6 @@
 <v>mcp23017\mcp23017\PSoC 5LP Architecture TRM</v>
 <v>mcp23017\mcp23017\CY8C58LP Family Datasheet</v>
 <v>mcp23017\mcp23017\System Reference Guides</v>
-<v>mcp23017\mcp23017\System Reference Guides\cy_boot_v5_70</v>
-<v>mcp23017\mcp23017\cy_pins_v2_20</v>
-<v>mcp23017\mcp23017\cy_pins_v2_20\cy_pins_v2_20.pdf</v>
-<v>mcp23017\mcp23017\I2C_v3_50.pdf</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 </TreeStatesV2>
@@ -214,9 +206,10 @@
 </CyGuid_fdba8dfd-b15b-4469-9bbb-9e40c3e70997>
 <Unloaded />
 <OpenDocs>
-<name v=".\mcp23017.cydsn\TopDesign\TopDesign.cysch" />
 <name v=".\mcp23017.cydsn\mcp23017.cydwr" />
 <name v=".\mcp23017.cydsn\main.c" />
+<name v=".\mcp23017.cydsn\TopDesign\TopDesign.cysch" />
+<name v=".\mcp23017.cydsn\Generated_Source\PSoC5\CyLib.c" />
 </OpenDocs>
 <OpenDocsLayout><![CDATA[<?xml version="1.0"?><!--
 
@@ -224,7 +217,7 @@
   Copyright (c) 2001-2016 Actipro Software LLC.  All rights reserved.
   http://www.actiprosoftware.com
 
---><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="932, 700" SelectedTabbedMdiWindow="e8dae4a5-8332-4adb-b9c7-3c687f776d08"><DocumentWindow Key="C:\tmp\hyatt\src\babysteps\mcp23017\mcp23017.cydsn\TopDesign\TopDesign.cysch" Guid="ba681c1b-2fb6-43d7-b9d0-a900fee46ced" /><DocumentWindow Key="C:\tmp\hyatt\src\babysteps\mcp23017\mcp23017.cydsn\mcp23017.cydwr" Guid="4c979c6c-539d-4e67-af7f-28653b12e00b" /><DocumentWindow Key="C:\tmp\hyatt\src\babysteps\mcp23017\mcp23017.cydsn\main.c" Guid="e8dae4a5-8332-4adb-b9c7-3c687f776d08" /><ToolWindow Key="Start Page:bd4649ab-da6b-4d04-a663-c722b8bf99db:Start Page" Guid="1b663cd2-9d53-4ad0-b070-d4823cfc10e0" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
+--><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="983, 742" SelectedTabbedMdiWindow="d8b5a13c-b21d-4148-bfa1-ddd848bfc147"><DocumentWindow Key="C:\tmp\h\hyatt\src\babysteps\mcp23017\mcp23017.cydsn\mcp23017.cydwr" Guid="4979541c-2479-45ea-bd4c-97ee935ee37f" /><DocumentWindow Key="C:\tmp\h\hyatt\src\babysteps\mcp23017\mcp23017.cydsn\main.c" Guid="c8ac43e3-72ad-4ade-87d2-9823e83103a7" /><DocumentWindow Key="C:\tmp\h\hyatt\src\babysteps\mcp23017\mcp23017.cydsn\TopDesign\TopDesign.cysch" Guid="d8b5a13c-b21d-4148-bfa1-ddd848bfc147" /><DocumentWindow Key="C:\tmp\h\hyatt\src\babysteps\mcp23017\mcp23017.cydsn\Generated_Source\PSoC5\CyLib.c" Guid="c52f6839-d2bc-4270-bc42-7783642d6a4a" /><ToolWindow Key="Start Page:bd4649ab-da6b-4d04-a663-c722b8bf99db:Start Page" Guid="1b663cd2-9d53-4ad0-b070-d4823cfc10e0" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
 <config v="" />
 <AutoUpdate v="true" />
 </CyGuid_843a90a4-0c4b-4e44-991d-05e7fb117a21>
