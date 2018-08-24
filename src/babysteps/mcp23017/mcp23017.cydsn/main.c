@@ -83,13 +83,16 @@ void pushDisplay() {
     }
 }
 
-#define FLASHDURATION 2500
+#define FLASHDURATION 250
 
 int main(void) {   
     int i;
+    uint8_t k,l1,l2;
     CyGlobalIntEnable;
     
     pushes = 0;
+    l1 = 0;
+    l2 = 0;
        
     Pin_IO_INT_Int_StartEx(pushHandler);
     MCP23017_Start();
@@ -127,40 +130,53 @@ int main(void) {
         regWrite(U4Addr,GPIOB,0x00); // leds off
         CyDelay(20);
     }
-    for(;;) {
-        regWrite(U3Addr,GPIOB,0x01);
-        CyDelay(FLASHDURATION);
-        regWrite(U3Addr,GPIOB,0x02);
-        CyDelay(FLASHDURATION);
-        regWrite(U3Addr,GPIOB,0x04);
-        CyDelay(FLASHDURATION);
-        regWrite(U3Addr,GPIOB,0x10);
-        CyDelay(FLASHDURATION);
-        regWrite(U3Addr,GPIOB,0x20);
-        CyDelay(FLASHDURATION);
-        regWrite(U3Addr,GPIOB,0x40);
-        CyDelay(FLASHDURATION);
-        regWrite(U3Addr,GPIOB,0x00);
-        
-        regWrite(U4Addr,GPIOB,0x01);
-        CyDelay(FLASHDURATION);
-        regWrite(U4Addr,GPIOB,0x02);
-        CyDelay(FLASHDURATION);
-        regWrite(U4Addr,GPIOB,0x04);
-        CyDelay(FLASHDURATION);
-        regWrite(U4Addr,GPIOB,0x10);
-        CyDelay(FLASHDURATION);
-        regWrite(U4Addr,GPIOB,0x20);
-        CyDelay(FLASHDURATION);
-        regWrite(U4Addr,GPIOB,0x40);
-        CyDelay(FLASHDURATION);
-        regWrite(U4Addr,GPIOB,0x00);
-        
     
+    regWrite(U3Addr,GPIOB,0x01);
+    regWrite(U4Addr,GPIOB,0x01);
+    CyDelay(FLASHDURATION);
+    regWrite(U3Addr,GPIOB,0x02);
+    regWrite(U4Addr,GPIOB,0x02);
+    CyDelay(FLASHDURATION);
+    regWrite(U3Addr,GPIOB,0x04);
+    regWrite(U4Addr,GPIOB,0x04);
+    CyDelay(FLASHDURATION);
+    regWrite(U3Addr,GPIOB,0x10);
+    regWrite(U4Addr,GPIOB,0x10);
+    CyDelay(FLASHDURATION);
+    regWrite(U3Addr,GPIOB,0x20);
+    regWrite(U4Addr,GPIOB,0x20);
+    CyDelay(FLASHDURATION);
+    regWrite(U3Addr,GPIOB,0x40);
+    regWrite(U4Addr,GPIOB,0x40);
+    CyDelay(FLASHDURATION);
+    regWrite(U3Addr,GPIOB,0x00);
+    regWrite(U4Addr,GPIOB,0x00);
+    CyDelay(FLASHDURATION);
+    
+    for(;;) {
+        k = regRead(U3Addr,GPIOA)&0x07;
+        if (k) {
+            k |= k << 4;
+            l1 ^= k;
+            regWrite(U3Addr,GPIOB,l1);
+            
+            l2++;
+            regWrite(U4Addr,GPIOB,l2);
+            CyDelay(250);
+       }
+        /*
+        l1 ^= (regRead(U3Addr,GPIOA)&k);
+        regWrite(U3Addr,GPIOB,l1);
+        l2 ^= regRead(U4Addr,GPIOA);
+        regWrite(U4Addr,GPIOB,l2);
+        */
+        
+/*
         // polling - 
         while (regRead(U3Addr,GPIOA) & 0x01) {};
         if (pushDisplayCount) {
             pushDisplay();
         }
+*/
     }
 }
