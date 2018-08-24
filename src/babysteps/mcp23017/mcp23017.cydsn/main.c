@@ -11,7 +11,8 @@
 #include <stdio.h>
 #include "project.h"
 
-#define IOADDR 0x20
+#define U3Addr   0x20
+#define U4Addr   0x21
 
 #define IODIRA   0x00
 #define IOPOLA   0x02
@@ -51,54 +52,81 @@ uint8_t regRead(uint8_t addr, uint8_t reg) {
     return rBuf[0];
 }
 
+uint8_t testI2CAddress(uint8 address) {
+    uint8_t status;
+	status = MCP23017_MasterSendStart(address,1);
+	MCP23017_MasterSendStop();
+    status &= MCP23017_MSTR_ERR_LB_NAK;
+	if(status) {
+        return 0;    //	Status indicates error, so no address response
+	}
+    return 1;               //	Status shows no error
+}
+//***********************************************************************************//
+
+
 CY_ISR(pushHandler) {
     pushes++;
     pushDisplayCount = 1;
-    regRead(IOADDR,GPIOA);
     Pin_IO_INT_ClearInterrupt();
 }
 
 void pushDisplay() {
     pushDisplayCount = 0;
-    regWrite(IOADDR,GPIOB,0x00); // led off
-    CyDelay(2000);
+    regWrite(U3Addr,GPIOB,0x00); // led off
+    CyDelay(200);
     for (uint8_t i = 0; i < pushes; i++) {
-        regWrite(IOADDR,GPIOB,0x01); 
+        regWrite(U3Addr,GPIOB,0x01); 
         CyDelay(50);
-        regWrite(IOADDR,GPIOB,0x00); 
+        regWrite(U3Addr,GPIOB,0x00); 
         CyDelay(50);
     }
 }
 
-int main(void)
-{   
+int main(void) {   
+    
     CyGlobalIntEnable;
     
     pushes = 0;
-    
+       
     Pin_IO_INT_Int_StartEx(pushHandler);
     MCP23017_Start();
+    IO_RESET_Write(0);
+    CyDelay(1);
+    IO_RESET_Write(1);
     
-
-    regWrite(IOADDR,IODIRA,  0xFF); // set port A to input
-    regWrite(IOADDR,IOPOLA,  0xFF); // invert logic on port A, 1 means switch pressed
-    regWrite(IOADDR,GPPUA,   0xFF); // add pull-up to all port A
-    regWrite(IOADDR,GPINTENA,0xFF); // enable interrupt on port A changes
-    regWrite(IOADDR,DEFVALA, 0xFF); // 
-    regWrite(IOADDR,INTCONA, 0xFF); // Change from DEFVAL, fires on button release
-    regWrite(IOADDR,IOCONA,  0b01000100); // INT pins connected, open-drain output 
     
-    regWrite(IOADDR,IODIRB,  0xFE); // bit 0 to output
-    regWrite(IOADDR,GPIOB,   0x01);    // led on
+/*
+    uint8_t address;
+    for (address = 0; address < 128; address++) {
+     testI2CAddress(address); // use debugger to see found devices
+    }
+*/
+   
+    regWrite(U3Addr,IODIRA,  0x77);         // set port A to input
+    regWrite(U3Addr,IOPOLA,  0x77);         // invert logic on port A, 1 means switch pressed
+    regWrite(U3Addr,GPPUA,   0x77);         // add pull-up to all port A
+    regWrite(U3Addr,GPINTENA,0x77);         // enable interrupt on port A changes
+    regWrite(U3Addr,DEFVALA, 0x00);         // 
+    regWrite(U3Addr,INTCONA, 0x77);         // Change from DEFVAL, fires on button release
+    regWrite(U3Addr,IOCONA,  0x77);         // INT pins connected, open-drain output 
+    
+    regWrite(U3Addr,IODIRB,  0x88);         // bit 0 to output
+    regWrite(U3Addr,GPIOB,   0x77);         // led on
+    
+    regWrite(U4Addr,IODIRB,  0x88);         // bit 0 to output
+    regWrite(U4Addr,GPIOB,   0x77);         // led on
  
     for(;;) {
-        regWrite(IOADDR,GPIOB,0x01); // led on
+        regWrite(U3Addr,GPIOB,0x77); // leds on
+        regWrite(U4Addr,GPIOB,0x77); // leds on
         CyDelay(500);
-        regWrite(IOADDR,GPIOB,0x00); // led off
+        regWrite(U3Addr,GPIOB,0x00); // leds off
+        regWrite(U4Addr,GPIOB,0x00); // leds off
         CyDelay(500);
-        
+ 
         // polling - 
-        while (regRead(IOADDR,GPIOA) & 0x01) {};
+        while (regRead(U3Addr,GPIOA) & 0x01) {};
         if (pushDisplayCount) {
             pushDisplay();
         }

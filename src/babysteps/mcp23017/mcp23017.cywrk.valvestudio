@@ -55,8 +55,11 @@
 <v>mcp23017\mcp23017\Source Files\main.c</v>
 <v>mcp23017\mcp23017\Generated_Source</v>
 <v>mcp23017\mcp23017\Generated_Source\PSoC5</v>
+<v>mcp23017\mcp23017\Generated_Source\PSoC5\Clock_1</v>
 <v>mcp23017\mcp23017\Generated_Source\PSoC5\cy_boot</v>
 <v>mcp23017\mcp23017\Generated_Source\PSoC5\Em_EEPROM_Dynamic</v>
+<v>mcp23017\mcp23017\Generated_Source\PSoC5\IO_RESET</v>
+<v>mcp23017\mcp23017\Generated_Source\PSoC5\LED</v>
 <v>mcp23017\mcp23017\Generated_Source\PSoC5\MCP23017</v>
 <v>mcp23017\mcp23017\Generated_Source\PSoC5\Pin_IO_INT</v>
 <v>mcp23017\mcp23017\Generated_Source\PSoC5\Pin_IO_INT_Int</v>
@@ -106,6 +109,7 @@
 <v>mcp23017\mcp23017\CortexM3\ARM_GCC_541</v>
 <v>mcp23017\mcp23017\CortexM3\ARM_GCC_541\Debug</v>
 <v>mcp23017\mcp23017\CortexM3\ARM_GCC_541\Debug\Listing Files</v>
+<v>mcp23017\mcp23017\CortexM3\ARM_GCC_541\Debug\Listing Files\Clock_1.lst</v>
 <v>mcp23017\mcp23017\CortexM3\ARM_GCC_541\Debug\Listing Files\Cm3Start.lst</v>
 <v>mcp23017\mcp23017\CortexM3\ARM_GCC_541\Debug\Listing Files\cy_em_eeprom.lst</v>
 <v>mcp23017\mcp23017\CortexM3\ARM_GCC_541\Debug\Listing Files\CyBootAsmGnu.lst</v>
@@ -117,6 +121,8 @@
 <v>mcp23017\mcp23017\CortexM3\ARM_GCC_541\Debug\Listing Files\cyPm.lst</v>
 <v>mcp23017\mcp23017\CortexM3\ARM_GCC_541\Debug\Listing Files\CySpc.lst</v>
 <v>mcp23017\mcp23017\CortexM3\ARM_GCC_541\Debug\Listing Files\cyutils.lst</v>
+<v>mcp23017\mcp23017\CortexM3\ARM_GCC_541\Debug\Listing Files\IO_RESET.lst</v>
+<v>mcp23017\mcp23017\CortexM3\ARM_GCC_541\Debug\Listing Files\LED.lst</v>
 <v>mcp23017\mcp23017\CortexM3\ARM_GCC_541\Debug\Listing Files\main.lst</v>
 <v>mcp23017\mcp23017\CortexM3\ARM_GCC_541\Debug\Listing Files\MCP23017.lst</v>
 <v>mcp23017\mcp23017\CortexM3\ARM_GCC_541\Debug\Listing Files\MCP23017_BOOT.lst</v>
@@ -155,10 +161,13 @@
 <v>mcp23017\mcp23017\CY8C58LP Family Datasheet</v>
 <v>mcp23017\mcp23017\System Reference Guides</v>
 <v>mcp23017\mcp23017\System Reference Guides\cy_boot_v5_70</v>
+<v>mcp23017\mcp23017\cy_clock_v2_20.pdf</v>
 <v>mcp23017\mcp23017\cy_isr_v1_70.pdf</v>
 <v>mcp23017\mcp23017\cy_pins_v2_20</v>
 <v>mcp23017\mcp23017\cy_pins_v2_20\cy_pins_v2_20.pdf</v>
+<v>mcp23017\mcp23017\Gnd_v1_0.pdf</v>
 <v>mcp23017\mcp23017\I2C_v3_50.pdf</v>
+<v>mcp23017\mcp23017\LED_v1_0.pdf</v>
 </ExpandedNodeIds>
 <VisibleNodeIds>
 <v>mcp23017</v>
@@ -167,10 +176,13 @@
 <v>mcp23017\mcp23017\CY8C58LP Family Datasheet</v>
 <v>mcp23017\mcp23017\System Reference Guides</v>
 <v>mcp23017\mcp23017\System Reference Guides\cy_boot_v5_70</v>
+<v>mcp23017\mcp23017\cy_clock_v2_20.pdf</v>
 <v>mcp23017\mcp23017\cy_isr_v1_70.pdf</v>
 <v>mcp23017\mcp23017\cy_pins_v2_20</v>
 <v>mcp23017\mcp23017\cy_pins_v2_20\cy_pins_v2_20.pdf</v>
+<v>mcp23017\mcp23017\Gnd_v1_0.pdf</v>
 <v>mcp23017\mcp23017\I2C_v3_50.pdf</v>
+<v>mcp23017\mcp23017\LED_v1_0.pdf</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 </TreeStatesV2>
@@ -195,6 +207,7 @@
 <name v=".\mcp23017.cydsn\main.c" />
 <name v=".\mcp23017.cydsn\TopDesign\TopDesign.cysch" />
 <name v=".\mcp23017.cydsn\mcp23017.cydwr" />
+<name v=".\mcp23017.cydsn\Generated_Source\PSoC5\MCP23017.h" />
 </OpenDocs>
 <OpenDocsLayout><![CDATA[<?xml version="1.0"?><!--
 
@@ -202,7 +215,7 @@
   Copyright (c) 2001-2016 Actipro Software LLC.  All rights reserved.
   http://www.actiprosoftware.com
 
---><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="952, 742" SelectedTabbedMdiWindow="92780011-a8f7-4e21-a49d-f7c8f5bbee08"><DocumentWindow Key="C:\tmp\hyatt\src\babysteps\mcp23017\mcp23017.cydsn\main.c" Guid="92780011-a8f7-4e21-a49d-f7c8f5bbee08" /><DocumentWindow Key="C:\tmp\hyatt\src\babysteps\mcp23017\mcp23017.cydsn\TopDesign\TopDesign.cysch" Guid="b247d8c6-807d-4550-a24c-f7752aef095d" /><DocumentWindow Key="C:\tmp\hyatt\src\babysteps\mcp23017\mcp23017.cydsn\mcp23017.cydwr" Guid="1b8f4111-c291-44ab-bddb-0d0bda28e7d1" /><ToolWindow Key="Start Page:bd4649ab-da6b-4d04-a663-c722b8bf99db:Start Page" Guid="1b663cd2-9d53-4ad0-b070-d4823cfc10e0" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
+--><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="1280, 1510" SelectedTabbedMdiWindow="92780011-a8f7-4e21-a49d-f7c8f5bbee08"><DocumentWindow Key="C:\tmp\hyatt\src\babysteps\mcp23017\mcp23017.cydsn\main.c" Guid="92780011-a8f7-4e21-a49d-f7c8f5bbee08" /><DocumentWindow Key="C:\tmp\hyatt\src\babysteps\mcp23017\mcp23017.cydsn\TopDesign\TopDesign.cysch" Guid="b247d8c6-807d-4550-a24c-f7752aef095d" /><DocumentWindow Key="C:\tmp\hyatt\src\babysteps\mcp23017\mcp23017.cydsn\mcp23017.cydwr" Guid="1b8f4111-c291-44ab-bddb-0d0bda28e7d1" /><DocumentWindow Key="C:\tmp\hyatt\src\babysteps\mcp23017\mcp23017.cydsn\Generated_Source\PSoC5\MCP23017.h" Guid="a71159f2-a762-435c-b638-a111be764ab7" /><ToolWindow Key="Start Page:bd4649ab-da6b-4d04-a663-c722b8bf99db:Start Page" Guid="1b663cd2-9d53-4ad0-b070-d4823cfc10e0" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
 <config v="" />
 <AutoUpdate v="true" />
 </CyGuid_843a90a4-0c4b-4e44-991d-05e7fb117a21>

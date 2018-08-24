@@ -252,8 +252,10 @@
   <Group key="DWRInstGuidMapping">
     <Group key="Pin">
       <Data key="02f2cf2c-2c7a-49df-9246-7a3435c21be3" value="SCL" />
+      <Data key="4c908b57-49f7-4068-b393-1cd6daa8f478" value="IO_RESET" />
       <Data key="8d318d8b-cf7b-4b6b-b02c-ab1c5c49d0ba" value="Pin_IO_INT" />
       <Data key="22863ebe-a37b-476f-b252-6e49a8c00b12" value="SDA" />
+      <Data key="e851a3b9-efb8-48be-bbb8-b303b216c393" value="LED" />
     </Group>
   </Group>
   <Group key="EEPROM">
@@ -3345,6 +3347,11 @@
         <Data key="Port Format" value="12,0" />
       </Group>
     </Group>
+    <Group key="4c908b57-49f7-4068-b393-1cd6daa8f478">
+      <Group key="0">
+        <Data key="Port Format" value="12,4" />
+      </Group>
+    </Group>
     <Group key="8d318d8b-cf7b-4b6b-b02c-ab1c5c49d0ba">
       <Group key="0">
         <Data key="Port Format" value="12,5" />
@@ -3353,6 +3360,11 @@
     <Group key="22863ebe-a37b-476f-b252-6e49a8c00b12">
       <Group key="0">
         <Data key="Port Format" value="12,1" />
+      </Group>
+    </Group>
+    <Group key="e851a3b9-efb8-48be-bbb8-b303b216c393">
+      <Group key="0">
+        <Data key="Port Format" value="2,1" />
       </Group>
     </Group>
   </Group>
