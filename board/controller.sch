@@ -4987,14 +4987,16 @@ Various fiducial points for machine vision alignment.</description>
 <text x="175.26" y="33.02" size="2.54" layer="97" align="top-left">Hyatt Controller</text>
 <text x="177.8" y="10.16" size="2.54" layer="97" align="top-left">180804</text>
 <text x="261.62" y="10.16" size="2.54" layer="97" align="top-left">v1.0</text>
-<text x="134.62" y="81.28" size="1.778" layer="97">TODO
+<text x="132.08" y="91.44" size="1.778" layer="97" align="top-left">TODO
 Mounting holes are misaligned
-pushbutton switch positions are off</text>
+pushbutton switch positions are off
+add silk label for IR receiver orientation</text>
 <text x="205.74" y="157.48" size="1.016" layer="97" align="top-left">Cree C503B-WAN-CBBDB231
 2.8V@10mA sets 5.0 IO out
 current limit R=220</text>
-<text x="29.972" y="19.304" size="1.016" layer="97" align="top-left">Set VINMAX = 50V
-VIN_SCALLED_IN 5V FS</text>
+<text x="29.972" y="21.844" size="1.016" layer="97" align="top-left">Set VINMAX = 50V
+VIN_SCALED_IN 5V FS
+Use 1% resistors</text>
 </plain>
 <instances>
 <instance part="FRAME1" gate="G$1" x="0" y="0"/>
@@ -5008,7 +5010,7 @@ VIN_SCALLED_IN 5V FS</text>
 <instance part="S101" gate="G$1" x="254" y="119.38" rot="R90"/>
 <instance part="WEMOS1" gate="D1" x="76.2" y="76.2"/>
 <instance part="J8" gate="G$1" x="22.86" y="86.36"/>
-<instance part="J19" gate="G$1" x="124.46" y="101.6" rot="MR0"/>
+<instance part="J19" gate="G$1" x="144.78" y="101.6" rot="MR0"/>
 <instance part="J10" gate="G$1" x="22.86" y="78.74"/>
 <instance part="J9" gate="G$1" x="22.86" y="93.98"/>
 <instance part="J25" gate="G$1" x="91.44" y="10.16"/>
@@ -5023,7 +5025,7 @@ VIN_SCALLED_IN 5V FS</text>
 <instance part="C3" gate="G$1" x="76.2" y="10.16"/>
 <instance part="J11" gate="G$1" x="60.96" y="187.96"/>
 <instance part="GND12" gate="1" x="66.04" y="185.42"/>
-<instance part="GND13" gate="1" x="139.7" y="121.92" rot="R180"/>
+<instance part="GND13" gate="1" x="139.7" y="111.76" rot="MR0"/>
 <instance part="J15" gate="G$1" x="91.44" y="187.96"/>
 <instance part="GND14" gate="1" x="96.52" y="185.42"/>
 <instance part="J17" gate="G$1" x="144.78" y="137.16" rot="MR0"/>
@@ -5032,9 +5034,9 @@ VIN_SCALLED_IN 5V FS</text>
 <instance part="J23" gate="G$1" x="144.78" y="154.94" rot="MR0"/>
 <instance part="GND17" gate="1" x="139.7" y="149.86" rot="MR0"/>
 <instance part="J12" gate="G$1" x="78.74" y="195.58"/>
-<instance part="J13" gate="G$1" x="81.28" y="203.2"/>
+<instance part="J13" gate="G$1" x="78.74" y="203.2"/>
 <instance part="GND18" gate="1" x="83.82" y="195.58"/>
-<instance part="GND19" gate="1" x="86.36" y="203.2"/>
+<instance part="GND19" gate="1" x="83.82" y="203.2"/>
 <instance part="J16" gate="G$1" x="127" y="170.18" rot="R180"/>
 <instance part="GND22" gate="1" x="121.92" y="177.8" rot="R180"/>
 <instance part="GND8" gate="1" x="271.78" y="190.5"/>
@@ -5087,9 +5089,9 @@ VIN_SCALLED_IN 5V FS</text>
 <instance part="P+6" gate="G$1" x="55.88" y="114.3"/>
 <instance part="GND34" gate="1" x="91.44" y="71.12"/>
 <instance part="P+7" gate="G$1" x="93.98" y="71.12"/>
-<instance part="J18" gate="G$1" x="147.32" y="116.84" smashed="yes" rot="R180">
-<attribute name="NAME" x="149.86" y="126.492" size="1.27" layer="95" rot="R180"/>
-<attribute name="VALUE" x="144.653" y="107.315" size="1.27" layer="96"/>
+<instance part="J18" gate="G$1" x="147.32" y="116.84" smashed="yes" rot="MR0">
+<attribute name="NAME" x="149.86" y="107.188" size="1.27" layer="95" rot="MR0"/>
+<attribute name="VALUE" x="144.653" y="126.365" size="1.27" layer="96" rot="MR180"/>
 </instance>
 <instance part="R2" gate="G$1" x="35.56" y="12.7" smashed="yes" rot="R90">
 <attribute name="NAME" x="34.29" y="12.7" size="1.27" layer="95" align="bottom-right"/>
@@ -5613,7 +5615,7 @@ VIN_SCALLED_IN 5V FS</text>
 </segment>
 <segment>
 <wire x1="139.7" y1="116.84" x2="137.16" y2="116.84" width="0.1524" layer="91"/>
-<label x="137.16" y="116.84" size="1.016" layer="95" rot="R180" xref="yes"/>
+<label x="137.16" y="116.84" size="1.016" layer="95" rot="MR0" xref="yes"/>
 <pinref part="J18" gate="G$1" pin="3"/>
 </segment>
 <segment>
@@ -5731,8 +5733,8 @@ VIN_SCALLED_IN 5V FS</text>
 </net>
 <net name="FEED_OVERRIDE_IN" class="0">
 <segment>
-<wire x1="139.7" y1="119.38" x2="137.16" y2="119.38" width="0.1524" layer="91"/>
-<label x="137.16" y="119.38" size="1.016" layer="95" rot="R180" xref="yes"/>
+<wire x1="139.7" y1="114.3" x2="137.16" y2="114.3" width="0.1524" layer="91"/>
+<label x="137.16" y="114.3" size="1.016" layer="95" rot="MR0" xref="yes"/>
 <pinref part="J18" gate="G$1" pin="2"/>
 </segment>
 <segment>
@@ -5852,8 +5854,8 @@ VIN_SCALLED_IN 5V FS</text>
 <net name="FEED_HOLDING_OUT" class="0">
 <segment>
 <pinref part="J13" gate="G$1" pin="2"/>
-<wire x1="86.36" y1="205.74" x2="88.9" y2="205.74" width="0.1524" layer="91"/>
-<label x="88.9" y="205.74" size="1.016" layer="95" xref="yes"/>
+<wire x1="83.82" y1="205.74" x2="86.36" y2="205.74" width="0.1524" layer="91"/>
+<label x="86.36" y="205.74" size="1.016" layer="95" xref="yes"/>
 </segment>
 <segment>
 <pinref part="U2" gate="G$1" pin="P1_0"/>
@@ -5864,8 +5866,8 @@ VIN_SCALLED_IN 5V FS</text>
 <net name="Z_DISPLAY_RX_IN" class="0">
 <segment>
 <pinref part="J19" gate="G$1" pin="2"/>
-<wire x1="119.38" y1="104.14" x2="116.84" y2="104.14" width="0.1524" layer="91"/>
-<label x="116.84" y="104.14" size="1.016" layer="95" rot="MR0" xref="yes"/>
+<wire x1="139.7" y1="104.14" x2="137.16" y2="104.14" width="0.1524" layer="91"/>
+<label x="137.16" y="104.14" size="1.016" layer="95" rot="MR0" xref="yes"/>
 </segment>
 <segment>
 <pinref part="U2" gate="G$1" pin="P2_5"/>
@@ -5876,8 +5878,8 @@ VIN_SCALLED_IN 5V FS</text>
 <net name="Z_DISPLAY_TX_OUT" class="0">
 <segment>
 <pinref part="J19" gate="G$1" pin="1"/>
-<wire x1="119.38" y1="101.6" x2="116.84" y2="101.6" width="0.1524" layer="91"/>
-<label x="116.84" y="101.6" size="1.016" layer="95" rot="MR0" xref="yes"/>
+<wire x1="139.7" y1="101.6" x2="137.16" y2="101.6" width="0.1524" layer="91"/>
+<label x="137.16" y="101.6" size="1.016" layer="95" rot="MR0" xref="yes"/>
 </segment>
 <segment>
 <pinref part="U2" gate="G$1" pin="P2_6"/>
@@ -6524,8 +6526,8 @@ VIN_SCALLED_IN 5V FS</text>
 <net name="FEED_OVERRIDE_OFF" class="0">
 <segment>
 <pinref part="J18" gate="G$1" pin="4"/>
-<wire x1="139.7" y1="114.3" x2="137.16" y2="114.3" width="0.1524" layer="91"/>
-<label x="137.16" y="114.3" size="1.016" layer="95" rot="MR0" xref="yes"/>
+<wire x1="139.7" y1="119.38" x2="137.16" y2="119.38" width="0.1524" layer="91"/>
+<label x="137.16" y="119.38" size="1.016" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
 <pinref part="U2" gate="G$1" pin="P2_2"/>
@@ -6536,8 +6538,8 @@ VIN_SCALLED_IN 5V FS</text>
 <net name="FEED_OVERRIDE_BTN" class="0">
 <segment>
 <pinref part="J18" gate="G$1" pin="5"/>
-<wire x1="139.7" y1="111.76" x2="137.16" y2="111.76" width="0.1524" layer="91"/>
-<label x="137.16" y="111.76" size="1.016" layer="95" rot="MR0" xref="yes"/>
+<wire x1="139.7" y1="121.92" x2="137.16" y2="121.92" width="0.1524" layer="91"/>
+<label x="137.16" y="121.92" size="1.016" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
 <pinref part="U2" gate="G$1" pin="P2_1"/>
