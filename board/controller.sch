@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="yes"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
+<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="yes" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="no" active="no"/>
 <layer number="2" name="Route2" color="1" fill="3" visible="no" active="no"/>
@@ -3130,26 +3130,26 @@ TX</text>
 <pin name="A_2" x="-7.62" y="12.7" visible="off" length="short"/>
 <pin name="A_A" x="-7.62" y="17.78" visible="off" length="short"/>
 <pin name="A_C" x="-7.62" y="15.24" visible="off" length="short"/>
-<wire x1="-5.08" y1="22.86" x2="5.08" y2="22.86" width="0.4064" layer="94"/>
-<wire x1="5.08" y1="22.86" x2="5.08" y2="10.16" width="0.4064" layer="94"/>
-<wire x1="5.08" y1="10.16" x2="-5.08" y2="10.16" width="0.4064" layer="94"/>
-<wire x1="-5.08" y1="10.16" x2="-5.08" y2="22.86" width="0.4064" layer="94"/>
+<wire x1="-5.08" y1="22.86" x2="5.08" y2="22.86" width="0.254" layer="94"/>
+<wire x1="5.08" y1="22.86" x2="5.08" y2="10.16" width="0.254" layer="94"/>
+<wire x1="5.08" y1="10.16" x2="-5.08" y2="10.16" width="0.254" layer="94"/>
+<wire x1="-5.08" y1="10.16" x2="-5.08" y2="22.86" width="0.254" layer="94"/>
 <pin name="B_1" x="-7.62" y="5.08" visible="off" length="short"/>
 <pin name="B_2" x="-7.62" y="-2.54" visible="off" length="short"/>
 <pin name="B_A" x="-7.62" y="2.54" visible="off" length="short"/>
 <pin name="B_C" x="-7.62" y="0" visible="off" length="short"/>
-<wire x1="-5.08" y1="7.62" x2="5.08" y2="7.62" width="0.4064" layer="94"/>
-<wire x1="5.08" y1="7.62" x2="5.08" y2="-5.08" width="0.4064" layer="94"/>
-<wire x1="5.08" y1="-5.08" x2="-5.08" y2="-5.08" width="0.4064" layer="94"/>
-<wire x1="-5.08" y1="-5.08" x2="-5.08" y2="7.62" width="0.4064" layer="94"/>
+<wire x1="-5.08" y1="7.62" x2="5.08" y2="7.62" width="0.254" layer="94"/>
+<wire x1="5.08" y1="7.62" x2="5.08" y2="-5.08" width="0.254" layer="94"/>
+<wire x1="5.08" y1="-5.08" x2="-5.08" y2="-5.08" width="0.254" layer="94"/>
+<wire x1="-5.08" y1="-5.08" x2="-5.08" y2="7.62" width="0.254" layer="94"/>
 <pin name="C_1" x="-7.62" y="-10.16" visible="off" length="short"/>
 <pin name="C_2" x="-7.62" y="-17.78" visible="off" length="short"/>
 <pin name="C_A" x="-7.62" y="-12.7" visible="off" length="short"/>
 <pin name="C_C" x="-7.62" y="-15.24" visible="off" length="short"/>
-<wire x1="-5.08" y1="-7.62" x2="5.08" y2="-7.62" width="0.4064" layer="94"/>
-<wire x1="5.08" y1="-7.62" x2="5.08" y2="-20.32" width="0.4064" layer="94"/>
-<wire x1="5.08" y1="-20.32" x2="-5.08" y2="-20.32" width="0.4064" layer="94"/>
-<wire x1="-5.08" y1="-20.32" x2="-5.08" y2="-7.62" width="0.4064" layer="94"/>
+<wire x1="-5.08" y1="-7.62" x2="5.08" y2="-7.62" width="0.254" layer="94"/>
+<wire x1="5.08" y1="-7.62" x2="5.08" y2="-20.32" width="0.254" layer="94"/>
+<wire x1="5.08" y1="-20.32" x2="-5.08" y2="-20.32" width="0.254" layer="94"/>
+<wire x1="-5.08" y1="-20.32" x2="-5.08" y2="-7.62" width="0.254" layer="94"/>
 <text x="5.842" y="22.86" size="1.778" layer="95" rot="R270">&gt;NAME</text>
 <wire x1="-6.096" y1="20.32" x2="2.286" y2="20.32" width="0.1524" layer="94"/>
 <wire x1="2.286" y1="20.32" x2="2.286" y2="17.272" width="0.1524" layer="94"/>
@@ -3234,13 +3234,13 @@ ESP8266 module</description>
 <text x="-10.16" y="-12.446" size="1.778" layer="96">&gt;Value</text>
 </symbol>
 <symbol name="M04">
-<wire x1="1.27" y1="-7.62" x2="-5.08" y2="-7.62" width="0.4064" layer="94"/>
+<wire x1="1.27" y1="-7.62" x2="-5.08" y2="-7.62" width="0.254" layer="94"/>
 <wire x1="-1.27" y1="0" x2="0" y2="0" width="0.6096" layer="94"/>
 <wire x1="-1.27" y1="-2.54" x2="0" y2="-2.54" width="0.6096" layer="94"/>
 <wire x1="-1.27" y1="-5.08" x2="0" y2="-5.08" width="0.6096" layer="94"/>
-<wire x1="-5.08" y1="5.08" x2="-5.08" y2="-7.62" width="0.4064" layer="94"/>
-<wire x1="1.27" y1="-7.62" x2="1.27" y2="5.08" width="0.4064" layer="94"/>
-<wire x1="-5.08" y1="5.08" x2="1.27" y2="5.08" width="0.4064" layer="94"/>
+<wire x1="-5.08" y1="5.08" x2="-5.08" y2="-7.62" width="0.254" layer="94"/>
+<wire x1="1.27" y1="-7.62" x2="1.27" y2="5.08" width="0.254" layer="94"/>
+<wire x1="-5.08" y1="5.08" x2="1.27" y2="5.08" width="0.254" layer="94"/>
 <wire x1="-1.27" y1="2.54" x2="0" y2="2.54" width="0.6096" layer="94"/>
 <text x="-5.08" y="5.842" size="1.27" layer="95">&gt;NAME</text>
 <text x="-5.08" y="-9.525" size="1.27" layer="96">&gt;VALUE</text>
@@ -3250,25 +3250,25 @@ ESP8266 module</description>
 <pin name="4" x="5.08" y="2.54" visible="pad" length="middle" direction="pas" swaplevel="1" rot="R180"/>
 </symbol>
 <symbol name="M02">
-<wire x1="1.27" y1="-1.016" x2="-5.08" y2="-1.016" width="0.4064" layer="94"/>
+<wire x1="1.27" y1="-1.016" x2="-5.08" y2="-1.016" width="0.254" layer="94"/>
 <wire x1="-1.27" y1="2.54" x2="0" y2="2.54" width="0.6096" layer="94"/>
 <wire x1="-1.27" y1="0" x2="0" y2="0" width="0.6096" layer="94"/>
-<wire x1="-5.08" y1="3.556" x2="-5.08" y2="-1.016" width="0.4064" layer="94"/>
-<wire x1="1.27" y1="-1.016" x2="1.27" y2="3.556" width="0.4064" layer="94"/>
-<wire x1="-5.08" y1="3.556" x2="1.27" y2="3.556" width="0.4064" layer="94"/>
-<text x="-5.334" y="3.048" size="1.27" layer="95" rot="R180">&gt;NAME</text>
-<text x="-5.334" y="0.762" size="1.27" layer="96" align="top-right">&gt;VALUE</text>
+<wire x1="-5.08" y1="3.556" x2="-5.08" y2="-1.016" width="0.254" layer="94"/>
+<wire x1="1.27" y1="-1.016" x2="1.27" y2="3.556" width="0.254" layer="94"/>
+<wire x1="-5.08" y1="3.556" x2="1.27" y2="3.556" width="0.254" layer="94"/>
+<text x="-5.08" y="3.81" size="1.27" layer="95">&gt;NAME</text>
+<text x="-5.08" y="-1.27" size="1.27" layer="96" align="top-left">&gt;VALUE</text>
 <pin name="1" x="5.08" y="0" visible="pad" length="middle" direction="pas" swaplevel="1" rot="R180"/>
 <pin name="2" x="5.08" y="2.54" visible="pad" length="middle" direction="pas" swaplevel="1" rot="R180"/>
 </symbol>
 <symbol name="M03">
-<wire x1="1.27" y1="-5.08" x2="-5.08" y2="-5.08" width="0.4064" layer="94"/>
+<wire x1="1.27" y1="-5.08" x2="-5.08" y2="-5.08" width="0.254" layer="94"/>
 <wire x1="-1.27" y1="2.54" x2="0" y2="2.54" width="0.6096" layer="94"/>
 <wire x1="-1.27" y1="0" x2="0" y2="0" width="0.6096" layer="94"/>
 <wire x1="-1.27" y1="-2.54" x2="0" y2="-2.54" width="0.6096" layer="94"/>
-<wire x1="-5.08" y1="5.08" x2="-5.08" y2="-5.08" width="0.4064" layer="94"/>
-<wire x1="1.27" y1="-5.08" x2="1.27" y2="5.08" width="0.4064" layer="94"/>
-<wire x1="-5.08" y1="5.08" x2="1.27" y2="5.08" width="0.4064" layer="94"/>
+<wire x1="-5.08" y1="5.08" x2="-5.08" y2="-5.08" width="0.254" layer="94"/>
+<wire x1="1.27" y1="-5.08" x2="1.27" y2="5.08" width="0.254" layer="94"/>
+<wire x1="-5.08" y1="5.08" x2="1.27" y2="5.08" width="0.254" layer="94"/>
 <text x="-5.08" y="5.588" size="1.4224" layer="95">&gt;NAME</text>
 <text x="-5.08" y="-7.112" size="1.4224" layer="96">&gt;VALUE</text>
 <pin name="1" x="5.08" y="-2.54" visible="pad" length="middle" direction="pas" swaplevel="1" rot="R180"/>
@@ -3276,11 +3276,11 @@ ESP8266 module</description>
 <pin name="3" x="5.08" y="2.54" visible="pad" length="middle" direction="pas" swaplevel="1" rot="R180"/>
 </symbol>
 <symbol name="VREG">
-<wire x1="-7.62" y1="2.54" x2="7.62" y2="2.54" width="0.4064" layer="94"/>
-<wire x1="7.62" y1="2.54" x2="7.62" y2="-2.54" width="0.4064" layer="94"/>
-<wire x1="7.62" y1="-2.54" x2="7.62" y2="-5.08" width="0.4064" layer="94"/>
-<wire x1="7.62" y1="-5.08" x2="-7.62" y2="-5.08" width="0.4064" layer="94"/>
-<wire x1="-7.62" y1="-5.08" x2="-7.62" y2="2.54" width="0.4064" layer="94"/>
+<wire x1="-7.62" y1="2.54" x2="7.62" y2="2.54" width="0.254" layer="94"/>
+<wire x1="7.62" y1="2.54" x2="7.62" y2="-2.54" width="0.254" layer="94"/>
+<wire x1="7.62" y1="-2.54" x2="7.62" y2="-5.08" width="0.254" layer="94"/>
+<wire x1="7.62" y1="-5.08" x2="-7.62" y2="-5.08" width="0.254" layer="94"/>
+<wire x1="-7.62" y1="-5.08" x2="-7.62" y2="2.54" width="0.254" layer="94"/>
 <text x="-0.508" y="-5.842" size="1.27" layer="95" rot="R180">&gt;NAME</text>
 <text x="0.762" y="-5.842" size="1.27" layer="96" align="top-left">&gt;VALUE</text>
 <text x="-2.286" y="-4.318" size="1.6764" layer="95">GND</text>
@@ -3376,13 +3376,13 @@ ESP8266 module</description>
 <text x="2.032" y="3.175" size="1.27" layer="94" rot="R180">+</text>
 <text x="2.032" y="0.635" size="1.27" layer="94" rot="R180">O</text>
 <text x="2.032" y="-1.905" size="1.27" layer="94" rot="R180">G</text>
-<wire x1="-2.54" y1="-5.08" x2="-2.54" y2="-2.54" width="0.4064" layer="94"/>
+<wire x1="-2.54" y1="-5.08" x2="-2.54" y2="-2.54" width="0.254" layer="94"/>
 <text x="-2.54" y="5.588" size="1.27" layer="95">&gt;NAME</text>
-<wire x1="-2.54" y1="2.54" x2="-2.54" y2="5.08" width="0.4064" layer="94"/>
-<wire x1="-2.54" y1="-5.08" x2="2.54" y2="-5.08" width="0.4064" layer="94"/>
-<wire x1="2.54" y1="-5.08" x2="2.54" y2="5.08" width="0.4064" layer="94"/>
-<wire x1="2.54" y1="5.08" x2="-2.54" y2="5.08" width="0.4064" layer="94"/>
-<wire x1="-2.54" y1="-2.54" x2="-2.54" y2="2.54" width="0.4064" layer="94" curve="-180"/>
+<wire x1="-2.54" y1="2.54" x2="-2.54" y2="5.08" width="0.254" layer="94"/>
+<wire x1="-2.54" y1="-5.08" x2="2.54" y2="-5.08" width="0.254" layer="94"/>
+<wire x1="2.54" y1="-5.08" x2="2.54" y2="5.08" width="0.254" layer="94"/>
+<wire x1="2.54" y1="5.08" x2="-2.54" y2="5.08" width="0.254" layer="94"/>
+<wire x1="-2.54" y1="-2.54" x2="-2.54" y2="2.54" width="0.254" layer="94" curve="-180"/>
 </symbol>
 <symbol name="M05">
 <wire x1="3.81" y1="-7.62" x2="-2.54" y2="-7.62" width="0.4064" layer="94"/>
@@ -4990,7 +4990,11 @@ Various fiducial points for machine vision alignment.</description>
 <text x="132.08" y="91.44" size="1.778" layer="97" align="top-left">TODO
 Mounting holes are misaligned
 pushbutton switch positions are off
-add silk label for IR receiver orientation</text>
+add silk label for IR receiver orientation
+fix J16 board label, its hidden with AMP connector
+
+FUTURE
+Change keypad back lighting to WS2818/APF3236SEEZGKQBKC?</text>
 <text x="205.74" y="157.48" size="1.016" layer="97" align="top-left">Cree C503B-WAN-CBBDB231
 2.8V@10mA sets 5.0 IO out
 current limit R=220</text>
