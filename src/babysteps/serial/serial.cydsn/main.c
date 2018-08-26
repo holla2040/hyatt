@@ -1,7 +1,13 @@
 /*  This project duplicates works from 
     Barton Dring's Grbl_USB_Native project
     https://github.com/bdring/Grbl_USB_Native */
+    
+/*  also uartDisplay is connected to a nextion display
+    which has its own protocol, for example x.txt="111.222"\xFF\xFF\xFF
+    sets the nextion text field named 'x'. widgets 'y','m' and 'u' also 
+    exists. Load the nextion display with psocSerialTest.HMI  */
    
+#include <stdio.h>
 #include "project.h"
 
 #define USBFS_DEVICE        (0u)
@@ -12,18 +18,22 @@ uint8 buffer[USBUART_BUFFER_SIZE]; // bytes received
 void usb_uart_write(uint8_t c) {
     uint16 ctr = 0;
     if (uartUsb_GetConfiguration() == 1) {    
-        while (uartUsb_CDCIsReady() == 0u)
-        {
+        while (uartUsb_CDCIsReady() == 0u) {
             ctr++;  if (ctr > 400) 
                 return; // prevent getting stuck
-        }
-        
-        /* uppercasing alphabet */
-        if (c >= 'a' && c <= 'z') c -= 0x20;
-        
+        }      
         uartUsb_PutChar(c);
     }
 }
+
+/*
+void broadcast(uint8_t c) {
+    usb_uart_write(c);
+    uartWifi_PutChar(c);
+    uartKitprog_PutChar(c);
+    uartDisplay_PutChar(c);
+}
+*/
 
 void usb_uart_check(){
     uint16 count; // number of bytes received   
@@ -46,7 +56,9 @@ void usb_uart_check(){
 
             if (count != 0u) {
                 for (int i = 0; i < count; i++) {
-                    usb_uart_write(buffer[i]);
+                    uartWifi_PutChar(buffer[i]);
+                    uartKitprog_PutChar(buffer[i]);
+                    uartDisplay_PutChar(buffer[i]);
                 }
             }
         }
@@ -64,6 +76,24 @@ void usb_uart_PutString(const char *s) {
     }        
 }
 
+char displayBuffer[50];
+void displayProcess(char c) {
+    if (c == '\r') {
+        uartDisplay_PutString(displayBuffer);
+        uartDisplay_PutString("\xff\xff\xff");
+        strcpy(displayBuffer,"");
+    } else {
+        char tmpstr[2];
+        tmpstr[0] = c;
+        tmpstr[1] = 0;
+
+        strcat(displayBuffer,tmpstr);
+    }
+    if (strlen(displayBuffer) > 48) {
+        strcpy(displayBuffer,"");
+    }
+}
+
 #if defined (__GNUC__)
     /* Add an explicit reference to the floating point printf library */
     /* to allow usage of the floating point conversion specifiers. */
@@ -73,10 +103,32 @@ void usb_uart_PutString(const char *s) {
 
 int main(void) {
     CyGlobalIntEnable;
-    
+    uint8_t c;
     uartUsb_Start(USBFS_DEVICE, uartUsb_5V_OPERATION);
+    uartKitprog_Start();
+    uartDisplay_Start();
+    uartWifi_Start();
+    
+    strcpy(displayBuffer,"");
     
     for(;;) {
         usb_uart_check();
+        if ((c = uartKitprog_GetChar()) != 0) { 
+            usb_uart_write(c);
+            uartWifi_PutChar(c);
+            displayProcess(c);
+        }
+        if ((c = uartDisplay_GetChar()) != 0) { 
+            if ((c > 31 && c < 127) || c == '\r' || c == '\n') {
+                usb_uart_write(c);
+                uartWifi_PutChar(c);
+                uartKitprog_PutChar(c);
+            }
+        }
+        if ((c = uartWifi_GetChar()) != 0) { 
+            usb_uart_write(c);
+            uartKitprog_PutChar(c);
+            displayProcess(c);
+        }
     }
 }
