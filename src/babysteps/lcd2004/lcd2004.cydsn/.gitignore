@@ -1,0 +1,11 @@
+*.log
+CortexM3/
+Export/
+Generated_Source/
+codegentemp/
+*.cycdx
+*.cyfit
+*.cyprj.valvestudio
+*.rpt
+*.svd
+*.html
