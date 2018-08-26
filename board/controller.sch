@@ -3123,7 +3123,7 @@ TX</text>
 <pin name="GPA7" x="12.7" y="2.54" length="short" rot="R180"/>
 <pin name="VDD" x="-12.7" y="20.32" length="short" direction="pwr"/>
 <pin name="VSS" x="-12.7" y="-20.32" length="short" direction="pwr"/>
-<text x="-6.096" y="-0.762" size="1.778" layer="97">MCP23017</text>
+<text x="-0.762" y="-14.224" size="1.778" layer="97" rot="R90" align="center">MCP23017</text>
 </symbol>
 <symbol name="SWITCH-DTFM-3-LED">
 <pin name="A_1" x="-7.62" y="20.32" visible="off" length="short"/>
@@ -3312,13 +3312,13 @@ ESP8266 module</description>
 <wire x1="0" y1="2.54" x2="0" y2="0.381" width="0.1524" layer="94"/>
 </symbol>
 <symbol name="M06">
-<wire x1="1.27" y1="-12.7" x2="-5.08" y2="-12.7" width="0.4064" layer="94"/>
+<wire x1="1.27" y1="-12.7" x2="-5.08" y2="-12.7" width="0.254" layer="94"/>
 <wire x1="-1.27" y1="-5.08" x2="0" y2="-5.08" width="0.6096" layer="94"/>
 <wire x1="-1.27" y1="-7.62" x2="0" y2="-7.62" width="0.6096" layer="94"/>
 <wire x1="-1.27" y1="-10.16" x2="0" y2="-10.16" width="0.6096" layer="94"/>
-<wire x1="-5.08" y1="5.08" x2="-5.08" y2="-12.7" width="0.4064" layer="94"/>
-<wire x1="1.27" y1="-12.7" x2="1.27" y2="5.08" width="0.4064" layer="94"/>
-<wire x1="-5.08" y1="5.08" x2="1.27" y2="5.08" width="0.4064" layer="94"/>
+<wire x1="-5.08" y1="5.08" x2="-5.08" y2="-12.7" width="0.254" layer="94"/>
+<wire x1="1.27" y1="-12.7" x2="1.27" y2="5.08" width="0.254" layer="94"/>
+<wire x1="-5.08" y1="5.08" x2="1.27" y2="5.08" width="0.254" layer="94"/>
 <wire x1="-1.27" y1="0" x2="0" y2="0" width="0.6096" layer="94"/>
 <wire x1="-1.27" y1="-2.54" x2="0" y2="-2.54" width="0.6096" layer="94"/>
 <wire x1="-1.27" y1="2.54" x2="0" y2="2.54" width="0.6096" layer="94"/>
@@ -3385,13 +3385,13 @@ ESP8266 module</description>
 <wire x1="-2.54" y1="-2.54" x2="-2.54" y2="2.54" width="0.254" layer="94" curve="-180"/>
 </symbol>
 <symbol name="M05">
-<wire x1="3.81" y1="-7.62" x2="-2.54" y2="-7.62" width="0.4064" layer="94"/>
+<wire x1="3.81" y1="-7.62" x2="-2.54" y2="-7.62" width="0.254" layer="94"/>
 <wire x1="1.27" y1="0" x2="2.54" y2="0" width="0.6096" layer="94"/>
 <wire x1="1.27" y1="-2.54" x2="2.54" y2="-2.54" width="0.6096" layer="94"/>
 <wire x1="1.27" y1="-5.08" x2="2.54" y2="-5.08" width="0.6096" layer="94"/>
-<wire x1="-2.54" y1="7.62" x2="-2.54" y2="-7.62" width="0.4064" layer="94"/>
-<wire x1="3.81" y1="-7.62" x2="3.81" y2="7.62" width="0.4064" layer="94"/>
-<wire x1="-2.54" y1="7.62" x2="3.81" y2="7.62" width="0.4064" layer="94"/>
+<wire x1="-2.54" y1="7.62" x2="-2.54" y2="-7.62" width="0.254" layer="94"/>
+<wire x1="3.81" y1="-7.62" x2="3.81" y2="7.62" width="0.254" layer="94"/>
+<wire x1="-2.54" y1="7.62" x2="3.81" y2="7.62" width="0.254" layer="94"/>
 <wire x1="1.27" y1="5.08" x2="2.54" y2="5.08" width="0.6096" layer="94"/>
 <wire x1="1.27" y1="2.54" x2="2.54" y2="2.54" width="0.6096" layer="94"/>
 <text x="-2.54" y="8.382" size="1.778" layer="95">&gt;NAME</text>
