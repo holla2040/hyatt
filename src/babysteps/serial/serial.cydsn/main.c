@@ -15,6 +15,8 @@
 #define LINE_STR_LENGTH     (20u)
 uint8 buffer[USBUART_BUFFER_SIZE]; // bytes received    
 
+void displayProcess(char c);
+
 void usb_uart_write(uint8_t c) {
     uint16 ctr = 0;
     if (uartUsb_GetConfiguration() == 1) {    
@@ -58,7 +60,7 @@ void usb_uart_check(){
                 for (int i = 0; i < count; i++) {
                     uartWifi_PutChar(buffer[i]);
                     uartKitprog_PutChar(buffer[i]);
-                    uartDisplay_PutChar(buffer[i]);
+                    displayProcess(buffer[i]);
                 }
             }
         }
@@ -120,15 +122,15 @@ int main(void) {
         }
         if ((c = uartDisplay_GetChar()) != 0) { 
             if ((c > 31 && c < 127) || c == '\r' || c == '\n') {
-                usb_uart_write(c);
                 uartWifi_PutChar(c);
                 uartKitprog_PutChar(c);
+                usb_uart_write(c);
             }
         }
         if ((c = uartWifi_GetChar()) != 0) { 
-            usb_uart_write(c);
             uartKitprog_PutChar(c);
             displayProcess(c);
+            usb_uart_write(c);
         }
     }
 }

@@ -1762,12 +1762,12 @@ design rules under a new name.</description>
 </signal>
 <signal name="FEED_HOLDING_OUT">
 <contactref element="J13" pad="2"/>
-<contactref element="U2" pad="1.0"/>
 <wire x1="31.76" y1="95.5" x2="31.76" y2="85.207" width="0.254" layer="16"/>
 <wire x1="31.76" y1="85.207" x2="34.8615" y2="82.1055" width="0.254" layer="16"/>
 <via x="34.8615" y="82.1055" extent="1-16" drill="0.3048"/>
 <wire x1="34.8615" y1="82.1055" x2="34.8615" y2="65.4685" width="0.254" layer="1"/>
-<wire x1="34.8615" y1="65.4685" x2="38.1" y2="62.23" width="0.254" layer="1"/>
+<contactref element="U2" pad="1.2"/>
+<wire x1="34.8615" y1="65.4685" x2="38.1" y2="67.31" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="Z_DISPLAY_RX_IN">
 <contactref element="J19" pad="2"/>
@@ -2429,19 +2429,23 @@ design rules under a new name.</description>
 </signal>
 <signal name="RADIO_TX">
 <contactref element="WEMOS1" pad="TX"/>
-<contactref element="U2" pad="1.2"/>
-<wire x1="38.1" y1="67.31" x2="46.355" y2="67.31" width="0.254" layer="16"/>
 <wire x1="46.355" y1="67.31" x2="53.848" y2="74.803" width="0.254" layer="16"/>
 <wire x1="53.848" y1="74.803" x2="56.131" y2="74.803" width="0.254" layer="16"/>
 <wire x1="56.131" y1="74.803" x2="56.388" y2="75.06" width="0.254" layer="16"/>
+<contactref element="U2" pad="15.0"/>
+<contactref element="J7" pad="3"/>
+<wire x1="17.78" y1="62.23" x2="46.355" y2="67.31" width="0" layer="19" extent="16-16"/>
+<wire x1="12.2" y1="62.78" x2="17.78" y2="62.23" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="RADIO_RX">
 <contactref element="WEMOS1" pad="RX"/>
-<contactref element="U2" pad="1.1"/>
-<wire x1="38.1" y1="64.77" x2="51.7525" y2="64.77" width="0.254" layer="16"/>
 <wire x1="51.7525" y1="64.77" x2="57.9915" y2="71.009" width="0.254" layer="16"/>
 <wire x1="57.9915" y1="71.009" x2="57.9915" y2="74.1235" width="0.254" layer="16"/>
 <wire x1="57.9915" y1="74.1235" x2="58.928" y2="75.06" width="0.254" layer="16"/>
+<contactref element="U2" pad="15.1"/>
+<contactref element="J7" pad="2"/>
+<wire x1="17.78" y1="59.69" x2="51.7525" y2="64.77" width="0" layer="19" extent="16-16"/>
+<wire x1="12.2" y1="60.24" x2="17.78" y2="59.69" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="FEED_OVERRIDE_OFF">
 <contactref element="J18" pad="4"/>
@@ -2480,18 +2484,6 @@ design rules under a new name.</description>
 <contactref element="U2" pad="1.6"/>
 <contactref element="J16" pad="4"/>
 <wire x1="44.45" y1="77.47" x2="38.1" y2="77.47" width="0.254" layer="16"/>
-</signal>
-<signal name="CPU_SPARE_IO_0">
-<contactref element="J7" pad="3"/>
-<contactref element="U2" pad="15.0"/>
-<wire x1="17.78" y1="62.23" x2="12.75" y2="62.23" width="0.254" layer="1"/>
-<wire x1="12.75" y1="62.23" x2="12.2" y2="62.78" width="0.254" layer="1"/>
-</signal>
-<signal name="CPU_SPARE_IO_1">
-<contactref element="J7" pad="2"/>
-<contactref element="U2" pad="15.1"/>
-<wire x1="17.78" y1="59.69" x2="12.75" y2="59.69" width="0.254" layer="1"/>
-<wire x1="12.75" y1="59.69" x2="12.2" y2="60.24" width="0.254" layer="1"/>
 </signal>
 <signal name="MIST_ENABLE_OUT">
 <contactref element="J5" pad="2"/>

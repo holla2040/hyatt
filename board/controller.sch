@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="yes"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="yes" altdistance="0.01" altunitdist="inch" altunit="inch"/>
+<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="no" active="no"/>
 <layer number="2" name="Route2" color="1" fill="3" visible="no" active="no"/>
@@ -4986,7 +4986,7 @@ Various fiducial points for machine vision alignment.</description>
 <plain>
 <text x="175.26" y="33.02" size="2.54" layer="97" align="top-left">Hyatt Controller</text>
 <text x="177.8" y="10.16" size="2.54" layer="97" align="top-left">180804</text>
-<text x="261.62" y="10.16" size="2.54" layer="97" align="top-left">v1.0</text>
+<text x="261.62" y="10.16" size="2.54" layer="97" align="top-left">v1.1</text>
 <text x="132.08" y="91.44" size="1.778" layer="97" align="top-left">TODO
 Mounting holes are misaligned
 pushbutton switch positions are off
@@ -5001,6 +5001,8 @@ current limit R=220</text>
 <text x="29.972" y="21.844" size="1.016" layer="97" align="top-left">Set VINMAX = 50V
 VIN_SCALED_IN 5V FS
 Use 1% resistors</text>
+<text x="93.98" y="155.448" size="1.016" layer="97" align="top-left">1.1 and 1.0 are used
+for 059's SWD pins</text>
 </plain>
 <instances>
 <instance part="FRAME1" gate="G$1" x="0" y="0"/>
@@ -5862,9 +5864,9 @@ Use 1% resistors</text>
 <label x="86.36" y="205.74" size="1.016" layer="95" xref="yes"/>
 </segment>
 <segment>
-<pinref part="U2" gate="G$1" pin="P1_0"/>
-<wire x1="91.44" y1="152.4" x2="96.52" y2="152.4" width="0.1524" layer="91"/>
-<label x="96.52" y="152.4" size="1.016" layer="95" xref="yes"/>
+<label x="96.52" y="157.48" size="1.016" layer="95" xref="yes"/>
+<pinref part="U2" gate="G$1" pin="P1_2"/>
+<wire x1="91.44" y1="157.48" x2="96.52" y2="157.48" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="Z_DISPLAY_RX_IN" class="0">
@@ -6510,9 +6512,14 @@ Use 1% resistors</text>
 <label x="93.98" y="86.36" size="1.016" layer="95" xref="yes"/>
 </segment>
 <segment>
-<pinref part="U2" gate="G$1" pin="P1_2"/>
-<wire x1="91.44" y1="157.48" x2="96.52" y2="157.48" width="0.1524" layer="91"/>
-<label x="96.52" y="157.48" size="1.016" layer="95" xref="yes"/>
+<pinref part="U2" gate="G$1" pin="P15_0"/>
+<wire x1="63.5" y1="152.4" x2="58.42" y2="152.4" width="0.1524" layer="91"/>
+<label x="58.42" y="152.4" size="1.016" layer="95" rot="R180" xref="yes"/>
+</segment>
+<segment>
+<pinref part="J7" gate="G$1" pin="3"/>
+<wire x1="27.94" y1="109.22" x2="30.48" y2="109.22" width="0.1524" layer="91"/>
+<label x="30.48" y="109.22" size="1.016" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="RADIO_RX" class="0">
@@ -6522,9 +6529,14 @@ Use 1% resistors</text>
 <label x="93.98" y="83.82" size="1.016" layer="95" xref="yes"/>
 </segment>
 <segment>
-<pinref part="U2" gate="G$1" pin="P1_1"/>
-<wire x1="91.44" y1="154.94" x2="96.52" y2="154.94" width="0.1524" layer="91"/>
-<label x="96.52" y="154.94" size="1.016" layer="95" xref="yes"/>
+<pinref part="U2" gate="G$1" pin="P15_1"/>
+<wire x1="63.5" y1="149.86" x2="58.42" y2="149.86" width="0.1524" layer="91"/>
+<label x="58.42" y="149.86" size="1.016" layer="95" rot="R180" xref="yes"/>
+</segment>
+<segment>
+<pinref part="J7" gate="G$1" pin="2"/>
+<wire x1="27.94" y1="106.68" x2="30.48" y2="106.68" width="0.1524" layer="91"/>
+<label x="30.48" y="106.68" size="1.016" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="FEED_OVERRIDE_OFF" class="0">
@@ -6590,30 +6602,6 @@ Use 1% resistors</text>
 <pinref part="J16" gate="G$1" pin="4"/>
 <wire x1="121.92" y1="172.72" x2="119.38" y2="172.72" width="0.1524" layer="91"/>
 <label x="119.38" y="172.72" size="1.016" layer="95" rot="R180" xref="yes"/>
-</segment>
-</net>
-<net name="CPU_SPARE_IO_0" class="0">
-<segment>
-<pinref part="J7" gate="G$1" pin="3"/>
-<wire x1="27.94" y1="109.22" x2="33.02" y2="109.22" width="0.1524" layer="91"/>
-<label x="33.02" y="109.22" size="1.016" layer="95" xref="yes"/>
-</segment>
-<segment>
-<pinref part="U2" gate="G$1" pin="P15_0"/>
-<wire x1="63.5" y1="152.4" x2="58.42" y2="152.4" width="0.1524" layer="91"/>
-<label x="58.42" y="152.4" size="1.016" layer="95" rot="R180" xref="yes"/>
-</segment>
-</net>
-<net name="CPU_SPARE_IO_1" class="0">
-<segment>
-<pinref part="J7" gate="G$1" pin="2"/>
-<wire x1="27.94" y1="106.68" x2="33.02" y2="106.68" width="0.1524" layer="91"/>
-<label x="33.02" y="106.68" size="1.016" layer="95" xref="yes"/>
-</segment>
-<segment>
-<pinref part="U2" gate="G$1" pin="P15_1"/>
-<wire x1="58.42" y1="149.86" x2="63.5" y2="149.86" width="0.1524" layer="91"/>
-<label x="58.42" y="149.86" size="1.016" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="FLOOD_ENABLE_OUT" class="0">
