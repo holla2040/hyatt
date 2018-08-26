@@ -83,15 +83,19 @@ void pushDisplay() {
     }
 }
 
-#define FLASHDURATION 250
+#define FLASHDURATION 125
 
 int main(void) {   
     int i;
-    uint8_t k,l1,l2;
+    uint8_t k,l2,u3,u4;
+    char status[100];
     CyGlobalIntEnable;
     
+    Serial_Start();
+    Serial_PutString("mcp23017 main\n");
+    
     pushes = 0;
-    l1 = 0;
+    
     l2 = 0;
        
     Pin_IO_INT_Int_StartEx(pushHandler);
@@ -119,6 +123,14 @@ int main(void) {
     regWrite(U3Addr,IODIRB,  0x88);         // bit 0 to output
     regWrite(U3Addr,GPIOB,   0x77);         // led on
     
+    regWrite(U4Addr,IODIRA,  0x77);         // set port A to input
+    regWrite(U4Addr,IOPOLA,  0x77);         // invert logic on port A, 1 means switch pressed
+    regWrite(U4Addr,GPPUA,   0x77);         // add pull-up to all port A
+    regWrite(U4Addr,GPINTENA,0x77);         // enable interrupt on port A changes
+    regWrite(U4Addr,DEFVALA, 0x00);         // 
+    regWrite(U4Addr,INTCONA, 0x77);         // Change from DEFVAL, fires on button release
+    regWrite(U4Addr,IOCONA,  0x77);         // INT pins connected, open-drain output 
+
     regWrite(U4Addr,IODIRB,  0x88);         // bit 0 to output
     regWrite(U4Addr,GPIOB,   0x77);         // led on
  
@@ -153,17 +165,31 @@ int main(void) {
     regWrite(U4Addr,GPIOB,0x00);
     CyDelay(FLASHDURATION);
     
+    k = 0x00;
     for(;;) {
-        k = regRead(U3Addr,GPIOA)&0x07;
-        if (k) {
-            k |= k << 4;
-            l1 ^= k;
-            regWrite(U3Addr,GPIOB,l1);
+        u3 = regRead(U3Addr,GPIOA);
+        u4 = regRead(U4Addr,GPIOA);
+        
+        if (u3) {
+            k ^= u3;
+            regWrite(U3Addr,GPIOB,k);
             
-            l2++;
+            if ((l2 & 0x07) == 0x07) {
+                l2 += 9; // skip over 0x08 output bit
+            } else {
+                l2++;
+            }
+            if (l2 == 0x80) {
+                l2 = 0x00;
+            }
             regWrite(U4Addr,GPIOB,l2);
+        }
+        
+        if (u3 | u4) {
+            sprintf(status,"0x%02X 0x%02X 0x%02X 0x%02X\n",regRead(U3Addr,GPIOA),regRead(U3Addr,GPIOB),regRead(U4Addr,GPIOA),regRead(U4Addr,GPIOB));
+            Serial_PutString(status);
             CyDelay(250);
-       }
+        }
         /*
         l1 ^= (regRead(U3Addr,GPIOA)&k);
         regWrite(U3Addr,GPIOB,l1);
