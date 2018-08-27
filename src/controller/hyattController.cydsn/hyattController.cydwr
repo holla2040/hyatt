@@ -1213,7 +1213,7 @@
     </Group>
     <Group key="8ad63f55-0757-4aca-91b2-1f050070339e">
       <Group key="0">
-        <Data key="Port Format" value="1,1" />
+        <Data key="Port Format" value="15,1" />
       </Group>
     </Group>
     <Group key="8baa05f5-cdf1-4a2e-8ed4-118048bc2855">
@@ -1304,7 +1304,7 @@
     </Group>
     <Group key="8761d423-7d45-43a8-9edc-e4d6216374e0">
       <Group key="0">
-        <Data key="Port Format" value="1,0" />
+        <Data key="Port Format" value="1,2" />
       </Group>
     </Group>
     <Group key="22863ebe-a37b-476f-b252-6e49a8c00b12">
@@ -1440,7 +1440,7 @@
     </Group>
     <Group key="c9434a4b-8285-448d-9fe0-dc6de9d2bfae">
       <Group key="0">
-        <Data key="Port Format" value="1,2" />
+        <Data key="Port Format" value="15,0" />
       </Group>
     </Group>
     <Group key="d938166a-c041-4af5-afaf-ef82f4b4af02/bcf50901-38ae-461b-a57c-bc3cfeb9b89c">
@@ -1577,7 +1577,7 @@
     <Data key="CYDEV_CONFIGURATION_IMOENABLED" value="False" />
     <Data key="CYDEV_CONFIGURATION_MODE" value="COMPRESSED" />
     <Data key="CYDEV_Data_CACHE_ENABLED" value="True" />
-    <Data key="CYDEV_DEBUGGING_DPS" value="Disable" />
+    <Data key="CYDEV_DEBUGGING_DPS" value="SWD" />
     <Data key="CYDEV_DEBUGGING_REQXRES" value="True" />
     <Data key="CYDEV_DEBUGGING_XRES" value="False" />
     <Data key="CYDEV_ECC_ENABLE" value="False" />

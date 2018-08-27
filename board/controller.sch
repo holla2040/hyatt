@@ -6505,7 +6505,7 @@ for 059's SWD pins</text>
 <wire x1="203.2" y1="129.54" x2="218.44" y2="129.54" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="RADIO_TX" class="0">
+<net name="RADIO_TX_OUT" class="0">
 <segment>
 <pinref part="WEMOS1" gate="D1" pin="TX"/>
 <wire x1="91.44" y1="86.36" x2="93.98" y2="86.36" width="0.1524" layer="91"/>
@@ -6527,11 +6527,6 @@ for 059's SWD pins</text>
 <pinref part="WEMOS1" gate="D1" pin="RX"/>
 <wire x1="91.44" y1="83.82" x2="93.98" y2="83.82" width="0.1524" layer="91"/>
 <label x="93.98" y="83.82" size="1.016" layer="95" xref="yes"/>
-</segment>
-<segment>
-<pinref part="U2" gate="G$1" pin="P15_1"/>
-<wire x1="63.5" y1="149.86" x2="58.42" y2="149.86" width="0.1524" layer="91"/>
-<label x="58.42" y="149.86" size="1.016" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
 <pinref part="J7" gate="G$1" pin="2"/>
@@ -6563,7 +6558,7 @@ for 059's SWD pins</text>
 <label x="96.52" y="114.3" size="1.016" layer="95" xref="yes"/>
 </segment>
 </net>
-<net name="SPINDLE_SPEED" class="0">
+<net name="SPINDLE_SPEED_OUT" class="0">
 <segment>
 <wire x1="15.24" y1="129.54" x2="17.78" y2="129.54" width="0.1524" layer="91"/>
 <label x="17.78" y="129.54" size="1.016" layer="95" xref="yes"/>
@@ -6626,6 +6621,13 @@ for 059's SWD pins</text>
 <pinref part="U2" gate="G$1" pin="P0_4"/>
 <wire x1="63.5" y1="127" x2="58.42" y2="127" width="0.1524" layer="91"/>
 <label x="58.42" y="127" size="1.016" layer="95" rot="R180" xref="yes"/>
+</segment>
+</net>
+<net name="RADIO_RX_IN" class="0">
+<segment>
+<pinref part="U2" gate="G$1" pin="P15_1"/>
+<wire x1="63.5" y1="149.86" x2="58.42" y2="149.86" width="0.1524" layer="91"/>
+<label x="58.42" y="149.86" size="1.016" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 </nets>
