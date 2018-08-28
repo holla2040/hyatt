@@ -17,6 +17,10 @@
   along with Grbl.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#include <FS.h>
+#include <string.h>
+#include <Global.h>
+
 #include "grbl.h"
 
 #if defined (__GNUC__)

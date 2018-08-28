@@ -552,16 +552,16 @@
     <Group key="Pin">
       <Data key="1aa9278c-0a47-4f27-b8ad-70b2811a08ca" value="IR_RECEIVE_IN" />
       <Data key="1eb58ade-b47e-46ee-b25b-370a51dc24d2" value="Z_DIRECTION_OUT" />
-      <Data key="02f2cf2c-2c7a-49df-9246-7a3435c21be3" value="SCL_1" />
+      <Data key="02f2cf2c-2c7a-49df-9246-7a3435c21be3" value="I2C_SCL" />
       <Data key="4a66792d-588a-4e12-a834-d83d9baf1c6b" value="SPINDLE_ENABLE_OUT" />
       <Data key="4f0b6035-e56d-4549-83a2-35ce37046259" value="A_STEP_OUT" />
       <Data key="5a109de0-2fa8-4675-936e-d03452310577" value="Probe_Pin" />
       <Data key="5d8a8b4b-a59b-4af0-a380-67cfc96fd81c" value="IO_RESET" />
-      <Data key="5d02496e-04d8-4c10-a410-74afe64f6411" value="WHEEL_A_IN" />
+      <Data key="5d02496e-04d8-4c10-a410-74afe64f6411" value="WHEEL_ENCODER_A_IN" />
       <Data key="5fc91387-e249-47f2-ad0c-f9642ee5f2bc" value="CPU_SPARE_IO_0" />
-      <Data key="6a3e8d7b-3f86-4de0-a024-3e6529a488f8" value="SPINDLE_OUT" />
+      <Data key="6a3e8d7b-3f86-4de0-a024-3e6529a488f8" value="SPINDLE_SPEED_OUT" />
       <Data key="7cdfdf36-4e5b-409a-8255-d5365ccbb9c4" value="A_DIRECTION_OUT" />
-      <Data key="8ad63f55-0757-4aca-91b2-1f050070339e" value="RADIO_RX" />
+      <Data key="8ad63f55-0757-4aca-91b2-1f050070339e" value="RADIO_RX_IN" />
       <Data key="8baa05f5-cdf1-4a2e-8ed4-118048bc2855" value="Z_STEP_OUT" />
       <Data key="8d318d8b-cf7b-4b6b-b02c-ab1c5c49d0ba" value="X_LIMIT_IN" />
       <Data key="8f3368d1-22db-4644-8856-8abecec32fed" value="STEPPER_ENABLE_OUT" />
@@ -579,10 +579,10 @@
       <Data key="1290ab40-db31-4b1a-95d2-8679381868b0" value="COOLANT_ENABLE_OUT" />
       <Data key="6558d27e-a9ba-4a4f-bfe9-0323e49ef96a" value="X_DIRECTION_OUT" />
       <Data key="8761d423-7d45-43a8-9edc-e4d6216374e0" value="FEED_HOLDING_OUT" />
-      <Data key="22863ebe-a37b-476f-b252-6e49a8c00b12" value="SDA_1" />
+      <Data key="22863ebe-a37b-476f-b252-6e49a8c00b12" value="I2C_SDA" />
       <Data key="38706aee-baeb-460e-964d-b92ec3497853/16a808f6-2e13-45b9-bce0-b001c8655113" value="ADC_SAR_1_Bypass" />
       <Data key="1242790c-e897-4f54-b081-f5d3300f0d2c" value="X_STEP_OUT" />
-      <Data key="1425177d-0d0e-4468-8bcc-e638e5509a9b" value="Z_DISPLAY_RX" />
+      <Data key="1425177d-0d0e-4468-8bcc-e638e5509a9b" value="Z_DISPLAY_RX_IN" />
       <Data key="5484040d-da45-4556-9268-487cc7d82d55" value="TEST" />
       <Data key="6952234d-42dc-4083-96ef-244bc2b74652" value="MIST_ENABLE_OUT" />
       <Data key="77715107-f8d5-47e5-a629-0fb83101ac6b" value="MOTOR_CURRENT_IN" />
@@ -594,13 +594,13 @@
       <Data key="c39ef993-d787-4c0c-8ad6-c0c81f866442/8b77a6c4-10a0-4390-971c-672353e2a49c" value="USBUART_Dm" />
       <Data key="c39ef993-d787-4c0c-8ad6-c0c81f866442/605a40d2-572d-4c7a-818e-3bfd37f14d87" value="USBUART_VBUS" />
       <Data key="c39ef993-d787-4c0c-8ad6-c0c81f866442/618a72fc-5ddd-4df5-958f-a3d55102db42" value="USBUART_Dp" />
-      <Data key="c9434a4b-8285-448d-9fe0-dc6de9d2bfae" value="RADIO_TX" />
+      <Data key="c9434a4b-8285-448d-9fe0-dc6de9d2bfae" value="RADIO_TX_OUT" />
       <Data key="d93dcf8c-42e8-451c-af42-1c9d971f3919" value="Flood_Coolant_Pin" />
-      <Data key="df646e7a-61e3-479d-9e02-475833b51764" value="WHEEL_B_IN" />
+      <Data key="df646e7a-61e3-479d-9e02-475833b51764" value="WHEEL_ENCODER_B_IN" />
       <Data key="e851a3b9-efb8-48be-bbb8-b303b216c393" value="SPINDLE_DIRECTION_OUT" />
       <Data key="eb943a40-a374-4ac8-bd7b-2f21e33dc5f5" value="COOLANT_SPARE" />
       <Data key="ed49cdf9-38df-4d0d-bf88-cc8fc60fbfde" value="SW1" />
-      <Data key="ed092b9b-d398-4703-be89-cebf998501f6" value="Z_DISPLAY_TX" />
+      <Data key="ed092b9b-d398-4703-be89-cebf998501f6" value="Z_DISPLAY_TX_OUT" />
       <Data key="f6c3c25a-9a9d-456c-98d0-0e68faac1fcc" value="Z_LIMIT_IN" />
       <Data key="f9e72b33-c8f9-4597-b2a5-7d75acbf2ce4" value="FEED_OVERRIDE_IN" />
       <Data key="f74e5914-0c76-4ae4-86bd-d0ee03a948e7" value="CPU_SPARE_IO_1" />
@@ -1585,7 +1585,6 @@
     <Data key="CYDEV_INSTRUCT_CACHE_ENABLED" value="False" />
     <Data key="CYDEV_PROTECTION_ENABLE" value="False" />
     <Data key="CYDEV_STACK_SIZE" value="0x0800" />
-    <Data key="CYDEV_SWV_ENABLED" value="True" />
     <Data key="CYDEV_TEMPERATURE" value="-40C - 85/125C" />
     <Data key="CYDEV_TRACE_ENABLED" value="False" />
     <Data key="CYDEV_USE_BUNDLED_CMSIS" value="True" />

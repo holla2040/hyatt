@@ -403,6 +403,36 @@
 <build_action v="HEADER;;;;" />
 <PropertyDeltas />
 </CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b>
+<CyGuid_4429d4ed-fe84-42d0-9e9f-19aee0ff4e7e type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtComponentSerialize" version="1">
+<CyGuid_813b8d13-518a-4dc8-91ba-cda6042dfb52 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtPhysicalFolderSerialize" version="1">
+<CyGuid_ebc4f06d-207f-49c2-a540-72acf4adabc0 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFolderSerialize" version="3">
+<CyGuid_2f73275c-45bf-46ba-b3b1-00a2fe0c8dd8 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtBaseContainerSerialize" version="1">
+<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="PulseDelay" persistent="PulseDelay">
+<Hidden v="False" />
+</CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
+<CyGuid_0820c2e7-528d-4137-9a08-97257b946089 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemListSerialize" version="2">
+<dependencies>
+<CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
+<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="PulseDelay.cysym" persistent="PulseDelay\PulseDelay.cysym">
+<Hidden v="False" />
+</CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
+<build_action v="OTHER;;;;" />
+<PropertyDeltas />
+</CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b>
+<CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
+<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="PulseDelay.v" persistent="PulseDelay\PulseDelay.v">
+<Hidden v="False" />
+</CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
+<build_action v="OTHER;;;;" />
+<PropertyDeltas />
+</CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b>
+</dependencies>
+</CyGuid_0820c2e7-528d-4137-9a08-97257b946089>
+</CyGuid_2f73275c-45bf-46ba-b3b1-00a2fe0c8dd8>
+<filters />
+</CyGuid_ebc4f06d-207f-49c2-a540-72acf4adabc0>
+</CyGuid_813b8d13-518a-4dc8-91ba-cda6042dfb52>
+</CyGuid_4429d4ed-fe84-42d0-9e9f-19aee0ff4e7e>
 <CyGuid_d8451a8e-a4ea-4e21-aba8-966eaa7ea07d type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFolderGeneratedSerialize" version="1">
 <CyGuid_813b8d13-518a-4dc8-91ba-cda6042dfb52 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtPhysicalFolderSerialize" version="1">
 <CyGuid_ebc4f06d-207f-49c2-a540-72acf4adabc0 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFolderSerialize" version="3">
@@ -1622,20 +1652,20 @@
 <CyGuid_ebc4f06d-207f-49c2-a540-72acf4adabc0 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFolderSerialize" version="3">
 <CyGuid_2f73275c-45bf-46ba-b3b1-00a2fe0c8dd8 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtBaseContainerSerialize" version="1">
 <CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="Clock_1" persistent="">
-<Hidden v="False" />
+<Hidden v="True" />
 </CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
 <CyGuid_0820c2e7-528d-4137-9a08-97257b946089 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemListSerialize" version="2">
 <dependencies>
 <CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
 <CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="Clock_1.c" persistent="Generated_Source\PSoC5\Clock_1.c">
-<Hidden v="False" />
+<Hidden v="True" />
 </CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
 <build_action v="SOURCE_C;CortexM3;;;" />
 <PropertyDeltas />
 </CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b>
 <CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
 <CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="Clock_1.h" persistent="Generated_Source\PSoC5\Clock_1.h">
-<Hidden v="False" />
+<Hidden v="True" />
 </CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
 <build_action v="HEADER;;;;" />
 <PropertyDeltas />
@@ -1647,28 +1677,28 @@
 </CyGuid_ebc4f06d-207f-49c2-a540-72acf4adabc0>
 <CyGuid_ebc4f06d-207f-49c2-a540-72acf4adabc0 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFolderSerialize" version="3">
 <CyGuid_2f73275c-45bf-46ba-b3b1-00a2fe0c8dd8 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtBaseContainerSerialize" version="1">
-<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="SPINDLE_OUT" persistent="">
-<Hidden v="True" />
+<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="SPINDLE_SPEED_OUT" persistent="">
+<Hidden v="False" />
 </CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
 <CyGuid_0820c2e7-528d-4137-9a08-97257b946089 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemListSerialize" version="2">
 <dependencies>
 <CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
-<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="SPINDLE_OUT_aliases.h" persistent="Generated_Source\PSoC5\SPINDLE_OUT_aliases.h">
-<Hidden v="True" />
+<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="SPINDLE_SPEED_OUT_aliases.h" persistent="Generated_Source\PSoC5\SPINDLE_SPEED_OUT_aliases.h">
+<Hidden v="False" />
 </CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
 <build_action v="HEADER;;;;" />
 <PropertyDeltas />
 </CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b>
 <CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
-<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="SPINDLE_OUT.c" persistent="Generated_Source\PSoC5\SPINDLE_OUT.c">
-<Hidden v="True" />
+<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="SPINDLE_SPEED_OUT.c" persistent="Generated_Source\PSoC5\SPINDLE_SPEED_OUT.c">
+<Hidden v="False" />
 </CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
 <build_action v="SOURCE_C;CortexM3;;;" />
 <PropertyDeltas />
 </CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b>
 <CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
-<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="SPINDLE_OUT.h" persistent="Generated_Source\PSoC5\SPINDLE_OUT.h">
-<Hidden v="True" />
+<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="SPINDLE_SPEED_OUT.h" persistent="Generated_Source\PSoC5\SPINDLE_SPEED_OUT.h">
+<Hidden v="False" />
 </CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
 <build_action v="HEADER;;;;" />
 <PropertyDeltas />
@@ -2144,28 +2174,28 @@
 </CyGuid_ebc4f06d-207f-49c2-a540-72acf4adabc0>
 <CyGuid_ebc4f06d-207f-49c2-a540-72acf4adabc0 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFolderSerialize" version="3">
 <CyGuid_2f73275c-45bf-46ba-b3b1-00a2fe0c8dd8 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtBaseContainerSerialize" version="1">
-<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="SCL_1" persistent="">
-<Hidden v="True" />
+<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="I2C_SCL" persistent="">
+<Hidden v="False" />
 </CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
 <CyGuid_0820c2e7-528d-4137-9a08-97257b946089 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemListSerialize" version="2">
 <dependencies>
 <CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
-<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="SCL_1_aliases.h" persistent="Generated_Source\PSoC5\SCL_1_aliases.h">
-<Hidden v="True" />
+<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="I2C_SCL_aliases.h" persistent="Generated_Source\PSoC5\I2C_SCL_aliases.h">
+<Hidden v="False" />
 </CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
 <build_action v="HEADER;;;;" />
 <PropertyDeltas />
 </CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b>
 <CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
-<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="SCL_1.c" persistent="Generated_Source\PSoC5\SCL_1.c">
-<Hidden v="True" />
+<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="I2C_SCL.c" persistent="Generated_Source\PSoC5\I2C_SCL.c">
+<Hidden v="False" />
 </CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
 <build_action v="SOURCE_C;CortexM3;;;" />
 <PropertyDeltas />
 </CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b>
 <CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
-<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="SCL_1.h" persistent="Generated_Source\PSoC5\SCL_1.h">
-<Hidden v="True" />
+<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="I2C_SCL.h" persistent="Generated_Source\PSoC5\I2C_SCL.h">
+<Hidden v="False" />
 </CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
 <build_action v="HEADER;;;;" />
 <PropertyDeltas />
@@ -2178,19 +2208,92 @@
 <CyGuid_ebc4f06d-207f-49c2-a540-72acf4adabc0 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFolderSerialize" version="3">
 <CyGuid_2f73275c-45bf-46ba-b3b1-00a2fe0c8dd8 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtBaseContainerSerialize" version="1">
 <CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="Clock_2" persistent="">
-<Hidden v="False" />
+<Hidden v="True" />
 </CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
 <CyGuid_0820c2e7-528d-4137-9a08-97257b946089 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemListSerialize" version="2">
 <dependencies>
 <CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
 <CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="Clock_2.c" persistent="Generated_Source\PSoC5\Clock_2.c">
-<Hidden v="False" />
+<Hidden v="True" />
 </CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
 <build_action v="SOURCE_C;CortexM3;;;" />
 <PropertyDeltas />
 </CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b>
 <CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
 <CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="Clock_2.h" persistent="Generated_Source\PSoC5\Clock_2.h">
+<Hidden v="True" />
+</CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
+<build_action v="HEADER;;;;" />
+<PropertyDeltas />
+</CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b>
+</dependencies>
+</CyGuid_0820c2e7-528d-4137-9a08-97257b946089>
+</CyGuid_2f73275c-45bf-46ba-b3b1-00a2fe0c8dd8>
+<filters />
+</CyGuid_ebc4f06d-207f-49c2-a540-72acf4adabc0>
+<CyGuid_ebc4f06d-207f-49c2-a540-72acf4adabc0 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFolderSerialize" version="3">
+<CyGuid_2f73275c-45bf-46ba-b3b1-00a2fe0c8dd8 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtBaseContainerSerialize" version="1">
+<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="SD_CARD" persistent="">
+<Hidden v="False" />
+</CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
+<CyGuid_0820c2e7-528d-4137-9a08-97257b946089 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemListSerialize" version="2">
+<dependencies>
+<CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
+<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="SD_CARD.h" persistent="Generated_Source\PSoC5\SD_CARD.h">
+<Hidden v="False" />
+</CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
+<build_action v="HEADER;;;;" />
+<PropertyDeltas />
+</CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b>
+<CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
+<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="SD_CARD_ConfigMMC_SPI.c" persistent="Generated_Source\PSoC5\SD_CARD_ConfigMMC_SPI.c">
+<Hidden v="False" />
+</CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
+<build_action v="SOURCE_C;CortexM3;;;" />
+<PropertyDeltas />
+</CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b>
+<CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
+<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="SD_CARD_MMC_HW_SPI.c" persistent="Generated_Source\PSoC5\SD_CARD_MMC_HW_SPI.c">
+<Hidden v="False" />
+</CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
+<build_action v="SOURCE_C;CortexM3;;;" />
+<PropertyDeltas />
+</CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b>
+<CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
+<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="SD_CARD_PM.c" persistent="Generated_Source\PSoC5\SD_CARD_PM.c">
+<Hidden v="False" />
+</CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
+<build_action v="SOURCE_C;CortexM3;;;" />
+<PropertyDeltas />
+</CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b>
+</dependencies>
+</CyGuid_0820c2e7-528d-4137-9a08-97257b946089>
+</CyGuid_2f73275c-45bf-46ba-b3b1-00a2fe0c8dd8>
+<filters />
+</CyGuid_ebc4f06d-207f-49c2-a540-72acf4adabc0>
+<CyGuid_ebc4f06d-207f-49c2-a540-72acf4adabc0 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFolderSerialize" version="3">
+<CyGuid_2f73275c-45bf-46ba-b3b1-00a2fe0c8dd8 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtBaseContainerSerialize" version="1">
+<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="WHEEL_ENCODER_B_IN" persistent="">
+<Hidden v="False" />
+</CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
+<CyGuid_0820c2e7-528d-4137-9a08-97257b946089 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemListSerialize" version="2">
+<dependencies>
+<CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
+<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="WHEEL_ENCODER_B_IN_aliases.h" persistent="Generated_Source\PSoC5\WHEEL_ENCODER_B_IN_aliases.h">
+<Hidden v="False" />
+</CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
+<build_action v="HEADER;;;;" />
+<PropertyDeltas />
+</CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b>
+<CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
+<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="WHEEL_ENCODER_B_IN.c" persistent="Generated_Source\PSoC5\WHEEL_ENCODER_B_IN.c">
+<Hidden v="False" />
+</CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
+<build_action v="SOURCE_C;CortexM3;;;" />
+<PropertyDeltas />
+</CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b>
+<CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
+<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="WHEEL_ENCODER_B_IN.h" persistent="Generated_Source\PSoC5\WHEEL_ENCODER_B_IN.h">
 <Hidden v="False" />
 </CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
 <build_action v="HEADER;;;;" />
@@ -2203,61 +2306,28 @@
 </CyGuid_ebc4f06d-207f-49c2-a540-72acf4adabc0>
 <CyGuid_ebc4f06d-207f-49c2-a540-72acf4adabc0 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFolderSerialize" version="3">
 <CyGuid_2f73275c-45bf-46ba-b3b1-00a2fe0c8dd8 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtBaseContainerSerialize" version="1">
-<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="WHEEL_B_IN" persistent="">
-<Hidden v="True" />
+<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="WHEEL_ENCODER_A_IN" persistent="">
+<Hidden v="False" />
 </CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
 <CyGuid_0820c2e7-528d-4137-9a08-97257b946089 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemListSerialize" version="2">
 <dependencies>
 <CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
-<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="WHEEL_B_IN_aliases.h" persistent="Generated_Source\PSoC5\WHEEL_B_IN_aliases.h">
-<Hidden v="True" />
+<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="WHEEL_ENCODER_A_IN_aliases.h" persistent="Generated_Source\PSoC5\WHEEL_ENCODER_A_IN_aliases.h">
+<Hidden v="False" />
 </CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
 <build_action v="HEADER;;;;" />
 <PropertyDeltas />
 </CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b>
 <CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
-<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="WHEEL_B_IN.c" persistent="Generated_Source\PSoC5\WHEEL_B_IN.c">
-<Hidden v="True" />
+<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="WHEEL_ENCODER_A_IN.c" persistent="Generated_Source\PSoC5\WHEEL_ENCODER_A_IN.c">
+<Hidden v="False" />
 </CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
 <build_action v="SOURCE_C;CortexM3;;;" />
 <PropertyDeltas />
 </CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b>
 <CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
-<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="WHEEL_B_IN.h" persistent="Generated_Source\PSoC5\WHEEL_B_IN.h">
-<Hidden v="True" />
-</CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
-<build_action v="HEADER;;;;" />
-<PropertyDeltas />
-</CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b>
-</dependencies>
-</CyGuid_0820c2e7-528d-4137-9a08-97257b946089>
-</CyGuid_2f73275c-45bf-46ba-b3b1-00a2fe0c8dd8>
-<filters />
-</CyGuid_ebc4f06d-207f-49c2-a540-72acf4adabc0>
-<CyGuid_ebc4f06d-207f-49c2-a540-72acf4adabc0 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFolderSerialize" version="3">
-<CyGuid_2f73275c-45bf-46ba-b3b1-00a2fe0c8dd8 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtBaseContainerSerialize" version="1">
-<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="WHEEL_A_IN" persistent="">
-<Hidden v="True" />
-</CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
-<CyGuid_0820c2e7-528d-4137-9a08-97257b946089 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemListSerialize" version="2">
-<dependencies>
-<CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
-<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="WHEEL_A_IN_aliases.h" persistent="Generated_Source\PSoC5\WHEEL_A_IN_aliases.h">
-<Hidden v="True" />
-</CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
-<build_action v="HEADER;;;;" />
-<PropertyDeltas />
-</CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b>
-<CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
-<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="WHEEL_A_IN.c" persistent="Generated_Source\PSoC5\WHEEL_A_IN.c">
-<Hidden v="True" />
-</CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
-<build_action v="SOURCE_C;CortexM3;;;" />
-<PropertyDeltas />
-</CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b>
-<CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
-<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="WHEEL_A_IN.h" persistent="Generated_Source\PSoC5\WHEEL_A_IN.h">
-<Hidden v="True" />
+<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="WHEEL_ENCODER_A_IN.h" persistent="Generated_Source\PSoC5\WHEEL_ENCODER_A_IN.h">
+<Hidden v="False" />
 </CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
 <build_action v="HEADER;;;;" />
 <PropertyDeltas />
@@ -2441,20 +2511,20 @@
 </CyGuid_ebc4f06d-207f-49c2-a540-72acf4adabc0>
 <CyGuid_ebc4f06d-207f-49c2-a540-72acf4adabc0 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFolderSerialize" version="3">
 <CyGuid_2f73275c-45bf-46ba-b3b1-00a2fe0c8dd8 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtBaseContainerSerialize" version="1">
-<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="Clock_3" persistent="">
+<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="IRDetectorClock" persistent="">
 <Hidden v="False" />
 </CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
 <CyGuid_0820c2e7-528d-4137-9a08-97257b946089 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemListSerialize" version="2">
 <dependencies>
 <CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
-<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="Clock_3.c" persistent="Generated_Source\PSoC5\Clock_3.c">
+<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="IRDetectorClock.c" persistent="Generated_Source\PSoC5\IRDetectorClock.c">
 <Hidden v="False" />
 </CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
 <build_action v="SOURCE_C;CortexM3;;;" />
 <PropertyDeltas />
 </CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b>
 <CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
-<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="Clock_3.h" persistent="Generated_Source\PSoC5\Clock_3.h">
+<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="IRDetectorClock.h" persistent="Generated_Source\PSoC5\IRDetectorClock.h">
 <Hidden v="False" />
 </CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
 <build_action v="HEADER;;;;" />
@@ -2536,72 +2606,6 @@
 <CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
 <CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="ERROR_INDICATOR_OUT.h" persistent="Generated_Source\PSoC5\ERROR_INDICATOR_OUT.h">
 <Hidden v="False" />
-</CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
-<build_action v="HEADER;;;;" />
-<PropertyDeltas />
-</CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b>
-</dependencies>
-</CyGuid_0820c2e7-528d-4137-9a08-97257b946089>
-</CyGuid_2f73275c-45bf-46ba-b3b1-00a2fe0c8dd8>
-<filters />
-</CyGuid_ebc4f06d-207f-49c2-a540-72acf4adabc0>
-<CyGuid_ebc4f06d-207f-49c2-a540-72acf4adabc0 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFolderSerialize" version="3">
-<CyGuid_2f73275c-45bf-46ba-b3b1-00a2fe0c8dd8 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtBaseContainerSerialize" version="1">
-<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="CPU_SPARE_IO_0" persistent="">
-<Hidden v="True" />
-</CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
-<CyGuid_0820c2e7-528d-4137-9a08-97257b946089 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemListSerialize" version="2">
-<dependencies>
-<CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
-<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="CPU_SPARE_IO_0_aliases.h" persistent="Generated_Source\PSoC5\CPU_SPARE_IO_0_aliases.h">
-<Hidden v="True" />
-</CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
-<build_action v="HEADER;;;;" />
-<PropertyDeltas />
-</CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b>
-<CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
-<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="CPU_SPARE_IO_0.c" persistent="Generated_Source\PSoC5\CPU_SPARE_IO_0.c">
-<Hidden v="True" />
-</CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
-<build_action v="SOURCE_C;CortexM3;;;" />
-<PropertyDeltas />
-</CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b>
-<CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
-<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="CPU_SPARE_IO_0.h" persistent="Generated_Source\PSoC5\CPU_SPARE_IO_0.h">
-<Hidden v="True" />
-</CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
-<build_action v="HEADER;;;;" />
-<PropertyDeltas />
-</CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b>
-</dependencies>
-</CyGuid_0820c2e7-528d-4137-9a08-97257b946089>
-</CyGuid_2f73275c-45bf-46ba-b3b1-00a2fe0c8dd8>
-<filters />
-</CyGuid_ebc4f06d-207f-49c2-a540-72acf4adabc0>
-<CyGuid_ebc4f06d-207f-49c2-a540-72acf4adabc0 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFolderSerialize" version="3">
-<CyGuid_2f73275c-45bf-46ba-b3b1-00a2fe0c8dd8 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtBaseContainerSerialize" version="1">
-<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="CPU_SPARE_IO_1" persistent="">
-<Hidden v="True" />
-</CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
-<CyGuid_0820c2e7-528d-4137-9a08-97257b946089 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemListSerialize" version="2">
-<dependencies>
-<CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
-<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="CPU_SPARE_IO_1_aliases.h" persistent="Generated_Source\PSoC5\CPU_SPARE_IO_1_aliases.h">
-<Hidden v="True" />
-</CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
-<build_action v="HEADER;;;;" />
-<PropertyDeltas />
-</CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b>
-<CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
-<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="CPU_SPARE_IO_1.c" persistent="Generated_Source\PSoC5\CPU_SPARE_IO_1.c">
-<Hidden v="True" />
-</CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
-<build_action v="SOURCE_C;CortexM3;;;" />
-<PropertyDeltas />
-</CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b>
-<CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
-<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="CPU_SPARE_IO_1.h" persistent="Generated_Source\PSoC5\CPU_SPARE_IO_1.h">
-<Hidden v="True" />
 </CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
 <build_action v="HEADER;;;;" />
 <PropertyDeltas />
@@ -2844,28 +2848,28 @@
 </CyGuid_ebc4f06d-207f-49c2-a540-72acf4adabc0>
 <CyGuid_ebc4f06d-207f-49c2-a540-72acf4adabc0 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFolderSerialize" version="3">
 <CyGuid_2f73275c-45bf-46ba-b3b1-00a2fe0c8dd8 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtBaseContainerSerialize" version="1">
-<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="SDA_1" persistent="">
-<Hidden v="True" />
+<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="I2C_SDA" persistent="">
+<Hidden v="False" />
 </CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
 <CyGuid_0820c2e7-528d-4137-9a08-97257b946089 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemListSerialize" version="2">
 <dependencies>
 <CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
-<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="SDA_1_aliases.h" persistent="Generated_Source\PSoC5\SDA_1_aliases.h">
-<Hidden v="True" />
+<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="I2C_SDA_aliases.h" persistent="Generated_Source\PSoC5\I2C_SDA_aliases.h">
+<Hidden v="False" />
 </CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
 <build_action v="HEADER;;;;" />
 <PropertyDeltas />
 </CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b>
 <CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
-<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="SDA_1.c" persistent="Generated_Source\PSoC5\SDA_1.c">
-<Hidden v="True" />
+<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="I2C_SDA.c" persistent="Generated_Source\PSoC5\I2C_SDA.c">
+<Hidden v="False" />
 </CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
 <build_action v="SOURCE_C;CortexM3;;;" />
 <PropertyDeltas />
 </CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b>
 <CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
-<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="SDA_1.h" persistent="Generated_Source\PSoC5\SDA_1.h">
-<Hidden v="True" />
+<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="I2C_SDA.h" persistent="Generated_Source\PSoC5\I2C_SDA.h">
+<Hidden v="False" />
 </CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
 <build_action v="HEADER;;;;" />
 <PropertyDeltas />
@@ -2877,23 +2881,75 @@
 </CyGuid_ebc4f06d-207f-49c2-a540-72acf4adabc0>
 <CyGuid_ebc4f06d-207f-49c2-a540-72acf4adabc0 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFolderSerialize" version="3">
 <CyGuid_2f73275c-45bf-46ba-b3b1-00a2fe0c8dd8 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtBaseContainerSerialize" version="1">
-<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="I2C_LCD_1" persistent="">
+<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="LCD" persistent="">
 <Hidden v="True" />
 </CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
 <CyGuid_0820c2e7-528d-4137-9a08-97257b946089 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemListSerialize" version="2">
 <dependencies>
 <CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
-<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="I2C_LCD_1.h" persistent="Generated_Source\PSoC5\I2C_LCD_1.h">
+<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="LCD.h" persistent="Generated_Source\PSoC5\LCD.h">
 <Hidden v="True" />
 </CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
 <build_action v="HEADER;;;;" />
 <PropertyDeltas />
 </CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b>
 <CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
-<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="I2C_LCD_1.c" persistent="Generated_Source\PSoC5\I2C_LCD_1.c">
+<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="LCD.c" persistent="Generated_Source\PSoC5\LCD.c">
 <Hidden v="True" />
 </CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
 <build_action v="SOURCE_C;CortexM3;;;" />
+<PropertyDeltas />
+</CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b>
+</dependencies>
+</CyGuid_0820c2e7-528d-4137-9a08-97257b946089>
+</CyGuid_2f73275c-45bf-46ba-b3b1-00a2fe0c8dd8>
+<filters />
+</CyGuid_ebc4f06d-207f-49c2-a540-72acf4adabc0>
+<CyGuid_ebc4f06d-207f-49c2-a540-72acf4adabc0 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFolderSerialize" version="3">
+<CyGuid_2f73275c-45bf-46ba-b3b1-00a2fe0c8dd8 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtBaseContainerSerialize" version="1">
+<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="SerialClock" persistent="">
+<Hidden v="False" />
+</CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
+<CyGuid_0820c2e7-528d-4137-9a08-97257b946089 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemListSerialize" version="2">
+<dependencies>
+<CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
+<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="SerialClock.c" persistent="Generated_Source\PSoC5\SerialClock.c">
+<Hidden v="False" />
+</CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
+<build_action v="SOURCE_C;CortexM3;;;" />
+<PropertyDeltas />
+</CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b>
+<CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
+<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="SerialClock.h" persistent="Generated_Source\PSoC5\SerialClock.h">
+<Hidden v="False" />
+</CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
+<build_action v="HEADER;;;;" />
+<PropertyDeltas />
+</CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b>
+</dependencies>
+</CyGuid_0820c2e7-528d-4137-9a08-97257b946089>
+</CyGuid_2f73275c-45bf-46ba-b3b1-00a2fe0c8dd8>
+<filters />
+</CyGuid_ebc4f06d-207f-49c2-a540-72acf4adabc0>
+<CyGuid_ebc4f06d-207f-49c2-a540-72acf4adabc0 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFolderSerialize" version="3">
+<CyGuid_2f73275c-45bf-46ba-b3b1-00a2fe0c8dd8 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtBaseContainerSerialize" version="1">
+<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="MillisClock" persistent="">
+<Hidden v="False" />
+</CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
+<CyGuid_0820c2e7-528d-4137-9a08-97257b946089 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemListSerialize" version="2">
+<dependencies>
+<CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
+<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="MillisClock.c" persistent="Generated_Source\PSoC5\MillisClock.c">
+<Hidden v="False" />
+</CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
+<build_action v="SOURCE_C;CortexM3;;;" />
+<PropertyDeltas />
+</CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b>
+<CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
+<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="MillisClock.h" persistent="Generated_Source\PSoC5\MillisClock.h">
+<Hidden v="False" />
+</CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
+<build_action v="HEADER;;;;" />
 <PropertyDeltas />
 </CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b>
 </dependencies>
@@ -3054,21 +3110,42 @@
 </CyGuid_ebc4f06d-207f-49c2-a540-72acf4adabc0>
 <CyGuid_ebc4f06d-207f-49c2-a540-72acf4adabc0 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFolderSerialize" version="3">
 <CyGuid_2f73275c-45bf-46ba-b3b1-00a2fe0c8dd8 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtBaseContainerSerialize" version="1">
-<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="I2C_IntClock" persistent="">
-<Hidden v="True" />
+<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="SD_CARD_SPI0" persistent="">
+<Hidden v="False" />
 </CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
 <CyGuid_0820c2e7-528d-4137-9a08-97257b946089 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemListSerialize" version="2">
 <dependencies>
 <CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
-<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="I2C_IntClock.c" persistent="Generated_Source\PSoC5\I2C_IntClock.c">
-<Hidden v="True" />
+<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="SD_CARD_SPI0.c" persistent="Generated_Source\PSoC5\SD_CARD_SPI0.c">
+<Hidden v="False" />
 </CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
 <build_action v="SOURCE_C;CortexM3;;;" />
 <PropertyDeltas />
 </CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b>
 <CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
-<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="I2C_IntClock.h" persistent="Generated_Source\PSoC5\I2C_IntClock.h">
-<Hidden v="True" />
+<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="SD_CARD_SPI0.h" persistent="Generated_Source\PSoC5\SD_CARD_SPI0.h">
+<Hidden v="False" />
+</CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
+<build_action v="HEADER;;;;" />
+<PropertyDeltas />
+</CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b>
+<CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
+<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="SD_CARD_SPI0_PM.c" persistent="Generated_Source\PSoC5\SD_CARD_SPI0_PM.c">
+<Hidden v="False" />
+</CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
+<build_action v="SOURCE_C;CortexM3;;;" />
+<PropertyDeltas />
+</CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b>
+<CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
+<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="SD_CARD_SPI0_INT.c" persistent="Generated_Source\PSoC5\SD_CARD_SPI0_INT.c">
+<Hidden v="False" />
+</CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
+<build_action v="SOURCE_C;CortexM3;;;" />
+<PropertyDeltas />
+</CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b>
+<CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
+<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="SD_CARD_SPI0_PVT.h" persistent="Generated_Source\PSoC5\SD_CARD_SPI0_PVT.h">
+<Hidden v="False" />
 </CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
 <build_action v="HEADER;;;;" />
 <PropertyDeltas />
@@ -3080,20 +3157,27 @@
 </CyGuid_ebc4f06d-207f-49c2-a540-72acf4adabc0>
 <CyGuid_ebc4f06d-207f-49c2-a540-72acf4adabc0 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFolderSerialize" version="3">
 <CyGuid_2f73275c-45bf-46ba-b3b1-00a2fe0c8dd8 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtBaseContainerSerialize" version="1">
-<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="UART_1_IntClock" persistent="">
+<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="SD_CARD_mosi0" persistent="">
 <Hidden v="False" />
 </CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
 <CyGuid_0820c2e7-528d-4137-9a08-97257b946089 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemListSerialize" version="2">
 <dependencies>
 <CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
-<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="UART_1_IntClock.c" persistent="Generated_Source\PSoC5\UART_1_IntClock.c">
+<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="SD_CARD_mosi0_aliases.h" persistent="Generated_Source\PSoC5\SD_CARD_mosi0_aliases.h">
+<Hidden v="False" />
+</CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
+<build_action v="HEADER;;;;" />
+<PropertyDeltas />
+</CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b>
+<CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
+<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="SD_CARD_mosi0.c" persistent="Generated_Source\PSoC5\SD_CARD_mosi0.c">
 <Hidden v="False" />
 </CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
 <build_action v="SOURCE_C;CortexM3;;;" />
 <PropertyDeltas />
 </CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b>
 <CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
-<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="UART_1_IntClock.h" persistent="Generated_Source\PSoC5\UART_1_IntClock.h">
+<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="SD_CARD_mosi0.h" persistent="Generated_Source\PSoC5\SD_CARD_mosi0.h">
 <Hidden v="False" />
 </CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
 <build_action v="HEADER;;;;" />
@@ -3106,20 +3190,119 @@
 </CyGuid_ebc4f06d-207f-49c2-a540-72acf4adabc0>
 <CyGuid_ebc4f06d-207f-49c2-a540-72acf4adabc0 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFolderSerialize" version="3">
 <CyGuid_2f73275c-45bf-46ba-b3b1-00a2fe0c8dd8 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtBaseContainerSerialize" version="1">
-<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="UART_2_IntClock" persistent="">
+<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="SD_CARD_Clock_1" persistent="">
 <Hidden v="False" />
 </CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
 <CyGuid_0820c2e7-528d-4137-9a08-97257b946089 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemListSerialize" version="2">
 <dependencies>
 <CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
-<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="UART_2_IntClock.c" persistent="Generated_Source\PSoC5\UART_2_IntClock.c">
+<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="SD_CARD_Clock_1.c" persistent="Generated_Source\PSoC5\SD_CARD_Clock_1.c">
 <Hidden v="False" />
 </CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
 <build_action v="SOURCE_C;CortexM3;;;" />
 <PropertyDeltas />
 </CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b>
 <CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
-<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="UART_2_IntClock.h" persistent="Generated_Source\PSoC5\UART_2_IntClock.h">
+<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="SD_CARD_Clock_1.h" persistent="Generated_Source\PSoC5\SD_CARD_Clock_1.h">
+<Hidden v="False" />
+</CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
+<build_action v="HEADER;;;;" />
+<PropertyDeltas />
+</CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b>
+</dependencies>
+</CyGuid_0820c2e7-528d-4137-9a08-97257b946089>
+</CyGuid_2f73275c-45bf-46ba-b3b1-00a2fe0c8dd8>
+<filters />
+</CyGuid_ebc4f06d-207f-49c2-a540-72acf4adabc0>
+<CyGuid_ebc4f06d-207f-49c2-a540-72acf4adabc0 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFolderSerialize" version="3">
+<CyGuid_2f73275c-45bf-46ba-b3b1-00a2fe0c8dd8 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtBaseContainerSerialize" version="1">
+<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="SD_CARD_miso0" persistent="">
+<Hidden v="False" />
+</CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
+<CyGuid_0820c2e7-528d-4137-9a08-97257b946089 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemListSerialize" version="2">
+<dependencies>
+<CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
+<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="SD_CARD_miso0_aliases.h" persistent="Generated_Source\PSoC5\SD_CARD_miso0_aliases.h">
+<Hidden v="False" />
+</CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
+<build_action v="HEADER;;;;" />
+<PropertyDeltas />
+</CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b>
+<CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
+<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="SD_CARD_miso0.c" persistent="Generated_Source\PSoC5\SD_CARD_miso0.c">
+<Hidden v="False" />
+</CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
+<build_action v="SOURCE_C;CortexM3;;;" />
+<PropertyDeltas />
+</CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b>
+<CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
+<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="SD_CARD_miso0.h" persistent="Generated_Source\PSoC5\SD_CARD_miso0.h">
+<Hidden v="False" />
+</CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
+<build_action v="HEADER;;;;" />
+<PropertyDeltas />
+</CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b>
+</dependencies>
+</CyGuid_0820c2e7-528d-4137-9a08-97257b946089>
+</CyGuid_2f73275c-45bf-46ba-b3b1-00a2fe0c8dd8>
+<filters />
+</CyGuid_ebc4f06d-207f-49c2-a540-72acf4adabc0>
+<CyGuid_ebc4f06d-207f-49c2-a540-72acf4adabc0 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFolderSerialize" version="3">
+<CyGuid_2f73275c-45bf-46ba-b3b1-00a2fe0c8dd8 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtBaseContainerSerialize" version="1">
+<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="SD_CARD_sclk0" persistent="">
+<Hidden v="False" />
+</CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
+<CyGuid_0820c2e7-528d-4137-9a08-97257b946089 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemListSerialize" version="2">
+<dependencies>
+<CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
+<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="SD_CARD_sclk0_aliases.h" persistent="Generated_Source\PSoC5\SD_CARD_sclk0_aliases.h">
+<Hidden v="False" />
+</CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
+<build_action v="HEADER;;;;" />
+<PropertyDeltas />
+</CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b>
+<CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
+<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="SD_CARD_sclk0.c" persistent="Generated_Source\PSoC5\SD_CARD_sclk0.c">
+<Hidden v="False" />
+</CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
+<build_action v="SOURCE_C;CortexM3;;;" />
+<PropertyDeltas />
+</CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b>
+<CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
+<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="SD_CARD_sclk0.h" persistent="Generated_Source\PSoC5\SD_CARD_sclk0.h">
+<Hidden v="False" />
+</CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
+<build_action v="HEADER;;;;" />
+<PropertyDeltas />
+</CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b>
+</dependencies>
+</CyGuid_0820c2e7-528d-4137-9a08-97257b946089>
+</CyGuid_2f73275c-45bf-46ba-b3b1-00a2fe0c8dd8>
+<filters />
+</CyGuid_ebc4f06d-207f-49c2-a540-72acf4adabc0>
+<CyGuid_ebc4f06d-207f-49c2-a540-72acf4adabc0 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFolderSerialize" version="3">
+<CyGuid_2f73275c-45bf-46ba-b3b1-00a2fe0c8dd8 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtBaseContainerSerialize" version="1">
+<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="SD_CARD_SPI0_CS" persistent="">
+<Hidden v="False" />
+</CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
+<CyGuid_0820c2e7-528d-4137-9a08-97257b946089 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemListSerialize" version="2">
+<dependencies>
+<CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
+<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="SD_CARD_SPI0_CS_aliases.h" persistent="Generated_Source\PSoC5\SD_CARD_SPI0_CS_aliases.h">
+<Hidden v="False" />
+</CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
+<build_action v="HEADER;;;;" />
+<PropertyDeltas />
+</CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b>
+<CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
+<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="SD_CARD_SPI0_CS.c" persistent="Generated_Source\PSoC5\SD_CARD_SPI0_CS.c">
+<Hidden v="False" />
+</CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
+<build_action v="SOURCE_C;CortexM3;;;" />
+<PropertyDeltas />
+</CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b>
+<CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
+<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="SD_CARD_SPI0_CS.h" persistent="Generated_Source\PSoC5\SD_CARD_SPI0_CS.h">
 <Hidden v="False" />
 </CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
 <build_action v="HEADER;;;;" />
@@ -3387,27 +3570,20 @@
 </CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b>
 <CyGuid_ebc4f06d-207f-49c2-a540-72acf4adabc0 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFolderSerialize" version="3">
 <CyGuid_2f73275c-45bf-46ba-b3b1-00a2fe0c8dd8 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtBaseContainerSerialize" version="1">
-<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="SPINDLE_SPEED_OUT" persistent="">
+<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="SpindleClock" persistent="">
 <Hidden v="False" />
 </CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
 <CyGuid_0820c2e7-528d-4137-9a08-97257b946089 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemListSerialize" version="2">
 <dependencies>
 <CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
-<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="SPINDLE_SPEED_OUT_aliases.h" persistent="Generated_Source\PSoC5\SPINDLE_SPEED_OUT_aliases.h">
-<Hidden v="False" />
-</CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
-<build_action v="HEADER;;;;" />
-<PropertyDeltas />
-</CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b>
-<CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
-<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="SPINDLE_SPEED_OUT.c" persistent="Generated_Source\PSoC5\SPINDLE_SPEED_OUT.c">
+<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="SpindleClock.c" persistent="Generated_Source\PSoC5\SpindleClock.c">
 <Hidden v="False" />
 </CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
 <build_action v="SOURCE_C;CortexM3;;;" />
 <PropertyDeltas />
 </CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b>
 <CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
-<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="SPINDLE_SPEED_OUT.h" persistent="Generated_Source\PSoC5\SPINDLE_SPEED_OUT.h">
+<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="SpindleClock.h" persistent="Generated_Source\PSoC5\SpindleClock.h">
 <Hidden v="False" />
 </CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
 <build_action v="HEADER;;;;" />
@@ -3420,152 +3596,20 @@
 </CyGuid_ebc4f06d-207f-49c2-a540-72acf4adabc0>
 <CyGuid_ebc4f06d-207f-49c2-a540-72acf4adabc0 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFolderSerialize" version="3">
 <CyGuid_2f73275c-45bf-46ba-b3b1-00a2fe0c8dd8 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtBaseContainerSerialize" version="1">
-<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="WHEEL_ENCODER_B_IN" persistent="">
+<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="WheelClock" persistent="">
 <Hidden v="False" />
 </CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
 <CyGuid_0820c2e7-528d-4137-9a08-97257b946089 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemListSerialize" version="2">
 <dependencies>
 <CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
-<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="WHEEL_ENCODER_B_IN_aliases.h" persistent="Generated_Source\PSoC5\WHEEL_ENCODER_B_IN_aliases.h">
-<Hidden v="False" />
-</CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
-<build_action v="HEADER;;;;" />
-<PropertyDeltas />
-</CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b>
-<CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
-<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="WHEEL_ENCODER_B_IN.c" persistent="Generated_Source\PSoC5\WHEEL_ENCODER_B_IN.c">
+<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="WheelClock.c" persistent="Generated_Source\PSoC5\WheelClock.c">
 <Hidden v="False" />
 </CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
 <build_action v="SOURCE_C;CortexM3;;;" />
 <PropertyDeltas />
 </CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b>
 <CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
-<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="WHEEL_ENCODER_B_IN.h" persistent="Generated_Source\PSoC5\WHEEL_ENCODER_B_IN.h">
-<Hidden v="False" />
-</CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
-<build_action v="HEADER;;;;" />
-<PropertyDeltas />
-</CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b>
-</dependencies>
-</CyGuid_0820c2e7-528d-4137-9a08-97257b946089>
-</CyGuid_2f73275c-45bf-46ba-b3b1-00a2fe0c8dd8>
-<filters />
-</CyGuid_ebc4f06d-207f-49c2-a540-72acf4adabc0>
-<CyGuid_ebc4f06d-207f-49c2-a540-72acf4adabc0 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFolderSerialize" version="3">
-<CyGuid_2f73275c-45bf-46ba-b3b1-00a2fe0c8dd8 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtBaseContainerSerialize" version="1">
-<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="WHEEL_ENCODER_A_IN" persistent="">
-<Hidden v="False" />
-</CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
-<CyGuid_0820c2e7-528d-4137-9a08-97257b946089 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemListSerialize" version="2">
-<dependencies>
-<CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
-<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="WHEEL_ENCODER_A_IN_aliases.h" persistent="Generated_Source\PSoC5\WHEEL_ENCODER_A_IN_aliases.h">
-<Hidden v="False" />
-</CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
-<build_action v="HEADER;;;;" />
-<PropertyDeltas />
-</CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b>
-<CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
-<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="WHEEL_ENCODER_A_IN.c" persistent="Generated_Source\PSoC5\WHEEL_ENCODER_A_IN.c">
-<Hidden v="False" />
-</CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
-<build_action v="SOURCE_C;CortexM3;;;" />
-<PropertyDeltas />
-</CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b>
-<CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
-<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="WHEEL_ENCODER_A_IN.h" persistent="Generated_Source\PSoC5\WHEEL_ENCODER_A_IN.h">
-<Hidden v="False" />
-</CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
-<build_action v="HEADER;;;;" />
-<PropertyDeltas />
-</CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b>
-</dependencies>
-</CyGuid_0820c2e7-528d-4137-9a08-97257b946089>
-</CyGuid_2f73275c-45bf-46ba-b3b1-00a2fe0c8dd8>
-<filters />
-</CyGuid_ebc4f06d-207f-49c2-a540-72acf4adabc0>
-<CyGuid_ebc4f06d-207f-49c2-a540-72acf4adabc0 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFolderSerialize" version="3">
-<CyGuid_2f73275c-45bf-46ba-b3b1-00a2fe0c8dd8 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtBaseContainerSerialize" version="1">
-<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="LCD" persistent="">
-<Hidden v="False" />
-</CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
-<CyGuid_0820c2e7-528d-4137-9a08-97257b946089 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemListSerialize" version="2">
-<dependencies>
-<CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
-<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="LCD.h" persistent="Generated_Source\PSoC5\LCD.h">
-<Hidden v="False" />
-</CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
-<build_action v="HEADER;;;;" />
-<PropertyDeltas />
-</CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b>
-<CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
-<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="LCD.c" persistent="Generated_Source\PSoC5\LCD.c">
-<Hidden v="False" />
-</CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
-<build_action v="SOURCE_C;CortexM3;;;" />
-<PropertyDeltas />
-</CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b>
-</dependencies>
-</CyGuid_0820c2e7-528d-4137-9a08-97257b946089>
-</CyGuid_2f73275c-45bf-46ba-b3b1-00a2fe0c8dd8>
-<filters />
-</CyGuid_ebc4f06d-207f-49c2-a540-72acf4adabc0>
-<CyGuid_ebc4f06d-207f-49c2-a540-72acf4adabc0 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFolderSerialize" version="3">
-<CyGuid_2f73275c-45bf-46ba-b3b1-00a2fe0c8dd8 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtBaseContainerSerialize" version="1">
-<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="I2C_SCL" persistent="">
-<Hidden v="False" />
-</CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
-<CyGuid_0820c2e7-528d-4137-9a08-97257b946089 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemListSerialize" version="2">
-<dependencies>
-<CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
-<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="I2C_SCL_aliases.h" persistent="Generated_Source\PSoC5\I2C_SCL_aliases.h">
-<Hidden v="False" />
-</CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
-<build_action v="HEADER;;;;" />
-<PropertyDeltas />
-</CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b>
-<CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
-<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="I2C_SCL.c" persistent="Generated_Source\PSoC5\I2C_SCL.c">
-<Hidden v="False" />
-</CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
-<build_action v="SOURCE_C;CortexM3;;;" />
-<PropertyDeltas />
-</CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b>
-<CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
-<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="I2C_SCL.h" persistent="Generated_Source\PSoC5\I2C_SCL.h">
-<Hidden v="False" />
-</CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
-<build_action v="HEADER;;;;" />
-<PropertyDeltas />
-</CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b>
-</dependencies>
-</CyGuid_0820c2e7-528d-4137-9a08-97257b946089>
-</CyGuid_2f73275c-45bf-46ba-b3b1-00a2fe0c8dd8>
-<filters />
-</CyGuid_ebc4f06d-207f-49c2-a540-72acf4adabc0>
-<CyGuid_ebc4f06d-207f-49c2-a540-72acf4adabc0 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFolderSerialize" version="3">
-<CyGuid_2f73275c-45bf-46ba-b3b1-00a2fe0c8dd8 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtBaseContainerSerialize" version="1">
-<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="I2C_SDA" persistent="">
-<Hidden v="False" />
-</CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
-<CyGuid_0820c2e7-528d-4137-9a08-97257b946089 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemListSerialize" version="2">
-<dependencies>
-<CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
-<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="I2C_SDA_aliases.h" persistent="Generated_Source\PSoC5\I2C_SDA_aliases.h">
-<Hidden v="False" />
-</CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
-<build_action v="HEADER;;;;" />
-<PropertyDeltas />
-</CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b>
-<CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
-<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="I2C_SDA.c" persistent="Generated_Source\PSoC5\I2C_SDA.c">
-<Hidden v="False" />
-</CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
-<build_action v="SOURCE_C;CortexM3;;;" />
-<PropertyDeltas />
-</CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b>
-<CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
-<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="I2C_SDA.h" persistent="Generated_Source\PSoC5\I2C_SDA.h">
+<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="WheelClock.h" persistent="Generated_Source\PSoC5\WheelClock.h">
 <Hidden v="False" />
 </CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
 <build_action v="HEADER;;;;" />
@@ -3590,36 +3634,6 @@
 </CyGuid_ebc4f06d-207f-49c2-a540-72acf4adabc0>
 </CyGuid_813b8d13-518a-4dc8-91ba-cda6042dfb52>
 </CyGuid_d8451a8e-a4ea-4e21-aba8-966eaa7ea07d>
-<CyGuid_4429d4ed-fe84-42d0-9e9f-19aee0ff4e7e type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtComponentSerialize" version="1">
-<CyGuid_813b8d13-518a-4dc8-91ba-cda6042dfb52 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtPhysicalFolderSerialize" version="1">
-<CyGuid_ebc4f06d-207f-49c2-a540-72acf4adabc0 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFolderSerialize" version="3">
-<CyGuid_2f73275c-45bf-46ba-b3b1-00a2fe0c8dd8 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtBaseContainerSerialize" version="1">
-<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="PulseDelay" persistent="PulseDelay">
-<Hidden v="False" />
-</CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
-<CyGuid_0820c2e7-528d-4137-9a08-97257b946089 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemListSerialize" version="2">
-<dependencies>
-<CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
-<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="PulseDelay.cysym" persistent="PulseDelay\PulseDelay.cysym">
-<Hidden v="False" />
-</CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
-<build_action v="OTHER;;;;" />
-<PropertyDeltas />
-</CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b>
-<CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
-<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="PulseDelay.v" persistent="PulseDelay\PulseDelay.v">
-<Hidden v="False" />
-</CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
-<build_action v="OTHER;;;;" />
-<PropertyDeltas />
-</CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b>
-</dependencies>
-</CyGuid_0820c2e7-528d-4137-9a08-97257b946089>
-</CyGuid_2f73275c-45bf-46ba-b3b1-00a2fe0c8dd8>
-<filters />
-</CyGuid_ebc4f06d-207f-49c2-a540-72acf4adabc0>
-</CyGuid_813b8d13-518a-4dc8-91ba-cda6042dfb52>
-</CyGuid_4429d4ed-fe84-42d0-9e9f-19aee0ff4e7e>
 </dependencies>
 </CyGuid_0820c2e7-528d-4137-9a08-97257b946089>
 </CyGuid_2f73275c-45bf-46ba-b3b1-00a2fe0c8dd8>
@@ -3756,7 +3770,7 @@
 <name_val_pair name="c9323d49-d323-40b8-9b59-cc008d68a989@Debug@CortexM3@Assembly@General@Join Data and Text Sections" v="False" />
 <name_val_pair name="c9323d49-d323-40b8-9b59-cc008d68a989@Debug@CortexM3@Assembly@General@Suppress Warnings" v="False" />
 <name_val_pair name="c9323d49-d323-40b8-9b59-cc008d68a989@Debug@CortexM3@Assembly@Command Line@Command Line" v="" />
-<name_val_pair name="c9323d49-d323-40b8-9b59-cc008d68a989@Debug@CortexM3@C/C++@General@Additional Include Directories" v="" />
+<name_val_pair name="c9323d49-d323-40b8-9b59-cc008d68a989@Debug@CortexM3@C/C++@General@Additional Include Directories" v=".\emFile_V322c\Code\Include\PSoC5; .\emFile_V322c\Code\Include\PSoC5\emf32nOS" />
 <name_val_pair name="c9323d49-d323-40b8-9b59-cc008d68a989@Debug@CortexM3@C/C++@General@Create Listing File" v="True" />
 <name_val_pair name="c9323d49-d323-40b8-9b59-cc008d68a989@Debug@CortexM3@C/C++@General@Default Char Unsigned" v="False" />
 <name_val_pair name="c9323d49-d323-40b8-9b59-cc008d68a989@Debug@CortexM3@C/C++@General@Generate Debugging Information" v="True" />
