@@ -2437,14 +2437,6 @@ design rules under a new name.</description>
 <wire x1="17.78" y1="62.23" x2="46.355" y2="67.31" width="0" layer="19" extent="16-16"/>
 <wire x1="12.2" y1="62.78" x2="17.78" y2="62.23" width="0" layer="19" extent="1-1"/>
 </signal>
-<signal name="RADIO_RX">
-<contactref element="WEMOS1" pad="RX"/>
-<wire x1="51.7525" y1="64.77" x2="57.9915" y2="71.009" width="0.254" layer="16"/>
-<wire x1="57.9915" y1="71.009" x2="57.9915" y2="74.1235" width="0.254" layer="16"/>
-<wire x1="57.9915" y1="74.1235" x2="58.928" y2="75.06" width="0.254" layer="16"/>
-<contactref element="J7" pad="2"/>
-<wire x1="12.2" y1="60.24" x2="51.7525" y2="64.77" width="0" layer="19" extent="16-16"/>
-</signal>
 <signal name="FEED_OVERRIDE_OFF">
 <contactref element="J18" pad="4"/>
 <contactref element="U2" pad="2.2"/>
@@ -2512,6 +2504,13 @@ design rules under a new name.</description>
 </signal>
 <signal name="RADIO_RX_IN">
 <contactref element="U2" pad="15.1"/>
+<contactref element="WEMOS1" pad="RX"/>
+<wire x1="51.7525" y1="64.77" x2="57.9915" y2="71.009" width="0.254" layer="16"/>
+<wire x1="57.9915" y1="71.009" x2="57.9915" y2="74.1235" width="0.254" layer="16"/>
+<wire x1="57.9915" y1="74.1235" x2="58.928" y2="75.06" width="0.254" layer="16"/>
+<contactref element="J7" pad="2"/>
+<wire x1="17.78" y1="59.69" x2="51.7525" y2="64.77" width="0" layer="19" extent="16-16"/>
+<wire x1="12.2" y1="60.24" x2="17.78" y2="59.69" width="0" layer="19" extent="1-1"/>
 </signal>
 </signals>
 </board>

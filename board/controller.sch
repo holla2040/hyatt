@@ -6522,18 +6522,6 @@ for 059's SWD pins</text>
 <label x="30.48" y="109.22" size="1.016" layer="95" xref="yes"/>
 </segment>
 </net>
-<net name="RADIO_RX" class="0">
-<segment>
-<pinref part="WEMOS1" gate="D1" pin="RX"/>
-<wire x1="91.44" y1="83.82" x2="93.98" y2="83.82" width="0.1524" layer="91"/>
-<label x="93.98" y="83.82" size="1.016" layer="95" xref="yes"/>
-</segment>
-<segment>
-<pinref part="J7" gate="G$1" pin="2"/>
-<wire x1="27.94" y1="106.68" x2="30.48" y2="106.68" width="0.1524" layer="91"/>
-<label x="30.48" y="106.68" size="1.016" layer="95" xref="yes"/>
-</segment>
-</net>
 <net name="FEED_OVERRIDE_OFF" class="0">
 <segment>
 <pinref part="J18" gate="G$1" pin="4"/>
@@ -6628,6 +6616,16 @@ for 059's SWD pins</text>
 <pinref part="U2" gate="G$1" pin="P15_1"/>
 <wire x1="63.5" y1="149.86" x2="58.42" y2="149.86" width="0.1524" layer="91"/>
 <label x="58.42" y="149.86" size="1.016" layer="95" rot="R180" xref="yes"/>
+</segment>
+<segment>
+<pinref part="WEMOS1" gate="D1" pin="RX"/>
+<wire x1="91.44" y1="83.82" x2="93.98" y2="83.82" width="0.1524" layer="91"/>
+<label x="93.98" y="83.82" size="1.016" layer="95" xref="yes"/>
+</segment>
+<segment>
+<pinref part="J7" gate="G$1" pin="2"/>
+<wire x1="27.94" y1="106.68" x2="30.48" y2="106.68" width="0.1524" layer="91"/>
+<label x="30.48" y="106.68" size="1.016" layer="95" xref="yes"/>
 </segment>
 </net>
 </nets>
