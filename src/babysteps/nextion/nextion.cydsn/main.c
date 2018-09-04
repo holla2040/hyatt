@@ -1,20 +1,41 @@
 /* this project uses nextion display loaded with droSimple
 
+   add m library gcc command line -lm
+    change heap size to 0x200 in cydwr System
+    add linker command line -u_printf_float
 
 */
 #include "project.h"
-#include "stdlib.h"
-
-#if defined (__GNUC__)
-    /* Add an explicit reference to the floating point printf library */
-    /* to allow usage of the floating point conversion specifiers. */
-    /* This is not linked in by default with the newlib-nano library. */
-    asm (".global _printf_float");
-#endif
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include <stdbool.h>
 
 char displayBuffer[50];
 char consoleBuffer[50];
+double t;
+bool displayPending;
 
+CY_ISR(updateHandler) {
+    t += 0.01;
+    displayPending = true;
+    isrDisplay_ClearPending();
+}
+
+void displayUpdate() {
+    char line[50];
+    sprintf(line,"x.txt=\"%9.4f\"\xff\xff\xff",500.0*cos(t)+500.0);
+    display_PutString(line);
+    sprintf(line,"y.txt=\"%9.4f\"\xff\xff\xff",500.0*sin(t)+500.0);
+    display_PutString(line);
+    sprintf(line,"z.txt=\"%9.4f\"\xff\xff\xff",50.0*sin(t + 3.00)-50.0);
+    display_PutString(line);
+    
+    
+    
+    displayPending = false;
+}    
+ 
 void lineProcess(char *line) {
     char c = line[0];
     int  i = atoi(&line[1]);
@@ -58,8 +79,6 @@ void lineProcess(char *line) {
                 display_PutString(line);
                 display_PutString("\"\xff\xff\xff");
                 break;
-                
-                
         }
     }               
 }
@@ -100,6 +119,8 @@ int main(void)
     CyGlobalIntEnable;
     console_Start();
     display_Start();
+    clockDisplay_Start();
+    isrDisplay_StartEx(updateHandler);
     
     console_PutString("nextion main\n");
     display_PutString("title.txt=\"nextion main\"\xff\xff\xff");
@@ -118,5 +139,6 @@ int main(void)
                 console_PutChar(c);
             }
         }
+        if (displayPending) displayUpdate();
     }
 }
