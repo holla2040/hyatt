@@ -40,7 +40,7 @@ void lineProcess(char *line) {
     char c = line[0];
     int  i = atoi(&line[1]);
 
-    display_PutString("title.txt=\"");
+    display_PutString("line.txt=\"");
     display_PutString(line);
     display_PutString("\"\xff\xff\xff");
     
@@ -119,11 +119,11 @@ int main(void)
     CyGlobalIntEnable;
     console_Start();
     display_Start();
-    clockDisplay_Start();
+//   clockDisplay_Start();
     isrDisplay_StartEx(updateHandler);
     
     console_PutString("nextion main\n");
-    display_PutString("title.txt=\"nextion main\"\xff\xff\xff");
+    display_PutString("line.txt=\"nextion main\"\xff\xff\xff");
 
     for(;;)
     {
