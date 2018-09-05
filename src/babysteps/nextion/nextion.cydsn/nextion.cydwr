@@ -251,10 +251,12 @@
   <Data key="DataVersionKey" value="2" />
   <Group key="DWRInstGuidMapping">
     <Group key="Pin">
-      <Data key="376e072b-2901-476c-9f1c-7dd24663134d" value="uartDisplayRx" />
-      <Data key="1425177d-0d0e-4468-8bcc-e638e5509a9b" value="uartDebugRx" />
-      <Data key="eb8a83af-e06d-4962-aa78-97164e58127e" value="uartDisplayTx" />
-      <Data key="ed092b9b-d398-4703-be89-cebf998501f6" value="uartDebugTx" />
+      <Data key="8d318d8b-cf7b-4b6b-b02c-ab1c5c49d0ba" value="SW" />
+      <Data key="376e072b-2901-476c-9f1c-7dd24663134d" value="displayRx" />
+      <Data key="1425177d-0d0e-4468-8bcc-e638e5509a9b" value="consoleRx" />
+      <Data key="e851a3b9-efb8-48be-bbb8-b303b216c393" value="LED" />
+      <Data key="eb8a83af-e06d-4962-aa78-97164e58127e" value="displayTx" />
+      <Data key="ed092b9b-d398-4703-be89-cebf998501f6" value="consoleTx" />
     </Group>
   </Group>
   <Group key="EEPROM">
@@ -3341,6 +3343,11 @@
     </Group>
   </Group>
   <Group key="Pin2">
+    <Group key="8d318d8b-cf7b-4b6b-b02c-ab1c5c49d0ba">
+      <Group key="0">
+        <Data key="Port Format" value="2,2" />
+      </Group>
+    </Group>
     <Group key="376e072b-2901-476c-9f1c-7dd24663134d">
       <Group key="0">
         <Data key="Port Format" value="2,6" />
@@ -3349,6 +3356,11 @@
     <Group key="1425177d-0d0e-4468-8bcc-e638e5509a9b">
       <Group key="0">
         <Data key="Port Format" value="12,6" />
+      </Group>
+    </Group>
+    <Group key="e851a3b9-efb8-48be-bbb8-b303b216c393">
+      <Group key="0">
+        <Data key="Port Format" value="2,1" />
       </Group>
     </Group>
     <Group key="eb8a83af-e06d-4962-aa78-97164e58127e">
