@@ -13,7 +13,7 @@
 
 char displayBuffer[50];
 char consoleBuffer[50];
-double t;
+double t,x,y,z;
 bool displayPending;
 
 CY_ISR(updateHandler) {
@@ -23,6 +23,12 @@ CY_ISR(updateHandler) {
 }
 
 void displayUpdate() {
+    char line[100];
+    sprintf(line,"x.txt=\"%9.4f\"\xff\xff\xffy.txt=\"%9.4f\"\xff\xff\xffz.txt=\"%9.4f\"\xff\xff\xff",x,y,z);
+    display_PutString(line);
+    displayPending = false;
+
+/*
     char line[50];
     sprintf(line,"x.txt=\"%9.4f\"\xff\xff\xff",500.0*cos(t)+500.0);
     display_PutString(line);
@@ -30,10 +36,7 @@ void displayUpdate() {
     display_PutString(line);
     sprintf(line,"z.txt=\"%9.4f\"\xff\xff\xff",50.0*sin(t + 3.00)-50.0);
     display_PutString(line);
-    
-    
-    
-    displayPending = false;
+*/
 }    
  
 void lineProcess(char *line) {
@@ -140,5 +143,8 @@ int main(void)
             }
         }
         if (displayPending) displayUpdate();
+        x = 500.0*cos(t)+500.0;
+        y = 500.0*sin(t)+500.0;
+        z = 50.0*sin(t+3.00)-50.0;
     }
 }
