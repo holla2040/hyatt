@@ -62,39 +62,59 @@ P082D-27CBR10K
 check knob diameter against knob desired
 
 
+$100-102
+        steps
+    200 -----
+        rev                                                     steps
+    --------- = 25 * 8 microsteps (JMC 1600 on|off|on|on) = 200 -----
+        mm                                                      mm
+      8 ----
+        rev
+
+    1 step = 0.005mm 0.00019685039in
+
+    jog wheel 'click' calc, 100 pulses/rev   slow    med    fast  5 rotations limit to limit
+        https://github.com/gnea/grbl/wiki/Grbl-v1.1-Jogging
+
+        mm   1 rotation = 1mm   1 click     0.01mm  0.1mm   2mm
+                                1 rotation  1mm     10mm    200mm 
+
+        inch 1 rotation = 10mil 1 click     0.1mil  1mil    78mil 5 rotations limit to limit
+                                1 rotation  10mil   100mil  7.87in
+
 
 X settings
-$0 = 10    (step pulse, usec)
-$1 = 25    (step idle delay, msec)
-$2 = 0    (step port invert mask:00000000)
-$3 = 1    (dir port invert mask:00000001)
-$4 = 0    (step enable invert, bool)
-$5 = 1    (limit pins invert, bool)
-$6 = 0    (probe pin invert, bool)
-$10 = 19    (status report mask:00010011)
-$11 = 0.010    (junction deviation, mm)
-$12 = 0.002    (arc tolerance, mm)
-$13 = 0    (report inches, bool)
-$20 = 1    (soft limits, bool)
-$21 = 1    (hard limits, bool)
-$22 = 1    (homing cycle, bool)
-$23 = 3    (homing dir invert mask:00000011)
-$24 = 20.000    (homing feed, mm/min)
-$25 = 400.000    (homing seek, mm/min)
-$26 = 250    (homing debounce, msec)
-$27 = 1.000    (homing pull-off, mm)
-$100 = 200.000    (x, step/mm)
-$101 = 250.000    (y, step/mm)
-$102 = 250.000    (z, step/mm)
-$110 = 10000.000    (x max rate, mm/min)
-$111 = 500.000    (y max rate, mm/min)
-$112 = 500.000    (z max rate, mm/min)
-$120 = 500.000    (x accel, mm/sec^2)
-$121 = 10.000    (y accel, mm/sec^2)
-$122 = 10.000    (z accel, mm/sec^2)
-$130 = 600.000    (x max travel, mm)
-$131 = 200.000    (y max travel, mm)
-$132 = 200.000    (z max travel, mm)
+$0 = 10             (step pulse, usec)
+$1 = 25             (step idle delay, msec)
+$2 = 0              (step port invert mask:00000000)
+$3 = 1              (dir port invert mask:00000001)
+$4 = 0              (step enable invert, bool)
+$5 = 1              (limit pins invert, bool)
+$6 = 0              (probe pin invert, bool)
+$10 = 19            (status report mask:00010011)
+$11 = 0.010         (junction deviation, mm)
+$12 = 0.002         (arc tolerance, mm)
+$13 = 0             (report inches, bool)
+$20 = 1             (soft limits, bool)
+$21 = 1             (hard limits, bool)
+$22 = 1             (homing cycle, bool)
+$23 = 3             (homing dir invert mask:00000011)
+$24 = 20.000        (homing feed, mm/min)
+$25 = 400.000       (homing seek, mm/min)
+$26 = 250           (homing debounce, msec)
+$27 = 1.000         (homing pull-off, mm)
+$100 = 200.000      (x, step/mm)
+$101 = 200.000      (y, step/mm)
+$102 = 200.000      (z, step/mm)
+$110 = 5000.000     (x max rate, mm/min)
+$111 = 5000.000     (y max rate, mm/min)
+$112 = 5000.000     (z max rate, mm/min)
+$120 = 500.000      (x accel, mm/sec^2)
+$121 = 500.000      (y accel, mm/sec^2)
+$122 = 500.000      (z accel, mm/sec^2)
+$130 = 930.000      (x max travel, mm)
+$131 = 930.000      (y max travel, mm)
+$132 = 200.000      (z max travel, mm)
 
 
 Eaz-Lift 48810 24" Leveling Scissor Jack 5,000-Pound 
