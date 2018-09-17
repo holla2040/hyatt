@@ -1,13 +1,13 @@
-/* ========================================
- *
- * Copyright YOUR COMPANY, THE YEAR
- * All Rights Reserved
- * UNPUBLISHED, LICENSED SOFTWARE.
- *
- * CONFIDENTIAL AND PROPRIETARY INFORMATION
- * WHICH IS THE PROPERTY OF your company.
- *
- * ========================================
-*/
+#include "hyattKeypad.h"
 
-/* [] END OF FILE */
+CY_ISR(keyHandler) {
+    keyPending = 1;
+    Pin_IO_INT_ClearInterrupt();
+}
+
+void hyattKeypad_loop() {
+    if (keyPending) {
+
+    }
+}
+
