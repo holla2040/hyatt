@@ -1,6 +1,6 @@
 /* hyatt */
 
-#include "hyatt.h"
+#include "hyattController.h"
 
 CY_ISR(keyHandler) {
     keyPending = 1;
