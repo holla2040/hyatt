@@ -1,8 +1,8 @@
 #ifndef hyattKeypad_h
 #define hyattKeypad_h
     
-#define U3Addr      0x20
-#define U4Addr      0x21
+#define KEYPAD_UPPER_ADDR      0x20
+#define KEYPAD_LOWER_ADDR      0x21
 
 #define IOA_DIR     0x00
 #define IOA_POL     0x02
