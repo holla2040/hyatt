@@ -1,14 +1,27 @@
 /* hyatt */
-
+#include "project.h"
 #include "hyattController.h"
+#include "hyattKeypad.h"
 
+uint16_t keyPadIndicatorCount;
 
-void hyattController_init() {
-    hyattKeypad_init();
-
-    controllerConfig.axisSelected = X;
+CY_ISR(isrHyattHandler) {
+    keyPadIndicatorCount++;
 }
 
-void hyattController_loop() {
-    hyattKeypad_loop();
+
+void hyattControllerInit() {
+    isrHyatt_StartEx(isrHyattHandler);
+    
+    hyattKeypadInit();
+
+    controllerConfig.axisSelected = AXISSELECTEDX;
+}
+
+void hyattControllerLoop() {
+    hyattKeypadLoop();
+}
+
+uint32_t millis() {
+    return 0;
 }

@@ -1,5 +1,6 @@
-uint8_t keyPending;
-
+#ifndef hyattKeypad_h
+#define hyattKeypad_h
+    
 #define U3Addr      0x20
 #define U4Addr      0x21
 
@@ -12,7 +13,7 @@ uint8_t keyPending;
 #define IOA_GPPU    0x0C
 #define IOA_INTF    0x0E
 #define IOA_INTCAP  0x10
-#define IOA_GPIOA   0x12
+#define IOA_GPIO    0x12
 #define IOA_OLAT    0x14
 
 #define IOB_DIR     0x01
@@ -24,6 +25,15 @@ uint8_t keyPending;
 #define IOB_GPPU    0x0D
 #define IOB_INTF    0x0F
 #define IOB_INTCAP  0x11
-#define IOB_GPIOB   0x13
+#define IOB_GPIO    0x13
 #define IOB_OLAT    0x15
 
+#define KEY_X 0x0001
+#define KEY_Y 0x0002
+#define KEY_Z 0x0004
+    
+void hyattKeypadInit();
+void hyattKeypadLoop();
+void indicatorUpdate();
+
+#endif

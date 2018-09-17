@@ -20,7 +20,7 @@
 #include <FS.h>
 #include <string.h>
 #include <Global.h>
-#include "controller.h"
+#include "hyattController.h"
 
 #include "grbl.h"
 
@@ -66,7 +66,7 @@ int main()
     settings_init(); // Load Grbl settings from EEPROM
     stepper_init();
     system_init();
-    hyatt_init();
+    hyattControllerInit();
     
     memset(sys_position,0,sizeof(sys_position)); // Clear machine position
     //memset(&sys, 0, sizeof(sys));  // Clear all system variables

@@ -3,7 +3,9 @@
 #define controller_h
 #include <stdint.h>
     
-enum AXIS{X=1,Y,Z,A};
+enum {AXISSELECTEDX=1,AXISSELECTEDY,AXISSELECTEDZ};
+
+uint32_t millis();
 
 struct {
     uint8_t     axisSelected;
@@ -13,4 +15,9 @@ struct {
     uint8_t     jogWheelSpeed;
 } controllerConfig;
     
+
+void hyattControllerInit();
+void hyattControllerLoop();
+
+
 #endif

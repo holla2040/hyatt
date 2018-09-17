@@ -21,6 +21,7 @@
 */
 
 #include "grbl.h"
+#include "hyattController.h"
 
 // Define line flags. Includes comment type tracking and line overflow detection.
 #define LINE_FLAG_OVERFLOW bit(0)
@@ -157,6 +158,8 @@ void protocol_main_loop()
       
     }
 
+    hyattControllerLoop();
+    
     // If there are no more characters in the serial read buffer to be processed and executed,
     // this indicates that g-code streaming has either filled the planner buffer or has
     // completed. In either case, auto-cycle start, if enabled, any queued moves.
