@@ -81,6 +81,12 @@
 <v>mcp23017\mcp23017\Generated_Source\PSoC5\cydisabledsheets.h</v>
 <v>mcp23017\mcp23017\Generated_Source\PSoC5\cyfitter.h</v>
 <v>mcp23017\mcp23017\Generated_Source\PSoC5\cyfitter_cfg.c</v>
+<v>mcp23017\mcp23017\Generated_Source\PSoC5\cyfitter_cfg.h</v>
+<v>mcp23017\mcp23017\Generated_Source\PSoC5\cyfittergnu.inc</v>
+<v>mcp23017\mcp23017\Generated_Source\PSoC5\cyfitteriar.inc</v>
+<v>mcp23017\mcp23017\Generated_Source\PSoC5\cyfitterrv.inc</v>
+<v>mcp23017\mcp23017\Generated_Source\PSoC5\cymetadata.c</v>
+<v>mcp23017\mcp23017\Generated_Source\PSoC5\project.h</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 <CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
@@ -257,7 +263,7 @@
   Copyright (c) 2001-2016 Actipro Software LLC.  All rights reserved.
   http://www.actiprosoftware.com
 
---><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="1123, 531" SelectedTabbedMdiWindow="b247d8c6-807d-4550-a24c-f7752aef095d"><DocumentWindow Key="C:\tmp\hyatt\src\babysteps\mcp23017\mcp23017.cydsn\TopDesign\TopDesign.cysch" Guid="b247d8c6-807d-4550-a24c-f7752aef095d" /><DocumentWindow Key="C:\tmp\hyatt\src\babysteps\mcp23017\mcp23017.cydsn\mcp23017.cydwr" Guid="1b8f4111-c291-44ab-bddb-0d0bda28e7d1" /><ToolWindow Key="Start Page:bd4649ab-da6b-4d04-a663-c722b8bf99db:Start Page" Guid="1b663cd2-9d53-4ad0-b070-d4823cfc10e0" /><DocumentWindow Key="C:\tmp\hyatt\src\babysteps\mcp23017\mcp23017.cydsn\main.c" Guid="6199e774-a654-481e-a494-7620036c034c" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
+--><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="1120, 1188" SelectedTabbedMdiWindow="6199e774-a654-481e-a494-7620036c034c"><DocumentWindow Key="C:\tmp\hyatt\src\babysteps\mcp23017\mcp23017.cydsn\TopDesign\TopDesign.cysch" Guid="b247d8c6-807d-4550-a24c-f7752aef095d" /><DocumentWindow Key="C:\tmp\hyatt\src\babysteps\mcp23017\mcp23017.cydsn\mcp23017.cydwr" Guid="1b8f4111-c291-44ab-bddb-0d0bda28e7d1" /><DocumentWindow Key="C:\tmp\hyatt\src\babysteps\mcp23017\mcp23017.cydsn\main.c" Guid="6199e774-a654-481e-a494-7620036c034c" /><ToolWindow Key="Start Page:bd4649ab-da6b-4d04-a663-c722b8bf99db:Start Page" Guid="1b663cd2-9d53-4ad0-b070-d4823cfc10e0" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
 <config v="" />
 <AutoUpdate v="true" />
 </CyGuid_843a90a4-0c4b-4e44-991d-05e7fb117a21>

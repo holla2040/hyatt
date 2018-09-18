@@ -1,8 +1,8 @@
 #ifndef hyattKeypad_h
 #define hyattKeypad_h
     
-#define KEYPAD_UPPER_ADDR      0x20
-#define KEYPAD_LOWER_ADDR      0x21
+#define KEYPAD_ROW12_ADDR      0x20
+#define KEYPAD_ROW34_ADDR      0x21
 
 #define IOA_DIR     0x00
 #define IOA_POL     0x02
@@ -28,9 +28,16 @@
 #define IOB_GPIO    0x13
 #define IOB_OLAT    0x15
 
-#define KEY_X 0x0001
-#define KEY_Y 0x0002
-#define KEY_Z 0x0004
+#define KEY_X       0x0001
+#define KEY_Y       0x0002
+#define KEY_Z       0x0004
+#define KEY_SLOW    0x0010
+#define KEY_MEDIUM  0x0020
+#define KEY_FAST    0x0040
+#define KEY_UNIT    0x0400
+    
+#define KEY_AXISZERO 0x1000
+
     
 void hyattKeypadInit();
 void hyattKeypadLoop();

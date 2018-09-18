@@ -15,13 +15,10 @@ void hyattControllerInit() {
     
     hyattKeypadInit();
 
-    controllerConfig.axisSelected = AXISSELECTEDX;
+    controllerConfig.axisSelected = AXISSELECTED_X;
+    controllerConfig.jogWheelStepSize = JOGWHEELSTEPSIZE_SMALL;
 }
 
 void hyattControllerLoop() {
     hyattKeypadLoop();
-}
-
-uint32_t millis() {
-    return 0;
 }
