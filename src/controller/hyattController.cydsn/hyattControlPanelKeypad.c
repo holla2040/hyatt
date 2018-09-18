@@ -1,36 +1,37 @@
 #include <stdint.h>
 #include "project.h"
-#include "hyattKeypad.h"
-#include "hyattI2C.h"
-#include "hyattController.h"
+#include "hyatt.h"
 #include "serial.h"
 #include "grbl.h"
 
 /* using bank=0 */
 
-uint8_t keyPending;
-uint16_t keyIndicator;
-
-uint16_t key;
 
 uint16_t keyPadIndicatorCount;
+uint8_t  keyPending;
+uint16_t keyIndicator;
+
+
 #define KEYINDICATORUPDATEINTERVAL 100
 
 extern parser_block_t gc_block;
-
 
 CY_ISR(keyHandler) {
     keyPending = 1;
     Pin_IO_INT_ClearInterrupt();
 }
 
-void indicatorUpdate() {
+void hyattControlPanelKeypadTick() {
+    keyPadIndicatorCount++;
+}
+
+void hyattControlPanelIndicatorUpdate() {
     i2cRegWrite(KEYPAD_ROW12_ADDR,IOB_GPIO,     keyIndicator    &0xFF);
     CyDelay(50);
     i2cRegWrite(KEYPAD_ROW34_ADDR,IOB_GPIO,    (keyIndicator>>8)&0xFF);
 };    
 
-void hyattKeypadInit() {
+void hyattControlPanelKeypadInit() {
     i2c_init();
     Pin_IO_INT_Int_StartEx(keyHandler);
     
@@ -62,7 +63,7 @@ void hyattKeypadInit() {
         
     keyIndicator = 0x0001;
     for (uint8_t i = 0;i < 15;i++) {
-        indicatorUpdate();
+        hyattControlPanelIndicatorUpdate();
         keyIndicator = keyIndicator << 1;
         CyDelay(10);
     }
@@ -74,8 +75,8 @@ void grblMessage(char *block) {
     }
 }
 
-void hyattKeypadLoop() {
-    char l[100];
+void hyattControlPanelKeypadLoop() {
+    uint16_t key;
     if (keyPending) {
         key = 0x00;
         if (i2cRegRead(KEYPAD_ROW34_ADDR,IOA_INTF)) {
@@ -86,26 +87,26 @@ void hyattKeypadLoop() {
         }
         switch(key) {
             case KEY_X:
-                controllerConfig.axisSelected = AXISSELECTED_X;
+                hyattStatus.axisSelected = AXISSELECTED_X;
                 break;
             case KEY_Y:
-                controllerConfig.axisSelected = AXISSELECTED_Y;
+                hyattStatus.axisSelected = AXISSELECTED_Y;
                 break;
             case KEY_Z:
-                controllerConfig.axisSelected = AXISSELECTED_Z;
+                hyattStatus.axisSelected = AXISSELECTED_Z;
                 break;
             case KEY_SLOW:
-                controllerConfig.jogWheelStepSize = JOGWHEELSTEPSIZE_SMALL;
+                hyattStatus.jogWheelStepSize = JOGWHEELSTEPSIZE_SMALL;
                 break;
             case KEY_MEDIUM:
-                controllerConfig.jogWheelStepSize = JOGWHEELSTEPSIZE_MEDIUM;
+                hyattStatus.jogWheelStepSize = JOGWHEELSTEPSIZE_MEDIUM;
                 break;
             case KEY_FAST:
-                controllerConfig.jogWheelStepSize = JOGWHEELSTEPSIZE_LARGE;
+                hyattStatus.jogWheelStepSize = JOGWHEELSTEPSIZE_LARGE;
                 break;
             case 0x4100:
-                strcpy(l,"$J=G91G21?1F1000\n");
-                l[9] = controllerConfig.axisSelected;
+                // strcpy(l,"$J=G91G21?1F1000\n");
+                // l[9] = hyattStatus.axisSelected;
                 break;
             case KEY_UNIT:
                 if(gc_block.modal.units == UNITS_MODE_INCHES) {
@@ -115,9 +116,9 @@ void hyattKeypadLoop() {
                 }
                 break;
             case KEY_AXISZERO:
-                if (controllerConfig.axisSelected == AXISSELECTED_X) grblMessage("G10L20P1X0\n");
-                if (controllerConfig.axisSelected == AXISSELECTED_Y) grblMessage("G10L20P1Y0\n");
-                if (controllerConfig.axisSelected == AXISSELECTED_Z) grblMessage("G10L20P1Z0\n");
+                if (hyattStatus.axisSelected == AXISSELECTED_X) grblMessage("G10L20P1X0\n");
+                if (hyattStatus.axisSelected == AXISSELECTED_Y) grblMessage("G10L20P1Y0\n");
+                if (hyattStatus.axisSelected == AXISSELECTED_Z) grblMessage("G10L20P1Z0\n");
                 break;
             default:
                 keyIndicator = key & 0xFF88;
@@ -132,10 +133,10 @@ void hyattKeypadLoop() {
         i2cRegRead(KEYPAD_ROW34_ADDR, IOA_GPIO);
         
         keyIndicator = 0x0000; // all off
-        keyIndicator |= controllerConfig.axisSelected | controllerConfig.jogWheelStepSize;
+        keyIndicator |= hyattStatus.axisSelected | hyattStatus.jogWheelStepSize;
         keyIndicator |= (gc_block.modal.units?0:1) << 10;
         
-        indicatorUpdate();
+        hyattControlPanelIndicatorUpdate();
         
         FEED_OVERRIDE_BTN_Write(!FEED_OVERRIDE_BTN_Read());
         system_set_exec_state_flag(EXEC_STATUS_REPORT);
