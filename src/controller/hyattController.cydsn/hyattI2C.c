@@ -26,10 +26,3 @@ void i2cBufWrite(uint8_t addr, uint8_t reg, uint8_t *buf, uint8_t len) {
     I2C_MasterWriteBuf(addr,buf,len,I2C_MODE_COMPLETE_XFER);
     while ((I2C_MasterStatus() & I2C_MSTAT_WR_CMPLT)==0) {};
 }
-
-void i2c_init() {
-    I2C_Start();
-    IO_RESET_Write(0);
-    CyDelay(1);
-    IO_RESET_Write(1);
-}

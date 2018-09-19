@@ -6,23 +6,16 @@
 
 /* using bank=0 */
 
-
-uint16_t keyPadIndicatorCount;
 uint8_t  keyPending;
 uint16_t keyIndicator;
 
-
-#define KEYINDICATORUPDATEINTERVAL 100
+extern uint32_t hyattTicks;
 
 extern parser_block_t gc_block;
 
 CY_ISR(keyHandler) {
     keyPending = 1;
     Pin_IO_INT_ClearInterrupt();
-}
-
-void hyattControlPanelKeypadTick() {
-    keyPadIndicatorCount++;
 }
 
 void hyattControlPanelIndicatorUpdate() {
@@ -32,7 +25,6 @@ void hyattControlPanelIndicatorUpdate() {
 };    
 
 void hyattControlPanelKeypadInit() {
-    i2c_init();
     Pin_IO_INT_Int_StartEx(keyHandler);
     
     i2cRegWrite(KEYPAD_ROW12_ADDR,IOA_DIR,     0x77);         // set port A to input
@@ -59,7 +51,7 @@ void hyattControlPanelKeypadInit() {
     i2cRegWrite(KEYPAD_ROW34_ADDR,IOB_DIR,     0x88);         // led pins to output
     i2cRegWrite(KEYPAD_ROW34_ADDR,IOB_GPIO,    0x77);         // leds on
 
-    CyDelay(100);
+    CyDelay(50);
         
     keyIndicator = 0x0001;
     for (uint8_t i = 0;i < 15;i++) {
@@ -74,6 +66,8 @@ void grblMessage(char *block) {
         rx_handler(block[i]);                                                                                                            
     }
 }
+
+uint32_t timeoutKeypadUpdate;
 
 void hyattControlPanelKeypadLoop() {
     uint16_t key;
@@ -127,7 +121,7 @@ void hyattControlPanelKeypadLoop() {
         keyPending = 0;
     }
     
-    if (keyPadIndicatorCount > KEYINDICATORUPDATEINTERVAL) {
+    if (hyattTicks > timeoutKeypadUpdate) {
         // clearing 23017 interrupt
         i2cRegRead(KEYPAD_ROW12_ADDR, IOA_GPIO);
         i2cRegRead(KEYPAD_ROW34_ADDR, IOA_GPIO);
@@ -138,10 +132,10 @@ void hyattControlPanelKeypadLoop() {
         
         hyattControlPanelIndicatorUpdate();
         
-        FEED_OVERRIDE_BTN_Write(!FEED_OVERRIDE_BTN_Read());
-        system_set_exec_state_flag(EXEC_STATUS_REPORT);
+        FEED_OVERRIDE_BTN_Write(!FEED_OVERRIDE_BTN_Read()); // blinks the 059 LED
+        // system_set_exec_state_flag(EXEC_STATUS_REPORT);
         
-        keyPadIndicatorCount = 0;
-    }
+        timeoutKeypadUpdate = hyattTicks + 50;
+     }
 }
 
