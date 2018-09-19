@@ -103,7 +103,7 @@ void hyattControlPanelKeypadLoop() {
                 // l[9] = hyattStatus.axisSelected;
                 break;
             case KEY_UNIT:
-                if(gc_block.modal.units == UNITS_MODE_INCHES) {
+                if((gc_block.modal.units == UNITS_MODE_INCHES) && (sys.state == STATE_IDLE)) {
                     grblMessage("G21\n");
                 } else {
                     grblMessage("G20\n");

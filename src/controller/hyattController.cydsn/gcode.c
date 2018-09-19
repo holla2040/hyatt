@@ -200,6 +200,12 @@ uint8_t gc_execute_line(char *line)
           case 20: case 21:
             word_bit = MODAL_GROUP_G6;
             gc_block.modal.units = 21 - int_value;
+
+            // hyatt, report units matches units
+            if (gc_block.modal.units) 
+                { settings.flags |= BITFLAG_REPORT_INCHES; }
+            else 
+                { settings.flags &= ~BITFLAG_REPORT_INCHES; }
             break;
           case 40:
             word_bit = MODAL_GROUP_G7;
