@@ -74,24 +74,30 @@ void hyattControlPanelDisplayLoop() {
     }
 
     if (hyattTicks > timeoutDisplayFastUpdate) {
+        uint8_t idx;
+        int32_t current_position[N_AXIS]; // Copy current state of the system position variable
+        memcpy(current_position,sys_position,sizeof(sys_position));
+        float print_position[N_AXIS];
+        system_convert_array_steps_to_mpos(print_position,current_position);
         float wco[N_AXIS];
+
         if (bit_isfalse(settings.status_report_mask,BITFLAG_RT_STATUS_POSITION_TYPE) || (sys.report_wco_counter == 0) ) {
             for (idx=0; idx< N_AXIS; idx++) {
                 // Apply work coordinate offsets and tool length offset to current position.
                 wco[idx] = gc_state.coord_system[idx]+gc_state.coord_offset[idx];
                 if (idx == TOOL_LENGTH_OFFSET_AXIS) { wco[idx] += gc_state.tool_length_offset; }
-/*
                 if (bit_isfalse(settings.status_report_mask,BITFLAG_RT_STATUS_POSITION_TYPE)) {
                     print_position[idx] -= wco[idx];
                 }
-*/
-                LCD_SetCursor(1,idx);
-                sprintf(buf,"%10.4f",wco[idx]);
-                LCD_PutString(buf);
 
             }
         }
+        for (idx=0; idx< N_AXIS; idx++) {
+            LCD_SetCursor(1,idx);
+            sprintf(buf,"%10.4f",print_position[idx]);
+            LCD_PutString(buf);
+        }
 
-        timeoutDisplayFastUpdate = hyattTicks + 20;
+        timeoutDisplayFastUpdate = hyattTicks + 30;
     }
 }

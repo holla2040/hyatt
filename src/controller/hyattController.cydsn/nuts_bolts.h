@@ -29,7 +29,7 @@
 
 #define SOME_LARGE_VALUE 1.0E+38
 
-#define USE_4_AXES  // enables A Axis
+// #define USE_4_AXES  // enables A Axis
 //#define USE_6_AXES  // enables A,B, and C Axis  
   
 // Axis array index values. Must start with 0 and be continuous.
