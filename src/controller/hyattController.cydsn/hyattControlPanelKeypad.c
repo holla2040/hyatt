@@ -71,6 +71,7 @@ uint32_t timeoutKeypadUpdate;
 
 void hyattControlPanelKeypadLoop() {
     uint16_t key;
+    char buf[30];
     if (keyPending) {
         key = 0x00;
         if (i2cRegRead(KEYPAD_ROW34_ADDR,IOA_INTF)) {
@@ -103,16 +104,20 @@ void hyattControlPanelKeypadLoop() {
                 // l[9] = hyattStatus.axisSelected;
                 break;
             case KEY_UNIT:
-                if((gc_block.modal.units == UNITS_MODE_INCHES) && (sys.state == STATE_IDLE)) {
-                    grblMessage("G21\n");
-                } else {
-                    grblMessage("G20\n");
+                if (sys.state == STATE_IDLE) {
+                    if (gc_block.modal.units == UNITS_MODE_INCHES) {
+                        grblMessage("G21\n");
+                    } else {
+                        grblMessage("G20\n");
+                    }
                 }
                 break;
             case KEY_AXISZERO:
-                if (hyattStatus.axisSelected == AXISSELECTED_X) grblMessage("G10L20P1X0\n");
-                if (hyattStatus.axisSelected == AXISSELECTED_Y) grblMessage("G10L20P1Y0\n");
-                if (hyattStatus.axisSelected == AXISSELECTED_Z) grblMessage("G10L20P1Z0\n");
+                sprintf(buf,"G10L20P%d_0\n",gc_state.modal.coord_select+1);
+                if (hyattStatus.axisSelected == AXISSELECTED_X) buf[8] = 'X';
+                if (hyattStatus.axisSelected == AXISSELECTED_Y) buf[8] = 'Y';
+                if (hyattStatus.axisSelected == AXISSELECTED_Z) buf[8] = 'Z';
+                grblMessage(buf);
                 break;
             default:
                 keyIndicator = key & 0xFF88;
