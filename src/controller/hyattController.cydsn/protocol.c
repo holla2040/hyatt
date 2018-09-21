@@ -158,7 +158,7 @@ void protocol_main_loop()
       
     }
 
-    hyattLoop();
+    // hyattLoop();
     
     // If there are no more characters in the serial read buffer to be processed and executed,
     // this indicates that g-code streaming has either filled the planner buffer or has
@@ -215,9 +215,6 @@ void protocol_execute_realtime()
 {
   protocol_exec_rt_system();
   if (sys.suspend) { protocol_exec_rt_suspend(); }
-  
-   
-  
 }
 
 
@@ -511,7 +508,7 @@ void protocol_exec_rt_system()
   if (sys.state & (STATE_CYCLE | STATE_HOLD | STATE_SAFETY_DOOR | STATE_HOMING | STATE_SLEEP| STATE_JOG)) {
     st_prep_buffer();
   }
-
+    hyattLoop();
 }
 
 
@@ -560,6 +557,9 @@ static void protocol_exec_rt_suspend()
   while (sys.suspend) {
 
     if (sys.abort) { return; }
+
+    usb_uart_check();
+    hyattLoop();
 
     // Block until initial hold is complete and the machine has stopped motion.
     if (sys.suspend & SUSPEND_HOLD_COMPLETE) {

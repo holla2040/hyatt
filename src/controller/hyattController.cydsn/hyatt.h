@@ -47,6 +47,9 @@
 #define KEY_UNIT    0x0400
 #define KEY_COORDSELECT 0x0200
 #define KEY_AXISZERO 0x1000
+#define KEY_SPINDLE 0x2000
+#define KEY_MIST    0x4000
+ 
 
 struct {
     uint8_t     axisSelected;

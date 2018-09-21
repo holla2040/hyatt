@@ -10,6 +10,7 @@ const char watch[] = " \xa5";
 uint32_t timeoutDisplaySlowUpdate;
 uint32_t timeoutDisplayFastUpdate;
 
+extern parser_block_t gc_block;
 
 
 void hyattControlPanelDisplayInit() {
@@ -24,7 +25,7 @@ void hyattControlPanelDisplayInit() {
 
     // LCD_SetCursor(0,3);     LCD_PutString("G..");
     LCD_SetCursor(12,0);    LCD_PutString("state");
-    LCD_SetCursor(12,1);    LCD_PutString("M0 M5 M9");
+    LCD_SetCursor(12,1);    LCD_PutString("");
     
     
     timeoutDisplaySlowUpdate = 0;
@@ -45,6 +46,7 @@ void hyattControlPanelDisplayLoop() {
             case STATE_ALARM:       LCD_PutString("Alarm  "); break;
             case STATE_CHECK_MODE:  LCD_PutString("Check  "); break;
             case STATE_SAFETY_DOOR: LCD_PutString("Door   "); break;
+            case STATE_JOG:         LCD_PutString("Jog    "); break;
             default:                LCD_PutString("?      "); break;
         };
         LCD_SetCursor(19,0);
@@ -68,7 +70,11 @@ void hyattControlPanelDisplayLoop() {
         LCD_SetCursor(15,3);
         gc_state.modal.distance ?  LCD_PutString("INCRE"):LCD_PutString("ABSOL");
 
+        LCD_SetCursor(12,1);
+        (gc_block.modal.spindle == SPINDLE_ENABLE_CW) ? LCD_PutString("SPIN"): LCD_PutString("    ");
 
+        LCD_SetCursor(17,1);
+        (gc_block.modal.coolant == COOLANT_MIST_ENABLE) ? LCD_PutString("AIR"): LCD_PutString("   ");
 
 
 
