@@ -45,7 +45,7 @@
 #define KEY_MEDIUM  0x0020
 #define KEY_FAST    0x0040
 #define KEY_UNIT    0x0400
-    
+#define KEY_COORDSELECT 0x0200
 #define KEY_AXISZERO 0x1000
 
 struct {

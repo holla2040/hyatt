@@ -99,6 +99,13 @@ void hyattControlPanelKeypadLoop() {
             case KEY_FAST:
                 hyattStatus.jogWheelStepSize = JOGWHEELSTEPSIZE_LARGE;
                 break;
+/*
+            case KEY_COORDSELECT:
+                gc_state.modal.coord_select++;
+                if (gc_state.modal.coord_select > 2) {
+                    gc_state.modal.coord_select = 0;
+                }
+*/
             case 0x4100:
                 // strcpy(l,"$J=G91G21?1F1000\n");
                 // l[9] = hyattStatus.axisSelected;

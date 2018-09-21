@@ -20,7 +20,9 @@ void hyattControlPanelDisplayInit() {
     LCD_SetCursor(0,0);     LCD_PutString("X");
     LCD_SetCursor(0,1);     LCD_PutString("Y");
     LCD_SetCursor(0,2);     LCD_PutString("Z");
-    LCD_SetCursor(0,3);     LCD_PutString("G.. G. G.. G.. F..");
+    LCD_SetCursor(12,2);    LCD_PutString("F");
+
+    // LCD_SetCursor(0,3);     LCD_PutString("G..");
     LCD_SetCursor(12,0);    LCD_PutString("state");
     LCD_SetCursor(12,1);    LCD_PutString("M0 M5 M9");
     
@@ -49,10 +51,28 @@ void hyattControlPanelDisplayLoop() {
         LCD_Write(watch[(++watchCount)%strlen(watch)]);
         
         
-        LCD_SetCursor(1,3);
+        LCD_SetCursor(0,3);
         sprintf(buf,"%d",54+gc_state.modal.coord_select);
         LCD_PutString(buf);
 
+        LCD_SetCursor(13,2);
+        sprintf(buf,"%-4d",(uint16_t)gc_state.feed_rate);
+        LCD_PutString(buf);
+
+        LCD_SetCursor(3,3);
+        gc_state.modal.units ?  LCD_PutString("INCH"):LCD_PutString("MM  ");
+
+        LCD_SetCursor(8,3);
+        gc_state.modal.motion ?  LCD_PutString("LINEAR"):LCD_PutString("RAPID ");
+
+        LCD_SetCursor(15,3);
+        gc_state.modal.distance ?  LCD_PutString("INCRE"):LCD_PutString("ABSOL");
+
+
+
+
+
+/*
         LCD_SetCursor(5,3);
         sprintf(buf,"%d",gc_state.modal.motion);
         LCD_PutString(buf);
@@ -64,10 +84,8 @@ void hyattControlPanelDisplayLoop() {
         LCD_SetCursor(12,3);
         sprintf(buf,"%d",90+gc_state.modal.distance);
         LCD_PutString(buf);
+*/
 
-        LCD_SetCursor(16,3);
-        sprintf(buf,"%-4d",(uint16_t)gc_state.feed_rate);
-        LCD_PutString(buf);
         
         
         timeoutDisplaySlowUpdate = hyattTicks + 500;
@@ -94,7 +112,11 @@ void hyattControlPanelDisplayLoop() {
         }
         for (idx=0; idx< N_AXIS; idx++) {
             LCD_SetCursor(1,idx);
-            sprintf(buf,"%10.4f",print_position[idx]);
+            if (bit_istrue(settings.flags,BITFLAG_REPORT_INCHES)) {
+                sprintf(buf,"%10.4f",print_position[idx]*INCH_PER_MM);
+            } else {
+                sprintf(buf,"%10.4f",print_position[idx]);
+            }
             LCD_PutString(buf);
         }
 
