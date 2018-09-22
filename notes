@@ -190,10 +190,3 @@ controller keypad is
     Grayhill 82-350-12, GRAY SWITCH KEYPAD 3KEY ILLUM 0.1A 5V
     Grayhill 82-350-41, BLACK SWITCH KEYPAD 3KEY ILLUM 0.1A 5V
 
-struct controllerConfig {
-    uint8_t     axisSelected;
-    uint8_t     feedOverride;   
-    uint8_t     jogWheelDelta;
-    uint8_t     jogWheelDirection;
-    uint8_t     jogWheelSpeed; // slow,medium, fast 
-    

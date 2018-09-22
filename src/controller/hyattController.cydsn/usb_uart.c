@@ -65,7 +65,7 @@ void usb_uart_check(){
             // hyatt
             if (USBUART_IsLineChanged() == USBUART_LINE_CONTROL_CHANGED) {
                 if (USBUART_GetLineControl() != USBUART_LINE_CONTROL_DTR ) {
-                    CyDelay(1);
+                    CyDelay(10);
                     report_init_message();
                 }
             }

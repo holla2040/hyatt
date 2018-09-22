@@ -598,6 +598,7 @@
       <Data key="c9434a4b-8285-448d-9fe0-dc6de9d2bfae" value="RADIO_TX_OUT" />
       <Data key="d93dcf8c-42e8-451c-af42-1c9d971f3919" value="Flood_Coolant_Pin" />
       <Data key="df646e7a-61e3-479d-9e02-475833b51764" value="WHEEL_ENCODER_B_IN" />
+      <Data key="e1cc9ce3-75cc-4b11-95c1-443538630449" value="FEED_OVERRIDE" />
       <Data key="e851a3b9-efb8-48be-bbb8-b303b216c393" value="SPINDLE_DIRECTION_OUT" />
       <Data key="eb943a40-a374-4ac8-bd7b-2f21e33dc5f5" value="COOLANT_SPARE" />
       <Data key="ed49cdf9-38df-4d0d-bf88-cc8fc60fbfde" value="SW1" />
@@ -1457,6 +1458,14 @@
     <Group key="df646e7a-61e3-479d-9e02-475833b51764">
       <Group key="0">
         <Data key="Port Format" value="12,3" />
+      </Group>
+    </Group>
+    <Group key="e1cc9ce3-75cc-4b11-95c1-443538630449">
+      <Group key="0">
+        <Data key="Port Format" value="2,1" />
+      </Group>
+      <Group key="1">
+        <Data key="Port Format" value="2,2" />
       </Group>
     </Group>
     <Group key="e851a3b9-efb8-48be-bbb8-b303b216c393">
