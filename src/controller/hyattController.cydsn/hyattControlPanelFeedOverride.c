@@ -6,8 +6,11 @@
 
 CY_ISR(feedOverrideHandler) {
     uint8_t v = FEED_OVERRIDE_Read();
-    hyattFeedOverrideButton = !((v & FEED_OVERRIDE_BTN) == FEED_OVERRIDE_BTN);
-    hyattFeedOverrideOff    =  ((v & FEED_OVERRIDE_OFF) == FEED_OVERRIDE_OFF);
+    hyattFeedOverrideButton = !((v & FEED_OVERRIDE_BTN) ? 1 : 0);
+    hyattFeedOverrideOff    =  ((v & FEED_OVERRIDE_OFF) ? 1 : 0);
+    
+     
+    
     FEED_OVERRIDE_ClearInterrupt();
 }
 
@@ -15,5 +18,10 @@ void hyattControlPanelFeedOverrideInit() {
     ADC_Start();
     ADC_StartConvert();
     
-    FeedOverrideISR_StartEx(feedOverrideHandler);
+    // FeedOverrideISR_StartEx(feedOverrideHandler);
+}
+
+void hyattControlPanelFeedOverrideLoop() {
+    uint8_t v = FEED_OVERRIDE_Read();
+    (v & FEED_OVERRIDE_OFF) ? system_set_exec_state_flag(EXEC_FEED_HOLD) : system_set_exec_state_flag(EXEC_CYCLE_START);
 }

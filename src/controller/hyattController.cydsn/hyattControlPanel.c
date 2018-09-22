@@ -12,6 +12,7 @@ void hyattControlPanelLoop() {
     hyattControlPanelKeypadLoop();
     hyattControlPanelDisplayLoop();
     hyattControlPanelWheelLoop();
+    hyattControlPanelFeedOverrideLoop();
 }
 
 

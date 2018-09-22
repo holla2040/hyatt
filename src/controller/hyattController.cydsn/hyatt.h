@@ -177,6 +177,7 @@ void hyattControlPanelDisplayLoop();
 
 // feed override
 void hyattControlPanelFeedOverrideInit();
+void hyattControlPanelFeedOverrideLoop();
 
 // keypad
 uint32_t hyattTimeoutKeypadUpdate;
