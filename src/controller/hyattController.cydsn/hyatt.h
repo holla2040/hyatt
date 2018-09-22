@@ -74,6 +74,9 @@ void hyattControlPanelKeypadLoop();
 void hyattControlPanelKeypadTick();
 void hyattControlPanelKeypadindicatorUpdate();
 
+#define AMUX_MOTOR_CURRENT_IN 0x00
+#define AMUX_FEED_OVERRIDE_IN 0x01
+#define AMUX_VIN_SCALE_IN 0x02
 
 void    i2cInit();
 void    i2cRegWrite(uint8_t addr, uint8_t reg, uint8_t value);

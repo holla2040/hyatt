@@ -40,6 +40,8 @@ void hyattInit() {
     CyDelay(1);
     IO_RESET_Write(1);
     
+    AMUX_Start();
+    
     hyattControlPanelInit();
     
     hyattAxisSelected = AXISSELECTED_X;

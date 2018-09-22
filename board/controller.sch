@@ -4992,6 +4992,7 @@ Mounting holes are misaligned
 pushbutton switch positions are off
 add silk label for IR receiver orientation
 fix J16 board label, its hidden with AMP connector
+add cap to VIN_SCALED_IN
 
 FUTURE
 Change keypad back lighting to WS2818/APF3236SEEZGKQBKC?</text>

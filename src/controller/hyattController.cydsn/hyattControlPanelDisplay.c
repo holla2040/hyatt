@@ -18,11 +18,11 @@ void hyattControlPanelDisplayInit() {
     LCD_SetCursor(0,0);     LCD_PutString("X");
     LCD_SetCursor(0,1);     LCD_PutString("Y");
     LCD_SetCursor(0,2);     LCD_PutString("Z");
-    LCD_SetCursor(12,2);    LCD_PutString("F");
+    LCD_SetCursor(15,2);    LCD_PutString("F");
 
     // LCD_SetCursor(0,3);     LCD_PutString("G..");
-    LCD_SetCursor(12,0);    LCD_PutString("state");
-    LCD_SetCursor(12,1);    LCD_PutString("");
+    LCD_SetCursor(11,0);    LCD_PutString("state");
+    LCD_SetCursor(11,1);    LCD_PutString("");
     
     hyattTimeoutDisplaySlowUpdate = 0;
     hyattTimeoutDisplayFastUpdate = 0;
@@ -33,7 +33,7 @@ uint8_t watchCount;
 void hyattControlPanelDisplayLoop() {
    char buf[100];
     if (hyattTicks > hyattTimeoutDisplaySlowUpdate) {
-        LCD_SetCursor(12,0);
+        LCD_SetCursor(11,0);
         switch(sys.state) {
             case STATE_IDLE:        LCD_PutString("IDLE   "); break;
             case STATE_CYCLE:       LCD_PutString("RUN    "); break;
@@ -52,8 +52,8 @@ void hyattControlPanelDisplayLoop() {
         sprintf(buf,"%d",54+gc_state.modal.coord_select);
         LCD_PutString(buf);
 
-        LCD_SetCursor(13,2);
-        sprintf(buf,"%-4d",(uint16_t)gc_state.feed_rate);
+        LCD_SetCursor(11,2);
+        sprintf(buf,"%4d",(uint16_t)gc_state.feed_rate);
         LCD_PutString(buf);
 
         LCD_SetCursor(3,3);
@@ -65,12 +65,16 @@ void hyattControlPanelDisplayLoop() {
         LCD_SetCursor(15,3);
         gc_state.modal.distance ?  LCD_PutString("INCRE"):LCD_PutString("ABSOL");
 
-        LCD_SetCursor(12,1);
+        LCD_SetCursor(11,1);
         (gc_block.modal.spindle == SPINDLE_ENABLE_CW) ? LCD_PutString("SPIN"): LCD_PutString("    ");
 
         LCD_SetCursor(17,1);
         (gc_block.modal.coolant == COOLANT_MIST_ENABLE) ? LCD_PutString("AIR"): LCD_PutString("   ");
 
+        LCD_SetCursor(16,2);
+        sprintf(buf,"%3d%%",sys.f_override);
+        LCD_PutString(buf);
+        
 
 
 /*
@@ -112,9 +116,9 @@ void hyattControlPanelDisplayLoop() {
         for (idx=0; idx< N_AXIS; idx++) {
             LCD_SetCursor(1,idx);
             if (bit_istrue(settings.flags,BITFLAG_REPORT_INCHES)) {
-                sprintf(buf,"%10.4f",print_position[idx]*INCH_PER_MM);
+                sprintf(buf,"%9.3f",print_position[idx]*INCH_PER_MM);
             } else {
-                sprintf(buf,"%10.4f",print_position[idx]);
+                sprintf(buf,"%9.3f",print_position[idx]);
             }
             LCD_PutString(buf);
         }
