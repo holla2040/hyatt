@@ -109,7 +109,8 @@ void hyattControlPanelKeypadLoop() {
                     break;
                 case KEY_X0Y0:
                     // grblBlockSend("G91Z-20");
-                    grblBlockSend("G90X0Y0");
+                    // grblBlockSend("G90X0Y0");
+                    hyattSenderSend("test.nc");
                     break;
                 case KEY_UNIT:
                     (gc_block.modal.units == UNITS_MODE_INCHES) ? grblBlockSend("G21"):grblBlockSend("G20");

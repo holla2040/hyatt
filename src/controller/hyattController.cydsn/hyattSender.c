@@ -16,17 +16,19 @@ void hyattSenderInit() {
 }
 
 void hyattSenderLoop() {
+    char c;
     switch (senderState) {
         case SENDERSTATE_READ:
-            while(bufferLen--) {
-                if (*bufferPtr != '\r') {
-                    rx_handler(*bufferPtr);
-                    if (*bufferPtr == '\n') {
-                       senderState = SENDERSTATE_READ;
-                       break;
+            while(bufferLen) {
+                bufferLen--;
+                c = *bufferPtr++;
+                if (c != '\r') {
+                    rx_handler(c);
+                    if (c == '\n') {
+                       senderState = SENDERSTATE_WAIT;
+                       return;
                     }
                 }
-                bufferPtr++;
             }
             if (bufferLen == 0) { // sent all buffer, read next file chunk
                 bufferLen = FS_Read(file,&buffer,BUFFERLEN);

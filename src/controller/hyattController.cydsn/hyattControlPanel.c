@@ -14,7 +14,7 @@ void hyattControlPanelLoop() {
     hyattControlPanelDisplayLoop();
     hyattControlPanelFeedOverrideLoop();
     
-    if (sys.state & (STATE_IDLE | STATE_JOG)) {
+    if (sys.state == STATE_IDLE | sys.state == STATE_JOG) {  // can't just OR these STATE_IDLE = 0
         hyattControlPanelWheelLoop();
         hyattSelectLoop();
     }

@@ -107,6 +107,7 @@ void protocol_main_loop()
           report_status_message(gc_execute_line(line));
         }
         strncpy(lastBlock,line,39);
+        
 
         // Reset tracking data for next line.
         line_flags = 0;
