@@ -81,11 +81,11 @@ void protocol_main_loop()
     // initial filtering by removing spaces and comments and capitalizing all letters.
     while((c = serial_read()) != SERIAL_NO_DATA) {
       if ((c == '\n') || (c == '\r')) { // End of line reached
-
         protocol_execute_realtime(); // Runtime command check point.
         if (sys.abort) { return; } // Bail to calling function upon system abort
 
         line[char_counter] = 0; // Set string termination character.
+        strncpy(lastBlock,line,39);
         #ifdef REPORT_ECHO_LINE_RECEIVED
           report_echo_line_received(line);
         #endif

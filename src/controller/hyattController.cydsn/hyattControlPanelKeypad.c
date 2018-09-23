@@ -10,7 +10,7 @@ uint8_t  keyPending;
 uint16_t keyIndicator;
 
 uint32_t timeoutKeypadUpdate;
-#define KEYPADUPDATEINTERVAL 50
+#define KEYPADUPDATEINTERVAL 100
 
 extern parser_block_t gc_block;
 
@@ -55,15 +55,16 @@ void hyattControlPanelKeypadInit() {
     CyDelay(50);
         
     keyIndicator = 0x0001;
-    for (uint8_t i = 0;i < 15;i++) {
+    for (uint8_t i = 0;i < 16;i++) {
         hyattControlPanelIndicatorUpdate();
         keyIndicator = keyIndicator << 1;
-        CyDelay(10);
+        CyDelay(2);
     }
 }
 
 void hyattControlPanelKeypadLoop() {
     uint16_t key;
+    int c;
     char buf[30];
     if (keyPending) {
         key = 0x00;
@@ -73,53 +74,53 @@ void hyattControlPanelKeypadLoop() {
         if (i2cRegRead(KEYPAD_ROW12_ADDR,IOA_INTF)) {
             key |= i2cRegRead(KEYPAD_ROW12_ADDR,IOA_INTCAP);
         }
-        switch(key) {
-            case KEY_X:
-                hyattAxisSelected = AXISSELECTED_X;
-                break;
-            case KEY_Y:
-                hyattAxisSelected = AXISSELECTED_Y;
-                break;
-            case KEY_Z:
-                hyattAxisSelected = AXISSELECTED_Z;
-                break;
-            case KEY_SLOW:
-                hyattWheelStepSize = WHEELSTEPSIZE_SMALL;
-                break;
-            case KEY_MEDIUM:
-                hyattWheelStepSize = WHEELSTEPSIZE_MEDIUM;
-                break;
-            case KEY_FAST:
-                hyattWheelStepSize = WHEELSTEPSIZE_LARGE;
-                break;
-            case KEY_COORDSELECT:
-                if (sys.state == STATE_IDLE) {
-                    int c = gc_state.modal.coord_select + 1;
+        
+        // mist key is immediate
+        if (key == KEY_MIST) {
+            system_set_exec_accessory_override_flag(EXEC_COOLANT_MIST_OVR_TOGGLE);
+            hyattTimeoutKeypadUpdate = hyattTicks + 100;
+        }
+
+        if (sys.state == STATE_IDLE) {
+            switch(key) {
+                case KEY_X:
+                    hyattAxisSelected = AXISSELECTED_X;
+                    break;
+                case KEY_Y:
+                    hyattAxisSelected = AXISSELECTED_Y;
+                    break;
+                case KEY_Z:
+                    hyattAxisSelected = AXISSELECTED_Z;
+                    break;
+                case KEY_SLOW:
+                    hyattWheelStepSize = WHEELSTEPSIZE_SMALL;
+                    break;
+                case KEY_MEDIUM:
+                    hyattWheelStepSize = WHEELSTEPSIZE_MEDIUM;
+                    break;
+                case KEY_FAST:
+                    hyattWheelStepSize = WHEELSTEPSIZE_LARGE;
+                    break;
+                case KEY_COORDSELECT:
+                    c = gc_state.modal.coord_select + 1;
                     if (c > 3) c = 0;
                     sprintf(buf,"G%d",54+c);
                     grblBlockSend(buf);
-                }
-                break;
-            case KEY_UNIT:
-                if (sys.state == STATE_IDLE) {
-                    (gc_block.modal.units == UNITS_MODE_INCHES) ? grblBlockSend("G21"):grblBlockSend("G20");
-                }
-                break;
-            case KEY_AXISZERO:
-                if (sys.state == STATE_IDLE) {
-                    sprintf(buf,"G10L20P%d_0",gc_state.modal.coord_select+1);
-                    buf[8] = selectedAxisLetter();
-                    grblBlockSend(buf);
-                }
-                break;
-            case KEY_SPINDLE:
-                (gc_block.modal.spindle == SPINDLE_DISABLE) ? grblBlockSend("M3"):grblBlockSend("M5");
-                break;
-            case KEY_MIST:
-                (gc_block.modal.coolant == COOLANT_DISABLE) ? grblBlockSend("M7"):grblBlockSend("M9");
-                break;
-            default:
-                keyIndicator = key & 0xFF88;
+                    break;
+                case KEY_UNIT:
+                        (gc_block.modal.units == UNITS_MODE_INCHES) ? grblBlockSend("G21"):grblBlockSend("G20");
+                    break;
+                case KEY_AXISZERO:
+                        sprintf(buf,"G10L20P%d_0",gc_state.modal.coord_select+1);
+                        buf[8] = selectedAxisLetter();
+                        grblBlockSend(buf);
+                    break;
+                case KEY_SPINDLE:
+                        (gc_block.modal.spindle == SPINDLE_DISABLE) ? grblBlockSend("M3"):grblBlockSend("M5");
+                    break;
+                default:
+                    keyIndicator = key & 0xFF88;
+            }
         }
         hyattTimeoutDisplaySlowUpdate = 0;
         keyPending = 0;
@@ -131,9 +132,7 @@ void hyattControlPanelKeypadLoop() {
         i2cRegRead(KEYPAD_ROW34_ADDR, IOA_GPIO);
         
         keyIndicator = 0x0000; // all off
-        if (sys.state == STATE_IDLE || sys.state == STATE_JOG) {
-            keyIndicator |= hyattAxisSelected | hyattWheelStepSize;
-        }
+        keyIndicator |= hyattAxisSelected | hyattWheelStepSize;
         keyIndicator |= (gc_block.modal.units?0:1) << 10;
         keyIndicator |= (gc_block.modal.spindle == SPINDLE_ENABLE_CW ?1:0) << 13;
         keyIndicator |= (gc_block.modal.coolant == COOLANT_MIST_ENABLE ?1:0) << 14;
@@ -142,7 +141,11 @@ void hyattControlPanelKeypadLoop() {
         
         // FEED_OVERRIDE_BTN_Write(!FEED_OVERRIDE_BTN_Read()); // blinks the 059 LED
         
-        hyattTimeoutKeypadUpdate = hyattTicks + KEYPADUPDATEINTERVAL;
+        if (sys.state == STATE_IDLE) {
+            hyattTimeoutKeypadUpdate = hyattTicks + KEYPADUPDATEINTERVAL;
+        } else {
+            hyattTimeoutKeypadUpdate = hyattTicks + 2000;
+        }
      }
 }
 

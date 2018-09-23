@@ -22,7 +22,7 @@ void hyattControlPanelFeedOverrideInit() {
     
     AMUX_Select(AMUX_FEED_OVERRIDE_IN);
     
-    f_overrideLast = 0;
+    f_overrideLast = 255;
     // FeedOverrideISR_StartEx(feedOverrideHandler);
 }
 

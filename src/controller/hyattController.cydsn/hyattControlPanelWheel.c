@@ -5,6 +5,10 @@
 int16_t countLast;
 extern parser_block_t gc_block;
 
+uint32_t timeoutWheelUpdate;
+#define WHEELUPDATEINTERVAL 250
+
+
 void hyattControlPanelWheelInit() {
     wheelDecoder_Start();
     countLast = wheelDecoder_GetCounter();
@@ -18,7 +22,7 @@ double wheelClickDistance() {
             case WHEELSTEPSIZE_MEDIUM:
                 return 0.1; // 1 wheel turn 10mm
             case WHEELSTEPSIZE_LARGE:
-                return 1.0; // 1 wheel turn 100mm
+                return 5.0; // 1 wheel turn 500mm
         }
     } else {
         switch (hyattWheelStepSize) {
@@ -27,7 +31,7 @@ double wheelClickDistance() {
             case WHEELSTEPSIZE_MEDIUM:
                 return 0.01; // 1 wheel turn 1inch
             case WHEELSTEPSIZE_LARGE:
-                return 0.05; // 1 wheel turn 5inch
+                return 0.05; // 1 wheel turn ?inch
         }
     }
     return 0;
@@ -38,9 +42,12 @@ void hyattControlPanelWheelLoop() {
     
     int16_t count = wheelDecoder_GetCounter();
     int16_t diff  = count - countLast;
-    if ((diff != 0) && ((sys.state == STATE_IDLE) || (sys.state == STATE_JOG))) {
-        sprintf(buf,"$J=F1000G2%dG91%c%-.4f",1-gc_block.modal.units,selectedAxisLetter(),diff*wheelClickDistance());
-        grblBlockSend(buf);
-    }    
-    countLast = count;
+    if (hyattTicks > timeoutWheelUpdate) {
+        if (diff != 0) {
+            sprintf(buf,"$J=%c%-.4fG2%dG91F5000",selectedAxisLetter(),diff*wheelClickDistance(),1-gc_block.modal.units);
+            grblBlockSend(buf);
+            countLast = count;
+        }
+        timeoutWheelUpdate = hyattTicks + WHEELUPDATEINTERVAL;
+    }
 }

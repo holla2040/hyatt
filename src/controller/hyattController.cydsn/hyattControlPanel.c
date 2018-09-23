@@ -3,16 +3,19 @@
 
 void hyattControlPanelInit() {    
     hyattControlPanelFeedOverrideInit();
-    hyattControlPanelDisplayInit();
     hyattControlPanelKeypadInit();
+    hyattControlPanelDisplayInit();
     hyattControlPanelWheelInit();
 }
 
 void hyattControlPanelLoop() {
     hyattControlPanelKeypadLoop();
     hyattControlPanelDisplayLoop();
-    hyattControlPanelWheelLoop();
     hyattControlPanelFeedOverrideLoop();
+    
+    if ((sys.state == STATE_IDLE) || (sys.state == STATE_JOG)) {
+        hyattControlPanelWheelLoop();
+    }
 }
 
 

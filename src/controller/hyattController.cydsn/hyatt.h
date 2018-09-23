@@ -7,6 +7,7 @@
     
 void grblBlockSend(char *block);
 char selectedAxisLetter();
+char lastBlock[40];
 
 #define AXISSELECTED_X      0x0001
 #define AXISSELECTED_Y      0x0002

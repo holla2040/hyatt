@@ -3,7 +3,7 @@
 
 
 uint32_t timeoutStatusUpdate;
-#define STATUSUPDATEINTERVAL 50
+#define STATUSUPDATEINTERVAL 100
 
 /* 24HZ interrupt */
 CY_ISR(isrHyattMainHandler) {
