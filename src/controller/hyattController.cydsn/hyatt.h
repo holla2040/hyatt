@@ -189,4 +189,8 @@ uint32_t hyattTimeoutKeypadUpdate;
 void hyattControlPanelWheelInit();
 void hyattControlPanelWheelLoop();
 
+// radio
+void hyattRadioInit();
+
+
 #endif

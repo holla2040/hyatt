@@ -62,6 +62,7 @@ void serial_init()
 void serial_write(uint8_t data) {
   // totally rewritten for PSoc  
   usb_uart_write(data);
+  uartRadio_PutChar(data);
 }
 
 
@@ -117,10 +118,7 @@ void rx_handler(char c)
   }
 }
 
-
-
-void serial_reset_read_buffer()
-{
+void serial_reset_read_buffer() {
   serial_rx_buffer_tail = serial_rx_buffer_head;
 }
 

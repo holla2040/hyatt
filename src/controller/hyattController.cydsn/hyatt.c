@@ -41,7 +41,7 @@ void hyattInit() {
     IO_RESET_Write(1);
     
     AMUX_Start();
-    
+    hyattRadioInit();
     hyattControlPanelInit();
     
     hyattAxisSelected = AXISSELECTED_X;
@@ -51,9 +51,8 @@ void hyattInit() {
 void hyattLoop() {
     hyattControlPanelLoop();
     
-    
     if (hyattTicks > timeoutStatusUpdate) {
-        // system_set_exec_state_flag(EXEC_STATUS_REPORT);
+        system_set_exec_state_flag(EXEC_STATUS_REPORT);
         timeoutStatusUpdate = hyattTicks + STATUSUPDATEINTERVAL;
     }
 }
