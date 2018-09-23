@@ -85,7 +85,6 @@ void protocol_main_loop()
         if (sys.abort) { return; } // Bail to calling function upon system abort
 
         line[char_counter] = 0; // Set string termination character.
-        strncpy(lastBlock,line,39);
         #ifdef REPORT_ECHO_LINE_RECEIVED
           report_echo_line_received(line);
         #endif
@@ -107,6 +106,7 @@ void protocol_main_loop()
           // Parse and execute g-code block.
           report_status_message(gc_execute_line(line));
         }
+        strncpy(lastBlock,line,39);
 
         // Reset tracking data for next line.
         line_flags = 0;

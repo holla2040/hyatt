@@ -5,10 +5,10 @@
 #define DISPLAYSLOWUPDATEINTERVAL 250
 #define DISPLAYFASTUPDATEINTERVAL 100
 
-const char watch[] = " \xa5";
+const char watch[] = " \xa5"; // a5 is a center dot, see lcd char set in manual
+uint8_t watchCount;
 
 extern parser_block_t gc_block;
-
 
 void hyattControlPanelDisplayInit() {
     LCD_Start(lcdAddr,20,4,0);
@@ -19,12 +19,11 @@ void hyattControlPanelDisplayInit() {
     LCD_SetCursor(0,1);     LCD_PutString("Y");
     LCD_SetCursor(0,2);     LCD_PutString("Z");
     LCD_SetCursor(10,2);    LCD_PutString("F");
+    LCD_SetCursor(10,0);    LCD_PutString("G");
     
     hyattTimeoutDisplaySlowUpdate = 0;
     hyattTimeoutDisplayFastUpdate = 0;
 }
-
-uint8_t watchCount;
 
 void hyattControlPanelDisplayLoop() {
    char buf[100];
@@ -44,11 +43,11 @@ void hyattControlPanelDisplayLoop() {
         LCD_SetCursor(19,0);
         LCD_Write(watch[(++watchCount)%strlen(watch)]);
               
-        LCD_SetCursor(10,0);
+        LCD_SetCursor(11,0);
         sprintf(buf,"%d",54+gc_state.modal.coord_select);
         LCD_PutString(buf);
 
-        LCD_SetCursor(13,0);
+        LCD_SetCursor(14,0);
         gc_state.modal.units ?  LCD_PutString("INCH"):LCD_PutString("MM  ");
 
 /*

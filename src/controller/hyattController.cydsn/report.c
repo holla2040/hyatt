@@ -29,6 +29,7 @@
 */
 
 #include "grbl.h"
+#include "hyatt.h"
 
 
 // Internal report utilities to reduce flash with repetitive tasks turned into functions.
@@ -136,6 +137,8 @@ void report_status_message(uint8_t status_code)
       print_uint8_base10(status_code);
       report_util_line_feed();
   }
+  hyattSenderCallback(status_code);
+
 }
 
 // Prints alarm messages.

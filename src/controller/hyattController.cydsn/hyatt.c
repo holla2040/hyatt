@@ -1,5 +1,6 @@
 #include "project.h"
 #include "hyatt.h"
+#include <FS.h>
 
 
 uint32_t timeoutStatusUpdate;
@@ -27,8 +28,6 @@ char selectedAxisLetter() {
     }
     return 0;
  }   
-        
-
 
 void hyattInit() {
     isrHyatt_StartEx(isrHyattMainHandler);
@@ -42,7 +41,9 @@ void hyattInit() {
     
     AMUX_Start();
     hyattRadioInit();
+    hyattSenderInit();
     hyattControlPanelInit();
+    FS_Init();
     
     hyattAxisSelected = AXISSELECTED_X;
     hyattWheelStepSize = WHEELSTEPSIZE_SMALL;
@@ -50,6 +51,7 @@ void hyattInit() {
 
 void hyattLoop() {
     hyattControlPanelLoop();
+    hyattSenderLoop();
     
     if (hyattTicks > timeoutStatusUpdate) {
         system_set_exec_state_flag(EXEC_STATUS_REPORT);

@@ -6,6 +6,7 @@ void hyattControlPanelInit() {
     hyattControlPanelKeypadInit();
     hyattControlPanelDisplayInit();
     hyattControlPanelWheelInit();
+    hyattSelectInit();
 }
 
 void hyattControlPanelLoop() {
@@ -13,8 +14,9 @@ void hyattControlPanelLoop() {
     hyattControlPanelDisplayLoop();
     hyattControlPanelFeedOverrideLoop();
     
-    if ((sys.state == STATE_IDLE) || (sys.state == STATE_JOG)) {
+    if (sys.state & (STATE_IDLE | STATE_JOG)) {
         hyattControlPanelWheelLoop();
+        hyattSelectLoop();
     }
 }
 

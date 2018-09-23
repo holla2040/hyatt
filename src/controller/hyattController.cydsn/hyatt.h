@@ -51,6 +51,7 @@ char lastBlock[40];
 #define KEY_SLOW    0x0010
 #define KEY_MEDIUM  0x0020
 #define KEY_FAST    0x0040
+#define KEY_X0Y0    0x0100
 #define KEY_UNIT    0x0400
 #define KEY_COORDSELECT 0x0200
 #define KEY_AXISZERO 0x1000
@@ -193,5 +194,16 @@ void hyattControlPanelWheelLoop();
 // radio
 void hyattRadioInit();
 
+// select
+void hyattSelectInit();
+void hyattSelectLoop();
+
+// sender
+void hyattSenderInit();
+void hyattSenderLoop();
+void hyattSenderCallback(uint8_t status_code);
+#define SENDERSTATE_IDLE 'I'
+#define SENDERSTATE_READ 'R'
+#define SENDERSTATE_WAIT 'W'
 
 #endif

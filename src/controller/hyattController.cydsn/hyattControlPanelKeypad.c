@@ -107,16 +107,20 @@ void hyattControlPanelKeypadLoop() {
                     sprintf(buf,"G%d",54+c);
                     grblBlockSend(buf);
                     break;
+                case KEY_X0Y0:
+                    // grblBlockSend("G91Z-20");
+                    grblBlockSend("G90X0Y0");
+                    break;
                 case KEY_UNIT:
-                        (gc_block.modal.units == UNITS_MODE_INCHES) ? grblBlockSend("G21"):grblBlockSend("G20");
+                    (gc_block.modal.units == UNITS_MODE_INCHES) ? grblBlockSend("G21"):grblBlockSend("G20");
                     break;
                 case KEY_AXISZERO:
-                        sprintf(buf,"G10L20P%d_0",gc_state.modal.coord_select+1);
-                        buf[8] = selectedAxisLetter();
-                        grblBlockSend(buf);
-                    break;
+                    sprintf(buf,"G10L20P%d_0",gc_state.modal.coord_select+1);
+                    buf[8] = selectedAxisLetter();
+                    grblBlockSend(buf);
+                break;
                 case KEY_SPINDLE:
-                        (gc_block.modal.spindle == SPINDLE_DISABLE) ? grblBlockSend("M3"):grblBlockSend("M5");
+                   (gc_block.modal.spindle == SPINDLE_DISABLE) ? grblBlockSend("M3"):grblBlockSend("M5");
                     break;
                 default:
                     keyIndicator = key & 0xFF88;
@@ -144,7 +148,7 @@ void hyattControlPanelKeypadLoop() {
         if (sys.state == STATE_IDLE) {
             hyattTimeoutKeypadUpdate = hyattTicks + KEYPADUPDATEINTERVAL;
         } else {
-            hyattTimeoutKeypadUpdate = hyattTicks + 2000;
+            hyattTimeoutKeypadUpdate = hyattTicks + 1000;
         }
      }
 }
