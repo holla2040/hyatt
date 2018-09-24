@@ -18,8 +18,9 @@ void hyattControlPanelDisplayInit() {
     LCD_SetCursor(0,0);     LCD_PutString("X");
     LCD_SetCursor(0,1);     LCD_PutString("Y");
     LCD_SetCursor(0,2);     LCD_PutString("Z");
-    LCD_SetCursor(10,2);    LCD_PutString("F");
-    LCD_SetCursor(10,0);    LCD_PutString("G");
+    LCD_SetCursor(11,2);    LCD_PutString("F");
+    LCD_SetCursor(16,2);    LCD_PutString("/");
+    LCD_SetCursor(11,0);    LCD_PutString("G");
     
     hyattTimeoutDisplaySlowUpdate = 0;
     hyattTimeoutDisplayFastUpdate = 0;
@@ -28,7 +29,7 @@ void hyattControlPanelDisplayInit() {
 void hyattControlPanelDisplayLoop() {
    char buf[100];
     if (hyattTicks > hyattTimeoutDisplaySlowUpdate) {
-        LCD_SetCursor(10,1);
+        LCD_SetCursor(11,1);
         switch(sys.state) {
             case STATE_IDLE:        LCD_PutString("IDLE "); break;
             case STATE_CYCLE:       LCD_PutString("RUN  "); break;
@@ -43,11 +44,11 @@ void hyattControlPanelDisplayLoop() {
         LCD_SetCursor(19,0);
         LCD_Write(watch[(++watchCount)%strlen(watch)]);
               
-        LCD_SetCursor(11,0);
+        LCD_SetCursor(12,0);
         sprintf(buf,"%d",54+gc_state.modal.coord_select);
         LCD_PutString(buf);
 
-        LCD_SetCursor(14,0);
+        LCD_SetCursor(15,0);
         gc_state.modal.units ?  LCD_PutString("INCH"):LCD_PutString("MM  ");
 
 /*
@@ -64,17 +65,17 @@ void hyattControlPanelDisplayLoop() {
         LCD_PutString(buf);
         
         LCD_SetCursor(18,1);
-        (gc_block.modal.spindle == SPINDLE_ENABLE_CW) ? LCD_PutString("S"): LCD_PutString(" ");
+        (gc_block.modal.spindle & SPINDLE_ENABLE_CW) ? LCD_PutString("S"): LCD_PutString(" ");
 
         LCD_SetCursor(19,1);
-        (gc_block.modal.coolant == COOLANT_MIST_ENABLE) ? LCD_PutString("A"): LCD_PutString(" ");
+        (gc_state.modal.coolant & COOLANT_MIST_ENABLE) ? LCD_PutString("A"): LCD_PutString(" ");
 
-        LCD_SetCursor(11,2);
-        sprintf(buf,"%-4d",(uint16_t)gc_state.feed_rate);
+        LCD_SetCursor(12,2);
+        sprintf(buf,"%4d",(uint16_t)gc_state.feed_rate);
         LCD_PutString(buf);
 
-        LCD_SetCursor(16,2);
-        sprintf(buf,"%3d%%",sys.f_override);
+        LCD_SetCursor(17,2);
+        sprintf(buf,"%-3d",sys.f_override);
         LCD_PutString(buf);
         
         
@@ -120,9 +121,9 @@ void hyattControlPanelDisplayLoop() {
         for (idx=0; idx< N_AXIS; idx++) {
             LCD_SetCursor(1,idx);
             if (bit_istrue(settings.flags,BITFLAG_REPORT_INCHES)) {
-                sprintf(buf,"%7.3f",print_position[idx]*INCH_PER_MM);
+                sprintf(buf,"%8.4f",print_position[idx]*INCH_PER_MM);
             } else {
-                sprintf(buf,"%8.2f",print_position[idx]);
+                sprintf(buf,"%9.3f",print_position[idx]);
             }
             LCD_PutString(buf);
         }

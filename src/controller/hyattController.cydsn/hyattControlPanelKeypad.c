@@ -12,6 +12,7 @@ uint16_t keyIndicator;
 uint32_t timeoutKeypadUpdate;
 #define KEYPADUPDATEINTERVAL 100
 
+extern uint8_t senderState;
 extern parser_block_t gc_block;
 
 CY_ISR(keyHandler) {
@@ -80,7 +81,15 @@ void hyattControlPanelKeypadLoop() {
             system_set_exec_accessory_override_flag(EXEC_COOLANT_MIST_OVR_TOGGLE);
             hyattTimeoutKeypadUpdate = hyattTicks + 100;
         }
-
+        
+        if (key == KEY_X0Y0) {
+            if (senderState == SENDERSTATE_IDLE) {
+                hyattSenderSend("test.nc");
+            } else { 
+                senderState = SENDERSTATE_IDLE;
+            }
+        }
+        
         if (sys.state == STATE_IDLE) {
             switch(key) {
                 case KEY_X:
@@ -107,10 +116,11 @@ void hyattControlPanelKeypadLoop() {
                     sprintf(buf,"G%d",54+c);
                     grblBlockSend(buf);
                     break;
+        /*
                 case KEY_X0Y0:
                     // grblBlockSend("G91Z-20");
                     // grblBlockSend("G90X0Y0");
-                    hyattSenderSend("test.nc");
+        */
                     break;
                 case KEY_UNIT:
                     (gc_block.modal.units == UNITS_MODE_INCHES) ? grblBlockSend("G21"):grblBlockSend("G20");
@@ -139,8 +149,8 @@ void hyattControlPanelKeypadLoop() {
         keyIndicator = 0x0000; // all off
         keyIndicator |= hyattAxisSelected | hyattWheelStepSize;
         keyIndicator |= (gc_block.modal.units?0:1) << 10;
-        keyIndicator |= (gc_block.modal.spindle == SPINDLE_ENABLE_CW ?1:0) << 13;
-        keyIndicator |= (gc_block.modal.coolant == COOLANT_MIST_ENABLE ?1:0) << 14;
+        keyIndicator |= (gc_block.modal.spindle & SPINDLE_ENABLE_CW ?1:0) << 13;
+        keyIndicator |= (gc_state.modal.coolant & COOLANT_MIST_ENABLE ?1:0) << 14;
         
         hyattControlPanelIndicatorUpdate();
         
