@@ -121,7 +121,7 @@ void hyattControlPanelDisplayLoop() {
         for (idx=0; idx< N_AXIS; idx++) {
             LCD_SetCursor(1,idx);
             if (bit_istrue(settings.flags,BITFLAG_REPORT_INCHES)) {
-                sprintf(buf,"%8.4f",print_position[idx]*INCH_PER_MM);
+                sprintf(buf,"%9.4f",print_position[idx]*INCH_PER_MM);
             } else {
                 sprintf(buf,"%9.3f",print_position[idx]);
             }

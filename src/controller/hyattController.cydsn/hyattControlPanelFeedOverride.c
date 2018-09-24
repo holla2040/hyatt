@@ -8,6 +8,10 @@
 uint8_t f_overrideLast;
 #define FEEDTHRESHOLD 3
 
+uint32_t timeoutFeedOverrideUpdate;
+#define WHEELFEEDOVERRIDEINTERVAL 250
+
+
 CY_ISR(feedOverrideHandler) {
     uint8_t v = FEED_OVERRIDE_Read();
     hyattFeedOverrideButton = !((v & FEED_OVERRIDE_BTN) ? 1 : 0);
@@ -21,6 +25,7 @@ void hyattControlPanelFeedOverrideInit() {
     ADC_StartConvert();
     
     AMUX_Select(AMUX_FEED_OVERRIDE_IN);
+    timeoutFeedOverrideUpdate = 0;
     
     f_overrideLast = 255;
     // FeedOverrideISR_StartEx(feedOverrideHandler);
@@ -39,9 +44,14 @@ void feedOverrideSet(uint8_t v) {
 void hyattControlPanelFeedOverrideLoop() {
     uint8_t v = FEED_OVERRIDE_Read();
     (v & FEED_OVERRIDE_OFF) ? system_set_exec_state_flag(EXEC_FEED_HOLD) : system_set_exec_state_flag(EXEC_CYCLE_START);
-    
+
     uint8_t newfo = (200*ADC_GetResult16())/4096;
     if (abs(newfo - f_overrideLast) > FEEDTHRESHOLD) {
         feedOverrideSet(newfo);
+    }
+
+    if (hyattTicks > timeoutFeedOverrideUpdate) {
+        feedOverrideSet(newfo);
+        timeoutFeedOverrideUpdate = hyattTicks + WHEELFEEDOVERRIDEINTERVAL;
     }
 }
