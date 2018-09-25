@@ -2,6 +2,11 @@ hex:
 	/mnt/c/Program\ Files\ \(x86\)/Cypress/PSoC\ Creator/4.2/PSoC\ Creator/bin/cyprjmgr.exe -w "hyattController.cywrk" -build
 clean:
 	/mnt/c/Program\ Files\ \(x86\)/Cypress/PSoC\ Creator/4.2/PSoC\ Creator/bin/cyprjmgr.exe -w "hyattController.cywrk" -clean
+program: hex
+	/mnt/c/Program\ Files\ \(x86\)/Cypress/Programmer/PSoCProgrammer.exe
+con: program
+	rm -rf /var/lock/LCK..ttyS4;microcom -p /dev/ttyS4 -s 115200
+
 
 # flash:
 # 	/mnt/c/Program\ Files\ \(x86\)/Cypress/PSoC\ Creator/4.2/PSoC\ Creator/bin/cyprjmgr.exe -w "hyattController.cywrk" -build
