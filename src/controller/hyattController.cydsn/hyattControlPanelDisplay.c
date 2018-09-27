@@ -215,10 +215,17 @@ void filelistGet() {
 }
 
 void loadExecute(int8_t i){
+    FS_FILE *file;
+    char buf[10];
     LCD_NoBlink();
     LCD_Clear();
     LCD_SetCursor(4,1);
     LCD_PutString(filelist[i]);
+    file = FS_FOpen(filelist[i], "r");
+    sprintf(buf,"%ld",FS_GetFileSize(file));
+    LCD_SetCursor(4,2);
+    LCD_PutString(buf);
+    
     CyDelay(2000);
     wheelDecoder_SetCounter(wheel0);
     hyattControlPanelState = CONTROLPANEL_IDLE_SETUP;
