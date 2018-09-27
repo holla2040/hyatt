@@ -24,37 +24,36 @@ void hyattControlPanelIndicatorUpdate() {
     i2cRegWrite(KEYPAD_ROW12_ADDR,IOB_GPIO,     keyIndicator    &0xFF);
     CyDelay(50);
     i2cRegWrite(KEYPAD_ROW34_ADDR,IOB_GPIO,    (keyIndicator>>8)&0xFF);
-};    
+};
 
 void hyattControlPanelKeypadInit() {
     Pin_IO_INT_Int_StartEx(keyHandler);
-    
+
     i2cRegWrite(KEYPAD_ROW12_ADDR,IOA_DIR,     0x77);         // set port A to input
     i2cRegWrite(KEYPAD_ROW12_ADDR,IOA_POL,     0x77);         // invert logic on port A, 1 means switch pressed
     i2cRegWrite(KEYPAD_ROW12_ADDR,IOA_GPPU,    0x77);         // add pull-up to all port A
     i2cRegWrite(KEYPAD_ROW12_ADDR,IOA_GPINTEN, 0x77);         // enable interrupt on port A changes
-    i2cRegWrite(KEYPAD_ROW12_ADDR,IOA_DEFVAL,  0x00);         // 
+    i2cRegWrite(KEYPAD_ROW12_ADDR,IOA_DEFVAL,  0x00);         //
     i2cRegWrite(KEYPAD_ROW12_ADDR,IOA_INTCON,  0x77);         // Change from DEFVAL, fires on button release
-    i2cRegWrite(KEYPAD_ROW12_ADDR,IOA_CON,     0x77);         // INT pins connected, open-drain output 
-    
+    i2cRegWrite(KEYPAD_ROW12_ADDR,IOA_CON,     0x77);         // INT pins connected, open-drain output
+
     i2cRegWrite(KEYPAD_ROW12_ADDR,IOB_DIR,     0x88);         // led pins to output
     i2cRegWrite(KEYPAD_ROW12_ADDR,IOB_GPIO,    0x77);         // leds on
-    
 
 
     i2cRegWrite(KEYPAD_ROW34_ADDR,IOA_DIR,     0x77);         // set port A to input
     i2cRegWrite(KEYPAD_ROW34_ADDR,IOA_POL,     0x77);         // invert logic on port A, 1 means switch pressed
     i2cRegWrite(KEYPAD_ROW34_ADDR,IOA_GPPU,    0x77);         // add pull-up to all port A
     i2cRegWrite(KEYPAD_ROW34_ADDR,IOA_GPINTEN, 0x77);         // enable interrupt on port A changes
-    i2cRegWrite(KEYPAD_ROW34_ADDR,IOA_DEFVAL,  0x00);         // 
+    i2cRegWrite(KEYPAD_ROW34_ADDR,IOA_DEFVAL,  0x00);         //
     i2cRegWrite(KEYPAD_ROW34_ADDR,IOA_INTCON,  0x77);         // Change from DEFVAL, fires on button release
-    i2cRegWrite(KEYPAD_ROW34_ADDR,IOA_CON,     0x77);         // INT pins connected, open-drain output 
-    
+    i2cRegWrite(KEYPAD_ROW34_ADDR,IOA_CON,     0x77);         // INT pins connected, open-drain output
+
     i2cRegWrite(KEYPAD_ROW34_ADDR,IOB_DIR,     0x88);         // led pins to output
     i2cRegWrite(KEYPAD_ROW34_ADDR,IOB_GPIO,    0x77);         // leds on
 
     CyDelay(50);
-        
+
     keyIndicator = 0x0001;
     for (uint8_t i = 0;i < 16;i++) {
         hyattControlPanelIndicatorUpdate();
@@ -75,21 +74,13 @@ void hyattControlPanelKeypadLoop() {
         if (i2cRegRead(KEYPAD_ROW12_ADDR,IOA_INTF)) {
             key |= i2cRegRead(KEYPAD_ROW12_ADDR,IOA_INTCAP);
         }
-        
+
         // mist key is immediate
         if (key == KEY_MIST) {
             system_set_exec_accessory_override_flag(EXEC_COOLANT_MIST_OVR_TOGGLE);
             hyattTimeoutKeypadUpdate = hyattTicks + 100;
         }
-        
-        if (key == KEY_X0Y0) {
-            if (senderState == SENDERSTATE_IDLE) {
-                hyattSenderSend("test.nc");
-            } else { 
-                senderState = SENDERSTATE_IDLE;
-            }
-        }
-        
+
         if (sys.state == STATE_IDLE) {
             switch(key) {
                 case KEY_X:
@@ -116,11 +107,20 @@ void hyattControlPanelKeypadLoop() {
                     sprintf(buf,"G%d",54+c);
                     grblBlockSend(buf);
                     break;
-        /*
-                case KEY_X0Y0:
+                case KEY_SELECT:
+                    switch (hyattControlPanelState) {
+                        case CONTROLPANEL_IDLE:
+                            hyattControlPanelState = CONTROLPANEL_SELECT_ACTION_SETUP;
+                            break;
+                        case CONTROLPANEL_SELECT_ACTION:
+                            hyattControlPanelState = CONTROLPANEL_SELECT_LOAD_SETUP;
+                            break;
+                        case CONTROLPANEL_SELECT_LOAD:
+                            hyattControlPanelState = CONTROLPANEL_IDLE_SETUP;
+                            break;
+                    }
                     // grblBlockSend("G91Z-20");
                     // grblBlockSend("G90X0Y0");
-        */
                     break;
                 case KEY_UNIT:
                     (gc_block.modal.units == UNITS_MODE_INCHES) ? grblBlockSend("G21"):grblBlockSend("G20");
@@ -140,22 +140,22 @@ void hyattControlPanelKeypadLoop() {
         hyattTimeoutDisplaySlowUpdate = 0;
         keyPending = 0;
     }
-    
+
     if (hyattTicks > hyattTimeoutKeypadUpdate) {
         // clearing 23017 interrupt
         i2cRegRead(KEYPAD_ROW12_ADDR, IOA_GPIO);
         i2cRegRead(KEYPAD_ROW34_ADDR, IOA_GPIO);
-        
+
         keyIndicator = 0x0000; // all off
         keyIndicator |= hyattAxisSelected | hyattWheelStepSize;
         keyIndicator |= (gc_block.modal.units?0:1) << 10;
         keyIndicator |= (gc_block.modal.spindle & SPINDLE_ENABLE_CW ?1:0) << 13;
         keyIndicator |= (gc_state.modal.coolant & COOLANT_MIST_ENABLE ?1:0) << 14;
-        
+
         hyattControlPanelIndicatorUpdate();
-        
+
         // FEED_OVERRIDE_BTN_Write(!FEED_OVERRIDE_BTN_Read()); // blinks the 059 LED
-        
+
         if (sys.state == STATE_IDLE) {
             hyattTimeoutKeypadUpdate = hyattTicks + KEYPADUPDATEINTERVAL;
         } else {
@@ -163,4 +163,3 @@ void hyattControlPanelKeypadLoop() {
         }
      }
 }
-

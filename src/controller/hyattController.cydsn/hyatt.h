@@ -3,8 +3,7 @@
 
 #include <stdint.h>
 #include "grbl.h"
-    
-    
+
 void grblBlockSend(char *block);
 char selectedAxisLetter();
 char lastBlock[40];
@@ -51,7 +50,7 @@ char lastBlock[40];
 #define KEY_SLOW    0x0010
 #define KEY_MEDIUM  0x0020
 #define KEY_FAST    0x0040
-#define KEY_X0Y0    0x0100
+#define KEY_SELECT  0x0100
 #define KEY_UNIT    0x0400
 #define KEY_COORDSELECT 0x0200
 #define KEY_AXISZERO 0x1000
@@ -64,13 +63,13 @@ uint8_t hyattFeedOverride;
 uint8_t hyattFeedOverrideButton;
 uint8_t hyattFeedOverrideOff;
 uint8_t hyattWheelStepSize;
-    
+
 void hyattInit();
 void hyattLoop();
 
 void hyattControlPanelInit();
 void hyattControlPanelLoop();
-    
+
 void hyattControlPanelKeypadInit();
 void hyattControlPanelKeypadLoop();
 void hyattControlPanelKeypadTick();
@@ -85,8 +84,21 @@ void    i2cRegWrite(uint8_t addr, uint8_t reg, uint8_t value);
 uint8_t i2cRegRead(uint8_t addr, uint8_t reg);
 void    i2cBufWrite(uint8_t addr, uint8_t reg, uint8_t *buf, uint8_t len);
 
-/* LCD begin from babystep/LCD2004 */
+// hyattControlPanelLoop
+uint8_t hyattControlPanelState;
+enum name {
+  CONTROLPANEL_IDLE_SETUP,
+  CONTROLPANEL_IDLE,
+  CONTROLPANEL_SELECT_ACTION_SETUP,
+  CONTROLPANEL_SELECT_ACTION,
+  CONTROLPANEL_SELECT_LOAD_SETUP,
+  CONTROLPANEL_SELECT_LOAD,
+  CONTROLPANEL_DRIP_SD,
+  CONTROLPANEL_DRIP_USB
+};
 
+
+/* LCD begin from babystep/LCD2004 */
 #define LCD_CLEARDISPLAY 0x01
 #define LCD_RETURNHOME 0x02
 #define LCD_ENTRYMODESET 0x04
@@ -135,7 +147,7 @@ void LCD_Home(void);
 void LCD_NoDisplay(void);
 void LCD_Display(void);
 void LCD_NoBlink(void);
-void LCD_Blink(void);	 
+void LCD_Blink(void);
 void LCD_NoCursor(void);
 void LCD_Cursor(void);
 
@@ -150,20 +162,20 @@ void LCD_ShiftDecrement(void);
 void LCD_NoBacklight(void);
 void LCD_Backlight(void);
 void LCD_Autoscroll(void);
-void LCD_NoAutoscroll(void); 
+void LCD_NoAutoscroll(void);
 void LCD_CreateChar(uint8_t, uint8_t[]);
-void LCD_SetCursor(uint8_t, uint8_t); 
+void LCD_SetCursor(uint8_t, uint8_t);
 void LCD_Write(uint8_t);
-void LCD_Command(uint8_t);        
+void LCD_Command(uint8_t);
 void LCD_PutString(char word[]);
 
 void LCD_SetBacklight(uint8_t new_val);				// alias for backlight() and nobacklight()
-void LCD_Load_custom_character(uint8_t char_num, uint8_t *rows);	// alias for createChar()	 
+void LCD_Load_custom_character(uint8_t char_num, uint8_t *rows);	// alias for createChar()
 void LCD_Send(uint8_t, uint8_t);
 void LCD_Write4bits(uint8_t);
 void LCD_ExpanderWrite(uint8_t);
 void LCD_PulseEnable(uint8_t);
-        
+
 extern uint8_t _addr;
 extern uint8_t _displayfunction;
 extern uint8_t _displaycontrol;
@@ -172,7 +184,6 @@ extern uint8_t _cols;
 extern uint8_t _rows;
 extern uint8_t _charsize;
 extern uint8_t _backlightval;
-
 
 uint32_t hyattTimeoutDisplaySlowUpdate;
 uint32_t hyattTimeoutDisplayFastUpdate;
