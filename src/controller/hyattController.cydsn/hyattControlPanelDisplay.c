@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <FS.h>
 #include "hyatt.h"
 #include "action.h"
 
@@ -6,17 +7,13 @@
 
 #define DISPLAYSLOWUPDATEINTERVAL 250
 #define DISPLAYFASTUPDATEINTERVAL 100
+#define FILENAMEMAX 32
 
 const char watch[] = " \xa5"; // a5 is a center dot, see lcd char set in manual
 uint8_t watchCount;
-int16_t wheel0;
 
 extern parser_block_t gc_block;
 
-
-uint8_t selectionCount;
-    // 6 chars and null
-uint8_t selection;
 char selections[CONTROLPANEL_SELECTIONCOUNTMAX][CONTROLPANEL_SELECTIONWIDTH] = {};
 
 void selectionsClear() {
@@ -24,9 +21,6 @@ void selectionsClear() {
         strcpy(selections[i],"      ");
     }
 }
-
-
-
 
 void selectionsDisplay() {
     int x,y;
@@ -38,6 +32,8 @@ void selectionsDisplay() {
     }
 }
 
+char filelist[CONTROLPANEL_SELECTIONCOUNTMAX][FILENAMEMAX];
+
 void hyattControlPanelDisplayInit() {
     LCD_Start(lcdAddr,20,4,0);
 
@@ -45,13 +41,11 @@ void hyattControlPanelDisplayInit() {
 
     hyattTimeoutDisplaySlowUpdate = 0;
     hyattTimeoutDisplayFastUpdate = 0;
-
-    selection = 0;
-    selectionsClear();
 }
 
-void hyattControPanelDisplayIdleSetup() {
+void hyattControlPanelDisplayIdleSetup() {
     LCD_Clear();
+    LCD_NoBlink();
     LCD_SetCursor(0,0);     LCD_PutString("X");
     LCD_SetCursor(0,1);     LCD_PutString("Y");
     LCD_SetCursor(0,2);     LCD_PutString("Z");
@@ -61,7 +55,7 @@ void hyattControPanelDisplayIdleSetup() {
     hyattControlPanelState = CONTROLPANEL_IDLE;
 }
 
-void hyattControPanelDisplayIdle() {
+void hyattControlPanelDisplayIdle() {
     char buf[100];
     if (hyattTicks > hyattTimeoutDisplaySlowUpdate) {
         LCD_SetCursor(11,1);
@@ -141,25 +135,27 @@ void hyattControPanelDisplayIdle() {
     }
 }
 
-void actionLoad() {
+
+/* ============ actions ================ */
+void actionsLoad() {
     // selections should be all "       ", no
+    selectionsClear();
     for (int i = 0; i < CONTROLPANEL_SELECTIONCOUNTMAX; i++) {
         if (strlen(actions[i].label)) strcpy(selections[i],actions[i].label);
     }
 }
 
-void hyattControPanelDisplayActionSetup() {
+void hyattControlPanelDisplayActionSetup() {
     LCD_Clear();
-    LCD_SetCursor(0,0);     LCD_PutString("Action Select");
+    LCD_SetCursor(0,0);     LCD_PutString("Action Select KnobSel");
 
-    actionLoad();
+    actionsLoad();
     selectionsDisplay();
 
     LCD_SetCursor(0,1);
     LCD_Blink();
 
     wheel0 = wheelDecoder_GetCounter();
-
     hyattControlPanelState = CONTROLPANEL_SELECT_ACTION;
 }
 
@@ -171,10 +167,12 @@ void actionExecute(int8_t i){
     LCD_SetCursor(4,2);
     LCD_PutString(actions[i].block);
     CyDelay(2000);
+    wheelDecoder_SetCounter(wheel0);
     hyattControlPanelState = CONTROLPANEL_IDLE_SETUP;
+    grblBlockSend(actions[i].block);
 }
 
-void hyattControPanelDisplayAction() {
+void hyattControlPanelDisplayAction() {
     int16_t i = abs(wheel0 - wheelDecoder_GetCounter()) % CONTROLPANEL_SELECTIONCOUNTMAX;
     int x,y;
     x = (i / 3) * 7;
@@ -183,32 +181,91 @@ void hyattControPanelDisplayAction() {
 
     if (!(FEED_OVERRIDE_Read() & 0x01)) actionExecute(i);
 }
+/* ============ actions end ================ */
 
-void hyattControPanelDisplayLoadSetup() {
+
+/* ============ load ================ */
+void filelistGet() {
+    uint8_t i = 0;
+    FS_FIND_DATA fd;
+    char fn[32];
+
+    FS_Mount("");
+    selectionsClear();
+    if (FS_FindFirstFile(&fd, "", fn, sizeof(fn)) == 0) {
+        do {
+            if (!(fd.Attributes & FS_ATTR_DIRECTORY)) {
+                if (strlen(fn)){
+                    strcpy(filelist[i],fn);
+                    strncpy(selections[i],fn,CONTROLPANEL_SELECTIONWIDTH-1);
+                    for (uint8_t j = 0; j < strlen(selections[i]); j++) {
+                        if (selections[i][j] == '.') selections[i][j] = 0x00;
+                    }
+                } else {
+                    strcpy(filelist[i],"");
+                }
+                i++;
+                if (i == CONTROLPANEL_SELECTIONCOUNTMAX) break; // there's more than 9 files on sd
+            }
+        } while (FS_FindNextFile (&fd));
+    }
+    FS_FindClose(&fd);
+    FS_Unmount("");
+    
+}
+
+void loadExecute(int8_t i){
+    LCD_NoBlink();
     LCD_Clear();
-    LCD_SetCursor(0,0);     LCD_PutString("Load Select");
+    LCD_SetCursor(4,1);
+    LCD_PutString(filelist[i]);
+    CyDelay(2000);
+    wheelDecoder_SetCounter(wheel0);
+    hyattControlPanelState = CONTROLPANEL_IDLE_SETUP;
+    hyattSenderSend(filelist[i]);
+}
+
+void hyattControlPanelDisplayLoadSetup() {
+    LCD_Clear();
+    LCD_SetCursor(0,0);     LCD_PutString("Load Select KnobSel");
+
+    filelistGet();
+    selectionsDisplay();
+
+    LCD_SetCursor(0,1);
+    LCD_Blink();
+
+    wheel0 = wheelDecoder_GetCounter();
     hyattControlPanelState = CONTROLPANEL_SELECT_LOAD;
 }
 
 void hyattControPanelDisplayLoad() {
+    int16_t i = abs(wheel0 - wheelDecoder_GetCounter()) % CONTROLPANEL_SELECTIONCOUNTMAX;
+    int x,y;
+    x = (i / 3) * 7;
+    y = (i % 3) + 1;
+    LCD_SetCursor(x,y);
+
+    if (!(FEED_OVERRIDE_Read() & 0x01)) loadExecute(i);
 }
+/* ============ load ================ */
 
 void hyattControlPanelDisplayLoop() {
     switch (hyattControlPanelState) {
         case CONTROLPANEL_IDLE_SETUP:
-            hyattControPanelDisplayIdleSetup();
+            hyattControlPanelDisplayIdleSetup();
             break;
         case CONTROLPANEL_IDLE:
-            hyattControPanelDisplayIdle();
+            hyattControlPanelDisplayIdle();
             break;
         case CONTROLPANEL_SELECT_ACTION_SETUP:
-            hyattControPanelDisplayActionSetup();
+            hyattControlPanelDisplayActionSetup();
             break;
         case CONTROLPANEL_SELECT_ACTION:
-            hyattControPanelDisplayAction();
+            hyattControlPanelDisplayAction();
             break;
         case CONTROLPANEL_SELECT_LOAD_SETUP:
-            hyattControPanelDisplayLoadSetup();
+            hyattControlPanelDisplayLoadSetup();
             break;
         case CONTROLPANEL_SELECT_LOAD:
             hyattControPanelDisplayLoad();

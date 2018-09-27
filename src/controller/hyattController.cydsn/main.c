@@ -60,7 +60,6 @@ system_t sys;
 
 int main()
 {    
-    
     CyGlobalIntEnable;       
     serial_init();
     settings_init(); // Load Grbl settings from EEPROM

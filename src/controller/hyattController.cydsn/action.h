@@ -2,8 +2,6 @@
 #define MACROS_H
 #include "hyatt.h"
     
-
-    
 struct action {
     char label[CONTROLPANEL_ACTIONLABELWIDTH];
     char block[50];
@@ -20,33 +18,5 @@ struct action actions[CONTROLPANEL_SELECTIONCOUNTMAX] = {
     {"",""},
     {"",""}
 };
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
 #endif

@@ -33,6 +33,8 @@ void hyattSenderLoop() {
             if (bufferLen == 0) { // sent all buffer, read next file chunk
                 bufferLen = FS_Read(file,&buffer,BUFFERLEN);
                 if (bufferLen == 0) { // no more data in file
+                    FS_FClose(file);
+                    FS_Mount("");
                     senderState = SENDERSTATE_IDLE;
                     return;
                 }
@@ -45,6 +47,7 @@ void hyattSenderLoop() {
 }
 
 void hyattSenderSend(char *filename) {
+    FS_Mount("");
     file = FS_FOpen(filename, "r");
     if (file) {
         bufferLen = FS_Read(file,&buffer,BUFFERLEN);
