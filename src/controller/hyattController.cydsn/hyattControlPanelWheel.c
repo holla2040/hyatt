@@ -37,7 +37,7 @@ double wheelClickDistance() {
     return 0;
 }
 
-void hyattControlPanelWheelLoop() {
+void hyattControlPanelWheelLoop() {  // this is kinda crappy, wheel shouldn't actually send the block
     char buf[50];
     
     int16_t count = wheelDecoder_GetCounter();

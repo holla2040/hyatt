@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include "hyatt.h"
+#include "action.h"
 
 #define lcdAddr   0x27
 
@@ -12,22 +13,24 @@ int16_t wheel0;
 
 extern parser_block_t gc_block;
 
-#define SELECTIONCOUNTMAX 9
+
 uint8_t selectionCount;
-#define SELECTIONWIDTH 7
     // 6 chars and null
 uint8_t selection;
-char selections[SELECTIONCOUNTMAX][SELECTIONWIDTH] = {};
+char selections[CONTROLPANEL_SELECTIONCOUNTMAX][CONTROLPANEL_SELECTIONWIDTH] = {};
 
 void selectionsClear() {
-    for (int i = 0; i < SELECTIONCOUNTMAX; i++) {
+    for (int i = 0; i < CONTROLPANEL_SELECTIONCOUNTMAX; i++) {
         strcpy(selections[i],"      ");
     }
 }
 
+
+
+
 void selectionsDisplay() {
     int x,y;
-    for (int i = 0; i < SELECTIONCOUNTMAX; i++) {
+    for (int i = 0; i < CONTROLPANEL_SELECTIONCOUNTMAX; i++) {
         x = (i / 3) * 7;
         y = (i % 3) + 1;
         LCD_SetCursor(x,y);
@@ -137,22 +140,19 @@ void hyattControPanelDisplayIdle() {
         hyattTimeoutDisplayFastUpdate = hyattTicks + DISPLAYFASTUPDATEINTERVAL;
     }
 }
+
+void actionLoad() {
+    // selections should be all "       ", no
+    for (int i = 0; i < CONTROLPANEL_SELECTIONCOUNTMAX; i++) {
+        if (strlen(actions[i].label)) strcpy(selections[i],actions[i].label);
+    }
+}
+
 void hyattControPanelDisplayActionSetup() {
     LCD_Clear();
     LCD_SetCursor(0,0);     LCD_PutString("Action Select");
 
-    selectionsClear();
-
-    strcpy(selections[0],"X0Y0");
-    strcpy(selections[1],"HOME");
-    strcpy(selections[2],"PARK");
-    strcpy(selections[3],"FOUR");
-    strcpy(selections[4],"FIVE");
-    strcpy(selections[5],"SIX");
-    strcpy(selections[6],"SEVEN");
-    strcpy(selections[7],"EIGHT");
-    strcpy(selections[8],"NINE");
-
+    actionLoad();
     selectionsDisplay();
 
     LCD_SetCursor(0,1);
@@ -166,14 +166,16 @@ void hyattControPanelDisplayActionSetup() {
 void actionExecute(int8_t i){
     LCD_NoBlink();
     LCD_Clear();
-    LCD_SetCursor(7,1);
-    LCD_PutString(selections[i]);
+    LCD_SetCursor(4,1);
+    LCD_PutString(actions[i].label);
+    LCD_SetCursor(4,2);
+    LCD_PutString(actions[i].block);
     CyDelay(2000);
     hyattControlPanelState = CONTROLPANEL_IDLE_SETUP;
 }
 
 void hyattControPanelDisplayAction() {
-    int16_t i = abs(wheel0 - wheelDecoder_GetCounter()) % SELECTIONCOUNTMAX;
+    int16_t i = abs(wheel0 - wheelDecoder_GetCounter()) % CONTROLPANEL_SELECTIONCOUNTMAX;
     int x,y;
     x = (i / 3) * 7;
     y = (i % 3) + 1;
