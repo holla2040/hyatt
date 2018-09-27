@@ -147,7 +147,7 @@ void actionsLoad() {
 
 void hyattControlPanelDisplayActionSetup() {
     LCD_Clear();
-    LCD_SetCursor(0,0);     LCD_PutString("Action Select - Knob");
+    LCD_SetCursor(0,0);     LCD_PutString("Actions - Feed Off");
 
     actionsLoad();
     selectionsDisplay();
@@ -159,19 +159,6 @@ void hyattControlPanelDisplayActionSetup() {
     hyattControlPanelState = CONTROLPANEL_SELECT_ACTION;
 }
 
-void actionExecute(int8_t i){
-    LCD_NoBlink();
-    LCD_Clear();
-    LCD_SetCursor(4,1);
-    LCD_PutString(actions[i].label);
-    LCD_SetCursor(4,2);
-    LCD_PutString(actions[i].block);
-    CyDelay(2000);
-    wheelDecoder_SetCounter(wheel0);
-    hyattControlPanelState = CONTROLPANEL_IDLE_SETUP;
-    grblBlockSend(actions[i].block);
-}
-
 void hyattControlPanelDisplayAction() {
     int16_t i = abs(wheel0 - wheelDecoder_GetCounter()) % CONTROLPANEL_SELECTIONCOUNTMAX;
     int x,y;
@@ -179,7 +166,23 @@ void hyattControlPanelDisplayAction() {
     y = (i % 3) + 1;
     LCD_SetCursor(x,y);
 
-    if (!(FEED_OVERRIDE_Read() & 0x01)) actionExecute(i);
+    if ((FEED_OVERRIDE_Read() & FEED_OVERRIDE_OFF )) {
+        LCD_NoBlink();
+        LCD_Clear();
+        LCD_SetCursor(0,0);
+        LCD_PutString("SEND");
+        LCD_SetCursor(5,0);
+        LCD_PutString(actions[i].label);
+        LCD_SetCursor(0,1);
+        LCD_PutString(actions[i].block);
+        LCD_SetCursor(0,3);
+        LCD_PutString("Loaded in HOLD");
+        CyDelay(2000);
+        wheelDecoder_SetCounter(wheel0);
+        hyattControlPanelState = CONTROLPANEL_IDLE_SETUP;
+        grblBlockSend(actions[i].block);
+    }
+
 }
 /* ============ actions end ================ */
 
@@ -216,7 +219,7 @@ void filelistGet() {
 
 void hyattControlPanelDisplayLoadSetup() {
     LCD_Clear();
-    LCD_SetCursor(0,0);     LCD_PutString("Load Select Feed Off");
+    LCD_SetCursor(0,0);     LCD_PutString("Load - Feed Off");
 
     filelistGet();
     selectionsDisplay();
@@ -251,7 +254,7 @@ void hyattControlPanelDisplayLoad() {
         LCD_SetCursor(5,1);
         LCD_PutString(buf);
         LCD_SetCursor(0,3);
-        LCD_PutString("Loaded in HOLD");
+        LCD_PutString("Loading in HOLD");
         CyDelay(4000);
         wheelDecoder_SetCounter(wheel0);
         hyattControlPanelState = CONTROLPANEL_IDLE_SETUP;
