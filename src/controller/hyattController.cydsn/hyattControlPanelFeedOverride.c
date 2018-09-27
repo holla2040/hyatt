@@ -2,9 +2,6 @@
 #include "hyatt.h"
 #include <stdlib.h>
 
-#define FEED_OVERRIDE_BTN 0x01
-#define FEED_OVERRIDE_OFF 0x02
-
 uint8_t f_overrideLast;
 #define FEEDTHRESHOLD 3
 

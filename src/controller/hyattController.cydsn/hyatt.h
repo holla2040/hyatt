@@ -92,9 +92,7 @@ enum name {
   CONTROLPANEL_SELECT_ACTION_SETUP,
   CONTROLPANEL_SELECT_ACTION,
   CONTROLPANEL_SELECT_LOAD_SETUP,
-  CONTROLPANEL_SELECT_LOAD,
-  CONTROLPANEL_DRIP_SD,
-  CONTROLPANEL_DRIP_USB
+  CONTROLPANEL_SELECT_LOAD
 };
 #define CONTROLPANEL_SELECTIONCOUNTMAX 9
 #define CONTROLPANEL_SELECTIONWIDTH 7
@@ -197,6 +195,11 @@ void hyattControlPanelDisplayLoop();
 // feed override
 void hyattControlPanelFeedOverrideInit();
 void hyattControlPanelFeedOverrideLoop();
+
+#define FEED_OVERRIDE_BTN 0x01
+#define FEED_OVERRIDE_OFF 0x02
+
+
 
 // keypad
 uint32_t hyattTimeoutKeypadUpdate;
