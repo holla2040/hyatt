@@ -60,8 +60,6 @@ char lastBlock[40];
 uint32_t hyattTicks;
 uint8_t hyattAxisSelected;
 uint8_t hyattFeedOverride;
-uint8_t hyattFeedOverrideButton;
-uint8_t hyattFeedOverrideOff;
 uint8_t hyattWheelStepSize;
 
 void hyattInit();
