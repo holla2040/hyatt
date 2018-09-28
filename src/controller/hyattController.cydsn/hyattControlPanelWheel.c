@@ -39,10 +39,9 @@ double wheelClickDistance() {
 
 void hyattControlPanelWheelLoop() {  // this is kinda crappy, wheel shouldn't actually send the block
     char buf[50];
-    
-    int16_t count = wheelDecoder_GetCounter();
-    int16_t diff  = count - countLast;
     if (hyattTicks > timeoutWheelUpdate) {
+        int16_t count = wheelDecoder_GetCounter();
+        int16_t diff  = count - countLast;
         if (diff != 0) {
             sprintf(buf,"$J=%c%-.4fG2%dG91F5000",selectedAxisLetter(),diff*wheelClickDistance(),1-gc_block.modal.units);
             grblBlockSend(buf);

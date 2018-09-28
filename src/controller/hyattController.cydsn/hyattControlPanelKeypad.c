@@ -22,7 +22,6 @@ CY_ISR(keyHandler) {
 
 void hyattControlPanelIndicatorUpdate() {
     i2cRegWrite(KEYPAD_ROW12_ADDR,IOB_GPIO,     keyIndicator    &0xFF);
-    CyDelay(50);
     i2cRegWrite(KEYPAD_ROW34_ADDR,IOB_GPIO,    (keyIndicator>>8)&0xFF);
 };
 
@@ -52,13 +51,13 @@ void hyattControlPanelKeypadInit() {
     i2cRegWrite(KEYPAD_ROW34_ADDR,IOB_DIR,     0x88);         // led pins to output
     i2cRegWrite(KEYPAD_ROW34_ADDR,IOB_GPIO,    0x77);         // leds on
 
-    CyDelay(50);
+    // CyDelay(50);
 
     keyIndicator = 0x0001;
     for (uint8_t i = 0;i < 16;i++) {
         hyattControlPanelIndicatorUpdate();
         keyIndicator = keyIndicator << 1;
-        CyDelay(2);
+        CyDelay(25);
     }
 }
 
