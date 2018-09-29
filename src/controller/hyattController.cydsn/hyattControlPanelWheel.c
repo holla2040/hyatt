@@ -3,10 +3,12 @@
 #include "hyatt.h"
 
 int16_t countLast;
+uint8_t diff0Count;
+
 extern parser_block_t gc_block;
 
 uint32_t timeoutWheelUpdate;
-#define WHEELUPDATEINTERVAL 250
+#define WHEELUPDATEINTERVAL 10
 
 
 void hyattControlPanelWheelInit() {
@@ -22,7 +24,7 @@ double wheelClickDistance() {
             case WHEELSTEPSIZE_MEDIUM:
                 return 0.1; // 1 wheel turn 10mm
             case WHEELSTEPSIZE_LARGE:
-                return 5.0; // 1 wheel turn 500mm
+                return 1.0; // 1 wheel turn 100mm
         }
     } else {
         switch (hyattWheelStepSize) {
@@ -43,9 +45,20 @@ void hyattControlPanelWheelLoop() {  // this is kinda crappy, wheel shouldn't ac
         int16_t count = wheelDecoder_GetCounter();
         int16_t diff  = count - countLast;
         if (diff != 0) {
-            sprintf(buf,"$J=%c%-.4fG2%dG91F5000",selectedAxisLetter(),diff*wheelClickDistance(),1-gc_block.modal.units);
-            grblBlockSend(buf);
-            countLast = count;
+            if (plan_get_block_buffer_available() > 3) {  // don't over run the planning buffer
+                sprintf(buf,"$J=%c%-.4fG2%dG91F7500",selectedAxisLetter(),diff*wheelClickDistance(),1-gc_block.modal.units);
+                grblBlockSend(buf);
+                diff0Count = 0;
+                countLast = count;
+            }
+        } else {
+            diff0Count++;
+            if (diff0Count == 3) { // this is third time there's no count difference, ie wheel not turning
+                if (sys.state & STATE_JOG) { // Block all other states from invoking motion cancel.
+                 //   usb_uart_PutString("------------ Cancel\n");
+                  system_set_exec_state_flag(EXEC_MOTION_CANCEL);
+                }
+            }
         }
         timeoutWheelUpdate = hyattTicks + WHEELUPDATEINTERVAL;
     }

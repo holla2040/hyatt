@@ -5,7 +5,7 @@
 
 #define lcdAddr   0x27
 
-#define DISPLAYSLOWUPDATEINTERVAL 250
+#define DISPLAYSLOWUPDATEINTERVAL 251
 #define DISPLAYFASTUPDATEINTERVAL 100
 #define FILENAMEMAX 32
 
@@ -80,11 +80,6 @@ void hyattControlPanelDisplayIdle() {
         LCD_SetCursor(15,0);
         gc_state.modal.units ?  LCD_PutString("INCH"):LCD_PutString("MM  ");
 
-        LCD_SetCursor(0,3);
-        lastBlock[20] = 0; // clip lastBlock to display width
-        sprintf(buf,"%-20s",lastBlock);
-        LCD_PutString(buf);
-
         LCD_SetCursor(18,1);
         (gc_block.modal.spindle & SPINDLE_ENABLE_CW) ? LCD_PutString("S"): LCD_PutString(" ");
 
@@ -99,6 +94,11 @@ void hyattControlPanelDisplayIdle() {
         sprintf(buf,"%-3d",sys.f_override);
         LCD_PutString(buf);
 
+        LCD_SetCursor(0,3);
+        lastBlock[20] = 0; // clip lastBlock to display width
+        sprintf(buf,"%-20s",lastBlock);
+        LCD_PutString(buf);
+        
         hyattTimeoutDisplaySlowUpdate = hyattTicks + DISPLAYSLOWUPDATEINTERVAL;
     }
 
