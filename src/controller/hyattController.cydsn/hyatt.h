@@ -65,6 +65,9 @@ uint8_t hyattWheelStepSize;
 void hyattInit();
 void hyattLoop();
 
+void axisZero();
+void unitToggle();
+    
 void hyattControlPanelInit();
 void hyattControlPanelLoop();
 
@@ -221,5 +224,9 @@ void hyattSenderCallback(uint8_t status_code);
 #define SENDERSTATE_IDLE 'I'
 #define SENDERSTATE_READ 'R'
 #define SENDERSTATE_WAIT 'W'
+
+// IR
+void hyattControlPanelIRInit();
+void hyattControlPanelIRLoop();
 
 #endif

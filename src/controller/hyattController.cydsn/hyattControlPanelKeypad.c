@@ -135,12 +135,10 @@ void hyattControlPanelKeypadLoop() {
                     // grblBlockSend("G90X0Y0");
                     break;
                 case KEY_UNIT:
-                    (gc_block.modal.units == UNITS_MODE_INCHES) ? grblBlockSend("G21"):grblBlockSend("G20");
+                    unitToggle();
                     break;
                 case KEY_AXISZERO:
-                    sprintf(buf,"G10L20P%d_0",gc_state.modal.coord_select+1);
-                    buf[8] = selectedAxisLetter();
-                    grblBlockSend(buf);
+                    axisZero();
                 break;
                 case KEY_SPINDLE:
                    (gc_block.modal.spindle == SPINDLE_DISABLE) ? grblBlockSend("M3"):grblBlockSend("M5");

@@ -2,6 +2,7 @@
 #include "hyatt.h"
 #include <FS.h>
 
+extern parser_block_t gc_block;
 
 uint32_t timeoutStatusUpdate;
 #define STATUSUPDATEINTERVAL 100
@@ -64,4 +65,15 @@ void grblBlockSend(char *block) {
         rx_handler(block[i]);                                                                                                            
     }
     rx_handler('\n');
+}
+
+void axisZero() {
+    char buf[50];
+    sprintf(buf,"G10L20P%d_0",gc_state.modal.coord_select+1);
+    buf[8] = selectedAxisLetter();
+    grblBlockSend(buf);
+}
+
+void unitToggle() {
+    (gc_block.modal.units == UNITS_MODE_INCHES) ? grblBlockSend("G21"):grblBlockSend("G20");
 }
