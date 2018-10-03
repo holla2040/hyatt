@@ -8,6 +8,7 @@ Hyatt Feature Set
 * Piezo element work piece probe - PSoC opamp, ADC, DAC comparator, interrupt
 * Motor drive current monitor - PSoC analog mux and ADC
 * Supply voltage monitor - PSoC ADC
+* WiFi link with webserver, OTA, flash filesystem, websockets, TCP-serial bridge using ESP8266 - PSoC USART
 
 Operator Interface
 * 12 illuminated buttons via I2C I/O port expanders - PSoC I2C Fixed master
@@ -18,9 +19,7 @@ Operator Interface
 * SDCard reader- PSoC SPI EmFile library
 * Wireless CNC pendant - DirecTV remote control - my custom IR decoder using PSoC digital logic
 
-Communications
-* WiFi link with webserver, OTA, flash filesystem, websockets, TCP-serial bridge using ESP8266 - PSoC USART
-* PCB board, 100x100mm 2 layer
+PCB board, 100x100mm 2 layer, mixed through and smt parts
 
 
 ![WorkBee](images/workbee-cnc.jpg)
