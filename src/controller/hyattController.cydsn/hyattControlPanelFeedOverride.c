@@ -10,7 +10,7 @@ uint32_t timeoutFeedOverrideUpdate;
 
 
 CY_ISR(feedOverrideHandler) {
-    CyDelay(1); // need delay for off pin to settle
+    CyDelay(2); // need delay for off pin to settle
     (FEED_OVERRIDE_Read() & FEED_OVERRIDE_OFF) ? system_set_exec_state_flag(EXEC_FEED_HOLD) : system_set_exec_state_flag(EXEC_CYCLE_START);
     FEED_OVERRIDE_ClearInterrupt();
 }

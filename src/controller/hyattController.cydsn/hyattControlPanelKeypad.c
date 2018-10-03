@@ -22,7 +22,6 @@ CY_ISR(keyHandler) {
 
 void hyattControlPanelIndicatorUpdate() {
     i2cRegWrite(KEYPAD_ROW12_ADDR,IOB_GPIO,     keyIndicator    &0xFF);
-    CyDelay(50);
     i2cRegWrite(KEYPAD_ROW34_ADDR,IOB_GPIO,    (keyIndicator>>8)&0xFF);
 };
 
@@ -52,13 +51,13 @@ void hyattControlPanelKeypadInit() {
     i2cRegWrite(KEYPAD_ROW34_ADDR,IOB_DIR,     0x88);         // led pins to output
     i2cRegWrite(KEYPAD_ROW34_ADDR,IOB_GPIO,    0x77);         // leds on
 
-    CyDelay(50);
+    // CyDelay(50);
 
     keyIndicator = 0x0001;
     for (uint8_t i = 0;i < 16;i++) {
         hyattControlPanelIndicatorUpdate();
         keyIndicator = keyIndicator << 1;
-        CyDelay(2);
+        CyDelay(25);
     }
 }
 
@@ -80,6 +79,17 @@ void hyattControlPanelKeypadLoop() {
             system_set_exec_accessory_override_flag(EXEC_COOLANT_MIST_OVR_TOGGLE);
             hyattTimeoutKeypadUpdate = hyattTicks + 100;
         }
+        
+        // probably remove this after hold and reset buttons are installed
+        if (key == KEY_SELECT) {
+            if (sys.state == STATE_CYCLE) { // first select push
+                senderState = SENDERSTATE_IDLE;
+                system_set_exec_state_flag(EXEC_FEED_HOLD);
+            }
+            if (sys.state == STATE_HOLD) {
+                mc_reset();
+            }
+        }   
 
         if (sys.state == STATE_IDLE) {
             switch(key) {
@@ -125,12 +135,10 @@ void hyattControlPanelKeypadLoop() {
                     // grblBlockSend("G90X0Y0");
                     break;
                 case KEY_UNIT:
-                    (gc_block.modal.units == UNITS_MODE_INCHES) ? grblBlockSend("G21"):grblBlockSend("G20");
+                    unitToggle();
                     break;
                 case KEY_AXISZERO:
-                    sprintf(buf,"G10L20P%d_0",gc_state.modal.coord_select+1);
-                    buf[8] = selectedAxisLetter();
-                    grblBlockSend(buf);
+                    axisZero();
                 break;
                 case KEY_SPINDLE:
                    (gc_block.modal.spindle == SPINDLE_DISABLE) ? grblBlockSend("M3"):grblBlockSend("M5");

@@ -106,6 +106,8 @@ void protocol_main_loop()
           // Parse and execute g-code block.
           report_status_message(gc_execute_line(line));
         }
+        
+        // hyatt uses lastBlock
         strncpy(lastBlock,line,39);
         
 
@@ -493,10 +495,7 @@ void protocol_exec_rt_system()
         gc_state.modal.coolant = coolant_state;
       }
     }
-    
-   
-    
-  }
+ }
 
   #ifdef DEBUG
     if (sys_rt_exec_debug) {
@@ -509,7 +508,8 @@ void protocol_exec_rt_system()
   if (sys.state & (STATE_CYCLE | STATE_HOLD | STATE_SAFETY_DOOR | STATE_HOMING | STATE_SLEEP| STATE_JOG)) {
     st_prep_buffer();
   }
-    hyattLoop();
+  
+  hyattLoop();
 }
 
 
