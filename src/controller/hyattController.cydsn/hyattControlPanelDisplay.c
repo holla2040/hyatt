@@ -2,15 +2,19 @@
 #include <FS.h>
 #include "hyatt.h"
 #include "action.h"
+#include "RC65X.h"
 
 #define lcdAddr   0x27
 
 #define DISPLAYSLOWUPDATEINTERVAL 251
 #define DISPLAYFASTUPDATEINTERVAL 100
 #define FILENAMEMAX 32
+#define MDIBLOCKLEN 50
 
 const char watch[] = " \xa5"; // a5 is a center dot, see lcd char set in manual
 uint8_t watchCount;
+
+char mdiBlock[MDIBLOCKLEN];
 
 extern parser_block_t gc_block;
 
@@ -220,7 +224,7 @@ void filelistGet() {
 
 void hyattControlPanelDisplayLoadSetup() {
     LCD_Clear();
-    LCD_SetCursor(0,0);     LCD_PutString("Load - Feed Sel");
+    LCD_SetCursor(0,0);     LCD_PutString("Load - Feed Select");
 
     filelistGet();
     selectionsDisplay();
@@ -266,7 +270,91 @@ void hyattControlPanelDisplayLoad() {
 
 /* ============ load ================ */
 
+/* ============ MDI ================ */
+void hyattControlPanelDisplayMDISetup() {
+    LCD_Clear();
+    LCD_SetCursor(0,0);
+    LCD_PutString("MDI");
+    strcpy(mdiBlock,"");
+    LCD_SetCursor(0,1);
+    LCD_Write('>');
+    hyattControlPanelState = CONTROLPANEL_SELECT_MDI;
+}
 
+void hyattControlPanelDisplayMDI() {
+}
+
+void hyattControlPanelDisplayMDIKey(uint16_t key) {
+    if (hyattControlPanelState == CONTROLPANEL_SELECT_MDI) {
+        if (strlen(mdiBlock) >= MDIBLOCKLEN) {
+            strcpy(mdiBlock,"");
+        }
+        switch (key) {
+            case RC65X_KEY0:
+                strcat(mdiBlock,"0");
+                break;
+            case RC65X_KEY1:
+                strcat(mdiBlock,"1");
+                break;
+            case RC65X_KEY2:
+                strcat(mdiBlock,"2");
+                break;
+            case RC65X_KEY3:
+                strcat(mdiBlock,"3");
+                break;
+            case RC65X_KEY4:
+                strcat(mdiBlock,"4");
+                break;
+            case RC65X_KEY5:
+                strcat(mdiBlock,"5");
+                break;
+            case RC65X_KEY6:
+                strcat(mdiBlock,"6");
+                break;
+            case RC65X_KEY7:
+                strcat(mdiBlock,"7");
+                break;
+            case RC65X_KEY8:
+                strcat(mdiBlock,"8");
+                break;
+            case RC65X_KEY9:
+                strcat(mdiBlock,"9");
+                break;
+            case RC65X_KEYDASH:
+                strcat(mdiBlock,"-");
+                break;
+            case RC65X_KEYMUTE:
+                strcat(mdiBlock,".");
+                break;
+            case RC65X_KEYRED:
+                strcat(mdiBlock,"X");
+                break;
+            case RC65X_KEYGREEN:
+                strcat(mdiBlock,"Y");
+                break;
+            case RC65X_KEYYELLOW:
+                strcat(mdiBlock,"Z");
+                break;
+            case RC65X_KEYBACK:
+                hyattControlPanelState = CONTROLPANEL_IDLE_SETUP;
+                return;
+                break;
+            case RC65X_KEYENTER:
+                hyattControlPanelState = CONTROLPANEL_IDLE_SETUP;
+                strcat(mdiBlock,"G1F1000");
+                grblBlockSend(mdiBlock);
+                return;
+                break;
+            case RC65X_KEYPREV:
+                mdiBlock[strlen(mdiBlock)-1] = 0x00;
+                break;
+        }
+        LCD_SetCursor(1,1);
+        LCD_PutString(mdiBlock);
+        LCD_PutString("    ");  // clear line, needed for prev
+    }
+}
+/* ============ MDI ================ */
 
 
 void hyattControlPanelDisplayLoop() {
@@ -289,5 +377,12 @@ void hyattControlPanelDisplayLoop() {
         case CONTROLPANEL_SELECT_LOAD:
             hyattControlPanelDisplayLoad();
             break;
+        case CONTROLPANEL_SELECT_MDI_SETUP:
+            hyattControlPanelDisplayMDISetup();
+            break;
+        case CONTROLPANEL_SELECT_MDI:
+            hyattControlPanelDisplayMDI();
+            break;
+        
     }
 }

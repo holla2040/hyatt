@@ -3,7 +3,7 @@
 #include "RC65X.h"
 #include "hyatt.h"
 
-
+uint16_t button;
 
 char * keyLabel(uint16_t v) {
     switch (v) {
@@ -59,8 +59,6 @@ char * keyLabel(uint16_t v) {
     return ""; // could be the default buttons for tv only or junk
 }
 
-uint16_t button;
-
 void isr_IR_Handler() {
     button = irDecoderShiftReg_ReadRegValue();
     irDecoderShiftReg_WriteRegValue(0x00);
@@ -90,39 +88,49 @@ void hyattControlPanelIRLoop(void) {
         }
 
         if (sys.state == STATE_IDLE) {
-            switch (button) {
-                case RC65X_KEYUP:
-                    grblBlockSend("Y1G91G1F2500");
+            switch (hyattControlPanelState) {
+                case CONTROLPANEL_SELECT_MDI:
+                    hyattControlPanelDisplayMDIKey(button);
                     break;
-                case RC65X_KEYDOWN:
-                    grblBlockSend("Y-1G91G1F2500");
-                    break;
-                case RC65X_KEYLEFT:
-                    grblBlockSend("X-1G91G1F2500");
-                    break;
-                case RC65X_KEYRIGHT:
-                    grblBlockSend("X1G91G1F2500");
-                    break;
-                case RC65X_KEYEXIT:
-                    grblBlockSend("Z1G91G1F2500");
-                    break;
-                case RC65X_KEYINFO:
-                    grblBlockSend("Z-1G91G1F2500");
-                    break;
-                case RC65X_KEYRED:
-                    hyattAxisSelected = AXISSELECTED_X;
-                    break;
-                case RC65X_KEYGREEN:
-                    hyattAxisSelected = AXISSELECTED_Y;
-                    break;
-                case RC65X_KEYYELLOW:
-                    hyattAxisSelected = AXISSELECTED_Z;
-                    break;
-                case RC65X_KEYFORMAT:
-                    unitToggle();
-                    break;
-                case RC65X_KEYRECORD:
-                    axisZero();
+                case CONTROLPANEL_IDLE:
+                    switch (button) {
+                        case RC65X_KEYUP:
+                            grblBlockSend("Y1G91G1F2500");
+                            break;
+                        case RC65X_KEYDOWN:
+                            grblBlockSend("Y-1G91G1F2500");
+                            break;
+                        case RC65X_KEYLEFT:
+                            grblBlockSend("X-1G91G1F2500");
+                            break;
+                        case RC65X_KEYRIGHT:
+                            grblBlockSend("X1G91G1F2500");
+                            break;
+                        case RC65X_KEYEXIT:
+                            grblBlockSend("Z1G91G1F2500");
+                            break;
+                        case RC65X_KEYINFO:
+                            grblBlockSend("Z-1G91G1F2500");
+                            break;
+                        case RC65X_KEYRED:
+                            hyattAxisSelected = AXISSELECTED_X;
+                            break;
+                        case RC65X_KEYGREEN:
+                            hyattAxisSelected = AXISSELECTED_Y;
+                            break;
+                        case RC65X_KEYYELLOW:
+                            hyattAxisSelected = AXISSELECTED_Z;
+                            break;
+                        case RC65X_KEYFORMAT:
+                            unitToggle();
+                            break;
+                        case RC65X_KEYRECORD:
+                            axisZero();
+                            break;
+                        case RC65X_KEYMENU:
+                            hyattControlPanelState = CONTROLPANEL_SELECT_MDI_SETUP;
+                            break;
+                    }
                     break;
             }
         }

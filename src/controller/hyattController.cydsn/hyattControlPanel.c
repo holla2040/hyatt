@@ -10,7 +10,6 @@ void hyattControlPanelInit() {
     hyattControlPanelDisplayInit();
     hyattControlPanelWheelInit();
     hyattControlPanelIRInit();
-    hyattSelectInit();
     timeoutStateUpdate = 0;
     hyattControlPanelState = CONTROLPANEL_IDLE_SETUP;
 }
@@ -23,7 +22,6 @@ void hyattControlPanelLoop() {
 
     if ((sys.state == STATE_IDLE) | (sys.state == STATE_JOG)) {  // can't just OR these STATE_IDLE = 0
         if (hyattControlPanelState == CONTROLPANEL_IDLE) hyattControlPanelWheelLoop();
-        hyattSelectLoop();
     }
 
     if (hyattTicks > timeoutStateUpdate) {
