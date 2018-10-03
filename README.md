@@ -19,7 +19,7 @@ Operator Interface
 * Wireless CNC pendant - DirecTV remote control - my custom IR decoder using PSoC digital logic
 
 Communications
-# WiFi link with webserver, OTA, flash filesystem, websockets, TCP-serial bridge using ESP8266 - PSoC USART
+* WiFi link with webserver, OTA, flash filesystem, websockets, TCP-serial bridge using ESP8266 - PSoC USART
 * PCB board, 100x100mm 2 layer
 
 
