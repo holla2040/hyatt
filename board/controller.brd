@@ -329,6 +329,8 @@ PSoC 5LP</text>
 <wire x1="6" y1="-63.73" x2="12.7" y2="-63.73" width="0.254" layer="47"/>
 <wire x1="12.7" y1="-63.73" x2="12.7" y2="-34.29" width="0.254" layer="47"/>
 <text x="8.382" y="-31.75" size="1.016" layer="21" ratio="12" align="center-right">G</text>
+<text x="-8.255" y="-10.16" size="1.778" layer="21" ratio="12" align="center-left">SWDIO
+SWDCLK</text>
 </package>
 <package name="SO28W">
 <description>&lt;B&gt;28-Lead Plastic Small Outline (SO) &lt;/B&gt; Wide, 300 mil Body (SOIC)&lt;/B&gt;&lt;p&gt;

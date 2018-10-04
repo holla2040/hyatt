@@ -280,6 +280,8 @@ PSoC 5LP</text>
 <wire x1="6" y1="-63.73" x2="12.7" y2="-63.73" width="0.254" layer="47"/>
 <wire x1="12.7" y1="-63.73" x2="12.7" y2="-34.29" width="0.254" layer="47"/>
 <text x="8.382" y="-31.75" size="1.016" layer="21" ratio="12" align="center-right">G</text>
+<text x="-8.255" y="-10.16" size="1.778" layer="21" ratio="12" align="center-left">SWDIO
+SWDCLK</text>
 </package>
 <package name="DIL28-3">
 <description>&lt;B&gt;Dual In Line&lt;/B&gt;&lt;p&gt;
@@ -612,49 +614,49 @@ Source: http://www.microchip.com .. 39637a.pdf</description>
 <description>WeMos.cc
 D1 mini
 ESP8266 module</description>
-<wire x1="9.17" y1="15.216" x2="9.17" y2="9.416" width="0.254" layer="21"/>
-<wire x1="-6.83" y1="9.416" x2="-6.83" y2="15.216" width="0.254" layer="21"/>
-<wire x1="-6.83" y1="15.216" x2="9.17" y2="15.216" width="0.127" layer="21"/>
-<wire x1="-6.83" y1="9.416" x2="9.17" y2="9.416" width="0.254" layer="21"/>
-<pad name="5V" x="12.7" y="-10.16" drill="1.016" diameter="1.8288" shape="long"/>
-<pad name="GND" x="12.7" y="-7.62" drill="1.016" diameter="1.8288" shape="long"/>
-<pad name="D4" x="12.7" y="-5.08" drill="1.016" diameter="1.8288" shape="long"/>
-<pad name="D3" x="12.7" y="-2.54" drill="1.016" diameter="1.8288" shape="long"/>
-<pad name="D2" x="12.7" y="0" drill="1.016" diameter="1.8288" shape="long"/>
-<pad name="D1" x="12.7" y="2.54" drill="1.016" diameter="1.8288" shape="long"/>
-<pad name="RX" x="12.7" y="5.08" drill="1.016" diameter="1.8288" shape="long"/>
-<pad name="TX" x="12.7" y="7.62" drill="1.016" diameter="1.8288" shape="long"/>
-<pad name="3V3" x="-10.16" y="-10.16" drill="1.016" diameter="1.8288" shape="long" rot="R180"/>
-<pad name="D8" x="-10.16" y="-7.62" drill="1.016" diameter="1.8288" shape="long" rot="R180"/>
-<pad name="D7" x="-10.16" y="-5.08" drill="1.016" diameter="1.8288" shape="long" rot="R180"/>
-<pad name="D6" x="-10.16" y="-2.54" drill="1.016" diameter="1.8288" shape="long" rot="R180"/>
-<pad name="D5" x="-10.16" y="0" drill="1.016" diameter="1.8288" shape="long" rot="R180"/>
-<pad name="D0" x="-10.16" y="2.54" drill="1.016" diameter="1.8288" shape="long" rot="R180"/>
-<pad name="A0" x="-10.16" y="5.08" drill="1.016" diameter="1.8288" shape="long" rot="R180"/>
-<pad name="RESET" x="-10.16" y="7.62" drill="1.016" diameter="1.8288" shape="long" rot="R180"/>
-<text x="12.7" y="-17.78" size="1.4224" layer="25" ratio="20" align="bottom-right">&gt;Name</text>
-<wire x1="-6.8326" y1="9.4234" x2="-6.8326" y2="-8.89" width="0.254" layer="21"/>
-<wire x1="9.144" y1="9.4234" x2="9.1694" y2="9.4234" width="0.127" layer="21"/>
-<wire x1="9.1694" y1="9.4234" x2="9.1694" y2="-8.89" width="0.254" layer="21"/>
-<wire x1="13.97" y1="12.7" x2="13.97" y2="-19.05" width="0.254" layer="21"/>
-<wire x1="-8.89" y1="15.24" x2="11.43" y2="15.24" width="0.254" layer="21"/>
-<wire x1="-11.43" y1="12.7" x2="-8.89" y2="15.24" width="0.254" layer="21" curve="-90"/>
-<wire x1="11.43" y1="15.24" x2="13.97" y2="12.7" width="0.254" layer="21" curve="-90"/>
-<wire x1="-11.43" y1="12.7" x2="-11.43" y2="-19.05" width="0.254" layer="21"/>
-<wire x1="-11.43" y1="-19.05" x2="13.97" y2="-19.05" width="0.254" layer="21"/>
-<wire x1="-6.8326" y1="-8.89" x2="9.144" y2="-8.89" width="0.254" layer="21"/>
-<text x="-7.62" y="6.35" size="1.016" layer="25" ratio="20" rot="R90" align="center-left">RST</text>
-<text x="-7.366" y="-11.43" size="1.016" layer="25" ratio="20" rot="R90" align="center-left">3V3</text>
-<text x="10.16" y="-9.525" size="1.016" layer="25" ratio="20" rot="R270" align="center-left">5V</text>
-<text x="10.16" y="-6.35" size="1.016" layer="25" ratio="20" rot="R270" align="center-left">GND</text>
-<text x="9.906" y="5.842" size="1.016" layer="25" ratio="20" rot="R270" align="center-left">RX</text>
-<text x="9.906" y="8.636" size="1.016" layer="25" ratio="20" rot="R270" align="center-left">TX</text>
-<wire x1="-2.54" y1="-19.05" x2="5.08" y2="-19.05" width="0.2032" layer="21"/>
-<wire x1="5.08" y1="-19.05" x2="5.08" y2="-13.97" width="0.254" layer="21"/>
-<wire x1="5.08" y1="-13.97" x2="-2.54" y2="-13.97" width="0.254" layer="21"/>
-<wire x1="-2.54" y1="-13.97" x2="-2.54" y2="-19.05" width="0.254" layer="21"/>
-<text x="1.27" y="12.7" size="1.016" layer="25" ratio="20" align="center">ANTENNA</text>
-<text x="1.27" y="-16.51" size="1.016" layer="25" ratio="20" align="center">USB
+<wire x1="7.9" y1="15.216" x2="7.9" y2="9.416" width="0.254" layer="21"/>
+<wire x1="-8.1" y1="9.416" x2="-8.1" y2="15.216" width="0.254" layer="21"/>
+<wire x1="-8.1" y1="15.216" x2="7.9" y2="15.216" width="0.127" layer="21"/>
+<wire x1="-8.1" y1="9.416" x2="7.9" y2="9.416" width="0.254" layer="21"/>
+<pad name="5V" x="11.43" y="-10.16" drill="1.016" diameter="1.9304"/>
+<pad name="GND" x="11.43" y="-7.62" drill="1.016" diameter="1.9304"/>
+<pad name="D4" x="11.43" y="-5.08" drill="1.016" diameter="1.9304"/>
+<pad name="D3" x="11.43" y="-2.54" drill="1.016" diameter="1.9304"/>
+<pad name="D2" x="11.43" y="0" drill="1.016" diameter="1.9304"/>
+<pad name="D1" x="11.43" y="2.54" drill="1.016" diameter="1.9304"/>
+<pad name="RX" x="11.43" y="5.08" drill="1.016" diameter="1.9304"/>
+<pad name="TX" x="11.43" y="7.62" drill="1.016" diameter="1.9304"/>
+<pad name="3V3" x="-11.43" y="-10.16" drill="1.016" diameter="1.9304" rot="R180"/>
+<pad name="D8" x="-11.43" y="-7.62" drill="1.016" diameter="1.9304" rot="R180"/>
+<pad name="D7" x="-11.43" y="-5.08" drill="1.016" diameter="1.9304" rot="R180"/>
+<pad name="D6" x="-11.43" y="-2.54" drill="1.016" diameter="1.9304" rot="R180"/>
+<pad name="D5" x="-11.43" y="0" drill="1.016" diameter="1.9304" rot="R180"/>
+<pad name="D0" x="-11.43" y="2.54" drill="1.016" diameter="1.9304" rot="R180"/>
+<pad name="A0" x="-11.43" y="5.08" drill="1.016" diameter="1.9304" rot="R180"/>
+<pad name="RESET" x="-11.43" y="7.62" drill="1.016" diameter="1.9304" rot="R180"/>
+<text x="12.192" y="-18.542" size="1.4224" layer="25" ratio="20" align="bottom-right">&gt;Name</text>
+<wire x1="-8.1026" y1="9.4234" x2="-8.1026" y2="-8.89" width="0.254" layer="21"/>
+<wire x1="7.874" y1="9.4234" x2="7.8994" y2="9.4234" width="0.127" layer="21"/>
+<wire x1="7.8994" y1="9.4234" x2="7.8994" y2="-8.89" width="0.254" layer="21"/>
+<wire x1="12.7" y1="12.7" x2="12.7" y2="-19.05" width="0.254" layer="21"/>
+<wire x1="-10.16" y1="15.24" x2="10.16" y2="15.24" width="0.254" layer="21"/>
+<wire x1="-12.7" y1="12.7" x2="-10.16" y2="15.24" width="0.254" layer="21" curve="-90"/>
+<wire x1="10.16" y1="15.24" x2="12.7" y2="12.7" width="0.254" layer="21" curve="-90"/>
+<wire x1="-12.7" y1="12.7" x2="-12.7" y2="-19.05" width="0.254" layer="21"/>
+<wire x1="-12.7" y1="-19.05" x2="12.7" y2="-19.05" width="0.254" layer="21"/>
+<wire x1="-8.1026" y1="-8.89" x2="7.874" y2="-8.89" width="0.254" layer="21"/>
+<text x="-13.081" y="7.62" size="1.016" layer="25" ratio="20" rot="R90" align="bottom-center">RST</text>
+<text x="-12.954" y="-10.16" size="1.016" layer="25" ratio="20" rot="R90" align="bottom-center">3V3</text>
+<text x="12.954" y="-10.033" size="1.016" layer="25" ratio="20" rot="R270" align="bottom-center">5V</text>
+<text x="12.954" y="-7.62" size="1.016" layer="25" ratio="20" rot="R270" align="bottom-center">GND</text>
+<text x="12.954" y="5.08" size="1.016" layer="25" ratio="20" rot="R270" align="bottom-center">RX</text>
+<text x="12.954" y="7.62" size="1.016" layer="25" ratio="20" rot="R270" align="bottom-center">TX</text>
+<wire x1="-3.81" y1="-19.05" x2="3.81" y2="-19.05" width="0.2032" layer="21"/>
+<wire x1="3.81" y1="-19.05" x2="3.81" y2="-13.97" width="0.254" layer="21"/>
+<wire x1="3.81" y1="-13.97" x2="-3.81" y2="-13.97" width="0.254" layer="21"/>
+<wire x1="-3.81" y1="-13.97" x2="-3.81" y2="-19.05" width="0.254" layer="21"/>
+<text x="0" y="12.7" size="1.016" layer="25" ratio="20" align="center">ANTENNA</text>
+<text x="0" y="-16.51" size="1.016" layer="25" ratio="20" align="center">USB
 MICRO</text>
 </package>
 <package name="1X04">
@@ -3123,33 +3125,33 @@ TX</text>
 <pin name="GPA7" x="12.7" y="2.54" length="short" rot="R180"/>
 <pin name="VDD" x="-12.7" y="20.32" length="short" direction="pwr"/>
 <pin name="VSS" x="-12.7" y="-20.32" length="short" direction="pwr"/>
-<text x="-6.096" y="-0.762" size="1.778" layer="97">MCP23017</text>
+<text x="-0.762" y="-14.224" size="1.778" layer="97" rot="R90" align="center">MCP23017</text>
 </symbol>
 <symbol name="SWITCH-DTFM-3-LED">
 <pin name="A_1" x="-7.62" y="20.32" visible="off" length="short"/>
 <pin name="A_2" x="-7.62" y="12.7" visible="off" length="short"/>
 <pin name="A_A" x="-7.62" y="17.78" visible="off" length="short"/>
 <pin name="A_C" x="-7.62" y="15.24" visible="off" length="short"/>
-<wire x1="-5.08" y1="22.86" x2="5.08" y2="22.86" width="0.4064" layer="94"/>
-<wire x1="5.08" y1="22.86" x2="5.08" y2="10.16" width="0.4064" layer="94"/>
-<wire x1="5.08" y1="10.16" x2="-5.08" y2="10.16" width="0.4064" layer="94"/>
-<wire x1="-5.08" y1="10.16" x2="-5.08" y2="22.86" width="0.4064" layer="94"/>
+<wire x1="-5.08" y1="22.86" x2="5.08" y2="22.86" width="0.254" layer="94"/>
+<wire x1="5.08" y1="22.86" x2="5.08" y2="10.16" width="0.254" layer="94"/>
+<wire x1="5.08" y1="10.16" x2="-5.08" y2="10.16" width="0.254" layer="94"/>
+<wire x1="-5.08" y1="10.16" x2="-5.08" y2="22.86" width="0.254" layer="94"/>
 <pin name="B_1" x="-7.62" y="5.08" visible="off" length="short"/>
 <pin name="B_2" x="-7.62" y="-2.54" visible="off" length="short"/>
 <pin name="B_A" x="-7.62" y="2.54" visible="off" length="short"/>
 <pin name="B_C" x="-7.62" y="0" visible="off" length="short"/>
-<wire x1="-5.08" y1="7.62" x2="5.08" y2="7.62" width="0.4064" layer="94"/>
-<wire x1="5.08" y1="7.62" x2="5.08" y2="-5.08" width="0.4064" layer="94"/>
-<wire x1="5.08" y1="-5.08" x2="-5.08" y2="-5.08" width="0.4064" layer="94"/>
-<wire x1="-5.08" y1="-5.08" x2="-5.08" y2="7.62" width="0.4064" layer="94"/>
+<wire x1="-5.08" y1="7.62" x2="5.08" y2="7.62" width="0.254" layer="94"/>
+<wire x1="5.08" y1="7.62" x2="5.08" y2="-5.08" width="0.254" layer="94"/>
+<wire x1="5.08" y1="-5.08" x2="-5.08" y2="-5.08" width="0.254" layer="94"/>
+<wire x1="-5.08" y1="-5.08" x2="-5.08" y2="7.62" width="0.254" layer="94"/>
 <pin name="C_1" x="-7.62" y="-10.16" visible="off" length="short"/>
 <pin name="C_2" x="-7.62" y="-17.78" visible="off" length="short"/>
 <pin name="C_A" x="-7.62" y="-12.7" visible="off" length="short"/>
 <pin name="C_C" x="-7.62" y="-15.24" visible="off" length="short"/>
-<wire x1="-5.08" y1="-7.62" x2="5.08" y2="-7.62" width="0.4064" layer="94"/>
-<wire x1="5.08" y1="-7.62" x2="5.08" y2="-20.32" width="0.4064" layer="94"/>
-<wire x1="5.08" y1="-20.32" x2="-5.08" y2="-20.32" width="0.4064" layer="94"/>
-<wire x1="-5.08" y1="-20.32" x2="-5.08" y2="-7.62" width="0.4064" layer="94"/>
+<wire x1="-5.08" y1="-7.62" x2="5.08" y2="-7.62" width="0.254" layer="94"/>
+<wire x1="5.08" y1="-7.62" x2="5.08" y2="-20.32" width="0.254" layer="94"/>
+<wire x1="5.08" y1="-20.32" x2="-5.08" y2="-20.32" width="0.254" layer="94"/>
+<wire x1="-5.08" y1="-20.32" x2="-5.08" y2="-7.62" width="0.254" layer="94"/>
 <text x="5.842" y="22.86" size="1.778" layer="95" rot="R270">&gt;NAME</text>
 <wire x1="-6.096" y1="20.32" x2="2.286" y2="20.32" width="0.1524" layer="94"/>
 <wire x1="2.286" y1="20.32" x2="2.286" y2="17.272" width="0.1524" layer="94"/>
@@ -3234,13 +3236,13 @@ ESP8266 module</description>
 <text x="-10.16" y="-12.446" size="1.778" layer="96">&gt;Value</text>
 </symbol>
 <symbol name="M04">
-<wire x1="1.27" y1="-7.62" x2="-5.08" y2="-7.62" width="0.4064" layer="94"/>
+<wire x1="1.27" y1="-7.62" x2="-5.08" y2="-7.62" width="0.254" layer="94"/>
 <wire x1="-1.27" y1="0" x2="0" y2="0" width="0.6096" layer="94"/>
 <wire x1="-1.27" y1="-2.54" x2="0" y2="-2.54" width="0.6096" layer="94"/>
 <wire x1="-1.27" y1="-5.08" x2="0" y2="-5.08" width="0.6096" layer="94"/>
-<wire x1="-5.08" y1="5.08" x2="-5.08" y2="-7.62" width="0.4064" layer="94"/>
-<wire x1="1.27" y1="-7.62" x2="1.27" y2="5.08" width="0.4064" layer="94"/>
-<wire x1="-5.08" y1="5.08" x2="1.27" y2="5.08" width="0.4064" layer="94"/>
+<wire x1="-5.08" y1="5.08" x2="-5.08" y2="-7.62" width="0.254" layer="94"/>
+<wire x1="1.27" y1="-7.62" x2="1.27" y2="5.08" width="0.254" layer="94"/>
+<wire x1="-5.08" y1="5.08" x2="1.27" y2="5.08" width="0.254" layer="94"/>
 <wire x1="-1.27" y1="2.54" x2="0" y2="2.54" width="0.6096" layer="94"/>
 <text x="-5.08" y="5.842" size="1.27" layer="95">&gt;NAME</text>
 <text x="-5.08" y="-9.525" size="1.27" layer="96">&gt;VALUE</text>
@@ -3250,25 +3252,25 @@ ESP8266 module</description>
 <pin name="4" x="5.08" y="2.54" visible="pad" length="middle" direction="pas" swaplevel="1" rot="R180"/>
 </symbol>
 <symbol name="M02">
-<wire x1="1.27" y1="-1.016" x2="-5.08" y2="-1.016" width="0.4064" layer="94"/>
+<wire x1="1.27" y1="-1.016" x2="-5.08" y2="-1.016" width="0.254" layer="94"/>
 <wire x1="-1.27" y1="2.54" x2="0" y2="2.54" width="0.6096" layer="94"/>
 <wire x1="-1.27" y1="0" x2="0" y2="0" width="0.6096" layer="94"/>
-<wire x1="-5.08" y1="3.556" x2="-5.08" y2="-1.016" width="0.4064" layer="94"/>
-<wire x1="1.27" y1="-1.016" x2="1.27" y2="3.556" width="0.4064" layer="94"/>
-<wire x1="-5.08" y1="3.556" x2="1.27" y2="3.556" width="0.4064" layer="94"/>
-<text x="-5.334" y="3.048" size="1.27" layer="95" rot="R180">&gt;NAME</text>
-<text x="-5.334" y="0.762" size="1.27" layer="96" align="top-right">&gt;VALUE</text>
+<wire x1="-5.08" y1="3.556" x2="-5.08" y2="-1.016" width="0.254" layer="94"/>
+<wire x1="1.27" y1="-1.016" x2="1.27" y2="3.556" width="0.254" layer="94"/>
+<wire x1="-5.08" y1="3.556" x2="1.27" y2="3.556" width="0.254" layer="94"/>
+<text x="-5.08" y="3.81" size="1.27" layer="95">&gt;NAME</text>
+<text x="-5.08" y="-1.27" size="1.27" layer="96" align="top-left">&gt;VALUE</text>
 <pin name="1" x="5.08" y="0" visible="pad" length="middle" direction="pas" swaplevel="1" rot="R180"/>
 <pin name="2" x="5.08" y="2.54" visible="pad" length="middle" direction="pas" swaplevel="1" rot="R180"/>
 </symbol>
 <symbol name="M03">
-<wire x1="1.27" y1="-5.08" x2="-5.08" y2="-5.08" width="0.4064" layer="94"/>
+<wire x1="1.27" y1="-5.08" x2="-5.08" y2="-5.08" width="0.254" layer="94"/>
 <wire x1="-1.27" y1="2.54" x2="0" y2="2.54" width="0.6096" layer="94"/>
 <wire x1="-1.27" y1="0" x2="0" y2="0" width="0.6096" layer="94"/>
 <wire x1="-1.27" y1="-2.54" x2="0" y2="-2.54" width="0.6096" layer="94"/>
-<wire x1="-5.08" y1="5.08" x2="-5.08" y2="-5.08" width="0.4064" layer="94"/>
-<wire x1="1.27" y1="-5.08" x2="1.27" y2="5.08" width="0.4064" layer="94"/>
-<wire x1="-5.08" y1="5.08" x2="1.27" y2="5.08" width="0.4064" layer="94"/>
+<wire x1="-5.08" y1="5.08" x2="-5.08" y2="-5.08" width="0.254" layer="94"/>
+<wire x1="1.27" y1="-5.08" x2="1.27" y2="5.08" width="0.254" layer="94"/>
+<wire x1="-5.08" y1="5.08" x2="1.27" y2="5.08" width="0.254" layer="94"/>
 <text x="-5.08" y="5.588" size="1.4224" layer="95">&gt;NAME</text>
 <text x="-5.08" y="-7.112" size="1.4224" layer="96">&gt;VALUE</text>
 <pin name="1" x="5.08" y="-2.54" visible="pad" length="middle" direction="pas" swaplevel="1" rot="R180"/>
@@ -3276,11 +3278,11 @@ ESP8266 module</description>
 <pin name="3" x="5.08" y="2.54" visible="pad" length="middle" direction="pas" swaplevel="1" rot="R180"/>
 </symbol>
 <symbol name="VREG">
-<wire x1="-7.62" y1="2.54" x2="7.62" y2="2.54" width="0.4064" layer="94"/>
-<wire x1="7.62" y1="2.54" x2="7.62" y2="-2.54" width="0.4064" layer="94"/>
-<wire x1="7.62" y1="-2.54" x2="7.62" y2="-5.08" width="0.4064" layer="94"/>
-<wire x1="7.62" y1="-5.08" x2="-7.62" y2="-5.08" width="0.4064" layer="94"/>
-<wire x1="-7.62" y1="-5.08" x2="-7.62" y2="2.54" width="0.4064" layer="94"/>
+<wire x1="-7.62" y1="2.54" x2="7.62" y2="2.54" width="0.254" layer="94"/>
+<wire x1="7.62" y1="2.54" x2="7.62" y2="-2.54" width="0.254" layer="94"/>
+<wire x1="7.62" y1="-2.54" x2="7.62" y2="-5.08" width="0.254" layer="94"/>
+<wire x1="7.62" y1="-5.08" x2="-7.62" y2="-5.08" width="0.254" layer="94"/>
+<wire x1="-7.62" y1="-5.08" x2="-7.62" y2="2.54" width="0.254" layer="94"/>
 <text x="-0.508" y="-5.842" size="1.27" layer="95" rot="R180">&gt;NAME</text>
 <text x="0.762" y="-5.842" size="1.27" layer="96" align="top-left">&gt;VALUE</text>
 <text x="-2.286" y="-4.318" size="1.6764" layer="95">GND</text>
@@ -3312,13 +3314,13 @@ ESP8266 module</description>
 <wire x1="0" y1="2.54" x2="0" y2="0.381" width="0.1524" layer="94"/>
 </symbol>
 <symbol name="M06">
-<wire x1="1.27" y1="-12.7" x2="-5.08" y2="-12.7" width="0.4064" layer="94"/>
+<wire x1="1.27" y1="-12.7" x2="-5.08" y2="-12.7" width="0.254" layer="94"/>
 <wire x1="-1.27" y1="-5.08" x2="0" y2="-5.08" width="0.6096" layer="94"/>
 <wire x1="-1.27" y1="-7.62" x2="0" y2="-7.62" width="0.6096" layer="94"/>
 <wire x1="-1.27" y1="-10.16" x2="0" y2="-10.16" width="0.6096" layer="94"/>
-<wire x1="-5.08" y1="5.08" x2="-5.08" y2="-12.7" width="0.4064" layer="94"/>
-<wire x1="1.27" y1="-12.7" x2="1.27" y2="5.08" width="0.4064" layer="94"/>
-<wire x1="-5.08" y1="5.08" x2="1.27" y2="5.08" width="0.4064" layer="94"/>
+<wire x1="-5.08" y1="5.08" x2="-5.08" y2="-12.7" width="0.254" layer="94"/>
+<wire x1="1.27" y1="-12.7" x2="1.27" y2="5.08" width="0.254" layer="94"/>
+<wire x1="-5.08" y1="5.08" x2="1.27" y2="5.08" width="0.254" layer="94"/>
 <wire x1="-1.27" y1="0" x2="0" y2="0" width="0.6096" layer="94"/>
 <wire x1="-1.27" y1="-2.54" x2="0" y2="-2.54" width="0.6096" layer="94"/>
 <wire x1="-1.27" y1="2.54" x2="0" y2="2.54" width="0.6096" layer="94"/>
@@ -3376,22 +3378,22 @@ ESP8266 module</description>
 <text x="2.032" y="3.175" size="1.27" layer="94" rot="R180">+</text>
 <text x="2.032" y="0.635" size="1.27" layer="94" rot="R180">O</text>
 <text x="2.032" y="-1.905" size="1.27" layer="94" rot="R180">G</text>
-<wire x1="-2.54" y1="-5.08" x2="-2.54" y2="-2.54" width="0.4064" layer="94"/>
+<wire x1="-2.54" y1="-5.08" x2="-2.54" y2="-2.54" width="0.254" layer="94"/>
 <text x="-2.54" y="5.588" size="1.27" layer="95">&gt;NAME</text>
-<wire x1="-2.54" y1="2.54" x2="-2.54" y2="5.08" width="0.4064" layer="94"/>
-<wire x1="-2.54" y1="-5.08" x2="2.54" y2="-5.08" width="0.4064" layer="94"/>
-<wire x1="2.54" y1="-5.08" x2="2.54" y2="5.08" width="0.4064" layer="94"/>
-<wire x1="2.54" y1="5.08" x2="-2.54" y2="5.08" width="0.4064" layer="94"/>
-<wire x1="-2.54" y1="-2.54" x2="-2.54" y2="2.54" width="0.4064" layer="94" curve="-180"/>
+<wire x1="-2.54" y1="2.54" x2="-2.54" y2="5.08" width="0.254" layer="94"/>
+<wire x1="-2.54" y1="-5.08" x2="2.54" y2="-5.08" width="0.254" layer="94"/>
+<wire x1="2.54" y1="-5.08" x2="2.54" y2="5.08" width="0.254" layer="94"/>
+<wire x1="2.54" y1="5.08" x2="-2.54" y2="5.08" width="0.254" layer="94"/>
+<wire x1="-2.54" y1="-2.54" x2="-2.54" y2="2.54" width="0.254" layer="94" curve="-180"/>
 </symbol>
 <symbol name="M05">
-<wire x1="3.81" y1="-7.62" x2="-2.54" y2="-7.62" width="0.4064" layer="94"/>
+<wire x1="3.81" y1="-7.62" x2="-2.54" y2="-7.62" width="0.254" layer="94"/>
 <wire x1="1.27" y1="0" x2="2.54" y2="0" width="0.6096" layer="94"/>
 <wire x1="1.27" y1="-2.54" x2="2.54" y2="-2.54" width="0.6096" layer="94"/>
 <wire x1="1.27" y1="-5.08" x2="2.54" y2="-5.08" width="0.6096" layer="94"/>
-<wire x1="-2.54" y1="7.62" x2="-2.54" y2="-7.62" width="0.4064" layer="94"/>
-<wire x1="3.81" y1="-7.62" x2="3.81" y2="7.62" width="0.4064" layer="94"/>
-<wire x1="-2.54" y1="7.62" x2="3.81" y2="7.62" width="0.4064" layer="94"/>
+<wire x1="-2.54" y1="7.62" x2="-2.54" y2="-7.62" width="0.254" layer="94"/>
+<wire x1="3.81" y1="-7.62" x2="3.81" y2="7.62" width="0.254" layer="94"/>
+<wire x1="-2.54" y1="7.62" x2="3.81" y2="7.62" width="0.254" layer="94"/>
 <wire x1="1.27" y1="5.08" x2="2.54" y2="5.08" width="0.6096" layer="94"/>
 <wire x1="1.27" y1="2.54" x2="2.54" y2="2.54" width="0.6096" layer="94"/>
 <text x="-2.54" y="8.382" size="1.778" layer="95">&gt;NAME</text>
@@ -3684,7 +3686,7 @@ Source: http://ww1.microchip.com/downloads/en/DeviceDoc/21952a.pdf</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="RADIO-WEMOS-D1-MINI" prefix="WEMOS" uservalue="yes">
+<deviceset name="RADIO-WEMOS-D1-MINI" prefix="W" uservalue="yes">
 <description>WeMos.cc
 D1 mini
 ESP8266 module</description>
