@@ -44,6 +44,7 @@ void hyattInit() {
     hyattRadioInit();
     hyattSenderInit();
     hyattControlPanelInit();
+    hyattProbeInit();
     FS_Init();
     
     hyattAxisSelected = AXISSELECTED_X;

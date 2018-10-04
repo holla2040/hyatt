@@ -234,4 +234,10 @@ void hyattSenderCallback(uint8_t status_code);
 void hyattControlPanelIRInit();
 void hyattControlPanelIRLoop();
 
+// probe
+uint8_t probeCount;
+void hyattProbeInit();
+uint8_t hyattProbeRead();
+void hyattProbeReset();
+
 #endif

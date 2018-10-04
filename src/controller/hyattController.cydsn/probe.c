@@ -20,7 +20,7 @@
 */
 
 #include "grbl.h"
-
+#include "hyatt.h"
 
 // Inverts the probe pin state depending on user settings and probing cycle mode.
 uint8_t probe_invert_mask;
@@ -30,7 +30,7 @@ uint8_t probe_invert_mask;
 // PSoC not required, but leave in for compatibility.
 void probe_init()
 {
- 
+    hyattProbeReset();
 }
 
 
@@ -45,7 +45,7 @@ void probe_configure_invert_mask(uint8_t is_probe_away)
 
 // Returns the probe pin state. Triggered = true. Called by gcode parser and probe state monitor.
 // PSoC Rewrite
-uint8_t probe_get_state() { return Status_Probe_Read(); }
+uint8_t probe_get_state() { return hyattProbeRead(); }
 
 
 // Monitors probe pin state and records the system position when detected. Called by the

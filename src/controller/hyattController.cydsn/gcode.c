@@ -21,6 +21,7 @@
 */
 
 #include "grbl.h"
+#include "hyatt.h"
 
 // NOTE: Max line number is defined by the g-code standard to be 99999. It seems to be an
 // arbitrary value, and some GUIs may require more. So we increased it based on a max safe
@@ -1064,7 +1065,11 @@ uint8_t gc_execute_line(char *line)
         #ifndef ALLOW_FEED_OVERRIDE_DURING_PROBE_CYCLES
           pl_data->condition |= PL_COND_FLAG_NO_FEED_OVERRIDE;
         #endif
+        hyattProbeReset();
         gc_update_pos = mc_probe_cycle(gc_block.values.xyz, pl_data, gc_parser_flags);
+        CyDelay(20); // this lets probe interrupts settle down
+        hyattProbeReset();
+        
       }
 
       // As far as the parser is concerned, the position is now == target. In reality the
