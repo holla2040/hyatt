@@ -1,7 +1,7 @@
 #!/bin/bash
 if [ -z "$name" ] 
 then
-    name=myLoc
+    name=hyatt
 fi
 
 

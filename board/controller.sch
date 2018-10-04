@@ -5004,6 +5004,14 @@ VIN_SCALED_IN 5V FS
 Use 1% resistors</text>
 <text x="93.98" y="155.448" size="1.016" layer="97" align="top-left">1.1 and 1.0 are used
 for 059's SWD pins</text>
+<text x="228.6" y="91.44" size="1.778" layer="97" font="fixed" align="top-left">v1.0 to v1.1 revision
+v1.0              v1.1
+SPARE_IO_0      RADIO_TX
+SPARE_IO_1      RADIO_RX
+RADIO_TX        FEEDHOLD_OUT
+FEEDHOLD_OUT    SWD
+RADIO_RX        SWD
+</text>
 </plain>
 <instances>
 <instance part="FRAME1" gate="G$1" x="0" y="0"/>
