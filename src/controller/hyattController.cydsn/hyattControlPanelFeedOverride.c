@@ -40,7 +40,9 @@ void hyattControlPanelFeedOverrideLoop() {
     // uint8_t v = FEED_OVERRIDE_Read();
     // (v & FEED_OVERRIDE_OFF) ? system_set_exec_state_flag(EXEC_FEED_HOLD) : system_set_exec_state_flag(EXEC_CYCLE_START);
 
-    uint8_t newfo = (200*ADC_GetResult16())/4096;
+    // uint8_t newfo = (200*ADC_GetResult16())/4096;
+    // this results in newfo being increments of 10
+    uint8_t newfo = 10*round(20.0*ADC_GetResult16()/4096.0);
     if (abs(newfo - f_overrideLast) > FEEDTHRESHOLD) {
         feedOverrideSet(newfo);
     }
