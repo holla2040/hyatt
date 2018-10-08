@@ -45,6 +45,8 @@ void hyattControlPanelDisplayInit() {
 
     hyattTimeoutDisplaySlowUpdate = 0;
     hyattTimeoutDisplayFastUpdate = 0;
+
+    uartZDisplay_Start();
 }
 
 void hyattControlPanelDisplayIdleSetup() {
@@ -80,15 +82,32 @@ void hyattControlPanelDisplayIdle() {
         LCD_SetCursor(12,0);
         sprintf(buf,"%d",54+gc_state.modal.coord_select);
         LCD_PutString(buf);
+        sprintf(buf,"G%d",54+gc_state.modal.coord_select);
+        hyattZDisplaySet("c",buf);
 
         LCD_SetCursor(15,0);
-        gc_state.modal.units ?  LCD_PutString("INCH"):LCD_PutString("MM  ");
+        gc_state.modal.units ?  strcpy(buf,"INCH") : strcpy(buf,"MM  ");
+        LCD_PutString(buf);
+        hyattZDisplaySet("u",buf);
 
         LCD_SetCursor(18,1);
-        (gc_block.modal.spindle & SPINDLE_ENABLE_CW) ? LCD_PutString("S"): LCD_PutString(" ");
+        if (gc_block.modal.spindle & SPINDLE_ENABLE_CW) {
+            LCD_PutString("S");
+            hyattZDisplaySet("s","SPINDLE");
+        } else {
+            LCD_PutString(" ");
+            hyattZDisplaySet("s","");
+        }
 
         LCD_SetCursor(19,1);
-        (gc_state.modal.coolant & COOLANT_MIST_ENABLE) ? LCD_PutString("A"): LCD_PutString(" ");
+        if (gc_state.modal.coolant & COOLANT_MIST_ENABLE) {
+            LCD_PutString("A");
+            hyattZDisplaySet("a","AIR");
+        } else {
+            LCD_PutString(" ");
+            hyattZDisplaySet("a","");
+        }
+
 
         LCD_SetCursor(12,2);
         sprintf(buf,"%4d",(uint16_t)gc_state.feed_rate);
@@ -98,10 +117,14 @@ void hyattControlPanelDisplayIdle() {
         sprintf(buf,"%-3d",sys.f_override);
         LCD_PutString(buf);
 
+        sprintf(buf,"F%4d/%-3d%%",(uint16_t)gc_state.feed_rate,sys.f_override);
+        hyattZDisplaySet("f",buf);
+
         LCD_SetCursor(0,3);
         lastBlock[20] = 0; // clip lastBlock to display width
         sprintf(buf,"%-20s",lastBlock);
         LCD_PutString(buf);
+        hyattZDisplaySet("st",lastBlock);
         
         hyattTimeoutDisplaySlowUpdate = hyattTicks + DISPLAYSLOWUPDATEINTERVAL;
     }
@@ -125,16 +148,21 @@ void hyattControlPanelDisplayIdle() {
 
             }
         }
+        hyattZDisplayCommand("ref_stop");
         for (idx=0; idx< N_AXIS; idx++) {
+            char attr[2] = {0,0};
+            double v = print_position[idx];
             LCD_SetCursor(1,idx);
             if (bit_istrue(settings.flags,BITFLAG_REPORT_INCHES)) {
-                sprintf(buf,"%9.4f",print_position[idx]*INCH_PER_MM);
-            } else {
-                sprintf(buf,"%9.3f",print_position[idx]);
+                v *= INCH_PER_MM;
             }
+            sprintf(buf,"%9.3f",v);
             LCD_PutString(buf);
+            attr[0] = (char)('x'+idx);
+            
+            hyattZDisplaySet(attr,buf);
         }
-
+        hyattZDisplayCommand("ref_star");
         hyattTimeoutDisplayFastUpdate = hyattTicks + DISPLAYFASTUPDATEINTERVAL;
     }
 }
@@ -386,3 +414,16 @@ void hyattControlPanelDisplayLoop() {
         
     }
 }
+
+void hyattZDisplayCommand(char *command) {
+    char line[100];
+    sprintf(line,"%s\xff\xff\xff",command);
+    uartZDisplay_PutString(line);    
+}
+
+void hyattZDisplaySet(char *attr,char *value) {
+    char line[100];
+    sprintf(line,"%s.txt=\"%s\"\xff\xff\xff",attr,value);
+    uartZDisplay_PutString(line);    
+}
+

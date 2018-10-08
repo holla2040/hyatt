@@ -113,8 +113,8 @@ void control_isr_handler(); // PSoC interrupter handler
 #else
   #define N_CONTROL_PIN 3
   #define CONTROL_PIN_INDEX_CYCLE_START   bit(0)
-  #define CONTROL_PIN_INDEX_RESET         bit(2)
-  #define CONTROL_PIN_INDEX_FEED_HOLD     bit(1)
+  #define CONTROL_PIN_INDEX_RESET         bit(1)
+  #define CONTROL_PIN_INDEX_FEED_HOLD     bit(2)
 #endif
 
 // Define spindle stop override control states.

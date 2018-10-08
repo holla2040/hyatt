@@ -4,6 +4,7 @@
 #include <stdint.h>
 #include "grbl.h"
 
+
 void grblBlockSend(char *block);
 char selectedAxisLetter();
 char lastBlock[40];
@@ -239,5 +240,10 @@ uint8_t probeCount;
 void hyattProbeInit();
 uint8_t hyattProbeRead();
 void hyattProbeReset();
+
+// zDisplay
+void hyattZDisplayInit();
+void hyattZDisplaySet(char *attr,char *value);
+void hyattZDisplayCommand(char *command);
 
 #endif

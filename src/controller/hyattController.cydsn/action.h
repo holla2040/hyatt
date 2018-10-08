@@ -10,7 +10,7 @@ struct action {
 struct action actions[CONTROLPANEL_SELECTIONCOUNTMAX] = {
     {"X0Y0","X0 Y0 G1F2500"},
     {"HOME","$H"},
-    {"X10Y10","X10 Y10 G1F2500"},
+    {"X10Y10","X100 Y100 G1F2500"},
     {"",""},
     {"",""},
     {"",""},
