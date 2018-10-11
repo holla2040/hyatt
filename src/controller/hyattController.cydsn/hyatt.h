@@ -217,6 +217,7 @@ void hyattControlPanelWheelLoop();
 
 // radio
 void hyattRadioInit();
+uint16_t crcCCITT(char *data, uint16_t length, uint16_t seed);
 
 // select
 void hyattSelectInit();
