@@ -13,6 +13,8 @@
   for file in `ls -A1`; do echo $file;curl -F "file=@$PWD/$file" myLoc.local/edit; done
 */
 
+// #define VERBOSE
+
 // comment to disable TCP Socket Server,  socat TCP:hyatt.local:23 -,raw,echo=0
 #define TCPSERVER
 #define MAX_SRV_CLIENTS 2
@@ -59,6 +61,8 @@ void webSocketEvent(uint8_t num, WStype_t type, uint8_t *payload, size_t length)
       }
       break;
     case WStype_TEXT:
+    Serial.print((const char *)payload);
+    webSocketServer.broadcastTXT("C");
 #ifdef VERBOSE  
       Serial.printf("[%u] get Text: %s\r\n", num, payload);
 #endif

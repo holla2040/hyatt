@@ -16,22 +16,30 @@
         var chunkIndex;
         var chunkCount;
         var chunks = new String();
+        var dataDiv = document.getElementById('data');
+        var resultDiv = document.getElementById('result');
 
         function resultSet(v) {
-            document.getElementById('result').innerText = v;
+            resultDiv.innerText = v;
         }
 
         function connectChatServer() {
-            ws = new WebSocket("ws://127.0.0.1:8001");
+            ws = new WebSocket("ws://hyatt.local:81");
             ws.binaryType = "arraybuffer";
+            resultSet("");
             ws.onopen = function() {
                 resultSet("connected");
             };
             ws.onmessage = function(evt) {
-                resultSet(evt.msg);
+              if (evt.data.charAt(0) == "C") {
+                if (chunkCount > 0) {
+                    setTimeout(chunkSend,1); // send the next chunk
+                }
+              }
             };
             ws.onclose = function() {
-                resultSet("Connection is closed...");
+                resultSet("Connection is closed... Attempting connect in 5 seconds");
+                setTimeout(function() {connectChatServer()},5000);
             };
             ws.onerror = function(e) {
                 resultSet(e.msg);
@@ -99,13 +107,10 @@
         function chunkSend() {
             var chunkData = chunks.substring(chunkIndex,chunkIndex+CHUNKSIZE);
             ws.send(chunkData);
-            document.getElementById('data').innerText = chunkData;
+            dataDiv.innerText = chunkData;
             resultSet(chunkCount+" 0x"+crcCCITT(chunkData,chunkData.length,0x0000).toString(16).toUpperCase());
             chunkIndex += CHUNKSIZE;
             chunkCount -= 1;
-            if (chunkCount > 0) {
-                setTimeout(chunkSend,10);
-            }
         }
 
         function sendFile() {
