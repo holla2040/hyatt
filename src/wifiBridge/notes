@@ -1,3 +1,29 @@
+https://github.com/lyngklip/structjs
+
+proposed frame bewteen radio and psoc
+
+typedef struct _frame {
+    uint8_t  source;
+    uint8_t  destination;
+    uint8_t  command;
+    uint8_t  parameter;
+    uint16_t sequence;
+    uint16_t length;
+    void     *data;
+    uint16_t checksum;
+} frame_t;
+
+
+javascript needs to send frame_t over websocket. still thinking on this
+    https://github.com/lyngklip/structjs
+
+
+
+
+
+
+
+
 have to use websockets to upload files, http POST only handles small files < 80K
 
 

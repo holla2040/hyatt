@@ -23,6 +23,7 @@ bin:
 
 
 run: bin
+	- pkill -9 -f microcom
 	/home/holla/.arduino15/packages/esp8266/tools/esptool/0.4.13/esptool -vv -cd nodemcu -cb 921600 -cp $(port) -ca 0x00000 -cf /tmp/arduino_build/$(ino).bin 
 
 flash: 

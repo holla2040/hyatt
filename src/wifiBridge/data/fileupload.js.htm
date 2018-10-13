@@ -24,7 +24,7 @@
         }
 
         function connectChatServer() {
-            ws = new WebSocket("ws://hyatt.local:81");
+            ws = new WebSocket('ws://' + window.location.hostname + ':81/');
             ws.binaryType = "arraybuffer";
             resultSet("");
             ws.onopen = function() {
@@ -133,7 +133,7 @@
             reader.readAsText(file);
         }
 
-        connectChatServer();
+        setTimeout(connectChatServer,2000);
 
     </script>
 </body>

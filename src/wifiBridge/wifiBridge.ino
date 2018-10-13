@@ -6,6 +6,7 @@
 #include <WiFiManager.h>        //https://github.com/tzapu/WiFiManager
 #include <EEPROM.h>
 #include <ArduinoJson.h>
+#include "FS.h"
 
 /*
   upload the contents of the data folder with MkSPIFFS Tool ("ESP8266 Sketch Data Upload" in Tools menu in Arduino IDE)
@@ -40,7 +41,6 @@ WiFiClient tcpServerClients[MAX_SRV_CLIENTS];
 ESP8266HTTPUpdateServer httpUpdater;
 const char *update_path = "/upload";
 WiFiManager wifiManager;
-#include "fs.h"
 
 void webSocketEvent(uint8_t num, WStype_t type, uint8_t *payload, size_t length) {
 #ifdef VERBOSE  
