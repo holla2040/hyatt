@@ -22,7 +22,7 @@ Operator Interface
 PCB board, 100x100mm 2 layer, mixed through and smt parts
 
 
-![WorkBee](images/workbee-cnc.jpg)
+![WorkBee](images/workbee-hyatt.png)
 
 ![cy8ckit](images/cy8ckit-059.jpg)
 
