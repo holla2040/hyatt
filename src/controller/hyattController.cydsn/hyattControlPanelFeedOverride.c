@@ -42,6 +42,7 @@ void hyattControlPanelFeedOverrideLoop() {
 
     // uint8_t newfo = (200*ADC_GetResult16())/4096;
     // this results in newfo being increments of 10
+    AMUX_Select(AMUX_FEED_OVERRIDE_IN);
     uint8_t newfo = 10*round(20.0*ADC_GetResult16()/4096.0);
     if (abs(newfo - f_overrideLast) > FEEDTHRESHOLD) {
         feedOverrideSet(newfo);

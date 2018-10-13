@@ -19,6 +19,7 @@ char mdiBlock[MDIBLOCKLEN];
 extern parser_block_t gc_block;
 
 char selections[CONTROLPANEL_SELECTIONCOUNTMAX][CONTROLPANEL_SELECTIONWIDTH] = {};
+char filelist[CONTROLPANEL_SELECTIONCOUNTMAX][FILENAMEMAX];
 
 void selectionsClear() {
     for (int i = 0; i < CONTROLPANEL_SELECTIONCOUNTMAX; i++) {
@@ -35,8 +36,6 @@ void selectionsDisplay() {
         LCD_PutString(selections[i]);
     }
 }
-
-char filelist[CONTROLPANEL_SELECTIONCOUNTMAX][FILENAMEMAX];
 
 void hyattControlPanelDisplayInit() {
     LCD_Start(lcdAddr,20,4,0);
@@ -86,9 +85,13 @@ void hyattControlPanelDisplayIdle() {
         hyattZDisplaySet("c",buf);
 
         LCD_SetCursor(15,0);
-        gc_state.modal.units ?  strcpy(buf,"INCH") : strcpy(buf,"MM  ");
-        LCD_PutString(buf);
-        hyattZDisplaySet("u",buf);
+        if (gc_state.modal.units) {
+            LCD_PutString("INCH");
+            hyattZDisplaySet("u","INCH");
+        } else {
+            LCD_PutString("MM  ");
+            hyattZDisplaySet("u","MM");
+        }
 
         LCD_SetCursor(18,1);
         if (gc_block.modal.spindle & SPINDLE_ENABLE_CW) {
@@ -125,7 +128,7 @@ void hyattControlPanelDisplayIdle() {
         sprintf(buf,"%-20s",lastBlock);
         LCD_PutString(buf);
         hyattZDisplaySet("st",lastBlock);
-        
+
         hyattTimeoutDisplaySlowUpdate = hyattTicks + DISPLAYSLOWUPDATEINTERVAL;
     }
 
@@ -159,7 +162,7 @@ void hyattControlPanelDisplayIdle() {
             sprintf(buf,"%9.3f",v);
             LCD_PutString(buf);
             attr[0] = (char)('x'+idx);
-            
+
             hyattZDisplaySet(attr,buf);
         }
         hyattZDisplayCommand("ref_star");
@@ -247,7 +250,7 @@ void filelistGet() {
     }
     FS_FindClose(&fd);
     FS_Unmount("");
-    
+
 }
 
 void hyattControlPanelDisplayLoadSetup() {
@@ -411,19 +414,18 @@ void hyattControlPanelDisplayLoop() {
         case CONTROLPANEL_SELECT_MDI:
             hyattControlPanelDisplayMDI();
             break;
-        
+
     }
 }
 
 void hyattZDisplayCommand(char *command) {
     char line[100];
     sprintf(line,"%s\xff\xff\xff",command);
-    uartZDisplay_PutString(line);    
+    uartZDisplay_PutString(line);
 }
 
 void hyattZDisplaySet(char *attr,char *value) {
     char line[100];
     sprintf(line,"%s.txt=\"%s\"\xff\xff\xff",attr,value);
-    uartZDisplay_PutString(line);    
+    uartZDisplay_PutString(line);
 }
-
