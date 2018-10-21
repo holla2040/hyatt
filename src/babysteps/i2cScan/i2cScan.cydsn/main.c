@@ -5,13 +5,25 @@
 #define DISPLAY_ADDR           0x27
 
 int main(void){
+    uint8_t pinValue;
     uint8_t error;
     
     CyGlobalIntEnable; 
-
-    i2c_Start();
     uart_Start();
     uart_PutString("\n\ni2cScan begin\n");
+
+    pinValue = sda_Read();
+    uart_PutChar(pinValue+'0');
+    pinValue = scl_Read();
+    uart_PutChar(pinValue+'0');
+    pinValue = irReceive_Read();
+    uart_PutChar(pinValue+'0');
+    
+    
+    
+/*
+    couldn't get this to work
+    i2c_Start();
     
     error = i2c_MasterSendStart(KEYPAD_ROW12_ADDR,0);
     if (error == i2c_MSTR_NO_ERROR) {
@@ -41,7 +53,8 @@ int main(void){
         uart_PutString("DISPLAY      not found\n");
     }
     i2c_MasterSendStop();
-
+*/
+    
     for(;;) {
     
     }
