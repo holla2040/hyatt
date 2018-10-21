@@ -12,17 +12,18 @@ int main(void){
     uart_Start();
     uart_PutString("\n\ni2cScan begin\n");
 
+    /*
     pinValue = sda_Read();
     uart_PutChar(pinValue+'0');
     pinValue = scl_Read();
     uart_PutChar(pinValue+'0');
     pinValue = irReceive_Read();
     uart_PutChar(pinValue+'0');
+    */
     
     
     
-/*
-    couldn't get this to work
+
     i2c_Start();
     
     error = i2c_MasterSendStart(KEYPAD_ROW12_ADDR,0);
@@ -53,7 +54,7 @@ int main(void){
         uart_PutString("DISPLAY      not found\n");
     }
     i2c_MasterSendStop();
-*/
+    uart_PutString("i2cScan done\n");
     
     for(;;) {
     
