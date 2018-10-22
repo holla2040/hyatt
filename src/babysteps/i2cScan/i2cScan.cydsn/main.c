@@ -5,24 +5,13 @@
 #define DISPLAY_ADDR           0x27
 
 int main(void){
-    uint8_t pinValue;
     uint8_t error;
     
     CyGlobalIntEnable; 
     uart_Start();
-    uart_PutString("\n\ni2cScan begin\n");
-
-    /*
-    pinValue = sda_Read();
-    uart_PutChar(pinValue+'0');
-    pinValue = scl_Read();
-    uart_PutChar(pinValue+'0');
-    pinValue = irReceive_Read();
-    uart_PutChar(pinValue+'0');
-    */
-    
-    
-    
+    uart_PutString("\x1B[2J\x1b[H"); // clear screen
+    CyDelay(500);
+    uart_PutString("i2cScan begin\n");
 
     i2c_Start();
     
@@ -54,6 +43,8 @@ int main(void){
         uart_PutString("DISPLAY      not found\n");
     }
     i2c_MasterSendStop();
+    
+    
     uart_PutString("i2cScan done\n");
     
     for(;;) {
