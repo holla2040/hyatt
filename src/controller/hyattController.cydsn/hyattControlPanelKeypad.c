@@ -14,6 +14,8 @@ uint32_t timeoutKeypadUpdate;
 
 extern uint8_t senderState;
 extern parser_block_t gc_block;
+bool exists;
+
 
 CY_ISR(keyHandler) {
     keyPending = 1;

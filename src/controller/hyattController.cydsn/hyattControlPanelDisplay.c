@@ -4,7 +4,7 @@
 #include "action.h"
 #include "RC65X.h"
 
-#define lcdAddr   0x27
+
 
 #define DISPLAYSLOWUPDATEINTERVAL 251
 #define DISPLAYFASTUPDATEINTERVAL 100
@@ -38,8 +38,7 @@ void selectionsDisplay() {
 }
 
 void hyattControlPanelDisplayInit() {
-    LCD_Start(lcdAddr,20,4,0);
-
+    LCD_Start(DISPLAY2004_ADDR,20,4,0);
     LCD_SetCursor(0,0);
 
     hyattTimeoutDisplaySlowUpdate = 0;

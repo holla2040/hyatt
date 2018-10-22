@@ -4,7 +4,6 @@
 #include <stdint.h>
 #include "grbl.h"
 
-
 void grblBlockSend(char *block);
 char selectedAxisLetter();
 char lastBlock[40];
@@ -20,6 +19,7 @@ char lastBlock[40];
 
 #define KEYPAD_ROW12_ADDR      0x20
 #define KEYPAD_ROW34_ADDR      0x21
+#define DISPLAY2004_ADDR       0x27
 
 #define IOA_DIR     0x00
 #define IOA_POL     0x02
