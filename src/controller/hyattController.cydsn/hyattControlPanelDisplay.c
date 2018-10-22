@@ -4,8 +4,6 @@
 #include "action.h"
 #include "RC65X.h"
 
-
-
 #define DISPLAYSLOWUPDATEINTERVAL 251
 #define DISPLAYFASTUPDATEINTERVAL 100
 #define FILENAMEMAX 32
@@ -13,9 +11,7 @@
 
 const char watch[] = " \xa5"; // a5 is a center dot, see lcd char set in manual
 uint8_t watchCount;
-
 char mdiBlock[MDIBLOCKLEN];
-
 extern parser_block_t gc_block;
 
 char selections[CONTROLPANEL_SELECTIONCOUNTMAX][CONTROLPANEL_SELECTIONWIDTH] = {};

@@ -32,12 +32,10 @@ char selectedAxisLetter() {
 
 void hyattInit() {
     isrHyatt_StartEx(isrHyattMainHandler);
-    
-#ifdef HYATTI2CENABLED
+
     I2C_Start();   
     CyDelay(50);
-#endif
-    
+
     IO_RESET_Write(0); // reset the IO Expanders
     CyDelay(1);
     IO_RESET_Write(1);

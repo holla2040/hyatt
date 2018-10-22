@@ -81,7 +81,8 @@ void hyattControlPanelKeypadLoop() {
             system_set_exec_accessory_override_flag(EXEC_COOLANT_MIST_OVR_TOGGLE);
             hyattTimeoutKeypadUpdate = hyattTicks + 100;
         }
-        
+
+        /*
         // probably remove this after hold and reset buttons are installed
         if (key == KEY_SELECT) {
             if (sys.state == STATE_CYCLE) { // first select push
@@ -91,7 +92,8 @@ void hyattControlPanelKeypadLoop() {
             if (sys.state == STATE_HOLD) {
                 mc_reset();
             }
-        }   
+        }  
+        */
 
         if (sys.state == STATE_IDLE) {
             switch(key) {
@@ -133,8 +135,6 @@ void hyattControlPanelKeypadLoop() {
                             hyattControlPanelState = CONTROLPANEL_IDLE_SETUP;
                             break;
                     }
-                    // grblBlockSend("G91Z-20");
-                    // grblBlockSend("G90X0Y0");
                     break;
                 case KEY_UNIT:
                     unitToggle();
