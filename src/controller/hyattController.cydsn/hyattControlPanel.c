@@ -29,7 +29,7 @@ void hyattControlPanelInit() {
     I2C_Stop();
     I2C_Start();
     
-    
+    //hyattControlPanelDisplayExists = false;
     
     if (hyattControlPanelDisplayExists) {   
         hyattControlPanelDisplayInit();
