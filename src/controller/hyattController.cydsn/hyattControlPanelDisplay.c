@@ -4,8 +4,8 @@
 #include "action.h"
 #include "RC65X.h"
 
-#define DISPLAYSLOWUPDATEINTERVAL 500
-#define DISPLAYFASTUPDATEINTERVAL 250
+#define DISPLAYSLOWUPDATEINTERVAL 2500
+#define DISPLAYFASTUPDATEINTERVAL 200
 #define FILENAMEMAX 32
 #define MDIBLOCKLEN 50
 
@@ -105,7 +105,6 @@ void hyattControlPanelDisplayIdle() {
             LCD_PutString(" ");
             hyattZDisplaySet("a","");
         }
-
 
         LCD_SetCursor(12,2);
         sprintf(buf,"%4d",(uint16_t)gc_state.feed_rate);

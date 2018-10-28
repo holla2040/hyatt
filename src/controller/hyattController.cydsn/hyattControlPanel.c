@@ -58,7 +58,7 @@ void hyattControlPanelInit() {
     if (hyattControlPanelDisplayExists) {   
         LCD_SetCursor(10,0);     LCD_PutString("Infrared");
     }
-    CyDelay(3000);
+    CyDelay(1000);
 
     timeoutStateUpdate = 0;
     hyattControlPanelState = CONTROLPANEL_IDLE_SETUP;
@@ -70,7 +70,7 @@ void hyattControlPanelLoop() {
     }
     
     if (hyattControlPanelDisplayExists) {   
-        hyattControlPanelDisplayLoop();
+         hyattControlPanelDisplayLoop();
     }
     
     hyattControlPanelFeedOverrideLoop();
