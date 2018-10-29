@@ -1,10 +1,10 @@
 #include <stdlib.h>
 #include <FS.h>
 #include "hyatt.h"
-#include "action.h"
+#include "hyattAction.h"
 #include "RC65X.h"
 
-#define DISPLAYSLOWUPDATEINTERVAL 2500
+#define DISPLAYSLOWUPDATEINTERVAL 1000
 #define DISPLAYFASTUPDATEINTERVAL 200
 #define FILENAMEMAX 32
 #define MDIBLOCKLEN 50
@@ -58,53 +58,65 @@ void hyattControlPanelDisplayIdleSetup() {
 void hyattControlPanelDisplayIdle() {
     char buf[100];
     if (hyattTicks > hyattTimeoutDisplaySlowUpdate) {
-        LCD_SetCursor(11,1);
-        switch(sys.state) {
-            case STATE_IDLE:        LCD_PutString("IDLE "); break;
-            case STATE_CYCLE:       LCD_PutString("RUN  "); break;
-            case STATE_HOLD:        LCD_PutString("HOLD "); break;
-            case STATE_HOMING:      LCD_PutString("HOME "); break;
-            case STATE_ALARM:       LCD_PutString("ALARM"); break;
-            case STATE_CHECK_MODE:  LCD_PutString("CHECK"); break;
-            case STATE_SAFETY_DOOR: LCD_PutString("DOOR "); break;
-            case STATE_JOG:         LCD_PutString("JOG  "); break;
-            default:                LCD_PutString("?    "); break;
-        };
-        LCD_SetCursor(19,0);
-        LCD_Write(watch[(++watchCount)%strlen(watch)]);
+        // if (sys.state == STATE_CYCLE) return;
+        
+        if (sys.state != STATE_CYCLE) {
+            LCD_SetCursor(11,1);
+            switch(sys.state) {
+                case STATE_IDLE:        LCD_PutString("IDLE "); break;
+                case STATE_CYCLE:       LCD_PutString("RUN  "); break;
+                case STATE_HOLD:        LCD_PutString("HOLD "); break;
+                case STATE_HOMING:      LCD_PutString("HOME "); break;
+                case STATE_ALARM:       LCD_PutString("ALARM"); break;
+                case STATE_CHECK_MODE:  LCD_PutString("CHECK"); break;
+                case STATE_SAFETY_DOOR: LCD_PutString("DOOR "); break;
+                case STATE_JOG:         LCD_PutString("JOG  "); break;
+                default:                LCD_PutString("?    "); break;
+            };
+            LCD_SetCursor(19,0);
+            LCD_Write(watch[(++watchCount)%strlen(watch)]);
 
-        LCD_SetCursor(12,0);
-        sprintf(buf,"%d",54+gc_state.modal.coord_select);
-        LCD_PutString(buf);
-        sprintf(buf,"G%d",54+gc_state.modal.coord_select);
-        hyattZDisplaySet("c",buf);
+            LCD_SetCursor(12,0);
+            sprintf(buf,"%d",54+gc_state.modal.coord_select);
+            LCD_PutString(buf);
+            sprintf(buf,"G%d",54+gc_state.modal.coord_select);
+            hyattZDisplaySet("c",buf);
 
-        LCD_SetCursor(15,0);
-        if (gc_state.modal.units) {
-            LCD_PutString("INCH");
-            hyattZDisplaySet("u","INCH");
-        } else {
-            LCD_PutString("MM  ");
-            hyattZDisplaySet("u","MM");
-        }
+            LCD_SetCursor(15,0);
+            if (gc_state.modal.units) {
+                LCD_PutString("INCH");
+                hyattZDisplaySet("u","INCH");
+            } else {
+                LCD_PutString("MM  ");
+                hyattZDisplaySet("u","MM");
+            }
 
-        LCD_SetCursor(18,1);
-        if (gc_block.modal.spindle & SPINDLE_ENABLE_CW) {
-            LCD_PutString("S");
-            hyattZDisplaySet("s","SPINDLE");
-        } else {
-            LCD_PutString(" ");
-            hyattZDisplaySet("s","");
-        }
+            LCD_SetCursor(18,1);
+            if (gc_block.modal.spindle & SPINDLE_ENABLE_CW) {
+                LCD_PutString("S");
+                hyattZDisplaySet("s","SPINDLE");
+            } else {
+                LCD_PutString(" ");
+                hyattZDisplaySet("s","");
+            }
 
-        LCD_SetCursor(19,1);
-        if (gc_state.modal.coolant & COOLANT_MIST_ENABLE) {
-            LCD_PutString("A");
-            hyattZDisplaySet("a","AIR");
-        } else {
-            LCD_PutString(" ");
-            hyattZDisplaySet("a","");
-        }
+            LCD_SetCursor(19,1);
+            if (gc_state.modal.coolant & COOLANT_MIST_ENABLE) {
+                LCD_PutString("A");
+                hyattZDisplaySet("a","AIR");
+            } else {
+                LCD_PutString(" ");
+                hyattZDisplaySet("a","");
+            }
+
+
+            sprintf(buf,"F%4d/%-3d%%",(uint16_t)gc_state.feed_rate,sys.f_override);
+            hyattZDisplaySet("f",buf);
+
+            LCD_SetCursor(0,3);
+            lastBlock[20] = 0; // clip lastBlock to display width
+            sprintf(buf,"%-20s",lastBlock);
+            LCD_PutString(buf);
 
         LCD_SetCursor(12,2);
         sprintf(buf,"%4d",(uint16_t)gc_state.feed_rate);
@@ -114,13 +126,7 @@ void hyattControlPanelDisplayIdle() {
         sprintf(buf,"%-3d",sys.f_override);
         LCD_PutString(buf);
 
-        sprintf(buf,"F%4d/%-3d%%",(uint16_t)gc_state.feed_rate,sys.f_override);
-        hyattZDisplaySet("f",buf);
-
-        LCD_SetCursor(0,3);
-        lastBlock[20] = 0; // clip lastBlock to display width
-        sprintf(buf,"%-20s",lastBlock);
-        LCD_PutString(buf);
+        }
         hyattZDisplaySet("st",lastBlock);
 
         hyattTimeoutDisplaySlowUpdate = hyattTicks + DISPLAYSLOWUPDATEINTERVAL;
@@ -128,6 +134,7 @@ void hyattControlPanelDisplayIdle() {
 
     if (hyattTicks > hyattTimeoutDisplayFastUpdate) {
         uint8_t idx;
+        // if (sys.state == STATE_CYCLE) return;
         int32_t current_position[N_AXIS]; // Copy current state of the system position variable
         memcpy(current_position,sys_position,sizeof(sys_position));
         float print_position[N_AXIS];

@@ -74,6 +74,12 @@ void hyattControlPanelIRInit(void) {
 
 void hyattControlPanelIRLoop(void) {
     if (button) {
+        if (sys.state == STATE_ALARM) {
+            if (button == RC65X_KEYPWR) {
+                grblBlockSend("$X");
+            }
+        }
+        
         if (button == RC65X_KEYSELECT) {
             switch (sys.state) {
                 case STATE_HOLD:
@@ -94,7 +100,10 @@ void hyattControlPanelIRLoop(void) {
                     break;
                 case CONTROLPANEL_IDLE:
                     switch (button) {
-                        case RC65X_KEYUP:
+                        case RC65X_KEYPREVIOUS:
+                            grblBlockSend("$H");
+                            break;
+                       case RC65X_KEYUP:
                             grblBlockSend("Y1G91G1F2500");
                             break;
                         case RC65X_KEYDOWN:
