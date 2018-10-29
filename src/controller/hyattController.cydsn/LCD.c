@@ -240,7 +240,7 @@ void LCD_PulseEnable(uint8_t _data){
 	LCD_ExpanderWrite(_data | En);	// En high
 	CyDelayUs(1);		// enable pulse must be >450ns
 	LCD_ExpanderWrite(_data & ~En);	// En low
-	CyDelayUs(50);		// commands need > 37us to settle
+	CyDelayUs(1);		// was 50 commands need > 37us to settle
 }
 
 void LCD_Load_custom_character(uint8_t char_num, uint8_t *rows){
