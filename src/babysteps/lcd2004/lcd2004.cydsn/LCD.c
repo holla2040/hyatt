@@ -353,7 +353,7 @@ void LCD_PutString(char word[]){
 }
 
 void LCD_Write_byte(uint8_t addr,uint8_t data){ 
-
+CyDelay(1);
 #if CY_PSOC5
     I2C_MasterSendStart(addr, 0);
     I2C_MasterWriteByte(data);

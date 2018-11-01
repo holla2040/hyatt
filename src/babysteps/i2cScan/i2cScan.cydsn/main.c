@@ -46,6 +46,8 @@ int main(void){
     
     
     uart_PutString("i2cScan done\n");
+    CyDelay(500);   
+    uart_Stop();
     
     for(;;) {
     

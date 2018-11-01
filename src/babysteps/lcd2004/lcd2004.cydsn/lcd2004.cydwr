@@ -253,6 +253,8 @@
     <Group key="Pin">
       <Data key="02f2cf2c-2c7a-49df-9246-7a3435c21be3" value="SCL" />
       <Data key="22863ebe-a37b-476f-b252-6e49a8c00b12" value="SDA" />
+      <Data key="d4a2924c-eaf0-4609-adb0-9208b1a1b3ce" value="sclDebug" />
+      <Data key="e851a3b9-efb8-48be-bbb8-b303b216c393" value="sdaDebug" />
     </Group>
   </Group>
   <Group key="EEPROM">
@@ -3347,6 +3349,16 @@
     <Group key="22863ebe-a37b-476f-b252-6e49a8c00b12">
       <Group key="0">
         <Data key="Port Format" value="12,1" />
+      </Group>
+    </Group>
+    <Group key="d4a2924c-eaf0-4609-adb0-9208b1a1b3ce">
+      <Group key="0">
+        <Data key="Port Format" value="2,4" />
+      </Group>
+    </Group>
+    <Group key="e851a3b9-efb8-48be-bbb8-b303b216c393">
+      <Group key="0">
+        <Data key="Port Format" value="2,3" />
       </Group>
     </Group>
   </Group>
