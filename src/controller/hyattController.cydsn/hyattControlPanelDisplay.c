@@ -17,6 +17,23 @@ extern parser_block_t gc_block;
 char selections[CONTROLPANEL_SELECTIONCOUNTMAX][CONTROLPANEL_SELECTIONWIDTH] = {};
 char filelist[CONTROLPANEL_SELECTIONCOUNTMAX][FILENAMEMAX];
 
+char *stateString() {
+    switch (sys.state) {
+        case 0x00: return "IDLE ";
+        case 0x01: return "ALARM";
+        case 0x02: return "CHECK";
+        case 0x04: return "HOME ";
+        case 0x08: return "RUN  ";
+        case 0x10: return "HOLD ";
+        case 0x20: return "JOG  ";
+        case 0x40: return "DOOR ";
+        case 0x80: return "SLEEP";
+    }
+    return 0;
+}
+
+
+
 void selectionsClear() {
     for (int i = 0; i < CONTROLPANEL_SELECTIONCOUNTMAX; i++) {
         strcpy(selections[i],"      ");
