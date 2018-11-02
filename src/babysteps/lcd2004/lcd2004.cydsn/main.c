@@ -20,12 +20,12 @@ const char watch[] = " \xa5"; // a5 is a center dot, see lcd char set in manual
 uint8_t watchCount;
 
 uint8_t coord = 0;
-uint8_t unit  = 1;
+uint8_t units  = 1;
 uint8_t state = 0;
 uint8_t spindle = 1;
 uint8_t coolant = 0;
-uint16_t feed = 234;
-uint8_t  override = 37;
+uint16_t feed_rate = 234;
+uint8_t  f_override = 37;
 
 #define ONDATA 0x09  //(LCD_BACKLIGHT | 0x01)
 
@@ -46,6 +46,7 @@ char *stateString() { // copied from hyattControlPanelDisplay
 
 void home() {
     // need to write (LCD_SETDDRAMADDR(0x80) + col row), see LCD_SetCursor(0,0)
+/*
     char buffer[] = {
         0x88, // LCD_SETDDRAMADDR_high + backlight
         0x8C, // above + en
@@ -56,6 +57,16 @@ void home() {
     };
     I2C_MasterWriteBuf(lcdAddr,(uint8_t *)buffer,6,I2C_MODE_COMPLETE_XFER);
     while ((I2C_MasterStatus() & I2C_MSTAT_WR_CMPLT)==0) {}; // wait until command is sent
+*/
+    I2C_MasterSendStart(lcdAddr, 0);
+    I2C_MasterWriteByte(0x88);
+    I2C_MasterWriteByte(0x8C);
+    I2C_MasterWriteByte(0x88);
+    I2C_MasterWriteByte(0x08);
+    I2C_MasterWriteByte(0x0C);
+    I2C_MasterWriteByte(0x08);
+    I2C_MasterSendStop();
+
 }
 
 int main(void) {
@@ -65,7 +76,7 @@ int main(void) {
     double t = 0.5;
     uint8_t err,c;
     double x,y,z;
-    char last[21];
+    char lastBlock[21];
     
     CyGlobalIntEnable;
     
@@ -86,6 +97,13 @@ int main(void) {
 
         TIMING_Write(0);
 
+        sprintf(status,"X%9.4f G%02d %4s%cZ%9.4f F%4d/%-3dY%9.4f %5s  %c%c%-20s",
+            x,54+coord,units?"INCH":"MM  ",watch[(++watchCount)%2],
+            z,feed_rate,f_override,
+            y,stateString(),spindle?'S':' ',coolant?'A':' ',
+            lastBlock
+        );
+
         do {
             c = (*sptr & 0xF0) | ONDATA; 
             *bptr++ = c | En;
@@ -96,14 +114,14 @@ int main(void) {
         } while (*sptr++);
         
         TIMING_Write(1);
-        I2C_MasterSendStop(); // just in case someone left i2c in a bad way, naughty naughty
+        I2C_MasterClearStatus();
         err = I2C_MasterWriteBuf(lcdAddr,(uint8_t *)buffer,160,I2C_MODE_COMPLETE_XFER); // write the 1st half, line 0 and 2
-        
+ 
         while ((I2C_MasterStatus() & I2C_MSTAT_WR_CMPLT)==0) {};
         CyDelayUs(10); // display needs this for a internal refresh or something
         err = I2C_MasterWriteBuf(lcdAddr,(uint8_t *)&buffer[160],160,I2C_MODE_COMPLETE_XFER); // write the 2nd half, line 1 and 3
-
-        snprintf(last,20,"G0X%-.4fY%-.4f",x,y); // format this outside the timing loop, grbl's parser generates this as string
+        
+        snprintf(lastBlock,20,"G0X%-.4fY%-.4f",x,y); // format this outside the timing loop, grbl's parser generates this as string
         CyDelay(250); // lcd refresh interval
         t += 0.001;
     }
