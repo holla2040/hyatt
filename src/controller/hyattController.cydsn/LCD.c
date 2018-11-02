@@ -265,11 +265,11 @@ void LCD_PutString(char word[]){
 }
 
 void LCD_Write_byte(uint8_t addr,uint8_t data){ 
-    I2C_MasterWriteBuf(addr,&data,1,I2C_MODE_COMPLETE_XFER);
-    while ((I2C_MasterStatus() & I2C_MSTAT_WR_CMPLT)==0) {};
+//    I2C_MasterWriteBuf(addr,&data,1,I2C_MODE_COMPLETE_XFER);
+//    while ((I2C_MasterStatus() & I2C_MSTAT_WR_CMPLT)==0) {};
 
-//    I2C_MasterSendStart(addr, 0);
-//    I2C_MasterWriteByte(data);
-//    I2C_MasterSendStop();
+    I2C_MasterSendStart(addr, 0);
+    I2C_MasterWriteByte(data);
+    I2C_MasterSendStop();
 }
 

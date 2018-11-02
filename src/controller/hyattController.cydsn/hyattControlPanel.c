@@ -11,9 +11,6 @@ bool hyattControlPanelKeypadExists;
 void hyattControlPanelInit() {
     uint8_t error;
 
-//    hyattControlPanelDisplayExists = true;
-//    hyattControlPanelKeypadExists = true;
-   
     error = I2C_MasterSendStart(DISPLAY2004_ADDR,0);
     hyattControlPanelDisplayExists = (error == I2C_MSTR_NO_ERROR);
     I2C_MasterSendStop();
@@ -28,8 +25,6 @@ void hyattControlPanelInit() {
     
     I2C_Stop();
     I2C_Start();
-    
-    //hyattControlPanelDisplayExists = false;
     
     if (hyattControlPanelDisplayExists) {   
         hyattControlPanelDisplayInit();

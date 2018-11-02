@@ -117,7 +117,7 @@ int main(void) {
         I2C_MasterClearStatus();
         err = I2C_MasterWriteBuf(lcdAddr,(uint8_t *)buffer,160,I2C_MODE_COMPLETE_XFER); // write the 1st half, line 0 and 2
  
-        while ((I2C_MasterStatus() & I2C_MSTAT_WR_CMPLT)==0) {};
+        while ((I2C_MasterStatus() & I2C_MSTAT_WR_CMPLT)==0) {}; // wait for it to complete
         CyDelayUs(10); // display needs this for a internal refresh or something
         err = I2C_MasterWriteBuf(lcdAddr,(uint8_t *)&buffer[160],160,I2C_MODE_COMPLETE_XFER); // write the 2nd half, line 1 and 3
         
