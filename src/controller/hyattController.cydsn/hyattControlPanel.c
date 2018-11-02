@@ -22,6 +22,8 @@ void hyattControlPanelInit() {
     hyattControlPanelKeypadExists &= (error == I2C_MSTR_NO_ERROR);
     I2C_MasterSendStop();
 
+    // hyattControlPanelKeypadExists  =0;
+    //hyattControlPanelDisplayExists = 0;
     
     I2C_Stop();
     I2C_Start();
