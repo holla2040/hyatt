@@ -7,7 +7,7 @@
 /* using bank=0 */
 
 uint8_t  keyPending;
-uint16_t keyIndicator;
+uint16_t keyIndicator,keyIndicatorLast;
 
 uint32_t timeoutKeypadUpdate;
 #define KEYPADUPDATEINTERVAL 100
@@ -53,14 +53,14 @@ void hyattControlPanelKeypadInit() {
     i2cRegWrite(KEYPAD_ROW34_ADDR,IOB_DIR,     0x88);         // led pins to output
     i2cRegWrite(KEYPAD_ROW34_ADDR,IOB_GPIO,    0x77);         // leds on
 
-    // CyDelay(50);
-
+    // light show on startup
     keyIndicator = 0x0001;
     for (uint8_t i = 0;i < 16;i++) {
         hyattControlPanelIndicatorUpdate();
         keyIndicator = keyIndicator << 1;
         CyDelay(25);
     }
+    keyIndicatorLast = 0xFFFF; // will trigger an indication on startup
 }
 
 void hyattControlPanelKeypadLoop() {
@@ -155,28 +155,24 @@ void hyattControlPanelKeypadLoop() {
             }
         }
         hyattTimeoutDisplaySlowUpdate = 0;
-        keyPending = 0;
-    }
 
-    if (hyattTicks > hyattTimeoutKeypadUpdate) {
         // clearing 23017 interrupt
         i2cRegRead(KEYPAD_ROW12_ADDR, IOA_GPIO);
         i2cRegRead(KEYPAD_ROW34_ADDR, IOA_GPIO);
 
+        keyPending = 0;
+    }
+
+    if (sys.state == STATE_IDLE) {
         keyIndicator = 0x0000; // all off
         keyIndicator |= hyattAxisSelected | hyattWheelStepSize;
         keyIndicator |= (gc_block.modal.units?0:1) << 10;
         keyIndicator |= (gc_block.modal.spindle & SPINDLE_ENABLE_CW ?1:0) << 13;
         keyIndicator |= (gc_state.modal.coolant & COOLANT_MIST_ENABLE ?1:0) << 14;
 
-        hyattControlPanelIndicatorUpdate();
-
-        // FEED_OVERRIDE_BTN_Write(!FEED_OVERRIDE_BTN_Read()); // blinks the 059 LED
-
-        if (sys.state == STATE_IDLE) {
-            hyattTimeoutKeypadUpdate = hyattTicks + KEYPADUPDATEINTERVAL;
-        } else {
-            hyattTimeoutKeypadUpdate = hyattTicks + 1000;
+        if (keyIndicator != keyIndicatorLast) {
+            hyattControlPanelIndicatorUpdate();
+            keyIndicatorLast = keyIndicator;
         }
      }
 }
