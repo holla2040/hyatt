@@ -50,7 +50,6 @@ void LCD_Start(uint8_t lcd_addr, uint8_t lcd_cols, uint8_t lcd_rows, uint8_t cha
 }
 
 void LCD_Begin(void){
-  
 	_displayfunction = LCD_4BITMODE | LCD_1LINE | LCD_5x8DOTS;
 
 	if (_rows > 1) {
@@ -113,247 +112,190 @@ void LCD_Begin(void){
 
 /********** high level commands, for the user! */
 void LCD_Clear(void){
-    
 	LCD_Command(LCD_CLEARDISPLAY);// clear display, set cursor position to zero
 	CyDelay(2);  // this command takes a long time!
-    
     return;
 }
 
 void LCD_Home(void){
-	
     LCD_Command(LCD_RETURNHOME);  // set cursor position to zero
 	CyDelay(2);  // this command takes a long time!
-    
     return;
 }
 
 void LCD_SetCursor(uint8_t col, uint8_t row){
-    
 	int row_offsets[] = { 0x00, 0x40, 0x14, 0x54 };
 	if (row > _rows) {
 		row = _rows-1;    // we count rows starting w/0
 	}
 	LCD_Command(LCD_SETDDRAMADDR | (col + row_offsets[row]));
-    
     return;
 }
 
 // Turn the display on/off (quickly)
 void LCD_NoDisplay(void){
-	
     _displaycontrol &= ~LCD_DISPLAYON;
 	LCD_Command(LCD_DISPLAYCONTROL | _displaycontrol);
-    
     return;
 }
 void LCD_Display(void){
-    
 	_displaycontrol |= LCD_DISPLAYON;
 	LCD_Command(LCD_DISPLAYCONTROL | _displaycontrol);
-    
     return;
 }
 
 // Turns the underline cursor on/off
 void LCD_NoCursor(void){
-	
     _displaycontrol &= ~LCD_CURSORON;
 	LCD_Command(LCD_DISPLAYCONTROL | _displaycontrol);
-    
     return;
 }
 void LCD_Cursor(void){
-	
     _displaycontrol |= LCD_CURSORON;
 	LCD_Command(LCD_DISPLAYCONTROL | _displaycontrol);
-    
     return;
 }
 
 // Turn on and off the blinking cursor
 void LCD_NoBlink(void){
-	
     _displaycontrol &= ~LCD_BLINKON;
 	LCD_Command(LCD_DISPLAYCONTROL | _displaycontrol);
-    
     return;
 }
 void LCD_Blink(void){
-    
 	_displaycontrol |= LCD_BLINKON;
 	LCD_Command(LCD_DISPLAYCONTROL | _displaycontrol);
-    
     return;
 }
 
 // These commands scroll the display without changing the RAM
 void LCD_ScrollDisplayLeft(void){
-    
 	LCD_Command(LCD_CURSORSHIFT | LCD_DISPLAYMOVE | LCD_MOVELEFT);
-    
     return;
 }
 void LCD_ScrollDisplayRight(void){
-	
     LCD_Command(LCD_CURSORSHIFT | LCD_DISPLAYMOVE | LCD_MOVERIGHT);
-    
     return;
 }
 
 // This is for text that flows Left to Right
 void LCD_LeftToRight(void){
-    
 	_displaymode |= LCD_ENTRYLEFT;
 	LCD_Command(LCD_ENTRYMODESET | _displaymode);
-    
     return;
 }
 
 // This is for text that flows Right to Left
 void LCD_RightToLeft(void){
-    
 	_displaymode &= ~LCD_ENTRYLEFT;
 	LCD_Command(LCD_ENTRYMODESET | _displaymode);
-    
     return;
 }
 
 // This will 'right justify' text from the cursor
 void LCD_Autoscroll(void){
-	
     _displaymode |= LCD_ENTRYSHIFTINCREMENT;
 	LCD_Command(LCD_ENTRYMODESET | _displaymode);
-    
     return;
 }
 
 // This will 'left justify' text from the cursor
 void LCD_NoAutoscroll(void){
-	
     _displaymode &= ~LCD_ENTRYSHIFTINCREMENT;
 	LCD_Command(LCD_ENTRYMODESET | _displaymode);
-    
     return;
 }
 
 // Allows us to fill the first 8 CGRAM locations
 // with custom characters
 void LCD_CreateChar(uint8_t location, uint8_t charmap[]){ uint32_t i = 0;
-	
     location &= 0x7; // we only have 8 locations 0-7
 	LCD_Command(LCD_SETCGRAMADDR | (location << 3));
 	for (i=0; i<8; i++) {
 		LCD_Write(charmap[i]);
 	}
-    
     return;
 }
 
 // Turn the (optional) backlight off/on
 void LCD_NoBacklight(void) {
-	
     _backlightval=LCD_NOBACKLIGHT;
 	LCD_ExpanderWrite(0);
-    
     return;
 }
 
 void LCD_Backlight(void){
-    
 	_backlightval=LCD_BACKLIGHT;
 	LCD_ExpanderWrite(0);
-    
     return;
 }
 
 /*********** mid level commands, for sending data/cmds */
 
 void LCD_Command(uint8_t value){
-	
     LCD_Send(value, 0);
-    
     return;
 }
 
  void LCD_Write(uint8_t value){
-    
 	LCD_Send(value, Rs);
-    
     return;
 }
-
 
 /************ low level data pushing commands **********/
 
 // write either command or data
 void LCD_Send(uint8_t value, uint8_t mode){
-    
 	uint8_t highnib=value&0xf0;
 	uint8_t lownib=(value<<4)&0xf0;
 	LCD_Write4bits((highnib)|mode);
 	LCD_Write4bits((lownib)|mode); 
-    
     return;
 }
 
 void LCD_Write4bits(uint8_t value) {
-    
 	LCD_ExpanderWrite(value);
 	LCD_PulseEnable(value);
-    
     return;
 }
 
 void LCD_ExpanderWrite(uint8_t _data){     
-    
 	LCD_Write_byte(_addr,_data | _backlightval);	   
-    
     return;
 }
 
 void LCD_PulseEnable(uint8_t _data){
-    
 	LCD_ExpanderWrite(_data | En);	// En high
 	CyDelayUs(1);		// enable pulse must be >450ns
 	LCD_ExpanderWrite(_data & ~En);	// En low
 	CyDelayUs(50);		// commands need > 37us to settle
-    
     return;
 }
 
 void LCD_Load_custom_character(uint8_t char_num, uint8_t *rows){
-	
     LCD_CreateChar(char_num, rows);
-    
     return;
 }
 
-void LCD_SetBacklight(uint8_t new_val){
-    
+void LCD_SetBacklight(uint8_t new_val){  
 	if (new_val) {
 		LCD_Backlight();		// turn backlight on
 	} else {
 		LCD_NoBacklight();		// turn backlight off
-	}
-    
+	}   
     return;
 }
 
 void LCD_PutString(char word[]){ 
-    uint32_t i = 0;
-    
-    uint8_t size = strlen(word);
-    
+    uint32_t i = 0;  
+    uint8_t size = strlen(word);   
     for (i = 0; i < size; i++){
         LCD_Write(word[i]);
     }
-
     return;
 }
 
 void LCD_Write_byte(uint8_t addr,uint8_t data){ 
-CyDelay(1);
 #if CY_PSOC5
     I2C_MasterSendStart(addr, 0);
     I2C_MasterWriteByte(data);
