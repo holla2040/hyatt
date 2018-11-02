@@ -16,6 +16,11 @@ uint8_t watchCount;
 char mdiBlock[MDIBLOCKLEN];
 extern parser_block_t gc_block;
 
+char status[100];
+char buffer[400];
+char *bptr,*sptr;
+uint8_t secondHalf;
+
 char selections[CONTROLPANEL_SELECTIONCOUNTMAX][CONTROLPANEL_SELECTIONWIDTH] = {};
 char filelist[CONTROLPANEL_SELECTIONCOUNTMAX][FILENAMEMAX];
 
@@ -87,16 +92,25 @@ void hyattControlPanelDisplayIdleSetup() {
 }
 
 void hyattControlPanelDisplayIdle() {
-    char status[100];
-    char buffer[400];
-    char *bptr,*sptr;
-    double x,y,z;
-    uint8_t c, idx;
+    float x,y,z;
+    uint8_t c,i2cStatus,idx;
     int32_t current_position[N_AXIS]; // Copy current state of the system position variable
     float print_position[N_AXIS];
     float wco[N_AXIS];
 
+    i2cStatus = I2C_MasterStatus();
+
+    if (secondHalf) {
+        if (i2cStatus & I2C_MSTAT_WR_CMPLT) {
+            I2C_MasterWriteBuf(DISPLAY2004_ADDR,(uint8_t *)&buffer[160],160,I2C_MODE_COMPLETE_XFER); // write the 2nd half, line 1 and 
+            hyattTimeoutDisplayFastUpdate = hyattTicks + DISPLAYFASTUPDATEINTERVAL;
+            secondHalf = 0;
+        }
+        return;
+    }
+        
     if (hyattTicks > hyattTimeoutDisplayFastUpdate) {
+        if (i2cStatus & I2C_MSTAT_ERR_MASK) I2C_MasterClearStatus();
         memcpy(current_position,sys_position,sizeof(sys_position));
         system_convert_array_steps_to_mpos(print_position,current_position);
 
@@ -143,14 +157,10 @@ void hyattControlPanelDisplayIdle() {
             *bptr++ = c & ~En;
         } while (*sptr++);
         
-        I2C_MasterSendStop(); // just in case someone left i2c in a bad way, naughty naughty
+        I2C_MasterClearStatus(); // just in case someone left i2c in a bad way, naughty naughty
         I2C_MasterWriteBuf(DISPLAY2004_ADDR,(uint8_t *)buffer,160,I2C_MODE_COMPLETE_XFER); // write the 1st half, line 0 and 2
-        
-        while ((I2C_MasterStatus() & I2C_MSTAT_WR_CMPLT)==0) {};
-        CyDelayUs(10); // display needs this for a internal refresh or something
-        I2C_MasterWriteBuf(DISPLAY2004_ADDR,(uint8_t *)&buffer[160],160,I2C_MODE_COMPLETE_XFER); // write the 2nd half, line 1 and 3
 
-        hyattTimeoutDisplayFastUpdate = hyattTicks + DISPLAYFASTUPDATEINTERVAL;
+        secondHalf = 1;
     }
 }
 

@@ -66,8 +66,13 @@ void hyattControlPanelKeypadInit() {
 void hyattControlPanelKeypadLoop() {
     uint16_t key;
     int c;
+    uint8_t s;
     char buf[30];
     if (keyPending) {
+        s = I2C_MasterStatus();
+        if (s & (I2C_MSTAT_XFER_INP)) return;
+        if (s & I2C_MSTAT_ERR_MASK) I2C_MasterClearStatus();   
+
         key = 0x00;
         if (i2cRegRead(KEYPAD_ROW34_ADDR,IOA_INTF)) {
             key  |= i2cRegRead(KEYPAD_ROW34_ADDR,IOA_INTCAP)<<8;
