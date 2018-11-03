@@ -33,10 +33,10 @@ void hyattControlPanelKeypadInit() {
     i2cRegWrite(KEYPAD_ROW12_ADDR,IOA_DIR,     0x77);         // set port A to input
     i2cRegWrite(KEYPAD_ROW12_ADDR,IOA_POL,     0x77);         // invert logic on port A, 1 means switch pressed
     i2cRegWrite(KEYPAD_ROW12_ADDR,IOA_GPPU,    0x77);         // add pull-up to all port A
-    i2cRegWrite(KEYPAD_ROW12_ADDR,IOA_GPINTEN, 0x77);         // enable interrupt on port A changes
-    i2cRegWrite(KEYPAD_ROW12_ADDR,IOA_DEFVAL,  0x00);         //
-    i2cRegWrite(KEYPAD_ROW12_ADDR,IOA_INTCON,  0x77);         // Change from DEFVAL, fires on button release
+    i2cRegWrite(KEYPAD_ROW12_ADDR,IOA_DEFVAL,  0x77);         // 
+    i2cRegWrite(KEYPAD_ROW12_ADDR,IOA_INTCON,  0x00);         // fires on any change, see 3.5.5 and 3.6.5
     i2cRegWrite(KEYPAD_ROW12_ADDR,IOA_CON,     0x77);         // INT pins connected, open-drain output
+    i2cRegWrite(KEYPAD_ROW12_ADDR,IOA_GPINTEN, 0x77);         // enable interrupt on port A changes
 
     i2cRegWrite(KEYPAD_ROW12_ADDR,IOB_DIR,     0x88);         // led pins to output
     i2cRegWrite(KEYPAD_ROW12_ADDR,IOB_GPIO,    0x77);         // leds on
@@ -45,10 +45,10 @@ void hyattControlPanelKeypadInit() {
     i2cRegWrite(KEYPAD_ROW34_ADDR,IOA_DIR,     0x77);         // set port A to input
     i2cRegWrite(KEYPAD_ROW34_ADDR,IOA_POL,     0x77);         // invert logic on port A, 1 means switch pressed
     i2cRegWrite(KEYPAD_ROW34_ADDR,IOA_GPPU,    0x77);         // add pull-up to all port A
-    i2cRegWrite(KEYPAD_ROW34_ADDR,IOA_GPINTEN, 0x77);         // enable interrupt on port A changes
-    i2cRegWrite(KEYPAD_ROW34_ADDR,IOA_DEFVAL,  0x00);         //
-    i2cRegWrite(KEYPAD_ROW34_ADDR,IOA_INTCON,  0x77);         // Change from DEFVAL, fires on button release
+    i2cRegWrite(KEYPAD_ROW34_ADDR,IOA_DEFVAL,  0x77);         //
+    i2cRegWrite(KEYPAD_ROW34_ADDR,IOA_INTCON,  0x00);         // fires on any change, see 3.5.5 and 3.6.5
     i2cRegWrite(KEYPAD_ROW34_ADDR,IOA_CON,     0x77);         // INT pins connected, open-drain output
+    i2cRegWrite(KEYPAD_ROW34_ADDR,IOA_GPINTEN, 0x77);         // enable interrupt on port A changes
 
     i2cRegWrite(KEYPAD_ROW34_ADDR,IOB_DIR,     0x88);         // led pins to output
     i2cRegWrite(KEYPAD_ROW34_ADDR,IOB_GPIO,    0x77);         // leds on
