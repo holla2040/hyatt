@@ -45,6 +45,7 @@ void hyattInit() {
     hyattSenderInit();
     hyattControlPanelInit();
     hyattProbeInit();
+    hyattZDisplayInit();
     FS_Init();
     
     hyattAxisSelected = AXISSELECTED_X;
@@ -54,6 +55,7 @@ void hyattInit() {
 void hyattLoop() {
     hyattControlPanelLoop();
     hyattSenderLoop();
+    hyattZDisplayLoop();
     
     if (hyattTicks > timeoutStatusUpdate) {
         // system_set_exec_state_flag(EXEC_STATUS_REPORT);

@@ -158,8 +158,6 @@ void hyattControlPanelKeypadLoop() {
                     keyIndicator = key & 0xFF88;
             }
         }
-        hyattTimeoutDisplaySlowUpdate = 0;
-
         keyPending = 0;
     }
 

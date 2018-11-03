@@ -4,6 +4,8 @@
 #include <stdint.h>
 #include "grbl.h"
 
+float x,y,z;
+
 void grblBlockSend(char *block);
 char selectedAxisLetter();
 char lastBlock[40];
@@ -189,9 +191,6 @@ extern uint8_t _rows;
 extern uint8_t _charsize;
 extern uint8_t _backlightval;
 
-uint32_t hyattTimeoutDisplaySlowUpdate;
-uint32_t hyattTimeoutDisplayFastUpdate;
-
 void hyattControlPanelDisplayInit();
 void hyattControlPanelDisplayLoop();
 void hyattControlPanelDisplayMDISetup();
@@ -244,7 +243,9 @@ void hyattProbeReset();
 
 // zDisplay
 void hyattZDisplayInit();
+void hyattZDisplayLoop();
 void hyattZDisplaySet(char *attr,char *value);
 void hyattZDisplayCommand(char *command);
+uint32_t hyattZDisplayUpdate;
 
 #endif

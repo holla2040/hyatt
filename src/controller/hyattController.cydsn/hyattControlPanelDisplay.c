@@ -4,8 +4,7 @@
 #include "hyattAction.h"
 #include "RC65X.h"
 
-#define DISPLAYSLOWUPDATEINTERVAL 300
-#define DISPLAYFASTUPDATEINTERVAL 100
+#define DISPLAYUPDATEINTERVAL 100
 
 #define FILENAMEMAX 32
 #define MDIBLOCKLEN 50
@@ -21,6 +20,7 @@ char status[100];
 char buffer[400];
 char *bptr,*sptr;
 uint8_t secondHalf;
+uint32_t hyattTimeoutDisplayUpdate;
 
 char selections[CONTROLPANEL_SELECTIONCOUNTMAX][CONTROLPANEL_SELECTIONWIDTH] = {};
 char filelist[CONTROLPANEL_SELECTIONCOUNTMAX][FILENAMEMAX];
@@ -74,26 +74,15 @@ void hyattControlPanelDisplayInit() {
     LCD_Start(DISPLAY2004_ADDR,20,4,0);
     LCD_SetCursor(0,0);
 
-    hyattTimeoutDisplaySlowUpdate = 0;
-    hyattTimeoutDisplayFastUpdate = 0;
-
-    uartZDisplay_Start();
 }
 
 void hyattControlPanelDisplayIdleSetup() {
     LCD_Clear();
     LCD_NoBlink();
-    LCD_SetCursor(0,0);     LCD_PutString("X");
-    LCD_SetCursor(0,1);     LCD_PutString("Y");
-    LCD_SetCursor(0,2);     LCD_PutString("Z");
-    LCD_SetCursor(11,2);    LCD_PutString("F");
-    LCD_SetCursor(16,2);    LCD_PutString("/");
-    LCD_SetCursor(11,0);    LCD_PutString("G");
     hyattControlPanelState = CONTROLPANEL_IDLE;
 }
 
 void hyattControlPanelDisplayIdle() {
-    float x,y,z;
     uint8_t c,i2cStatus,idx;
     int32_t current_position[N_AXIS]; // Copy current state of the system position variable
     float print_position[N_AXIS];
@@ -104,13 +93,13 @@ void hyattControlPanelDisplayIdle() {
     if (secondHalf) {
         if (i2cStatus & I2C_MSTAT_WR_CMPLT) {
             I2C_MasterWriteBuf(DISPLAY2004_ADDR,(uint8_t *)&buffer[160],160,I2C_MODE_COMPLETE_XFER); // write the 2nd half, line 1 and 
-            hyattTimeoutDisplayFastUpdate = hyattTicks + DISPLAYFASTUPDATEINTERVAL;
+            hyattTimeoutDisplayUpdate = hyattTicks + DISPLAYUPDATEINTERVAL;
             secondHalf = 0;
         }
         return;
     }
         
-    if (hyattTicks > hyattTimeoutDisplayFastUpdate) {
+    if (hyattTicks > hyattTimeoutDisplayUpdate) {
         if (i2cStatus & I2C_MSTAT_ERR_MASK) I2C_MasterClearStatus();
         memcpy(current_position,sys_position,sizeof(sys_position));
         system_convert_array_steps_to_mpos(print_position,current_position);
@@ -142,9 +131,10 @@ void hyattControlPanelDisplayIdle() {
         
         home(); // sets DDRAM address to 0, which is upper corner
         lastBlock[20] = 0; // clip the last block parsed and planned
+        
         sprintf(status,"X%9.4f G%02d %4s%cZ%9.4f F%4d/%-3dY%9.4f %5s  %c%c%-20s",
             x,54+gc_state.modal.coord_select,gc_state.modal.units?"INCH":"MM  ",watch[(++watchCount)%2],
-            z,(uint16_t)gc_state.feed_rate,sys.f_override,
+            z,(uint16_t)(gc_state.feed_rate > 9999?9999:gc_state.feed_rate),sys.f_override,
             y,stateString(),(gc_block.modal.spindle & SPINDLE_ENABLE_CW)?'S':' ',gc_state.modal.coolant & COOLANT_MIST_ENABLE?'A':' ',
             lastBlock
         );
@@ -162,6 +152,7 @@ void hyattControlPanelDisplayIdle() {
         I2C_MasterWriteBuf(DISPLAY2004_ADDR,(uint8_t *)buffer,160,I2C_MODE_COMPLETE_XFER); // write the 1st half, line 0 and 2
 
         secondHalf = 1;
+        hyattZDisplayUpdate = 0;
     }
 }
 
@@ -364,10 +355,10 @@ void hyattControlPanelDisplayMDIKey(uint16_t key) {
                 return;
                 break;
             case RC65X_KEYENTER:
-                hyattControlPanelState = CONTROLPANEL_IDLE_SETUP;
+                // hyattControlPanelState = CONTROLPANEL_IDLE_SETUP;
                 strcat(mdiBlock,"G1F1000");
                 grblBlockSend(mdiBlock);
-                return;
+                strcpy(mdiBlock,"");
                 break;
             case RC65X_KEYPREV:
                 mdiBlock[strlen(mdiBlock)-1] = 0x00;
@@ -375,7 +366,7 @@ void hyattControlPanelDisplayMDIKey(uint16_t key) {
         }
         LCD_SetCursor(1,1);
         LCD_PutString(mdiBlock);
-        LCD_PutString("    ");  // clear line, needed for prev
+        LCD_PutString("    ");  // clear line, needed for prev key (delete)
     }
 }
 /* ============ MDI ================ */
@@ -411,18 +402,7 @@ void hyattControlPanelDisplayLoop() {
     }
 }
 
-void hyattZDisplayCommand(char *command) {
-    char line[100];
-    sprintf(line,"%s\xff\xff\xff",command);
-    uartZDisplay_PutString(line);
-}
-
-void hyattZDisplaySet(char *attr,char *value) {
-    char line[100];
-    sprintf(line,"%s.txt=\"%s\"\xff\xff\xff",attr,value);
-    uartZDisplay_PutString(line);
-}
-
+/*
 void hyattControlPanelDisplayIdleOld() {
     char buf[100];
     if (hyattTicks > hyattTimeoutDisplaySlowUpdate) {
@@ -529,3 +509,4 @@ void hyattControlPanelDisplayIdleOld() {
         hyattTimeoutDisplayFastUpdate = hyattTicks + DISPLAYFASTUPDATEINTERVAL;
     }
 }
+*/
