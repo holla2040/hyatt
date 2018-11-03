@@ -53,7 +53,7 @@ void hyattControlPanelWheelLoop() {  // this is kinda crappy, wheel shouldn't ac
             }
         } else {
             diff0Count++;
-            if (diff0Count == 3) { // this is third time there's no count difference, ie wheel not turning
+            if (diff0Count == 2) { // this is third time there's no count difference, ie wheel not turning
                 if (sys.state & STATE_JOG) { // Block all other states from invoking motion cancel.
                  //   usb_uart_PutString("------------ Cancel\n");
                   system_set_exec_state_flag(EXEC_MOTION_CANCEL);
