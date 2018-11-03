@@ -3,13 +3,12 @@
 #include "hyatt.h"
 #include <FS.h>
 
-uint8_t senderState;
-#define BUFFERLEN 512
-uint16_t bufferLen;
-char buffer[BUFFERLEN];
-char *bufferPtr;
-FS_FILE *file;
 
+#define SENDERBUFFERLEN 512
+uint16_t senderBufferLen;
+char senderBuffer[SENDERBUFFERLEN];
+char *senderBufferPtr;
+FS_FILE *file;
 
 void hyattSenderInit() {
     senderState = SENDERSTATE_IDLE;
@@ -19,25 +18,25 @@ void hyattSenderLoop() {
     char c;
     switch (senderState) {
         case SENDERSTATE_SEND:
-            if (plan_get_block_buffer_available() > 5) {
-                while(bufferLen) {
-                    bufferLen--;
-                    c = *bufferPtr++;
-                    rx_handler(c);
-                    if ((c == '\n') || (c != '\r')) {
-                        break; // need to break here so planner will plan and avail will updated
-                     }
+            while(senderBufferLen) {
+                if (serial_get_rx_buffer_available() < 10) break;
+                senderBufferLen--;
+                c = *senderBufferPtr++;
+                rx_handler(c);
+//                usb_uart_write(c);
+//                if ((c == '\n') || (c != '\r')) {
+//                    break; // need to break here so planner will plan and avail will updated
+//                 }
+            }
+            if (senderBufferLen == 0) { // sent all buffer, read next file chunk
+                senderBufferLen = FS_Read(file,&senderBuffer,SENDERBUFFERLEN);
+                if (senderBufferLen == 0) { // no more data in file
+                    FS_FClose(file);
+                    FS_Mount("");
+                    senderState = SENDERSTATE_IDLE;
+                    return;
                 }
-                if (bufferLen == 0) { // sent all buffer, read next file chunk
-                    bufferLen = FS_Read(file,&buffer,BUFFERLEN);
-                    if (bufferLen == 0) { // no more data in file
-                        FS_FClose(file);
-                        FS_Mount("");
-                        senderState = SENDERSTATE_IDLE;
-                        return;
-                    }
-                    bufferPtr = &buffer[0];
-                }
+                senderBufferPtr = &senderBuffer[0];
             }
             break;
     }
@@ -47,8 +46,8 @@ void hyattSenderSend(char *filename) {
     FS_Mount("");
     file = FS_FOpen(filename, "r");
     if (file) {
-        bufferLen = FS_Read(file,&buffer,BUFFERLEN);
-        bufferPtr = &buffer[0];
+        senderBufferLen = FS_Read(file,&senderBuffer,SENDERBUFFERLEN);
+        senderBufferPtr = senderBuffer;
         senderState = SENDERSTATE_SEND;
     }
 }

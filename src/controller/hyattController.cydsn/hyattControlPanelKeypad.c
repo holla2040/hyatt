@@ -178,8 +178,10 @@ void hyattControlPanelKeypadLoop() {
         keyIndicator |= (gc_state.modal.coolant & COOLANT_MIST_ENABLE ?1:0) << 14;
 
         if (keyIndicator != keyIndicatorLast) {
-            hyattControlPanelIndicatorUpdate();
-            keyIndicatorLast = keyIndicator;
+            if (!(I2C_MasterStatus() & I2C_MSTAT_XFER_INP)) {
+                hyattControlPanelIndicatorUpdate();
+                keyIndicatorLast = keyIndicator;
+            }
         }
      }
 }

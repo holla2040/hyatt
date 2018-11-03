@@ -108,7 +108,8 @@ void protocol_main_loop()
         }
         
         // hyatt uses lastBlock
-        strncpy(lastBlock,line,39);
+        strncpy(lastBlock,line,BLOCKLEN);
+        
         
 
         // Reset tracking data for next line.

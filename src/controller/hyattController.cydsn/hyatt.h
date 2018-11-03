@@ -8,7 +8,9 @@ float x,y,z;
 
 void grblBlockSend(char *block);
 char selectedAxisLetter();
-char lastBlock[40];
+
+#define BLOCKLEN 128
+char lastBlock[BLOCKLEN];
 
 #define AXISSELECTED_X      0x0001
 #define AXISSELECTED_Y      0x0002
@@ -228,8 +230,7 @@ void hyattSenderSend(char *filename);
 void hyattSenderCallback(uint8_t status_code);
 #define SENDERSTATE_IDLE 'I'
 #define SENDERSTATE_SEND 'S'
-//#define SENDERSTATE_READ 'R'
-//#define SENDERSTATE_WAIT 'W'
+uint8_t senderState;
 
 // IR
 void hyattControlPanelIRInit();

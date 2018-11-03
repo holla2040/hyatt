@@ -4,7 +4,8 @@
 #include "hyattAction.h"
 #include "RC65X.h"
 
-#define DISPLAYUPDATEINTERVAL 100
+#define DISPLAYUPDATEIDLEINTERVAL 100
+#define DISPLAYUPDATECYCLEINTERVAL 100
 
 #define FILENAMEMAX 32
 #define MDIBLOCKLEN 50
@@ -93,7 +94,11 @@ void hyattControlPanelDisplayIdle() {
     if (secondHalf) {
         if (i2cStatus & I2C_MSTAT_WR_CMPLT) {
             I2C_MasterWriteBuf(DISPLAY2004_ADDR,(uint8_t *)&buffer[160],160,I2C_MODE_COMPLETE_XFER); // write the 2nd half, line 1 and 
-            hyattTimeoutDisplayUpdate = hyattTicks + DISPLAYUPDATEINTERVAL;
+            if (sys.state == STATE_CYCLE ) {
+                hyattTimeoutDisplayUpdate = hyattTicks + DISPLAYUPDATECYCLEINTERVAL;
+            } else {
+                hyattTimeoutDisplayUpdate = hyattTicks + DISPLAYUPDATEIDLEINTERVAL;
+            }
             secondHalf = 0;
         }
         return;

@@ -89,7 +89,7 @@ int main()
     #ifdef HOMING_INIT_LOCK
       if (bit_istrue(settings.flags,BITFLAG_HOMING_ENABLE)) { sys.state = STATE_ALARM; }
     #endif
-    
+
     for(;;)
     {
         // Reset system variables.
@@ -99,7 +99,7 @@ int main()
         sys.f_override = DEFAULT_FEED_OVERRIDE;  // Set to 100%
         sys.r_override = DEFAULT_RAPID_OVERRIDE; // Set to 100%
         sys.spindle_speed_ovr = DEFAULT_SPINDLE_SPEED_OVERRIDE; // Set to 100%
-    		memset(sys_probe_position,0,sizeof(sys_probe_position)); // Clear probe position.
+    	memset(sys_probe_position,0,sizeof(sys_probe_position)); // Clear probe position.
         sys_probe_state = 0;
         sys_rt_exec_state = 0;
         sys_rt_exec_alarm = 0;

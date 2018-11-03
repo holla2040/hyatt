@@ -80,6 +80,13 @@ void hyattControlPanelIRLoop(void) {
             }
         }
         
+        if (sys.state == STATE_CYCLE) {
+            if (button == RC65X_KEYSTOP) {
+                senderState = SENDERSTATE_IDLE;
+                return;
+            }
+        }
+        
         if (button == RC65X_KEYSELECT) {
             switch (sys.state) {
                 case STATE_HOLD:
