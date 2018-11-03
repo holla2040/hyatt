@@ -228,8 +228,9 @@ void hyattSenderLoop();
 void hyattSenderSend(char *filename);
 void hyattSenderCallback(uint8_t status_code);
 #define SENDERSTATE_IDLE 'I'
-#define SENDERSTATE_READ 'R'
-#define SENDERSTATE_WAIT 'W'
+#define SENDERSTATE_SEND 'S'
+//#define SENDERSTATE_READ 'R'
+//#define SENDERSTATE_WAIT 'W'
 
 // IR
 void hyattControlPanelIRInit();

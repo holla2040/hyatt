@@ -138,7 +138,7 @@ void report_status_message(uint8_t status_code)
       print_uint8_base10(status_code);
       report_util_line_feed();
   }
-  hyattSenderCallback(status_code);
+//  hyattSenderCallback(status_code);
 
 }
 

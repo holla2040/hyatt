@@ -18,6 +18,45 @@ void hyattSenderInit() {
 void hyattSenderLoop() {
     char c;
     switch (senderState) {
+        case SENDERSTATE_SEND:
+            if (plan_get_block_buffer_available() > 5) {
+                while(bufferLen) {
+                    bufferLen--;
+                    c = *bufferPtr++;
+                    rx_handler(c);
+                    if ((c == '\n') || (c != '\r')) {
+                        break; // need to break here so planner will plan and avail will updated
+                     }
+                }
+                if (bufferLen == 0) { // sent all buffer, read next file chunk
+                    bufferLen = FS_Read(file,&buffer,BUFFERLEN);
+                    if (bufferLen == 0) { // no more data in file
+                        FS_FClose(file);
+                        FS_Mount("");
+                        senderState = SENDERSTATE_IDLE;
+                        return;
+                    }
+                    bufferPtr = &buffer[0];
+                }
+            }
+            break;
+    }
+}
+
+void hyattSenderSend(char *filename) {
+    FS_Mount("");
+    file = FS_FOpen(filename, "r");
+    if (file) {
+        bufferLen = FS_Read(file,&buffer,BUFFERLEN);
+        bufferPtr = &buffer[0];
+        senderState = SENDERSTATE_SEND;
+    }
+}
+
+/*
+void hyattSenderLoop() {
+    char c;
+    switch (senderState) {
         case SENDERSTATE_READ:
             while(bufferLen) {
                 bufferLen--;
@@ -70,7 +109,8 @@ void hyattSenderCallback(uint8_t status_code) {
     }
 }
 
-/*
+
+
 status_codes from report.h
 
         case STATUS_OK:
