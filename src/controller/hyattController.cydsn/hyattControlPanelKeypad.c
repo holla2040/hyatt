@@ -73,14 +73,18 @@ void hyattControlPanelKeypadLoop() {
         if (s & (I2C_MSTAT_XFER_INP)) return;
         if (s & I2C_MSTAT_ERR_MASK) I2C_MasterClearStatus();   
 
+        CyDelayUs(100);
+        
         key = 0x00;
-        if (i2cRegRead(KEYPAD_ROW34_ADDR,IOA_INTF)) {
+        //if (i2cRegRead(KEYPAD_ROW34_ADDR,IOA_INTF)) {
             key  |= i2cRegRead(KEYPAD_ROW34_ADDR,IOA_INTCAP)<<8;
-        }
-        if (i2cRegRead(KEYPAD_ROW12_ADDR,IOA_INTF)) {
+        //}
+        //if (i2cRegRead(KEYPAD_ROW12_ADDR,IOA_INTF)) {
             key |= i2cRegRead(KEYPAD_ROW12_ADDR,IOA_INTCAP);
-        }
+        //}
 
+
+        
         // mist key is immediate
         if (key == KEY_MIST) {
             system_set_exec_accessory_override_flag(EXEC_COOLANT_MIST_OVR_TOGGLE);
@@ -156,13 +160,18 @@ void hyattControlPanelKeypadLoop() {
         }
         hyattTimeoutDisplaySlowUpdate = 0;
 
-        // clearing 23017 interrupt
-        i2cRegRead(KEYPAD_ROW12_ADDR, IOA_GPIO);
-        i2cRegRead(KEYPAD_ROW34_ADDR, IOA_GPIO);
-
         keyPending = 0;
     }
 
+/*
+    if (hyattTicks > hyattTimeoutKeypadUpdate) {
+        i2cRegRead(KEYPAD_ROW12_ADDR, IOA_GPIO);
+        i2cRegRead(KEYPAD_ROW34_ADDR, IOA_GPIO);   
+        hyattTimeoutKeypadUpdate = hyattTicks + 1000;
+    }    
+*/
+    
+    
     if (sys.state == STATE_IDLE) {
         keyIndicator = 0x0000; // all off
         keyIndicator |= hyattAxisSelected | hyattWheelStepSize;
