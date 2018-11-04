@@ -45,7 +45,7 @@ void hyattControlPanelWheelLoop() {  // this is kinda crappy, wheel shouldn't ac
         int16_t count = wheelDecoder_GetCounter();
         int16_t diff  = count - countLast;
         if (diff != 0) {
-            if (plan_get_block_buffer_available() > 3) {  // don't over run the planning buffer
+            if (serial_get_rx_buffer_available() > 40) {  // parser flow control
                 sprintf(buf,"$J=%c%-.4fG2%dG91F7500",selectedAxisLetter(),diff*wheelClickDistance(),1-gc_block.modal.units);
                 grblBlockSend(buf);
                 diff0Count = 0;

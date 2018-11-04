@@ -19,7 +19,7 @@ void hyattSenderLoop() {
     switch (senderState) {
         case SENDERSTATE_SEND:
             while(senderBufferLen) {
-                if (serial_get_rx_buffer_available() < 10) break;
+                if (serial_get_rx_buffer_available() < 10) break; // parser flow control
                 senderBufferLen--;
                 c = *senderBufferPtr++;
                 rx_handler(c);
