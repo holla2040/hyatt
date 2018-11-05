@@ -66,6 +66,7 @@ uint32_t hyattTicks;
 uint8_t hyattAxisSelected;
 uint8_t hyattFeedOverride;
 uint8_t hyattWheelStepSize;
+uint8_t feedOverride;
 
 void hyattInit();
 void hyattLoop();

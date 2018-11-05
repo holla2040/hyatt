@@ -111,8 +111,8 @@
 // #define HOMING_CYCLE_0 ((1<<X_AXIS)|(1<<Y_AXIS))  // NOT COMPATIBLE WITH COREXY: Homes both X-Y in one cycle. 
 
 #define HOMING_CYCLE_0 (1<<Z_AXIS)  // COREXY COMPATIBLE: First home X
-#define HOMING_CYCLE_1 ((1<<X_AXIS) | (1<<Y_AXIS))  // COREXY COMPATIBLE: Then home Y
-//#define HOMING_CYCLE_2 (1<<Y_AXIS)  // COREXY COMPATIBLE: Then home Z 
+#define HOMING_CYCLE_1 (1<<X_AXIS)  // COREXY COMPATIBLE: Then home Y
+#define HOMING_CYCLE_2 (1<<Y_AXIS)  // COREXY COMPATIBLE: Then home Z 
 
 // Number of homing cycles performed after when the machine initially jogs to limit switches.
 // This help in preventing overshoot and should improve repeatability. This value should be one or
@@ -368,7 +368,7 @@
 // NOTE: Only use this for debugging purposes!! When echoing, this takes up valuable resources and can effect
 // performance. If absolutely needed for normal operation, the serial write buffer should be greatly increased
 // to help minimize transmission waiting within the serial write protocol.
-// #define REPORT_ECHO_LINE_RECEIVED // Default disabled. Uncomment to enable.
+//#define REPORT_ECHO_LINE_RECEIVED // Default disabled. Uncomment to enable.
 
 // Minimum planner junction speed. Sets the default minimum junction speed the planner plans to at
 // every buffer block junction, except for starting from rest and end of the buffer, which are always
@@ -454,7 +454,7 @@
 // around 90-100 characters. As long as the serial TX buffer doesn't get continually maxed, Grbl
 // will continue operating efficiently. Size the TX buffer around the size of a worst-case report.
 // #define RX_BUFFER_SIZE 254 // (1-254) Uncomment to override defaults in serial.h
-// #define TX_BUFFER_SIZE 100 // (1-254)
+//#define TX_BUFFER_SIZE 100 // (1-254)
 
 // Configures the position after a probing cycle during Grbl's check mode. Disabled sets
 // the position to the probe target, when enabled sets the position to the start position.

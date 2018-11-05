@@ -120,7 +120,9 @@ uint8_t gc_execute_line(char *line)
 
     // Import the next g-code word, expecting a letter followed by a value. Otherwise, error out.
     letter = line[char_counter];
-    if((letter < 'A') || (letter > 'Z')) { FAIL(STATUS_EXPECTED_COMMAND_LETTER); } // [Expected word letter]
+    if((letter < 'A') || (letter > 'Z')) { 
+        FAIL(STATUS_EXPECTED_COMMAND_LETTER); 
+    } // [Expected word letter]
     char_counter++;
     if (!read_float(line, &char_counter, &value)) { FAIL(STATUS_BAD_NUMBER_FORMAT); } // [Expected word value]
 

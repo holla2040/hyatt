@@ -172,7 +172,7 @@ void actionsLoad() {
 
 void hyattControlPanelDisplayActionSetup() {
     LCD_Clear();
-    LCD_SetCursor(0,0);     LCD_PutString("Actions - Feed Sel");
+    LCD_SetCursor(0,0);     LCD_PutString("Actions - Macros");
 
     actionsLoad();
     selectionsDisplay();
@@ -244,7 +244,7 @@ void filelistGet() {
 
 void hyattControlPanelDisplayLoadSetup() {
     LCD_Clear();
-    LCD_SetCursor(0,0);     LCD_PutString("Load - Feed Select");
+    LCD_SetCursor(0,0);     LCD_PutString("Send - G Code");
 
     filelistGet();
     selectionsDisplay();
