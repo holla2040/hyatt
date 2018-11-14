@@ -51,6 +51,19 @@ makita RT0701C
 
 
 
+    Makita Dust Shoe (RT0700-RT0701C)
+        https://www.thingiverse.com/thing:2573538
+    
+    71mm to 65mm Adapter for OpenBuilds Spindle Clamp (Makita RT0701C)
+        https://www.thingiverse.com/thing:2496956
+
+    collet
+        v1engineering.com/forum/topic/added-er11-chuck-to-my-makita-rt0701c/
+            https://www.aliexpress.com/item/-/32871091240.html
+        Makita 763619-3 COLLET CONE 3/8"
+
+
+
 PVC Brush Door Sweep
 
 11 detent pot for speed override
@@ -190,3 +203,27 @@ controller keypad is
     Grayhill 82-350-12, GRAY SWITCH KEYPAD 3KEY ILLUM 0.1A 5V
     Grayhill 82-350-41, BLACK SWITCH KEYPAD 3KEY ILLUM 0.1A 5V
 
+
+find circle center from 3 points
+- (Circle*)findCirclePassingThroughPoint1:(CGPoint)point1 point2:(CGPoint)point2 point3:(CGPoint)point3{
+
+    double x1 = point1.x;  double x2 = point2.x;  double x3 = point3.x;
+    double y1 = point1.y;  double y2 = point2.y;  double y3 = point3.y;
+
+    double mr = (y2-y1) / (x2-x1);
+    double mt = (y3-y2) / (x3-x2);
+
+    if (mr == mt) {
+        return nil;
+    }
+
+    double x = (mr*mt*(y3-y1) + mr*(x2+x3) - mt*(x1+x2)) / (2*(mr-mt));
+    double y = (y1+y2)/2 - (x - (x1+x2)/2) / mr;
+
+    double radius = pow((pow((x2-x), 2) +  pow((y2-y), 2)), 0.5);
+    CGPoint center = CGPointMake(x, y);
+
+    Circle *circle = [[Circle alloc] initWithRadius:radius andCenter:center];
+    return circle;
+
+}
