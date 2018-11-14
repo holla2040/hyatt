@@ -23,9 +23,6 @@
 
 #include "grbl.h"
 
-#define RX_RING_BUFFER (RX_BUFFER_SIZE+1)
-#define TX_RING_BUFFER (TX_BUFFER_SIZE+1)
-
 uint8_t serial_rx_buffer[RX_BUFFER_SIZE];
 uint8_t serial_rx_buffer_head = 0;
 volatile uint8_t serial_rx_buffer_tail = 0;
@@ -74,12 +71,9 @@ uint8_t serial_read()
   if (serial_rx_buffer_head == tail) {
     return SERIAL_NO_DATA;
   } else {
-    uint8_t data = serial_rx_buffer[tail];
-
-    tail++;
-    if (tail == RX_RING_BUFFER) { tail = 0; }
+    uint8_t data = serial_rx_buffer[tail++];
+    if (tail == RX_BUFFER_SIZE) { tail = 0; }
     serial_rx_buffer_tail = tail;
-
     return data;
   }
 }
@@ -105,7 +99,7 @@ void rx_handler(char c)
     case CMD_FEED_OVR_FINE_PLUS: system_set_exec_motion_override_flag(EXEC_FEED_OVR_FINE_PLUS); break;
     case CMD_FEED_OVR_FINE_MINUS: system_set_exec_motion_override_flag(EXEC_FEED_OVR_FINE_MINUS); break;
 
-    default: // Write character to buffer    
+    default: // Write character to buffer   
       next_head = serial_rx_buffer_head + 1;
       if (next_head == RX_BUFFER_SIZE) { next_head = 0; }
     

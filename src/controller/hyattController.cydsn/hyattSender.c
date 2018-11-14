@@ -32,7 +32,7 @@ void hyattSenderLoop() {
                 senderBufferLen = FS_Read(file,&senderBuffer,SENDERBUFFERLEN);
                 if (senderBufferLen == 0) { // no more data in file
                     FS_FClose(file);
-                    FS_Mount("");
+                    FS_Unmount("");
                     senderState = SENDERSTATE_IDLE;
                     return;
                 }
