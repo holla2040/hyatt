@@ -51,8 +51,12 @@ makita RT0701C
 
 
 
-    Makita Dust Shoe (RT0700-RT0701C)
+    Dust Shoe (RT0700-RT0701C)
         https://www.thingiverse.com/thing:2573538
+        https://www.thingiverse.com/thing:2496675 <-- clever
+
+    Dust shoe brush
+        https://www.mcmaster.com/74715t3
     
     71mm to 65mm Adapter for OpenBuilds Spindle Clamp (Makita RT0701C)
         https://www.thingiverse.com/thing:2496956
@@ -227,3 +231,27 @@ find circle center from 3 points
     return circle;
 
 }
+
+vacuum hose ceiling trolley
+    unistrut P1000 
+        http://www.unistrut.us/index.php?WP=cat_detail&S=S02&P=p1000
+    608zz 8mm bore 22mm diameter 7mm thickness
+    8mm slotted spring pin or tension pin
+
+    trolley frame thickness calc
+        41 wide overall
+        12 gauge 2.78mm thickness
+        8mm x 30mm spring pin
+        inside width                    41mm - 2.78mm*2 - 0.22mm*2 = 35mm
+        2.5mm bearing to strut spacing  35mm - 2.5mm*2 = 30mm 1.2"
+        thickness 1mm bearing to frame  30mm - 7mm*2 - 1mm*2 = 14mm 
+        14mm is 0.55118"
+    
+
+blast gate
+    https://www.thingiverse.com/thing:3086629
+
+laser module driver
+    The VR1 is to adjust the voltage of the driver in CW way to increase the voltage and in CCW way to decrease the voltage.
+    The trimmer screws on the top of the blue box of the board is to adjust the current CW-increase and CCW-decrease.
+    You can adjust both to reach your wanted current.
