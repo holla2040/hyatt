@@ -47,18 +47,21 @@ void spindle_init()
 uint8_t spindle_get_state()
 {
 	#ifdef VARIABLE_SPINDLE
-    #ifdef USE_SPINDLE_DIR_AS_ENABLE_PIN
-		  // Not Supported in PSoC Yet
-    #else
-      
-      if (SPINDLE_ENABLE_OUT_Read()) 
-      { // Check if PWM is enabled.
-        if (SPINDLE_DIRECTION_OUT_Read())
-          { return(SPINDLE_STATE_CCW); }
-        else 
-          { return(SPINDLE_STATE_CW); }
-      }
-    #endif
+        #ifdef USE_SPINDLE_DIR_AS_ENABLE_PIN
+              // Not Supported in PSoC Yet
+        #else
+            #ifdef INVERT_SPINDLE_ENABLE_PIN
+              if (!SPINDLE_ENABLE_OUT_Read()) 
+            #else
+              if (SPINDLE_ENABLE_OUT_Read()) 
+            #endif
+              { // Check if PWM is enabled.
+                if (SPINDLE_DIRECTION_OUT_Read())
+                  { return(SPINDLE_STATE_CCW); }
+                else 
+                  { return(SPINDLE_STATE_CW); }
+              }
+        #endif
 	#else
 		// Not Supported in PSoC Yet
 	#endif
@@ -69,17 +72,19 @@ uint8_t spindle_get_state()
 // Disables the spindle and sets PWM output to zero when PWM variable spindle speed is enabled.
 // Called by various main program and ISR routines. Keep routine small, fast, and efficient.
 // Called by spindle_init(), spindle_set_speed(), spindle_set_state(), and mc_reset().
-      // PSoC rewrite
-void spindle_stop()
-{
+// PSoC rewrite
+void spindle_stop() {
   #ifdef VARIABLE_SPINDLE
     PWM_Spindle_WriteCompare(0);
   #else
     // TO DO Unsupported in PSoC
   #endif
-  SPINDLE_ENABLE_OUT_Write(0);  // CH should look at INVERT_SPINDLE_ENABLE_PIN
+  #ifdef INVERT_SPINDLE_ENABLE_PIN
+    SPINDLE_ENABLE_OUT_Write(1);  
+  #else
+    SPINDLE_ENABLE_OUT_Write(0); 
+  #endif
 }
-
 
 #ifdef VARIABLE_SPINDLE
   // Sets spindle speed PWM output and enable pin, if configured. Called by spindle_set_state()
@@ -88,7 +93,11 @@ void spindle_stop()
   void spindle_set_speed(uint8_t pwm_value)  {   
     PWM_Spindle_WriteCompare(pwm_value);
     if (gc_state.modal.spindle != SPINDLE_DISABLE) {
-        SPINDLE_ENABLE_OUT_Write(1); // CH should look at INVERT_SPINDLE_ENABLE_PIN
+      #ifdef INVERT_SPINDLE_ENABLE_PIN
+        SPINDLE_ENABLE_OUT_Write(0);  
+      #else
+        SPINDLE_ENABLE_OUT_Write(1); 
+      #endif
     }
   }
 
@@ -135,6 +144,12 @@ void spindle_stop()
     
     #ifndef USE_SPINDLE_DIR_AS_ENABLE_PIN
       SPINDLE_DIRECTION_OUT_Write(state == SPINDLE_ENABLE_CW);  // PSoC Rewrite       
+    #else
+      #ifdef INVERT_SPINDLE_ENABLE_PIN
+        SPINDLE_ENABLE_OUT_Write(0); 
+      #else
+        SPINDLE_ENABLE_OUT_Write(1);
+      #endif
     #endif
   
     #ifdef VARIABLE_SPINDLE
@@ -148,7 +163,7 @@ void spindle_stop()
       // NOTE: Without variable spindle, the enable bit should just turn on or off, regardless
       // if the spindle speed value is zero, as its ignored anyhow.
       #ifdef INVERT_SPINDLE_ENABLE_PIN
-        SPINDLE_ENABLE_PORT &= ~(1<<SPINDLE_ENABLE_BIT);
+        SPINDLE_ENABLE_PORT &= ~(1<<SPINDLE_ENABLE_BIT);   // this 328p code does nothing on PSoC
       #else
         SPINDLE_ENABLE_PORT |= (1<<SPINDLE_ENABLE_BIT);
       #endif    
