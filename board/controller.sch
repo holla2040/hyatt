@@ -6612,11 +6612,6 @@ RADIO_RX        SWD
 </net>
 <net name="STEPPER_ENABLE_OUT" class="0">
 <segment>
-<pinref part="J5" gate="G$1" pin="3"/>
-<wire x1="15.24" y1="144.78" x2="17.78" y2="144.78" width="0.1524" layer="91"/>
-<label x="17.78" y="144.78" size="1.016" layer="95" xref="yes"/>
-</segment>
-<segment>
 <pinref part="U2" gate="G$1" pin="P0_4"/>
 <wire x1="63.5" y1="127" x2="58.42" y2="127" width="0.1524" layer="91"/>
 <label x="58.42" y="127" size="1.016" layer="95" rot="R180" xref="yes"/>
@@ -6637,6 +6632,13 @@ RADIO_RX        SWD
 <pinref part="J7" gate="G$1" pin="2"/>
 <wire x1="27.94" y1="106.68" x2="30.48" y2="106.68" width="0.1524" layer="91"/>
 <label x="30.48" y="106.68" size="1.016" layer="95" xref="yes"/>
+</segment>
+</net>
+<net name="MISC_ENABLE_OUT" class="0">
+<segment>
+<pinref part="J5" gate="G$1" pin="3"/>
+<wire x1="15.24" y1="144.78" x2="17.78" y2="144.78" width="0.1524" layer="91"/>
+<label x="17.78" y="144.78" size="1.016" layer="95" xref="yes"/>
 </segment>
 </net>
 </nets>

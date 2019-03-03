@@ -1,3 +1,6 @@
 TODO
-  can wheel decoder work on 1kHz
-  jog command doesn't look like it honors feed override
+    add zero all to macros
+    add go to home to macros
+    add job max find, check and move to to job confirmation screen
+    
+    

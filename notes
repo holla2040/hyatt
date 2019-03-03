@@ -137,6 +137,8 @@ $132 = 200.000      (z max travel, mm)
 Eaz-Lift 48810 24" Leveling Scissor Jack 5,000-Pound 
 
 8mm or 5/16" OD plastic/vinyl tubing for mist  
+Pneumatic 8mm Hole 13mm Threaded Quick Fittings Connector
+    also look for PNEUMATIC elbow flow control
 
 
 
@@ -255,3 +257,16 @@ laser module driver
     The VR1 is to adjust the voltage of the driver in CW way to increase the voltage and in CCW way to decrease the voltage.
     The trimmer screws on the top of the blue box of the board is to adjust the current CW-increase and CCW-decrease.
     You can adjust both to reach your wanted current.
+
+probe
+    http://www.homemetalshopclub.org/news/12/presentation_1202.pdf
+    linear hall effect sensor
+        A1324LLHLX-T 
+        DRV5053OAQDBZR
+    https://www.mscdirect.com/browse/tnpla/70679568
+    https://www.amazon.com/uxcell-Replacement-Contact-Points-Threaded/dp/B00LURYT1I
+    https://www.carbideprobes.com/product/261-1-5/
+    https://cnc4pc.com/touch-probe-contactor.html
+
+    http://fadedbits.com/2011/02/touchprobe/
+
