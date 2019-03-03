@@ -92,13 +92,6 @@ void spindle_stop() {
   // PSoC Rewrite
   void spindle_set_speed(uint8_t pwm_value)  {   
     PWM_Spindle_WriteCompare(pwm_value);
-    if (gc_state.modal.spindle != SPINDLE_DISABLE) {
-      #ifdef INVERT_SPINDLE_ENABLE_PIN
-        SPINDLE_ENABLE_OUT_Write(0);  
-      #else
-        SPINDLE_ENABLE_OUT_Write(1); 
-      #endif
-    }
   }
 
 // Called by spindle_set_state() and step segment generator. Keep routine small and efficient.
@@ -116,8 +109,6 @@ void spindle_stop() {
     //print_uint8_base10(pwm_value); 
     
     pwm_value = map(rpm, settings.rpm_min, settings.rpm_max, 0, SPINDLE_PWM_MAX_VALUE);
-    
-    
     return(pwm_value);
   }
 #endif
@@ -142,7 +133,7 @@ void spindle_stop() {
   
   } else {  
     
-    #ifndef USE_SPINDLE_DIR_AS_ENABLE_PIN
+    #ifdef USE_SPINDLE_DIR_AS_ENABLE_PIN
       SPINDLE_DIRECTION_OUT_Write(state == SPINDLE_ENABLE_CW);  // PSoC Rewrite       
     #else
       #ifdef INVERT_SPINDLE_ENABLE_PIN

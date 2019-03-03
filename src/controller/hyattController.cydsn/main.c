@@ -61,6 +61,10 @@ system_t sys;
 int main()
 {    
     CyGlobalIntEnable;       
+    
+    spindle_stop();
+    coolant_stop();
+    
     serial_init();
     settings_init(); // Load Grbl settings from EEPROM
     stepper_init();

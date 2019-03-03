@@ -25,7 +25,6 @@
 void coolant_init()
 { 
   coolant_set_state(COOLANT_DISABLE);
-  
 }
 
 // Returns current coolant output state. Overrides may alter it from programmed state.
@@ -35,7 +34,20 @@ uint8_t coolant_get_state()
   
   if (MIST_ENABLE_OUT_Read()) 
   {  
+#ifdef INVERT_COOLANT_MIST_PIN
+  cl_state &= ~COOLANT_STATE_MIST;
+#else
   cl_state |= COOLANT_STATE_MIST;
+#endif
+  }
+
+  if (FLOOD_ENABLE_OUT_Read()) 
+  {  
+#ifdef INVERT_FLOOD_MIST_PIN
+  cl_state &= ~COOLANT_STATE_FLOOD;
+#else
+  cl_state |= COOLANT_STATE_FLOOD;
+#endif
   }
   
   return(cl_state);
@@ -44,7 +56,16 @@ uint8_t coolant_get_state()
 
 void coolant_stop()
 {
-  MIST_ENABLE_OUT_Write(0);
+#ifdef INVERT_COOLANT_MIST_PIN
+    MIST_ENABLE_OUT_Write(1);
+#else
+    MIST_ENABLE_OUT_Write(0);
+#endif
+#ifdef INVERT_COOLANT_FLOOD_PIN
+    FLOOD_ENABLE_OUT_Write(1);
+#else
+    FLOOD_ENABLE_OUT_Write(0);
+#endif
 }
 
 
@@ -60,7 +81,19 @@ void coolant_set_state(uint8_t mode)
   {
     if (mode & COOLANT_MIST_ENABLE) // M7
     {
-       MIST_ENABLE_OUT_Write(1);
+        #ifdef INVERT_COOLANT_MIST_PIN
+            MIST_ENABLE_OUT_Write(0);
+        #else
+            MIST_ENABLE_OUT_Write(1);
+        #endif
+    }    
+    if (mode & COOLANT_FLOOD_ENABLE) 
+    {
+        #ifdef INVERT_FLOOD_MIST_PIN
+            FLOOD_ENABLE_OUT_Write(0);
+        #else
+            FLOOD_ENABLE_OUT_Write(1);
+        #endif
     }    
   }
   sys.report_ovr_counter = 0; // Set to report change immediately
