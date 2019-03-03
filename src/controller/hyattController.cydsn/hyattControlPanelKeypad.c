@@ -173,9 +173,9 @@ void hyattControlPanelKeypadLoop() {
     if (sys.state == STATE_IDLE) {
         keyIndicator = 0x0000; // all off
         keyIndicator |= hyattAxisSelected | hyattWheelStepSize;
-        keyIndicator |= (gc_block.modal.units?0:1) << 10;
-        keyIndicator |= (gc_block.modal.spindle & SPINDLE_ENABLE_CW ?0:1) << 13;
-        keyIndicator |= (gc_state.modal.coolant & COOLANT_MIST_ENABLE ?0:1) << 14;
+        keyIndicator |= (gc_block.modal.units ? 0:1) << 10;  // bad form to use numbers here, should be defs
+        keyIndicator |= (gc_block.modal.spindle == SPINDLE_DISABLE ? 0:1) << 13;
+        keyIndicator |= (gc_state.modal.coolant & COOLANT_MIST_ENABLE ? 0:1) << 14;
 
         if (keyIndicator != keyIndicatorLast) {
             if (!(I2C_MasterStatus() & I2C_MSTAT_XFER_INP)) {

@@ -87,7 +87,9 @@ void spindle_stop()
   // PSoC Rewrite
   void spindle_set_speed(uint8_t pwm_value)  {   
     PWM_Spindle_WriteCompare(pwm_value);
-    SPINDLE_ENABLE_OUT_Write(1); // CH should look at INVERT_SPINDLE_ENABLE_PIN
+    if (gc_state.modal.spindle != SPINDLE_DISABLE) {
+        SPINDLE_ENABLE_OUT_Write(1); // CH should look at INVERT_SPINDLE_ENABLE_PIN
+    }
   }
 
 // Called by spindle_set_state() and step segment generator. Keep routine small and efficient.
