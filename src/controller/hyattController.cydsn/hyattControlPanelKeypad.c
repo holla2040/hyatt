@@ -174,7 +174,7 @@ void hyattControlPanelKeypadLoop() {
         keyIndicator = 0x0000; // all off
         keyIndicator |= hyattAxisSelected | hyattWheelStepSize;
         keyIndicator |= (gc_block.modal.units?0:1) << 10;
-        keyIndicator |= (gc_block.modal.spindle & SPINDLE_ENABLE_CW ?1:0) << 13;
+        keyIndicator |= (gc_block.modal.spindle & SPINDLE_ENABLE_CW ?0:1) << 13;
         keyIndicator |= (gc_state.modal.coolant & COOLANT_MIST_ENABLE ?0:1) << 14;
 
         if (keyIndicator != keyIndicatorLast) {
