@@ -22,6 +22,7 @@
 
 #include "grbl.h"
 
+extern parser_block_t gc_block;
 
 #ifdef VARIABLE_SPINDLE
   static float pwm_gradient; // Precalulated value to speed up rpm to PWM conversions.
@@ -33,14 +34,12 @@ void spindle_init()
   #ifdef VARIABLE_SPINDLE    
     pwm_gradient = SPINDLE_PWM_RANGE/(settings.rpm_max-settings.rpm_min);
     PWM_Spindle_Start();
-
   #else
 
     // Configure no variable spindle and only enable pin.
     // TO DO Unsupported PSoC option right now
 
   #endif
-
   spindle_stop();
 }
 
@@ -78,6 +77,7 @@ void spindle_stop()
   #else
     // TO DO Unsupported in PSoC
   #endif
+  SPINDLE_ENABLE_OUT_Write(0);  // CH should look at INVERT_SPINDLE_ENABLE_PIN
 }
 
 
@@ -85,11 +85,12 @@ void spindle_stop()
   // Sets spindle speed PWM output and enable pin, if configured. Called by spindle_set_state()
   // and stepper ISR. Keep routine small and efficient.
   // PSoC Rewrite
-  void spindle_set_speed(uint8_t pwm_value)
-  {   
+  void spindle_set_speed(uint8_t pwm_value)  {   
     PWM_Spindle_WriteCompare(pwm_value);
+    SPINDLE_ENABLE_OUT_Write(1); // CH should look at INVERT_SPINDLE_ENABLE_PIN
   }
-  // Called by spindle_set_state() and step segment generator. Keep routine small and efficient.
+
+// Called by spindle_set_state() and step segment generator. Keep routine small and efficient.
   int spindle_compute_pwm_value(int rpm) // 328p PWM register is 8-bit.
   {
     int pwm_value;   
@@ -104,6 +105,7 @@ void spindle_stop()
     //print_uint8_base10(pwm_value); 
     
     pwm_value = map(rpm, settings.rpm_min, settings.rpm_max, 0, SPINDLE_PWM_MAX_VALUE);
+    
     
     return(pwm_value);
   }
@@ -127,8 +129,8 @@ void spindle_stop()
     #endif
     spindle_stop();
   
-  } else {
-  
+  } else {  
+    
     #ifndef USE_SPINDLE_DIR_AS_ENABLE_PIN
       SPINDLE_DIRECTION_OUT_Write(state == SPINDLE_ENABLE_CW);  // PSoC Rewrite       
     #endif

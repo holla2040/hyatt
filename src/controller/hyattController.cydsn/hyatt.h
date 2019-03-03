@@ -49,18 +49,21 @@ char lastBlock[BLOCKLEN];
 #define IOB_GPIO    0x13
 #define IOB_OLAT    0x15
 
-#define KEY_X       0x0001
-#define KEY_Y       0x0002
-#define KEY_Z       0x0004
-#define KEY_SLOW    0x0010
-#define KEY_MEDIUM  0x0020
-#define KEY_FAST    0x0040
-#define KEY_SELECT  0x0100
-#define KEY_UNIT    0x0400
+#define KEY_X           0x0001
+#define KEY_Y           0x0002
+#define KEY_Z           0x0004
+
+#define KEY_SLOW        0x0010
+#define KEY_MEDIUM      0x0020
+#define KEY_FAST        0x0040
+
+#define KEY_SELECT      0x0100
 #define KEY_COORDSELECT 0x0200
-#define KEY_AXISZERO 0x1000
-#define KEY_SPINDLE 0x2000
-#define KEY_MIST    0x4000
+#define KEY_UNIT        0x0400
+
+#define KEY_AXISZERO    0x1000
+#define KEY_SPINDLE     0x2000
+#define KEY_MIST        0x4000
 
 uint32_t hyattTicks;
 uint8_t hyattAxisSelected;
