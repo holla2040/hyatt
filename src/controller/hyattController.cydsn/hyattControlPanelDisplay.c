@@ -90,7 +90,7 @@ void selectionsDisplay() {
 void hyattControlPanelDisplayInit() {
     LCD_Start(DISPLAY2004_ADDR,20,4,0);
     LCD_SetCursor(0,0);
-
+    strcpy(lastBlock,"HOMING REQUIRED");
 }
 
 void hyattControlPanelDisplayIdleSetup() {
