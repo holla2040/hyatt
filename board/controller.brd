@@ -1351,6 +1351,12 @@ design rules under a new name.</description>
 <attribute name="NAME" x="6.1415" y="35.349" size="1.016" layer="25" font="vector" ratio="21"/>
 <attribute name="VALUE" x="1.1415" y="20.887" size="1.27" layer="27" font="vector"/>
 </element>
+<element name="R27" library="holla" package="R0603" value="220" x="33" y="89">
+<attribute name="DESC" value="5%" x="33" y="89" size="1.778" layer="27" display="off"/>
+</element>
+<element name="R28" library="holla" package="R0603" value="220" x="26" y="89">
+<attribute name="DESC" value="5%" x="26" y="89" size="1.778" layer="27" display="off"/>
+</element>
 </elements>
 <signals>
 <signal name="GND">
@@ -1757,19 +1763,15 @@ design rules under a new name.</description>
 <wire x1="77" y1="85.636" x2="78.74" y2="87.376" width="0.254" layer="16"/>
 </signal>
 <signal name="ERROR_INDICATOR_OUT">
-<contactref element="J12" pad="2"/>
 <contactref element="U2" pad="3.2"/>
-<wire x1="25.06" y1="95.5" x2="25.06" y2="84.75" width="0.254" layer="16"/>
 <wire x1="25.06" y1="84.75" x2="17.78" y2="77.47" width="0.254" layer="16"/>
+<contactref element="R28" pad="2"/>
+<wire x1="26.85" y1="89" x2="17.78" y2="77.47" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="FEED_HOLDING_OUT">
-<contactref element="J13" pad="2"/>
-<wire x1="31.76" y1="95.5" x2="31.76" y2="85.207" width="0.254" layer="16"/>
-<wire x1="31.76" y1="85.207" x2="34.8615" y2="82.1055" width="0.254" layer="16"/>
-<via x="34.8615" y="82.1055" extent="1-16" drill="0.3048"/>
-<wire x1="34.8615" y1="82.1055" x2="34.8615" y2="65.4685" width="0.254" layer="1"/>
 <contactref element="U2" pad="1.2"/>
-<wire x1="34.8615" y1="65.4685" x2="38.1" y2="67.31" width="0" layer="19" extent="1-1"/>
+<contactref element="R27" pad="2"/>
+<wire x1="33.85" y1="89" x2="38.1" y2="67.31" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="Z_DISPLAY_RX_IN">
 <contactref element="J19" pad="2"/>
@@ -2514,6 +2516,16 @@ design rules under a new name.</description>
 </signal>
 <signal name="MISC_ENABLE_OUT">
 <contactref element="J5" pad="3"/>
+</signal>
+<signal name="N$12">
+<contactref element="J13" pad="2"/>
+<contactref element="R27" pad="1"/>
+<wire x1="32.15" y1="89" x2="31.76" y2="95.5" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$13">
+<contactref element="J12" pad="2"/>
+<contactref element="R28" pad="1"/>
+<wire x1="25.15" y1="89" x2="25.06" y2="95.5" width="0" layer="19" extent="1-1"/>
 </signal>
 </signals>
 </board>

@@ -41,6 +41,22 @@ char *stateString() {
     return 0;
 }
 
+char *alarmString() {
+    switch (sys.state) {
+        case 1: return "hard limit";
+        case 2: return "soft limit";
+        case 3: return "abort cycle";
+        case 4: return "probe initial";
+        case 5: return "probe contact";
+        case 6: return "homing reset";
+        case 7: return "homing door";
+        case 8: return "homing pulloff";
+        case 9: return "homing approach";
+    }
+    return "none";
+}
+
+
 void home() {
     // need to write (LCD_SETDDRAMADDR(0x80) + col row), see LCD_SetCursor(0,0)
     char buffer[] = {
@@ -135,7 +151,11 @@ void hyattControlPanelDisplayIdle() {
         }     
         
         home(); // sets DDRAM address to 0, which is upper corner
+        if (sys.state == STATE_ALARM) {
+            strcpy(lastBlock,alarmString(sys_rt_exec_alarm));
+        }
         lastBlock[20] = 0; // clip the last block parsed and planned
+        
         
         sprintf(status,"X%9.4f G%02d %4s%cZ%9.4f F%4d/%-3dY%9.4f %5s  %c%c%-20s",
             x,54+gc_state.modal.coord_select,gc_state.modal.units?"INCH":"MM  ",watch[(++watchCount)%2],

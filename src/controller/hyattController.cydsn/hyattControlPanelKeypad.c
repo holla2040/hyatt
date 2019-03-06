@@ -83,26 +83,17 @@ void hyattControlPanelKeypadLoop() {
             key |= i2cRegRead(KEYPAD_ROW12_ADDR,IOA_INTCAP);
         //}
 
-
+        if (sys.state == STATE_ALARM) {                                                                                                                                                          
+            report_feedback_message(MESSAGE_ALARM_UNLOCK);
+            sys.state = STATE_IDLE;
+            return;
+        }
         
         // mist key is immediate
         if (key == KEY_MIST) {
             system_set_exec_accessory_override_flag(EXEC_COOLANT_MIST_OVR_TOGGLE);
             hyattTimeoutKeypadUpdate = hyattTicks + 100;
         }
-
-        /*
-        // probably remove this after hold and reset buttons are installed
-        if (key == KEY_SELECT) {
-            if (sys.state == STATE_CYCLE) { // first select push
-                senderState = SENDERSTATE_IDLE;
-                system_set_exec_state_flag(EXEC_FEED_HOLD);
-            }
-            if (sys.state == STATE_HOLD) {
-                mc_reset();
-            }
-        }  
-        */
 
         if (sys.state == STATE_IDLE) {
             switch(key) {

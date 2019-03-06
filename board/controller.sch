@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="yes"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="yes" altdistance="0.01" altunitdist="inch" altunit="inch"/>
+<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="no" active="no"/>
 <layer number="2" name="Route2" color="1" fill="3" visible="no" active="no"/>
@@ -4982,6 +4982,8 @@ Various fiducial points for machine vision alignment.</description>
 <part name="J24" library="holla" deviceset="CONN-03" device="-3.81MM-PLUGIN-SCREW" value="GND"/>
 <part name="J7" library="holla" deviceset="CONN-04" device="-0.1"/>
 <part name="J5" library="holla" deviceset="CONN-03" device="-3.81MM-PLUGIN-SCREW" value="COOLANT"/>
+<part name="R27" library="holla" deviceset="R" device="-0603" value="220"/>
+<part name="R28" library="holla" deviceset="R" device="-0603" value="220"/>
 </parts>
 <sheets>
 <sheet>
@@ -4995,6 +4997,7 @@ pushbutton switch positions are off
 add silk label for IR receiver orientation
 fix J16 board label, its hidden with AMP connector
 add cap to VIN_SCALED_IN
+error_indicator and feed_holding need current limiter
 
 FUTURE
 Change keypad back lighting to WS2818/APF3236SEEZGKQBKC?</text>
@@ -5138,6 +5141,8 @@ RADIO_RX        SWD
 <instance part="J24" gate="G$1" x="91.44" y="25.4"/>
 <instance part="J7" gate="G$1" x="22.86" y="109.22"/>
 <instance part="J5" gate="G$1" x="10.16" y="142.24"/>
+<instance part="R27" gate="G$1" x="88.9" y="205.74"/>
+<instance part="R28" gate="G$1" x="88.9" y="198.12"/>
 </instances>
 <busses>
 </busses>
@@ -5858,9 +5863,9 @@ RADIO_RX        SWD
 </net>
 <net name="ERROR_INDICATOR_OUT" class="0">
 <segment>
-<pinref part="J12" gate="G$1" pin="2"/>
-<wire x1="83.82" y1="198.12" x2="86.36" y2="198.12" width="0.1524" layer="91"/>
-<label x="86.36" y="198.12" size="1.016" layer="95" xref="yes"/>
+<wire x1="91.44" y1="198.12" x2="93.98" y2="198.12" width="0.1524" layer="91"/>
+<label x="93.98" y="198.12" size="1.016" layer="95" xref="yes"/>
+<pinref part="R28" gate="G$1" pin="2"/>
 </segment>
 <segment>
 <pinref part="U2" gate="G$1" pin="P3_2"/>
@@ -5870,9 +5875,9 @@ RADIO_RX        SWD
 </net>
 <net name="FEED_HOLDING_OUT" class="0">
 <segment>
-<pinref part="J13" gate="G$1" pin="2"/>
-<wire x1="83.82" y1="205.74" x2="86.36" y2="205.74" width="0.1524" layer="91"/>
-<label x="86.36" y="205.74" size="1.016" layer="95" xref="yes"/>
+<wire x1="91.44" y1="205.74" x2="93.98" y2="205.74" width="0.1524" layer="91"/>
+<label x="93.98" y="205.74" size="1.016" layer="95" xref="yes"/>
+<pinref part="R27" gate="G$1" pin="2"/>
 </segment>
 <segment>
 <label x="96.52" y="157.48" size="1.016" layer="95" xref="yes"/>
@@ -6639,6 +6644,20 @@ RADIO_RX        SWD
 <pinref part="J5" gate="G$1" pin="3"/>
 <wire x1="15.24" y1="144.78" x2="17.78" y2="144.78" width="0.1524" layer="91"/>
 <label x="17.78" y="144.78" size="1.016" layer="95" xref="yes"/>
+</segment>
+</net>
+<net name="N$12" class="0">
+<segment>
+<pinref part="J13" gate="G$1" pin="2"/>
+<pinref part="R27" gate="G$1" pin="1"/>
+<wire x1="86.36" y1="205.74" x2="83.82" y2="205.74" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$13" class="0">
+<segment>
+<pinref part="J12" gate="G$1" pin="2"/>
+<pinref part="R28" gate="G$1" pin="1"/>
+<wire x1="86.36" y1="198.12" x2="83.82" y2="198.12" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>
