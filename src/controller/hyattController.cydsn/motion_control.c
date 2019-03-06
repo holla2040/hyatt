@@ -222,24 +222,28 @@ void mc_homing_cycle(uint8_t cycle_mask)
   {
     // Search to engage all axes limit switches at faster homing seek rate.
     limits_go_home(HOMING_CYCLE_0);  // Homing cycle 0
+    hyattLoop();
     #ifdef HOMING_CYCLE_1
       limits_go_home(HOMING_CYCLE_1);  // Homing cycle 1
     #endif
+    hyattLoop();
     #ifdef HOMING_CYCLE_2
       limits_go_home(HOMING_CYCLE_2);  // Homing cycle 2
     #endif
+    hyattLoop();
     
     #ifdef HOMING_CYCLE_3
        limits_go_home(HOMING_CYCLE_3);  // Homing cycle 3
     #endif
+    hyattLoop();
     #ifdef HOMING_CYCLE_4
        limits_go_home(HOMING_CYCLE_4);  // Homing cycle 4
     #endif
+    hyattLoop();
     #ifdef HOMING_CYCLE_5
        limits_go_home(HOMING_CYCLE_5);  // Homing cycle 5
     #endif
-   
-    
+    hyattLoop();
   }
 
   protocol_execute_realtime(); // Check for reset and set system abort.
