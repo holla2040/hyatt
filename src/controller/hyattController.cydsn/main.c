@@ -72,6 +72,7 @@ int main()
     hyattInit();
     
     memset(sys_position,0,sizeof(sys_position)); // Clear machine position
+    sys_position[Z_AXIS] = -100; // allows Z to move off work piece if hard reset
     //memset(&sys, 0, sizeof(sys));  // Clear all system variables
     //sys.abort = true;   // Set abort to complete initialization
     
