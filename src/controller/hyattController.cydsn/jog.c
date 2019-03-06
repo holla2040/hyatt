@@ -33,9 +33,11 @@ uint8_t jog_execute(plan_line_data_t *pl_data, parser_block_t *gc_block)
     pl_data->line_number = gc_block->values.n;
   #endif
 
+/* hyatt doesn't do a soft limit check for jogs
   if (bit_istrue(settings.flags,BITFLAG_SOFT_LIMIT_ENABLE)) {
     if (system_check_travel_limits(gc_block->values.xyz)) { return(STATUS_TRAVEL_EXCEEDED); }
   }
+*/
 
   // Valid jog command. Plan, set state, and execute.
   mc_line(gc_block->values.xyz,pl_data);
