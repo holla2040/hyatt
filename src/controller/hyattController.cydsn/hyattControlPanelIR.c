@@ -101,55 +101,38 @@ void hyattControlPanelIRLoop(void) {
         }
 
         if (sys.state == STATE_IDLE) {
-            switch (hyattControlPanelState) {
-                case CONTROLPANEL_SELECT_MDI:
-                    hyattControlPanelDisplayMDIKey(button);
-                    break;
-                case CONTROLPANEL_IDLE:
-                    switch (button) {
-                        case RC65X_KEYPREVIOUS:
-                            grblBlockSend("$H");
-                            break;
-                       case RC65X_KEYUP:
-                            grblBlockSend("Y1G91G1F2500");
-                            break;
-                        case RC65X_KEYDOWN:
-                            grblBlockSend("Y-1G91G1F2500");
-                            break;
-                        case RC65X_KEYLEFT:
-                            grblBlockSend("X-1G91G1F2500");
-                            break;
-                        case RC65X_KEYRIGHT:
-                            grblBlockSend("X1G91G1F2500");
-                            break;
-                        case RC65X_KEYEXIT:
-                            grblBlockSend("Z1G91G1F2500");
-                            break;
-                        case RC65X_KEYINFO:
-                            grblBlockSend("Z-1G91G1F2500");
-                            break;
-                        case RC65X_KEYRED:
-                            hyattAxisSelected = AXISSELECTED_X;
-                            break;
-                        case RC65X_KEYGREEN:
-                            hyattAxisSelected = AXISSELECTED_Y;
-                            break;
-                        case RC65X_KEYYELLOW:
-                            hyattAxisSelected = AXISSELECTED_Z;
-                            break;
-                        case RC65X_KEYFORMAT:
-                            unitToggle();
-                            break;
-                        case RC65X_KEYRECORD:
-                            axisZero();
-                            break;
-                        case RC65X_KEYMENU:
-                            hyattControlPanelState = CONTROLPANEL_SELECT_MDI_SETUP;
-                            break;
-                    }
-                    break;
+                switch (button) {
+                    case RC65X_KEYPREVIOUS:
+                        grblBlockSend("$H");
+                        break;
+                   case RC65X_KEYUP:
+                        grblBlockSend("Y1G91G1F2500");
+                        break;
+                    case RC65X_KEYDOWN:
+                        grblBlockSend("Y-1G91G1F2500");
+                        break;
+                    case RC65X_KEYLEFT:
+                        grblBlockSend("X-1G91G1F2500");
+                        break;
+                    case RC65X_KEYRIGHT:
+                        grblBlockSend("X1G91G1F2500");
+                        break;
+                    case RC65X_KEYEXIT:
+                        grblBlockSend("Z1G91G1F2500");
+                        break;
+                    case RC65X_KEYINFO:
+                        grblBlockSend("Z-1G91G1F2500");
+                        break;
+                    case RC65X_KEYFORMAT:
+                        unitToggle();
+                        break;
+                    case RC65X_KEYRECORD:
+                        axisZero();
+                        break;
+                    default:
+                        hyattControlPanelDisplayMDIKey(button);
+                }
             }
-        }
         button = 0;
     }
 }

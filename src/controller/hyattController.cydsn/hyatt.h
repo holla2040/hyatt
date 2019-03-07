@@ -101,9 +101,7 @@ enum name {
   CONTROLPANEL_SELECT_ACTION_SETUP,
   CONTROLPANEL_SELECT_ACTION,
   CONTROLPANEL_SELECT_LOAD_SETUP,
-  CONTROLPANEL_SELECT_LOAD,
-  CONTROLPANEL_SELECT_MDI_SETUP,
-  CONTROLPANEL_SELECT_MDI
+  CONTROLPANEL_SELECT_LOAD
 };
 #define CONTROLPANEL_SELECTIONCOUNTMAX 9
 #define CONTROLPANEL_SELECTIONWIDTH 7
@@ -199,8 +197,6 @@ extern uint8_t _backlightval;
 
 void hyattControlPanelDisplayInit();
 void hyattControlPanelDisplayLoop();
-void hyattControlPanelDisplayMDISetup();
-void hyattControlPanelDisplayMDI();
 void hyattControlPanelDisplayMDIKey(uint16_t key);
 
 // feed override
