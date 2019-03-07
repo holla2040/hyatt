@@ -155,8 +155,7 @@ void hyattControlPanelDisplayIdle() {
         }
 
         if (strlen(mdiBlock)) {
-            lastBlock[9] = '>';
-            strncpy(&lastBlock[10],mdiBlock,9);
+            sprintf(lastBlock,"> %s                     ",mdiBlock);
         }
 
         lastBlock[20] = 0; // clip the last block parsed and planned
@@ -325,6 +324,7 @@ void hyattControlPanelDisplayMDIKey(uint16_t key) {
     switch (key) {
         case RC65X_KEYMENU:
             strcpy(mdiBlock,"");
+            strcpy(lastBlock,"");
             break;
         case RC65X_KEY0:
             strcat(mdiBlock,"0");
@@ -381,7 +381,12 @@ void hyattControlPanelDisplayMDIKey(uint16_t key) {
             grblBlockSend(mdiBlock);
             break;
         case RC65X_KEYPREV:
-            mdiBlock[strlen(mdiBlock)-1] = 0x00;
+            if (strlen(mdiBlock)>1) {
+                mdiBlock[strlen(mdiBlock)-1] = 0x00;
+            } else {
+                strcpy(mdiBlock,"");
+                strcpy(lastBlock,"");
+            }
             break;
     }
 }
