@@ -8,6 +8,7 @@
 uint16_t senderBufferLen;
 char senderBuffer[SENDERBUFFERLEN];
 char *senderBufferPtr;
+uint32_t timeoutSender;
 FS_FILE *file;
 
 void hyattSenderInit() {
@@ -17,6 +18,7 @@ void hyattSenderInit() {
 void hyattSenderLoop() {
     char c;
     int p,r;
+    if (hyattTicks > timeoutSender) {
     switch (senderState) {
         case SENDERSTATE_SEND:
                 p = plan_get_block_buffer_available();
@@ -47,6 +49,8 @@ void hyattSenderLoop() {
                 senderBufferPtr = &senderBuffer[0];
             }
             break;
+    }
+    timeoutSender = hyattTicks + 100;
     }
 }
 
