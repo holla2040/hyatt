@@ -22,19 +22,20 @@ void hyattSenderLoop() {
     switch (senderState) {
         case SENDERSTATE_SEND:
                 p = plan_get_block_buffer_available();
+                if (p < 15) break;
                 r = serial_get_rx_buffer_available();
             if (serial_get_rx_buffer_available() > 50) {
             while(senderBufferLen) {
-                if (serial_get_rx_buffer_available() < 10 ) break; // parser flow control
+                if (serial_get_rx_buffer_available() < 30 ) break; // parser flow control
                 senderBufferLen--;
                 c = *senderBufferPtr++;
                 rx_handler(c);
 
                 usb_uart_write(c);
                 
-                if ((c == '\n') || (c != '\r')) {
-                    break; // need to break here so planner will plan and avail will updated
-                 }
+//                if ((c == '\n') || (c != '\r')) {
+//                    break; // need to break here so planner will plan and avail will updated
+//                 }
 
             }
             }
