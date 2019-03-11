@@ -20,8 +20,8 @@ void hyattSenderLoop() {
     switch (senderState) {
         case SENDERSTATE_SEND:
             while(senderBufferLen) {
-                l = serial_get_rx_buffer_available();
-                if (serial_get_rx_buffer_available() < 50) break; // parser flow control
+                l = plan_get_block_buffer_available();
+                if (plan_get_block_buffer_available() > 5) break; // parser flow control
                 senderBufferLen--;
                 c = *senderBufferPtr++;
                 rx_handler(c);
@@ -116,7 +116,6 @@ void hyattSenderCallback(uint8_t status_code) {
 
 
 status_codes from report.h
-
         case STATUS_OK:
         case STATUS_EXPECTED_COMMAND_LETTER:
         case STATUS_BAD_NUMBER_FORMAT:
