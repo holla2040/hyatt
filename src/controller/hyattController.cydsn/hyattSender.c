@@ -21,7 +21,7 @@ void hyattSenderLoop() {
         case SENDERSTATE_SEND:
             while(senderBufferLen) {
                 l = plan_get_block_buffer_available();
-                if (plan_get_block_buffer_available() > 5) break; // parser flow control
+                if (serial_get_rx_buffer_available() < 10 || plan_get_block_buffer_available() < 5) break; // parser flow control
                 senderBufferLen--;
                 c = *senderBufferPtr++;
                 rx_handler(c);
