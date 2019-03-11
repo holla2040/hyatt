@@ -54,8 +54,8 @@ void hyattInit() {
 
 void hyattLoop() {
     hyattControlPanelLoop();
-    hyattSenderLoop();
     hyattZDisplayLoop();
+    hyattSenderLoop();
     
     if (hyattTicks > timeoutStatusUpdate) {
         // system_set_exec_state_flag(EXEC_STATUS_REPORT);

@@ -16,12 +16,14 @@ void hyattSenderInit() {
 
 void hyattSenderLoop() {
     char c;
-    int l;
+    int p,r;
     switch (senderState) {
         case SENDERSTATE_SEND:
+                p = plan_get_block_buffer_available();
+                r = serial_get_rx_buffer_available();
+            if (serial_get_rx_buffer_available() > 50) {
             while(senderBufferLen) {
-                l = plan_get_block_buffer_available();
-                if (serial_get_rx_buffer_available() < 10 || plan_get_block_buffer_available() < 5) break; // parser flow control
+                if (serial_get_rx_buffer_available() < 10 ) break; // parser flow control
                 senderBufferLen--;
                 c = *senderBufferPtr++;
                 rx_handler(c);
@@ -32,6 +34,7 @@ void hyattSenderLoop() {
                     break; // need to break here so planner will plan and avail will updated
                  }
 
+            }
             }
             if (senderBufferLen == 0) { // sent all buffer, read next file chunk
                 senderBufferLen = FS_Read(file,&senderBuffer,SENDERBUFFERLEN);
