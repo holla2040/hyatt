@@ -290,7 +290,7 @@ uint8_t gc_execute_line(char *line)
             }
             break;
             case 20:
-                hyattSenderSend("14-20insert.nc");
+                hyattSenderSend("14-20.nc");
                 break;
           default: FAIL(STATUS_GCODE_UNSUPPORTED_COMMAND); // [Unsupported M command]
         }

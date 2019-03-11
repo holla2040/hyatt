@@ -453,7 +453,7 @@
 // 115200 baud will take 5 msec to transmit a typical 55 character report. Worst case reports are
 // around 90-100 characters. As long as the serial TX buffer doesn't get continually maxed, Grbl
 // will continue operating efficiently. Size the TX buffer around the size of a worst-case report.
-#define RX_BUFFER_SIZE 254 // (1-254) Uncomment to override defaults in serial.h
+// #define RX_BUFFER_SIZE 254 // (1-254) Uncomment to override defaults in serial.h
 //#define TX_BUFFER_SIZE 100 // (1-254)
 
 // Configures the position after a probing cycle during Grbl's check mode. Disabled sets
