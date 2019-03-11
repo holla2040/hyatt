@@ -41,8 +41,8 @@ char *stateString() {
     return 0;
 }
 
-char *alarmString() {
-    switch (sys.state) {
+char *alarmString(uint8_t alarmid) {
+    switch (alarmid) {
         case 1: return "hard limit";
         case 2: return "soft limit";
         case 3: return "abort cycle";

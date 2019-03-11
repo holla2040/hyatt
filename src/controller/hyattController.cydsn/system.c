@@ -333,7 +333,9 @@ uint8_t system_check_travel_limits(float *target)
         }
       #else
         // NOTE: max_travel is stored as negative
-        if (target[idx] > 0 || target[idx] < settings.max_travel[idx]) { return(true); }
+        if (target[idx] > 0 || target[idx] < settings.max_travel[idx]) { 
+            return(true);
+        }
     #endif
   }
   }
