@@ -130,7 +130,7 @@ void hyattControlPanelIRLoop(void) {
                         axisZero();
                         break;
                     case RC65X_KEYPLAY:
-                        hyattSenderSend("14-20.nc");
+                        hyattSenderSend("1001.nc");
                         break;
                     default:
                         hyattControlPanelDisplayMDIKey(button);
