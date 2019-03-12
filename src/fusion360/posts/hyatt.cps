@@ -628,7 +628,6 @@ function writeRetract() {
       gAbsIncModal.reset();
       writeBlock(gFormat.format(28), gAbsIncModal.format(91), words);
       writeBlock(gAbsIncModal.format(90));
-      onDwell(2.0);
     } else {
       gMotionModal.reset();
       writeBlock(gAbsIncModal.format(90), gFormat.format(53), gMotionModal.format(0), words);
@@ -771,7 +770,7 @@ function onClose() {
 
   writeRetract(Z);
 
-  writeRetract(X, Y);
+  // writeRetract(X, Y);
 
   onImpliedCommand(COMMAND_END);
   onImpliedCommand(COMMAND_STOP_SPINDLE);
