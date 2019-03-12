@@ -12,6 +12,8 @@ char selectedAxisLetter();
 #define BLOCKLEN 128
 char lastBlock[BLOCKLEN];
 
+#define INSERTFN "14-20in.nc"
+
 #define AXISSELECTED_X      0x0001
 #define AXISSELECTED_Y      0x0002
 #define AXISSELECTED_Z      0x0004
