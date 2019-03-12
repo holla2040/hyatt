@@ -319,7 +319,7 @@ void system_convert_array_steps_to_mpos(float *position, int32_t *steps)
 // Checks and reports if target array exceeds machine travel limits.
 uint8_t system_check_travel_limits(float *target)
 {
-   uint8_t idx;
+  uint8_t idx;
   for (idx=0; idx<N_AXIS; idx++) {
     // allow disabling soft limit per axis by setting max travel to zero
     if (settings.max_travel[idx]) {
@@ -333,7 +333,9 @@ uint8_t system_check_travel_limits(float *target)
         }
       #else
         // NOTE: max_travel is stored as negative
-        if (target[idx] > 0 || target[idx] < settings.max_travel[idx]) { return(true); }
+        if (target[idx] > 0 || target[idx] < settings.max_travel[idx]) { 
+            return(true);
+        }
     #endif
   }
   }

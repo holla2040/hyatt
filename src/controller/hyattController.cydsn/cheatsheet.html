@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="client-nojs">
+<head>
+<meta charset="UTF-8" />
+</head>
+<body>
+<hr>
+<table>
+<tbody>
+<tr><th>G-code</th><th>Meaning</th></tr>
+<tr><td>G0</td><td>Rapid positioning</td> </tr>
+<tr><td>G1</td><td>Linear interpolation</td></tr>
+<tr><td>G2</td><td>Circular interpolation, clockwise</td></tr>
+<tr><td>G3</td><td>Circular interpolation, counterclockwise</td></tr>
+<tr><td>G4</td><td>Dwell (pause)</td></tr>
+<tr><td>G10</td><td>Set Work Coordinate Origin (and resultant Offsets)</td></tr>
+<tr><td>G17</td><td>Select the XY plane (for arcs)</td></tr>
+<tr><td>G18</td><td>Select the XZ plane (for arcs)</td></tr>
+<tr><td>G19</td><td>Select the YZ plane (for arcs)</td></tr>
+<tr><td>G20</td><td>After this, units will be in inches</td></tr>
+<tr><td>G21</td><td>After this, units will be in mm</td> </tr>
+<tr><td>G28</td><td>Go to Pre-Defined Position</td></tr>
+<tr><td>G28.1</td><td>Set Pre-Defined Position</td></tr>
+<tr><td>G28.2</td><td>Run homing cycle</td></tr>
+<tr><td>G30</td><td>Go to Pre-Defined Position (Return to secondary home position)</td></tr>
+<tr><td>G30.1</td><td>Set Pre-Defined Position</td></tr>
+<tr><td>G38.1</td><td>Probe cycle</td></tr>
+<tr><td>G38.2</td><td>Straight Probe</td></tr>
+<tr><td>G38.3</td><td>Probe</td></tr>
+<tr><td>G38.4</td><td>Probe</td></tr>
+<tr><td>G38.5</td><td>Probe</td></tr>
+<tr><td>G40</td><td>Tool radius comp off</td></tr>
+<tr><td>G43.1</td><td>Dynamic tool length offset</td></tr>
+<tr><td>G49</td><td>Cancel tool offset.</td></tr>
+<tr><td>G53</td><td>Absolute mode override</td></tr>
+<tr><td>G54-9</td><td>Work Coordinate Systems</td></tr>
+<tr><td>G61</td><td>Exact path control mode</td></tr>
+<tr><td>G80</td><td>Motion mode cancel</td></tr>
+<tr><td>G90</td><td>Switch to absolute distance mode</td></tr>
+<tr><td>G91</td><td>Switch to incremental distance mode</td></tr>
+<tr><td>G91.1</td><td>Arc radius mode</td></tr>
+<tr><td>G92</td><td>Coordinate offset. Change the current coordinates without moving</td></tr>
+<tr><td>G92.1</td><td>Clear (temporary) Coordinate System Offsets</td></tr>
+<tr><td>G93</td><td>Set inverse time feed rate mode</td></tr>
+<tr><td>G94</td><td>Set units per minute feed rate mode</td></tr>
+</tbody>
+</table>
+<hr>
+<table>
+<tbody>
+<tr><th>M-code</th><th>Meaning</th></tr>
+<tr><td>M0</td><td>Program Pause and End</td></tr>
+<tr><td>M1</td><td>Sleep (Optional Stop)</td></tr>
+<tr><td>M2</td><td>Program Pause and End</td></tr>
+<tr><td>M3</td><td>Spindle direction</td></tr>
+<tr><td>M4</td><td>Spindle direction</td></tr>
+<tr><td>M5</td><td>Spindle Control</td></tr>
+<tr><td>M6</td><td>Tool change</td></tr>
+<tr><td>M7</td><td>Mist Control</td></tr>
+<tr><td>M8</td><td>Flood Control</td></tr>
+<tr><td>M9</td><td>Coolant Control</td></tr>
+<tr><td>M30</td><td>Program Pause and End</td></tr>
+</tbody>
+</table>
+<hr>
+<table>
+<thead>
+<tr>
+<th align="center">ID</th>
+<th>Alarm Code Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><strong><code>1</code></strong></td>
+<td>Hard limit triggered. Machine position is likely lost due to sudden and immediate halt. Re-homing is highly recommended.</td>
+</tr>
+<tr>
+<td align="center"><strong><code>2</code></strong></td>
+<td>G-code motion target exceeds machine travel. Machine position safely retained. Alarm may be unlocked.</td>
+</tr>
+<tr>
+<td align="center"><strong><code>3</code></strong></td>
+<td>Reset while in motion. Grbl cannot guarantee position. Lost steps are likely. Re-homing is highly recommended.</td>
+</tr>
+<tr>
+<td align="center"><strong><code>4</code></strong></td>
+<td>Probe fail. The probe is not in the expected initial state before starting probe cycle, where G38.2 and G38.3 is not triggered and G38.4 and G38.5 is triggered.</td>
+</tr>
+<tr>
+<td align="center"><strong><code>5</code></strong></td>
+<td>Probe fail. Probe did not contact the workpiece within the programmed travel for G38.2 and G38.4.</td>
+</tr>
+<tr>
+<td align="center"><strong><code>6</code></strong></td>
+<td>Homing fail. Reset during active homing cycle.</td>
+</tr>
+<tr>
+<td align="center"><strong><code>7</code></strong></td>
+<td>Homing fail. Safety door was opened during active homing cycle.</td>
+</tr>
+<tr>
+<td align="center"><strong><code>8</code></strong></td>
+<td>Homing fail. Cycle failed to clear limit switch when pulling off. Try increasing pull-off setting or check wiring.</td>
+</tr>
+<tr>
+<td align="center"><strong><code>9</code></strong></td>
+<td>Homing fail. Could not find limit switch within search distance. Defined as <code>1.5 * max_travel</code> on search and <code>5 * pulloff</code> on locate phases.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<table>
+<thead>
+<tr>
+<th align="center">ID</th>
+<th>Error Code Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><strong><code>1</code></strong></td>
+<td>G-code words consist of a letter and a value. Letter was not found.</td>
+</tr>
+<tr>
+<td align="center"><strong><code>2</code></strong></td>
+<td>Numeric value format is not valid or missing an expected value.</td>
+</tr>
+<tr>
+<td align="center"><strong><code>3</code></strong></td>
+<td>Grbl '$' system command was not recognized or supported.</td>
+</tr>
+<tr>
+<td align="center"><strong><code>4</code></strong></td>
+<td>Negative value received for an expected positive value.</td>
+</tr>
+<tr>
+<td align="center"><strong><code>5</code></strong></td>
+<td>Homing cycle is not enabled via settings.</td>
+</tr>
+<tr>
+<td align="center"><strong><code>6</code></strong></td>
+<td>Minimum step pulse time must be greater than 3usec</td>
+</tr>
+<tr>
+<td align="center"><strong><code>7</code></strong></td>
+<td>EEPROM read failed. Reset and restored to default values.</td>
+</tr>
+<tr>
+<td align="center"><strong><code>8</code></strong></td>
+<td>Grbl '$' command cannot be used unless Grbl is IDLE. Ensures smooth operation during a job.</td>
+</tr>
+<tr>
+<td align="center"><strong><code>9</code></strong></td>
+<td>G-code locked out during alarm or jog state</td>
+</tr>
+<tr>
+<td align="center"><strong><code>10</code></strong></td>
+<td>Soft limits cannot be enabled without homing also enabled.</td>
+</tr>
+<tr>
+<td align="center"><strong><code>11</code></strong></td>
+<td>Max characters per line exceeded. Line was not processed and executed.</td>
+</tr>
+<tr>
+<td align="center"><strong><code>12</code></strong></td>
+<td>(Compile Option) Grbl '$' setting value exceeds the maximum step rate supported.</td>
+</tr>
+<tr>
+<td align="center"><strong><code>13</code></strong></td>
+<td>Safety door detected as opened and door state initiated.</td>
+</tr>
+<tr>
+<td align="center"><strong><code>14</code></strong></td>
+<td>(Grbl-Mega Only) Build info or startup line exceeded EEPROM line length limit.</td>
+</tr>
+<tr>
+<td align="center"><strong><code>15</code></strong></td>
+<td>Jog target exceeds machine travel. Command ignored.</td>
+</tr>
+<tr>
+<td align="center"><strong><code>16</code></strong></td>
+<td>Jog command with no '=' or contains prohibited g-code.</td>
+</tr>
+<tr>
+<td align="center"><strong><code>17</code></strong></td>
+<td>Laser mode requires PWM output.</td>
+</tr>
+<tr>
+<td align="center"><strong><code>20</code></strong></td>
+<td>Unsupported or invalid g-code command found in block.</td>
+</tr>
+<tr>
+<td align="center"><strong><code>21</code></strong></td>
+<td>More than one g-code command from same modal group found in block.</td>
+</tr>
+<tr>
+<td align="center"><strong><code>22</code></strong></td>
+<td>Feed rate has not yet been set or is undefined.</td>
+</tr>
+<tr>
+<td align="center"><strong><code>23</code></strong></td>
+<td>G-code command in block requires an integer value.</td>
+</tr>
+<tr>
+<td align="center"><strong><code>24</code></strong></td>
+<td>Two G-code commands that both require the use of the <code>XYZ</code> axis words were detected in the block.</td>
+</tr>
+<tr>
+<td align="center"><strong><code>25</code></strong></td>
+<td>A G-code word was repeated in the block.</td>
+</tr>
+<tr>
+<td align="center"><strong><code>26</code></strong></td>
+<td>A G-code command implicitly or explicitly requires <code>XYZ</code> axis words in the block, but none were detected.</td>
+</tr>
+<tr>
+<td align="center"><strong><code>27</code></strong></td>
+<td>
+<code>N</code> line number value is not within the valid range of <code>1</code> - <code>9,999,999</code>.</td>
+</tr>
+<tr>
+<td align="center"><strong><code>28</code></strong></td>
+<td>A G-code command was sent, but is missing some required <code>P</code> or <code>L</code> value words in the line.</td>
+</tr>
+<tr>
+<td align="center"><strong><code>29</code></strong></td>
+<td>Grbl supports six work coordinate systems <code>G54-G59</code>. <code>G59.1</code>, <code>G59.2</code>, and <code>G59.3</code> are not supported.</td>
+</tr>
+<tr>
+<td align="center"><strong><code>30</code></strong></td>
+<td>The <code>G53</code> G-code command requires either a <code>G0</code> seek or <code>G1</code> feed motion mode to be active. A different motion was active.</td>
+</tr>
+<tr>
+<td align="center"><strong><code>31</code></strong></td>
+<td>There are unused axis words in the block and <code>G80</code> motion mode cancel is active.</td>
+</tr>
+<tr>
+<td align="center"><strong><code>32</code></strong></td>
+<td>A <code>G2</code> or <code>G3</code> arc was commanded but there are no <code>XYZ</code> axis words in the selected plane to trace the arc.</td>
+</tr>
+<tr>
+<td align="center"><strong><code>33</code></strong></td>
+<td>The motion command has an invalid target. <code>G2</code>, <code>G3</code>, and <code>G38.2</code> generates this error, if the arc is impossible to generate or if the probe target is the current position.</td>
+</tr>
+<tr>
+<td align="center"><strong><code>34</code></strong></td>
+<td>A <code>G2</code> or <code>G3</code> arc, traced with the radius definition, had a mathematical error when computing the arc geometry. Try either breaking up the arc into semi-circles or quadrants, or redefine them with the arc offset definition.</td>
+</tr>
+<tr>
+<td align="center"><strong><code>35</code></strong></td>
+<td>A <code>G2</code> or <code>G3</code> arc, traced with the offset definition, is missing the <code>IJK</code> offset word in the selected plane to trace the arc.</td>
+</tr>
+<tr>
+<td align="center"><strong><code>36</code></strong></td>
+<td>There are unused, leftover G-code words that aren't used by any command in the block.</td>
+</tr>
+<tr>
+<td align="center"><strong><code>37</code></strong></td>
+<td>The <code>G43.1</code> dynamic tool length offset command cannot apply an offset to an axis other than its configured axis. The Grbl default axis is the Z-axis.</td>
+</tr>
+<tr>
+<td align="center"><strong><code>38</code></strong></td>
+<td>Tool number greater than max supported value.</td>
+</tr>
+</tbody>
+</table>
+
+</body>
+</html>

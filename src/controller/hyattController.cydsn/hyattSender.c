@@ -19,14 +19,16 @@ void hyattSenderLoop() {
     switch (senderState) {
         case SENDERSTATE_SEND:
             while(senderBufferLen) {
-                if (serial_get_rx_buffer_available() < 10) break; // parser flow control
+                if (serial_get_rx_buffer_available() < 10 ) break; // parser flow control
                 senderBufferLen--;
                 c = *senderBufferPtr++;
                 rx_handler(c);
-//                usb_uart_write(c);
-//                if ((c == '\n') || (c != '\r')) {
-//                    break; // need to break here so planner will plan and avail will updated
-//                 }
+
+               // usb_uart_write(c);
+                
+                if ((c == '\n') || (c == '\r')) {
+                    break;
+                 }
             }
             if (senderBufferLen == 0) { // sent all buffer, read next file chunk
                 senderBufferLen = FS_Read(file,&senderBuffer,SENDERBUFFERLEN);
@@ -39,7 +41,7 @@ void hyattSenderLoop() {
                 senderBufferPtr = &senderBuffer[0];
             }
             break;
-    }
+   }
 }
 
 void hyattSenderSend(char *filename) {
@@ -111,7 +113,6 @@ void hyattSenderCallback(uint8_t status_code) {
 
 
 status_codes from report.h
-
         case STATUS_OK:
         case STATUS_EXPECTED_COMMAND_LETTER:
         case STATUS_BAD_NUMBER_FORMAT:
