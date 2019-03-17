@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="yes"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
+<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="yes" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="no" active="no"/>
 <layer number="2" name="Route2" color="1" fill="3" visible="no" active="no"/>
@@ -4992,6 +4992,7 @@ Various fiducial points for machine vision alignment.</description>
 <text x="177.8" y="10.16" size="2.54" layer="97" align="top-left">180804</text>
 <text x="261.62" y="10.16" size="2.54" layer="97" align="top-left">v1.1</text>
 <text x="132.08" y="91.44" size="1.778" layer="97" align="top-left">TODO
+Don't allow usb to power the board
 Mounting holes are misaligned
 pushbutton switch positions are off
 add silk label for IR receiver orientation
