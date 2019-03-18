@@ -65,9 +65,7 @@ void hyattControlPanelKeypadInit() {
 
 void hyattControlPanelKeypadLoop() {
     uint16_t key;
-    int c;
     uint8_t s;
-    char buf[30];
     if (keyPending) {
         s = I2C_MasterStatus();
         if (s & (I2C_MSTAT_XFER_INP)) return;
@@ -115,12 +113,15 @@ void hyattControlPanelKeypadLoop() {
                 case KEY_FAST:
                     hyattWheelStepSize = WHEELSTEPSIZE_LARGE;
                     break;
+
+/*
                 case KEY_COORDSELECT:
                     c = gc_state.modal.coord_select + 1;
                     if (c > 3) c = 0;
                     sprintf(buf,"G%d",54+c);
                     grblBlockSend(buf);
                     break;
+*/
                 case KEY_SELECT:
                     switch (hyattControlPanelState) {
                         case CONTROLPANEL_IDLE:
@@ -135,6 +136,9 @@ void hyattControlPanelKeypadLoop() {
                             hyattControlPanelState = CONTROLPANEL_IDLE_SETUP;
                             break;
                     }
+                    break;
+                case KEY_ENTER:
+                    enterCount++;
                     break;
                 case KEY_UNIT:
                     unitToggle();

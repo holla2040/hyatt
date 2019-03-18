@@ -60,7 +60,8 @@ char lastBlock[BLOCKLEN];
 #define KEY_FAST        0x0040
 
 #define KEY_SELECT      0x0100
-#define KEY_COORDSELECT 0x0200
+// #define KEY_COORDSELECT 0x0200
+#define KEY_ENTER       0x0200
 #define KEY_UNIT        0x0400
 
 #define KEY_AXISZERO    0x1000
@@ -72,6 +73,7 @@ uint8_t hyattAxisSelected;
 uint8_t hyattFeedOverride;
 uint8_t hyattWheelStepSize;
 uint8_t feedOverride;
+uint8_t enterCount;
 
 void hyattInit();
 void hyattLoop();

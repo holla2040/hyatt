@@ -71,6 +71,9 @@ void settings_restore(uint8_t restore_flag) {
 	
 	settings.rpm_max = DEFAULT_SPINDLE_RPM_MAX;
 	settings.rpm_min = DEFAULT_SPINDLE_RPM_MIN;
+
+    settings.hyatt_g92_offset_x = 0;
+    settings.hyatt_g92_offset_y = 0;
 	
 	settings.homing_dir_mask = DEFAULT_HOMING_DIR_MASK;
 	settings.homing_feed_rate = DEFAULT_HOMING_FEED_RATE;
@@ -302,8 +305,8 @@ uint8_t settings_store_global_setting(uint8_t parameter, float value) {
           return(STATUS_SETTING_DISABLED_LASER);
         #endif
         break;
-        
-        
+      case 33: settings.hyatt_g92_offset_x = value; break;
+      case 34: settings.hyatt_g92_offset_y = value; break;
       default: 
         return(STATUS_INVALID_STATEMENT);
     }

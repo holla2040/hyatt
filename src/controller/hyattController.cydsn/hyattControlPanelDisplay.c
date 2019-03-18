@@ -205,6 +205,7 @@ void hyattControlPanelDisplayActionSetup() {
 
     wheel0 = wheelDecoder_GetCounter();
     hyattControlPanelState = CONTROLPANEL_SELECT_ACTION;
+    enterCount = 0;
 }
 
 void hyattControlPanelDisplayAction() {
@@ -215,7 +216,7 @@ void hyattControlPanelDisplayAction() {
     LCD_SetCursor(x,y);
 
     f = FEED_OVERRIDE_Read();
-    if ((f & FEED_OVERRIDE_OFF) | !(f & FEED_OVERRIDE_BTN)) {
+    if ((f & FEED_OVERRIDE_OFF) | !(f & FEED_OVERRIDE_BTN) | enterCount) {
         LCD_NoBlink();
         LCD_Clear();
         LCD_SetCursor(0,0);
@@ -277,6 +278,7 @@ void hyattControlPanelDisplayLoadSetup() {
 
     wheel0 = wheelDecoder_GetCounter();
     hyattControlPanelState = CONTROLPANEL_SELECT_LOAD;
+    enterCount = 0;
 }
 
 void hyattControlPanelDisplayLoad() {
@@ -286,7 +288,7 @@ void hyattControlPanelDisplayLoad() {
     y = (i % 3) + 1;
     LCD_SetCursor(x,y);
     f = FEED_OVERRIDE_Read();
-    if ((f & FEED_OVERRIDE_OFF) | !(f & FEED_OVERRIDE_BTN)) {
+    if ((f & FEED_OVERRIDE_OFF) | !(f & FEED_OVERRIDE_BTN) | enterCount) {
         FS_FILE *file;
         char buf[10];
         LCD_NoBlink();

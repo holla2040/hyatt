@@ -14,9 +14,9 @@ struct action actions[CONTROLPANEL_SELECTIONCOUNTMAX] = {
     {"",""},
     {"",""},
     {"G28Set","G28.1"},
-    {"",""},
-    {"",""},
-    {"",""}
+    {"G54","G54"},
+    {"G55","G55"},
+    {"G56","G56"}
 };
     
 #endif

@@ -102,6 +102,9 @@ typedef struct {
   float homing_seek_rate;
   uint16_t homing_debounce_delay;
   float homing_pulloff;
+
+  float hyatt_g92_offset_x;
+  float hyatt_g92_offset_y;
 } settings_t;
 extern settings_t settings;
 

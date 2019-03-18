@@ -59,6 +59,8 @@ void hyattControlPanelInit() {
 
     timeoutStateUpdate = 0;
     hyattControlPanelState = CONTROLPANEL_IDLE_SETUP;
+    
+    enterCount = 0;
 }
 
 void hyattControlPanelLoop() {
