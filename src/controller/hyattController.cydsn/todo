@@ -3,5 +3,15 @@ TODO
     add go to home to macros
     add job max find, check and move to to job confirmation screen
     add code for the PSoC not implemented yet comments in spindle control
-    
-    
+
+    change the word actions to macros
+
+    channel- is rotating letter selector F,M,$, etc
+
+    figure a way to move off limited Y at startup
+
+    G92 X$33 Y$34 using lazer pointer 
+
+    create new measurement screen
+        center,radius of circle
+        distance between to points

@@ -8,7 +8,7 @@ struct action {
 };    
     
 struct action actions[CONTROLPANEL_SELECTIONCOUNTMAX] = {
-    {"X0Y0Z0","X0Y0Z0G1F2500"},
+    {"X0Y0Z1","X0Y0Z1G1F2500"},
     {"HOME","$H"},
     {"G28 GO","G28"},
     {"",""},
