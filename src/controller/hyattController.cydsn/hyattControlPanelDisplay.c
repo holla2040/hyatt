@@ -2,6 +2,7 @@
 #include <FS.h>
 #include "hyatt.h"
 #include "hyattMacro.h"
+#include "hyattInspect.h"
 #include "RC65X.h"
 
 #define DISPLAYUPDATEIDLEINTERVAL 100
@@ -22,6 +23,9 @@ char buffer[400];
 char *bptr,*sptr;
 uint8_t secondHalf;
 uint32_t hyattTimeoutDisplayUpdate;
+float inspectPoints[2][2];
+float inspectCirclePoints[3][2]; // x,y * 3
+float inspectLength,inspectAngle;
 
 char selections[CONTROLPANEL_SELECTIONCOUNTMAX][CONTROLPANEL_SELECTIONWIDTH] = {};
 char filelist[CONTROLPANEL_SELECTIONCOUNTMAX][FILENAMEMAX];
@@ -98,12 +102,45 @@ void hyattControlPanelDisplayIdleSetup() {
     hyattControlPanelState = CONTROLPANEL_IDLE;
 }
 
-void hyattControlPanelDisplayIdle() {
-    uint8_t c,i2cStatus,idx;
+void hyattCurrentPosition() {
+    uint8_t idx;
     int32_t current_position[N_AXIS]; // Copy current state of the system position variable
     float print_position[N_AXIS];
     float wco[N_AXIS];
 
+    memcpy(current_position,sys_position,sizeof(sys_position));
+    system_convert_array_steps_to_mpos(print_position,current_position);
+
+    bptr = buffer;
+    sptr = status;
+
+    if (bit_isfalse(settings.status_report_mask,BITFLAG_RT_STATUS_POSITION_TYPE) || (sys.report_wco_counter == 0) ) {
+        for (idx=0; idx< N_AXIS; idx++) {
+            // Apply work coordinate offsets and tool length offset to current position.
+            wco[idx] = gc_state.coord_system[idx]+gc_state.coord_offset[idx];
+            if (idx == TOOL_LENGTH_OFFSET_AXIS) { wco[idx] += gc_state.tool_length_offset; }
+            if (bit_isfalse(settings.status_report_mask,BITFLAG_RT_STATUS_POSITION_TYPE)) {
+                print_position[idx] -= wco[idx];
+            }
+
+        }
+    }
+
+    // x,y,z are floats defined in hyatt.h
+    
+    x = print_position[0];
+    y = print_position[1];
+    z = print_position[2];
+    
+    if (bit_istrue(settings.flags,BITFLAG_REPORT_INCHES)) {
+        x *= INCH_PER_MM;
+        y *= INCH_PER_MM;
+        z *= INCH_PER_MM;
+    }     
+}
+
+void hyattControlPanelDisplayIdle() {
+    uint8_t c,i2cStatus;
     i2cStatus = I2C_MasterStatus();
 
     if (secondHalf) {
@@ -121,33 +158,8 @@ void hyattControlPanelDisplayIdle() {
         
     if (hyattTicks > hyattTimeoutDisplayUpdate) {
         if (i2cStatus & I2C_MSTAT_ERR_MASK) I2C_MasterClearStatus();
-        memcpy(current_position,sys_position,sizeof(sys_position));
-        system_convert_array_steps_to_mpos(print_position,current_position);
 
-        bptr = buffer;
-        sptr = status;
-
-        if (bit_isfalse(settings.status_report_mask,BITFLAG_RT_STATUS_POSITION_TYPE) || (sys.report_wco_counter == 0) ) {
-            for (idx=0; idx< N_AXIS; idx++) {
-                // Apply work coordinate offsets and tool length offset to current position.
-                wco[idx] = gc_state.coord_system[idx]+gc_state.coord_offset[idx];
-                if (idx == TOOL_LENGTH_OFFSET_AXIS) { wco[idx] += gc_state.tool_length_offset; }
-                if (bit_isfalse(settings.status_report_mask,BITFLAG_RT_STATUS_POSITION_TYPE)) {
-                    print_position[idx] -= wco[idx];
-                }
-
-            }
-        }
-        
-        x = print_position[0];
-        y = print_position[1];
-        z = print_position[2];
-        
-        if (bit_istrue(settings.flags,BITFLAG_REPORT_INCHES)) {
-            x *= INCH_PER_MM;
-            y *= INCH_PER_MM;
-            z *= INCH_PER_MM;
-        }     
+        hyattCurrentPosition();
         
         home(); // sets DDRAM address to 0, which is upper corner
         if (sys.state == STATE_ALARM) {
@@ -184,7 +196,66 @@ void hyattControlPanelDisplayIdle() {
     }
 }
 
-/* ============ macros ================ */
+/* ============ inspect ================ */
+void inspectsLoad() {
+    // selections should be all "       ", no
+    selectionsClear();
+    for (int i = 0; i < CONTROLPANEL_SELECTIONCOUNTMAX; i++) {
+        if (strlen(inspects[i].label)) strcpy(selections[i],inspects[i].label);
+    }
+}
+
+void hyattControlPanelDisplayInspectSetup() {
+    LCD_Clear();
+    LCD_SetCursor(0,0); 
+
+    inspectsLoad();
+    selectionsDisplay();
+
+    LCD_SetCursor(0,0);
+    LCD_Blink();
+
+    wheel0 = wheelDecoder_GetCounter();
+    hyattControlPanelState = CONTROLPANEL_SELECT_INSPECT;
+    enterCount = 0;
+}
+
+void hyattControlPanelDisplayInspect() {
+    int16_t i = abs(wheel0 - wheelDecoder_GetCounter()) % CONTROLPANEL_SELECTIONCOUNTMAX;
+    int x,y,f;
+    x = (i / 3) * 7;
+    y = (i % 3) + 1;
+    LCD_SetCursor(x,y);
+
+    f = FEED_OVERRIDE_Read();
+    if ((f & FEED_OVERRIDE_OFF) | !(f & FEED_OVERRIDE_BTN) | enterCount) {
+        hyattCurrentPosition();
+        switch (i) {
+            case 1: // point 1
+                inspectPoints[0][0] = x;
+                inspectPoints[0][1] = y;
+                break;
+            case 2: // point 2
+                inspectPoints[1][0] = x;
+                inspectPoints[1][1] = y;
+                break;
+            case 3: // measure
+                break;
+        };
+
+/*
+            CyDelay(2000);
+        wheelDecoder_SetCounter(wheel0);
+*/
+    }
+}
+
+void hyattControlPanelDisplayInspectResult() {
+
+}
+/* ============ inspect end ================ */
+
+/* ============ macro ================ */
 void macrosLoad() {
     // selections should be all "       ", no
     selectionsClear();
@@ -233,7 +304,7 @@ void hyattControlPanelDisplayMacro() {
         grblBlockSend(macros[i].block);
     }
 }
-/* ============ macros end ================ */
+/* ============ macro end ================ */
 
 
 /* ============ load ================ */
@@ -414,6 +485,15 @@ void hyattControlPanelDisplayLoop() {
             break;
         case CONTROLPANEL_SELECT_LOAD:
             hyattControlPanelDisplayLoad();
+            break;
+        case CONTROLPANEL_SELECT_INSPECT_SETUP:
+            hyattControlPanelDisplayInspectSetup();
+            break;
+        case CONTROLPANEL_SELECT_INSPECT:
+            hyattControlPanelDisplayInspect();
+            break;
+        case CONTROLPANEL_SELECT_INSPECT_RESULT:
+            hyattControlPanelDisplayInspectResult();
             break;
     }
 }
