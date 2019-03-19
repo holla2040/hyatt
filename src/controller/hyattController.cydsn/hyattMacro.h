@@ -2,12 +2,12 @@
 #define MACROS_H
 #include "hyatt.h"
     
-struct action {
-    char label[CONTROLPANEL_ACTIONLABELWIDTH];
+struct macro {
+    char label[CONTROLPANEL_MACROLABELWIDTH];
     char block[50];
 };    
     
-struct action actions[CONTROLPANEL_SELECTIONCOUNTMAX] = {
+struct macro macros[CONTROLPANEL_SELECTIONCOUNTMAX] = {
     {"X0Y0Z1","X0Y0Z1G1F2500"},
     {"HOME","$H"},
     {"G28 GO","G28"},

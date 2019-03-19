@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <FS.h>
 #include "hyatt.h"
-#include "hyattAction.h"
+#include "hyattMacro.h"
 #include "RC65X.h"
 
 #define DISPLAYUPDATEIDLEINTERVAL 100
@@ -184,31 +184,31 @@ void hyattControlPanelDisplayIdle() {
     }
 }
 
-/* ============ actions ================ */
-void actionsLoad() {
+/* ============ macros ================ */
+void macrosLoad() {
     // selections should be all "       ", no
     selectionsClear();
     for (int i = 0; i < CONTROLPANEL_SELECTIONCOUNTMAX; i++) {
-        if (strlen(actions[i].label)) strcpy(selections[i],actions[i].label);
+        if (strlen(macros[i].label)) strcpy(selections[i],macros[i].label);
     }
 }
 
-void hyattControlPanelDisplayActionSetup() {
+void hyattControlPanelDisplayMacroSetup() {
     LCD_Clear();
-    LCD_SetCursor(0,0);     LCD_PutString("Actions - Macros");
+    LCD_SetCursor(0,0);     LCD_PutString("Macros");
 
-    actionsLoad();
+    macrosLoad();
     selectionsDisplay();
 
     LCD_SetCursor(0,1);
     LCD_Blink();
 
     wheel0 = wheelDecoder_GetCounter();
-    hyattControlPanelState = CONTROLPANEL_SELECT_ACTION;
+    hyattControlPanelState = CONTROLPANEL_SELECT_MACRO;
     enterCount = 0;
 }
 
-void hyattControlPanelDisplayAction() {
+void hyattControlPanelDisplayMacro() {
     int16_t i = abs(wheel0 - wheelDecoder_GetCounter()) % CONTROLPANEL_SELECTIONCOUNTMAX;
     int x,y,f;
     x = (i / 3) * 7;
@@ -222,18 +222,18 @@ void hyattControlPanelDisplayAction() {
         LCD_SetCursor(0,0);
         LCD_PutString("SEND");
         LCD_SetCursor(5,0);
-        LCD_PutString(actions[i].label);
+        LCD_PutString(macros[i].label);
         LCD_SetCursor(0,1);
-        LCD_PutString(actions[i].block);
+        LCD_PutString(macros[i].block);
         LCD_SetCursor(0,3);
         LCD_PutString("Loaded");
         CyDelay(2000);
         wheelDecoder_SetCounter(wheel0);
         hyattControlPanelState = CONTROLPANEL_IDLE_SETUP;
-        grblBlockSend(actions[i].block);
+        grblBlockSend(macros[i].block);
     }
 }
-/* ============ actions end ================ */
+/* ============ macros end ================ */
 
 
 /* ============ load ================ */
@@ -403,11 +403,11 @@ void hyattControlPanelDisplayLoop() {
         case CONTROLPANEL_IDLE:
             hyattControlPanelDisplayIdle();
             break;
-        case CONTROLPANEL_SELECT_ACTION_SETUP:
-            hyattControlPanelDisplayActionSetup();
+        case CONTROLPANEL_SELECT_MACRO_SETUP:
+            hyattControlPanelDisplayMacroSetup();
             break;
-        case CONTROLPANEL_SELECT_ACTION:
-            hyattControlPanelDisplayAction();
+        case CONTROLPANEL_SELECT_MACRO:
+            hyattControlPanelDisplayMacro();
             break;
         case CONTROLPANEL_SELECT_LOAD_SETUP:
             hyattControlPanelDisplayLoadSetup();

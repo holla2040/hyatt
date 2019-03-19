@@ -125,9 +125,9 @@ void hyattControlPanelKeypadLoop() {
                 case KEY_SELECT:
                     switch (hyattControlPanelState) {
                         case CONTROLPANEL_IDLE:
-                            hyattControlPanelState = CONTROLPANEL_SELECT_ACTION_SETUP;
+                            hyattControlPanelState = CONTROLPANEL_SELECT_MACRO_SETUP;
                             break;
-                        case CONTROLPANEL_SELECT_ACTION:
+                        case CONTROLPANEL_SELECT_MACRO:
                             wheelDecoder_SetCounter(wheel0);
                             hyattControlPanelState = CONTROLPANEL_SELECT_LOAD_SETUP;
                             break;
