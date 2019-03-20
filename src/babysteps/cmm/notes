@@ -1,0 +1,28 @@
+Rotation Matrix
+https://en.wikipedia.org/wiki/Rotation_matrix
+
+R(ang)  = |cos(ang), -sin(ang)|
+          |sin(ang),  cos(ang)|
+
+R(-ang) = | cog(ang),  sin(ang)|
+          |-sin(ang),  cos(ang)|
+
+
+https://scipython.com/book/chapter-6-numpy/examples/creating-a-rotation-matrix-in-numpy/
+
+In [x]: theta = np.radians(30)
+In [x]: c, s = np.cos(theta), np.sin(theta)
+In [x]: R = np.array(((c,-s), (s, c)))
+Out[x]: print(R) 
+[[ 0.8660254 -0.5      ]
+ [ 0.5        0.8660254]]
+
+In [x]: theta = np.radians(30)
+In [x]: c, s = np.cos(theta), np.sin(theta)
+In [x]: R = np.matrix([[c, -s], [s, c]])
+In [x]: print(R)
+[[ 0.8660254 -0.5      ]
+ [ 0.5        0.8660254]]
+
+
+
