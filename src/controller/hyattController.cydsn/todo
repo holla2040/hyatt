@@ -3,13 +3,32 @@ TODO
     add go to home to macros
     add job max find, check and move to to job confirmation screen
     add code for the PSoC not implemented yet comments in spindle control
+    need more G0/1 G90/91 goodies on display
 
     channel- is rotating letter selector F,M,$, etc
 
     figure a way to move off limited Y at startup
 
-    G92 X$33 Y$34 using lazer pointer 
+    G92 X$33 Y$34 using lazer pointer , NO use GxL20 thing
 
     create new measurement screen
         center,radius of circle
         distance between to points
+
+
+    keypad cmm
+    X       Y       Z
+    x1      x10     x100
+    sel     enter   feature
+    skew    measure go  
+
+    feature rotates (point 1, point 2, circle 1, circle 2)
+    measure does measurement then shows result
+
+    can cmm get bu with lastBlock usage only?
+
+    result
+    F1 locX, locY
+    F2 locX, locY, radius
+    disX, disY, disZ
+    skew ang    
