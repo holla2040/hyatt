@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="yes"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="yes" altdistance="0.01" altunitdist="inch" altunit="inch"/>
+<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="no" active="no"/>
 <layer number="2" name="Route2" color="1" fill="3" visible="no" active="no"/>
@@ -4875,8 +4875,8 @@ Various fiducial points for machine vision alignment.</description>
 <parts>
 <part name="FRAME1" library="holla" deviceset="FRAME_A_L" device=""/>
 <part name="U2" library="holla" deviceset="BOARD-PSOC-CY8CKIT-059" device=""/>
-<part name="U3" library="holla" deviceset="IO-MCP23017" device="SO"/>
-<part name="U4" library="holla" deviceset="IO-MCP23017" device="SO"/>
+<part name="U3" library="holla" deviceset="IO-MCP23017" device="SO" value="MCP23017"/>
+<part name="U4" library="holla" deviceset="IO-MCP23017" device="SO" value="MCP23017"/>
 <part name="S103" library="holla" deviceset="SWITCH-DTMF-3-LED" device=""/>
 <part name="S100" library="holla" deviceset="SWITCH-DTMF-3-LED" device=""/>
 <part name="S102" library="holla" deviceset="SWITCH-DTMF-3-LED" device=""/>
@@ -4941,8 +4941,8 @@ Various fiducial points for machine vision alignment.</description>
 <part name="C5" library="holla" deviceset="C" device="-0603"/>
 <part name="GND27" library="holla" deviceset="GND" device=""/>
 <part name="GND28" library="holla" deviceset="GND" device=""/>
-<part name="R8" library="holla" deviceset="R" device="-0603" value="2.2k"/>
-<part name="R7" library="holla" deviceset="R" device="-0603" value="2.2k"/>
+<part name="R8" library="holla" deviceset="R" device="-0603" value="1k"/>
+<part name="R7" library="holla" deviceset="R" device="-0603" value="1k"/>
 <part name="R21" library="holla" deviceset="R" device="-0603" value="10k"/>
 <part name="R20" library="holla" deviceset="R" device="-0603" value="10k"/>
 <part name="R16" library="holla" deviceset="R" device="-0603" value="220"/>

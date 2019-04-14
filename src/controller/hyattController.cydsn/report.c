@@ -89,8 +89,8 @@ static void report_util_setting_string(uint8_t n) {
     case 30: printPgmString(PSTR("spindle speed max,\x1B[39GRPM")); break;
     case 31: printPgmString(PSTR("spindle speed min,\x1B[39GRPM")); break;
     case 32: printPgmString(PSTR("laser mode,\x1B[39Gboolean")); break;
-    case 33: printPgmString(PSTR("G92 spindle offset X,\x1B[39Gmm")); break;
-    case 34: printPgmString(PSTR("G92 spindle offset Y,\x1B[39Gmm")); break;
+    case 33: printPgmString(PSTR("crosshair offset X,\x1B[39Gmm")); break;
+    case 34: printPgmString(PSTR("crosshair offset Y,\x1B[39Gmm")); break;
     default:
       n -= AXIS_SETTINGS_START_VAL;
       uint8_t idx = 0;
@@ -232,8 +232,8 @@ void report_grbl_settings() {
   #else
     report_util_uint8_setting(32,0);
   #endif
-  report_util_float_setting(33,settings.hyatt_g92_offset_x,N_DECIMAL_SETTINGVALUE);
-  report_util_float_setting(34,settings.hyatt_g92_offset_y,N_DECIMAL_SETTINGVALUE);
+  report_util_float_setting(33,settings.hyatt_zero_offset_x,N_DECIMAL_SETTINGVALUE);
+  report_util_float_setting(34,settings.hyatt_zero_offset_y,N_DECIMAL_SETTINGVALUE);
   // Print axis settings
   uint8_t idx, set_idx;
   uint8_t val = AXIS_SETTINGS_START_VAL;
