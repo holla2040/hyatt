@@ -102,7 +102,7 @@ static void report_util_setting_string(uint8_t n) {
       switch (idx) {
         case 0: printPgmString(PSTR(":steps/mm")); break;
         case 1: printPgmString(PSTR(":max rate,\x1B[39Gmm/min")); break;
-        case 2: printPgmString(PSTR(":acceleration,\x1B[39Gmm/s^2")); break;
+        case 2: printPgmString(PSTR(":acceleration,\x1B[39Gmm/s2")); break;
         case 3: printPgmString(PSTR(":max travel,\x1B[39Gmm")); break;
       }
       break;
