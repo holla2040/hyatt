@@ -9,7 +9,9 @@ void findbody(FILE *fp) {
     /* scan for blank line */
     lastc = 0;
     while ((c = fgetc(fp)) != EOF) {
-        if (lastc == c) {
+        if (c == '\r') continue;
+        // printf("%c %d\n",c,c);
+        if (lastc == '\n' && c == '\n')  {
             break;
         }
         lastc = c;
@@ -24,12 +26,12 @@ void labels(char *fn) {
     char *lp;
 
     fp = fopen(fn,"r");
-
     findbody(fp);
 
-    printf("-- labels       -------------------\n");
+    printf("\n\n-- labels       -------------------\n");
     lp = line;
     while ((c = fgetc(fp)) != EOF) {
+        // if (c == '\r') continue;
         if (c == '\n') {
             *lp = 0;
             if (line[0] == '(' && line[strlen(line)-2] == ')') {
@@ -59,10 +61,11 @@ void boundingbox(char *fn) {
     fp = fopen(fn,"r");
     findbody(fp);
 
-    printf("-- bounding box -------------------\n");
+    printf("\n\n-- bounding box -------------------\n");
     wp = word;
     while ((c = fgetc(fp)) != EOF) {
-        printf("%c",(char)c);
+        if (c == '\r') continue;
+        // printf("%c",(char)c);
         if (c > 96 && c < 123) {
             c |= 0x20; // uppercase
         }
@@ -104,9 +107,6 @@ int main(int argc, char **argv) {
 
     boundingbox("solder.nc");
     labels("solder.nc");
-
-    //printf("\nlines %d\n",lines);
-
 
     return 0;
 }
