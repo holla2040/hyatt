@@ -3,14 +3,11 @@
 #include "hyatt.h"
 #include <FS.h>
 
-#define FILEBUFFERLEN 512
 uint16_t hyattFileBufferLen;
 char hyattFileBuffer[FILEBUFFERLEN];
 char *hyattFileBufferPtr;
 FS_FILE *file;
 
-#define FILENAMEMAX 32
-#define OPNAMEMAX   20
 
 float fileXMin,fileXMax,fileYMin,fileYMax;
 char filelist[CONTROLPANEL_SELECTIONCOUNTMAX][FILENAMEMAX];

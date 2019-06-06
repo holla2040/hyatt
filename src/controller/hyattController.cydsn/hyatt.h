@@ -246,6 +246,9 @@ void hyattFilePerimeter(char *fn);
 #define FILESENDERSTATE_IDLE 'I'
 #define FILESENDERSTATE_SEND 'S'
 uint8_t hyattFileSenderState;
+#define FILEBUFFERLEN 512
+#define FILENAMEMAX 32
+#define OPNAMEMAX   20
 
 // IR
 void hyattControlPanelIRInit();

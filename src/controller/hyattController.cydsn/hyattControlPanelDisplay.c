@@ -26,8 +26,9 @@ float inspectPoints[2][2];
 float inspectCirclePoints[3][2]; // x,y * 3
 float inspectLength,inspectAngle;
 
-
 char selections[CONTROLPANEL_SELECTIONCOUNTMAX][CONTROLPANEL_SELECTIONWIDTH] = {};
+extern char filelist[CONTROLPANEL_SELECTIONCOUNTMAX][FILENAMEMAX];
+extern uint8_t fileSelectIndex;
 
 char *stateString() {
     switch (sys.state) {
