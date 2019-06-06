@@ -8,9 +8,7 @@
 #define DISPLAYUPDATEIDLEINTERVAL 100
 #define DISPLAYUPDATECYCLEINTERVAL 100
 
-#define FILENAMEMAX 32
 #define MDIBLOCKLEN 50
-#define OPNAMEMAX   20
 
 #define BACKLIGHTON_DATA 0x09  //(LCD_BACKLIGHT | 0x01)
 
@@ -27,12 +25,9 @@ uint32_t hyattTimeoutDisplayUpdate;
 float inspectPoints[2][2];
 float inspectCirclePoints[3][2]; // x,y * 3
 float inspectLength,inspectAngle;
-float fileXMin,fileXMax,fileYMin,fileYMax;
+
 
 char selections[CONTROLPANEL_SELECTIONCOUNTMAX][CONTROLPANEL_SELECTIONWIDTH] = {};
-char filelist[CONTROLPANEL_SELECTIONCOUNTMAX][FILENAMEMAX];
-uint8_t fileSelectIndex;
-char oplist[CONTROLPANEL_SELECTIONCOUNTMAX][OPNAMEMAX];
 
 char *stateString() {
     switch (sys.state) {
@@ -324,7 +319,7 @@ void hyattControlPanelDisplayFileSetup() {
     LCD_Clear();
     LCD_SetCursor(0,0);     LCD_PutString("File Ops");
 
-    filelistGet();
+    hyattFilelistGet();
     selectionsDisplay();
 
     LCD_SetCursor(0,1);
@@ -354,7 +349,7 @@ void hyattControlPanelDisplayFile() {
         strcpy(selections[7],"");
         strcpy(selections[8],"");
 
-        hyattControlPanelDisplayFilePerimeter(filelist[i]);
+        hyattFilePerimeter(filelist[i]);
         LCD_Clear();
         LCD_SetCursor(0,0);     LCD_PutString(filelist[i]);
 
@@ -380,7 +375,7 @@ void hyattControlPanelDisplayFileAction() {
     if ((f & FEED_OVERRIDE_OFF) | !(f & FEED_OVERRIDE_BTN) | enterCount) {
         switch(i) {
             case 0: // load
-                hyattSenderSend(filelist[i]);
+                hyattFileSenderSend(filelist[i]);
                 break;
             case 1: // NW
                 break;
@@ -397,8 +392,7 @@ void hyattControlPanelDisplayFileAction() {
             case 6: // From Op
                 break;
         }
-    
-
+    }    
 }
 
 /* ============ file ================ */

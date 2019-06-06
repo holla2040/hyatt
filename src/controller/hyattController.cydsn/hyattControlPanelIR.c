@@ -82,7 +82,7 @@ void hyattControlPanelIRLoop(void) {
         
         if (sys.state == STATE_CYCLE) {
             if (button == RC65X_KEYSTOP) {
-                senderState = SENDERSTATE_IDLE;
+                hyattFileSenderState = FILESENDERSTATE_IDLE;
                 return;
             }
         }
@@ -130,7 +130,7 @@ void hyattControlPanelIRLoop(void) {
                         axisZero();
                         break;
                     case RC65X_KEYPLAY:
-                        hyattSenderSend(INSERTFN);
+                        hyattFileSenderSend(INSERTFN);
                         break;
                     default:
                         hyattControlPanelDisplayMDIKey(button);

@@ -42,7 +42,7 @@ void hyattInit() {
     
     AMUX_Start();
     hyattRadioInit();
-    hyattSenderInit();
+    hyattFileSenderInit();
     hyattControlPanelInit();
     hyattProbeInit();
     hyattZDisplayInit();
@@ -55,7 +55,7 @@ void hyattInit() {
 void hyattLoop() {
     hyattControlPanelLoop();
     hyattZDisplayLoop();
-    hyattSenderLoop();
+    hyattFileSenderLoop();
     
     if (hyattTicks > timeoutStatusUpdate) {
         // system_set_exec_state_flag(EXEC_STATUS_REPORT);

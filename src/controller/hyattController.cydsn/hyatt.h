@@ -228,18 +228,24 @@ void hyattControlPanelWheelLoop();
 void hyattRadioInit();
 uint16_t crcCCITT(char *data, uint16_t length, uint16_t seed);
 
+// display
+void selectionsClear();
+
+
 // select
 void hyattSelectInit();
 void hyattSelectLoop();
 
-// sender
-void hyattSenderInit();
-void hyattSenderLoop();
-void hyattSenderSend(char *filename);
-void hyattSenderCallback(uint8_t status_code);
-#define SENDERSTATE_IDLE 'I'
-#define SENDERSTATE_SEND 'S'
-uint8_t senderState;
+// file
+void hyattFileSenderInit();
+void hyattFileSenderLoop();
+void hyattFileSenderSend(char *filename);
+void hyattFileSenderCallback(uint8_t status_code);
+void hyattFilelistGet();
+void hyattFilePerimeter(char *fn);
+#define FILESENDERSTATE_IDLE 'I'
+#define FILESENDERSTATE_SEND 'S'
+uint8_t hyattFileSenderState;
 
 // IR
 void hyattControlPanelIRInit();
