@@ -3,7 +3,7 @@
 #include <string.h>
 
 
-void findbody(FILE *fp) {
+void findPattern(FILE *fp, char c1, char c2) {
     int c,lastc;
     /* fusion cam outputs a blank line as header/body delim */
     /* scan for blank line */
@@ -11,7 +11,7 @@ void findbody(FILE *fp) {
     while ((c = fgetc(fp)) != EOF) {
         if (c == '\r') continue;
         // printf("%c %d\n",c,c);
-        if (lastc == '\n' && c == '\n')  {
+        if (lastc == c1 && c == c2)  {
             break;
         }
         lastc = c;
@@ -26,7 +26,7 @@ void labels(char *fn) {
     char *lp;
 
     fp = fopen(fn,"r");
-    findbody(fp);
+//    findPattern(fp,'\n','\n');
 
     printf("\n\n-- labels       -------------------\n");
     lp = line;
@@ -59,7 +59,7 @@ void boundingbox(char *fn) {
     char *wp;
 
     fp = fopen(fn,"r");
-    findbody(fp);
+    findPattern(fp,'\n','\n');
 
     printf("\n\n-- bounding box -------------------\n");
     wp = word;
@@ -103,10 +103,62 @@ void boundingbox(char *fn) {
     
 }
 
-int main(int argc, char **argv) {
+void printOp(FILE *fp) {
+    int c,lastc;
+    lastc = 0;
+    while ((c = fgetc(fp)) != EOF) {
+        if (c == '\r') continue;
+        if (lastc == '\n' && c == '\n')  {
+            return;
+        }
+        printf("%c",c);
+        lastc = c;
+    }
+}
 
-    boundingbox("solder.nc");
-    labels("solder.nc");
+void runOp(char *fn,char *name) {
+    FILE *fp;
+    int c;
+
+    char line[80];
+    char *lp;
+
+    fp = fopen(fn,"r");
+
+    printf("\n\n-- runOp %s  -------------------\n",name);
+    lp = line;
+    while ((c = fgetc(fp)) != EOF) {
+        // if (c == '\r') continue;
+        if (c == '\n') {
+            *lp = 0;
+            if (line[0] == '(' && line[strlen(line)-2] == ')') {
+                if (strstr(line,name)) {
+                    printf("%s\n",line);
+                    printOp(fp);
+                }
+            }
+            lp = line;
+        } else {
+            *lp++ = c;
+        } 
+    }
+    fclose(fp);
+}
+
+
+int main(int argc, char **argv) {
+    char fn[30];
+    if (argc == 2) {
+        strcpy(fn,argv[1]);
+    } else {
+        strcpy(fn,"solder.nc");
+    }
+    boundingbox(fn);
+    labels(fn);
+
+    runOp(fn,"solder");
+    runOp(fn,"border");
+    runOp(fn,"pockets");
 
     return 0;
 }
