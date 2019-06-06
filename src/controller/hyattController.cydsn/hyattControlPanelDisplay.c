@@ -10,6 +10,7 @@
 
 #define FILENAMEMAX 32
 #define MDIBLOCKLEN 50
+#define OPNAMEMAX   20
 
 #define BACKLIGHTON_DATA 0x09  //(LCD_BACKLIGHT | 0x01)
 
@@ -26,9 +27,12 @@ uint32_t hyattTimeoutDisplayUpdate;
 float inspectPoints[2][2];
 float inspectCirclePoints[3][2]; // x,y * 3
 float inspectLength,inspectAngle;
+float fileXMin,fileXMax,fileYMin,fileYMax;
 
 char selections[CONTROLPANEL_SELECTIONCOUNTMAX][CONTROLPANEL_SELECTIONWIDTH] = {};
 char filelist[CONTROLPANEL_SELECTIONCOUNTMAX][FILENAMEMAX];
+uint8_t fileSelectIndex;
+char oplist[CONTROLPANEL_SELECTIONCOUNTMAX][OPNAMEMAX];
 
 char *stateString() {
     switch (sys.state) {
@@ -307,39 +311,18 @@ void hyattControlPanelDisplayMacro() {
 /* ============ macro end ================ */
 
 
-/* ============ load ================ */
-void filelistGet() {
-    uint8_t i = 0;
-    FS_FIND_DATA fd;
-    char fn[32];
+/* ============ file ================ */
+/* file action layout
+    All     Op      From Op
+    NW      NE
+    SW      SE
+*/
 
-    FS_Mount("");
-    selectionsClear();
-    if (FS_FindFirstFile(&fd, "", fn, sizeof(fn)) == 0) {
-        do {
-            if (!(fd.Attributes & FS_ATTR_DIRECTORY)) {
-                if (strlen(fn)){
-                    strcpy(filelist[i],fn);
-                    strncpy(selections[i],fn,CONTROLPANEL_SELECTIONWIDTH-1);
-                    for (uint8_t j = 0; j < strlen(selections[i]); j++) {
-                        if (selections[i][j] == '.') selections[i][j] = 0x00;
-                    }
-                } else {
-                    strcpy(filelist[i],"");
-                }
-                i++;
-                if (i == CONTROLPANEL_SELECTIONCOUNTMAX) break; // there's more than 9 files on sd
-            }
-        } while (FS_FindNextFile (&fd));
-    }
-    FS_FindClose(&fd);
-    FS_Unmount("");
 
-}
 
-void hyattControlPanelDisplayLoadSetup() {
+void hyattControlPanelDisplayFileSetup() {
     LCD_Clear();
-    LCD_SetCursor(0,0);     LCD_PutString("Send - G Code");
+    LCD_SetCursor(0,0);     LCD_PutString("File Ops");
 
     filelistGet();
     selectionsDisplay();
@@ -348,11 +331,12 @@ void hyattControlPanelDisplayLoadSetup() {
     LCD_Blink();
 
     wheel0 = wheelDecoder_GetCounter();
-    hyattControlPanelState = CONTROLPANEL_SELECT_LOAD;
+    hyattControlPanelState = CONTROLPANEL_SELECT_FILE;
     enterCount = 0;
 }
 
-void hyattControlPanelDisplayLoad() {
+
+void hyattControlPanelDisplayFile() {
     int16_t i = abs(wheel0 - wheelDecoder_GetCounter()) % CONTROLPANEL_SELECTIONCOUNTMAX;
     int x,y,f;
     x = (i / 3) * 7;
@@ -360,31 +344,64 @@ void hyattControlPanelDisplayLoad() {
     LCD_SetCursor(x,y);
     f = FEED_OVERRIDE_Read();
     if ((f & FEED_OVERRIDE_OFF) | !(f & FEED_OVERRIDE_BTN) | enterCount) {
-        FS_FILE *file;
-        char buf[10];
-        LCD_NoBlink();
-        LCD_Clear();
-        LCD_SetCursor(0,0);
-        LCD_PutString("LOAD");
-        LCD_SetCursor(5,0);
-        LCD_PutString(filelist[i]);
-        file = FS_FOpen(filelist[i], "r");
-        sprintf(buf,"%ld",FS_GetFileSize(file));
-        LCD_SetCursor(0,1);
-        LCD_PutString("SIZE");
-        LCD_SetCursor(5,1);
-        LCD_PutString(buf);
-        LCD_SetCursor(0,3);
-        LCD_PutString("Loaded");
-        CyDelay(2000);
-        wheelDecoder_SetCounter(wheel0);
-        hyattControlPanelState = CONTROLPANEL_IDLE_SETUP;
+        strcpy(selections[0],"Load");
+        strcpy(selections[1],"NW");
+        strcpy(selections[2],"SW");
+        strcpy(selections[3],"Load Op");
+        strcpy(selections[4],"NE");
+        strcpy(selections[5],"SE");
+        strcpy(selections[6],"From Op");
+        strcpy(selections[7],"");
+        strcpy(selections[8],"");
 
-        hyattSenderSend(filelist[i]);
+        hyattControlPanelDisplayFilePerimeter(filelist[i]);
+        LCD_Clear();
+        LCD_SetCursor(0,0);     LCD_PutString(filelist[i]);
+
+        selectionsDisplay();
+
+        LCD_SetCursor(0,1);
+        LCD_Blink();
+
+        wheel0 = wheelDecoder_GetCounter();
+        hyattControlPanelState = CONTROLPANEL_SELECT_FILE_ACTION;
+        enterCount = 0;
+        fileSelectIndex = i;
     }
 }
 
-/* ============ load ================ */
+void hyattControlPanelDisplayFileAction() {
+    int16_t i = abs(wheel0 - wheelDecoder_GetCounter()) % CONTROLPANEL_SELECTIONCOUNTMAX;
+    int x,y,f;
+    x = (i / 3) * 7;
+    y = (i % 3) + 1;
+    LCD_SetCursor(x,y);
+    f = FEED_OVERRIDE_Read();
+    if ((f & FEED_OVERRIDE_OFF) | !(f & FEED_OVERRIDE_BTN) | enterCount) {
+        switch(i) {
+            case 0: // load
+                hyattSenderSend(filelist[i]);
+                break;
+            case 1: // NW
+                break;
+            case 2: // SW
+                break;
+
+            case 3: // Load Op
+                break;
+            case 4: // NE
+                break;
+            case 5: // SE
+                break;
+
+            case 6: // From Op
+                break;
+        }
+    
+
+}
+
+/* ============ file ================ */
 
 /* ============ MDI ================ */
 void hyattControlPanelDisplayMDI() {
@@ -480,11 +497,14 @@ void hyattControlPanelDisplayLoop() {
         case CONTROLPANEL_SELECT_MACRO:
             hyattControlPanelDisplayMacro();
             break;
-        case CONTROLPANEL_SELECT_LOAD_SETUP:
-            hyattControlPanelDisplayLoadSetup();
+        case CONTROLPANEL_SELECT_FILE_SETUP:
+            hyattControlPanelDisplayFileSetup();
             break;
-        case CONTROLPANEL_SELECT_LOAD:
-            hyattControlPanelDisplayLoad();
+        case CONTROLPANEL_SELECT_FILE:
+            hyattControlPanelDisplayFile();
+            break;
+        case CONTROLPANEL_SELECT_FILE_ACTION:
+            hyattControlPanelDisplayFileAction();
             break;
         case CONTROLPANEL_SELECT_INSPECT_SETUP:
             hyattControlPanelDisplayInspectSetup();
@@ -606,3 +626,25 @@ void hyattControlPanelDisplayIdleOld() {
     }
 }
 */
+/*
+        FS_FILE *file;
+        char buf[10];
+        LCD_NoBlink();
+        LCD_Clear();
+        LCD_SetCursor(0,0);
+        LCD_PutString("FILE");
+        LCD_SetCursor(5,0);
+        LCD_PutString(filelist[i]);
+        file = FS_FOpen(filelist[i], "r");
+        sprintf(buf,"%ld",FS_GetFileSize(file));
+        LCD_SetCursor(0,1);
+        LCD_PutString("SIZE");
+        LCD_SetCursor(5,1);
+        LCD_PutString(buf);
+        LCD_SetCursor(0,3);
+        LCD_PutString("File loaded");
+        CyDelay(2000);
+        wheelDecoder_SetCounter(wheel0);
+        hyattControlPanelState = CONTROLPANEL_IDLE_SETUP;
+*/
+

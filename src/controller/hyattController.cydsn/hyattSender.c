@@ -55,6 +55,8 @@ void hyattSenderSend(char *filename) {
 }
 
 /*
+
+old stuff
 void hyattSenderLoop() {
     char c;
     switch (senderState) {
