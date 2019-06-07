@@ -103,6 +103,7 @@ void hyattFilePerimeter(char *fn) {
                 *wp++ = c;
             }
         }
+        sprintf(lastBlock,"%f,%f %f,%f",fileXMin,fileYMin,fileXMax,fileYMax);
         hyattZDisplayLoop();
     }
 
