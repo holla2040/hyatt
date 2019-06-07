@@ -12,6 +12,7 @@ FS_FILE *file;
 char filelist[CONTROLPANEL_SELECTIONCOUNTMAX][FILENAMEMAX];
 uint8_t fileSelectIndex;
 char fileoplist[CONTROLPANEL_SELECTIONCOUNTMAX][OPNAMEMAX];
+float fileXMin,fileXMax,fileYMin,fileYMax;
 
 extern char selections[CONTROLPANEL_SELECTIONCOUNTMAX][CONTROLPANEL_SELECTIONWIDTH];
 
@@ -59,12 +60,12 @@ void hyattFilePerimeter(char *fn) {
     FS_FILE *fp;
     char c,word[30],line[50];
     char *wp;
-    float xmin,xmax,ymin,ymax,v;
+    float v;
 
-    xmin = 100000;
-    ymin = 100000;
-    xmax = -100000;
-    ymax = -100000;
+    fileXMin = 100000;
+    fileYMin = 100000;
+    fileXMax = -100000;
+    fileYMax = -100000;
 
     FS_Mount("");
     fp = FS_FOpen(fn, "r");
@@ -86,12 +87,12 @@ void hyattFilePerimeter(char *fn) {
             v = atof(&word[1]);
             switch (word[0]) {
                 case 'X':
-                    if (v > xmax) xmax = v;
-                    if (v < xmin) xmin = v;
+                    if (v > fileXMax) fileXMax = v;
+                    if (v < fileXMin) fileXMin = v;
                     break;
                 case 'Y':
-                    if (v > ymax) ymax = v;
-                    if (v < ymin) ymin = v;
+                    if (v > fileYMax) fileYMax = v;
+                    if (v < fileYMin) fileYMin = v;
                     break;
             }
 
@@ -107,19 +108,19 @@ void hyattFilePerimeter(char *fn) {
         sprintf(line,"G1 F2500\n");
         FS_Write(fp,line,strlen(line));
 
-        sprintf(line,"X%.4f Y%.4f\nM0\n",xmin,ymin);
+        sprintf(line,"X%.4f Y%.4f\nM0\n",fileXMin,fileYMin);
         FS_Write(fp,line,strlen(line));
 
-        sprintf(line,"X%.4f Y%.4f\nM0\n",xmax,ymin);
+        sprintf(line,"X%.4f Y%.4f\nM0\n",fileXMax,fileYMin);
         FS_Write(fp,line,strlen(line));
 
-        sprintf(line,"X%.4f Y%.4f\nM0\n",xmax,ymax);
+        sprintf(line,"X%.4f Y%.4f\nM0\n",fileXMax,fileYMax);
         FS_Write(fp,line,strlen(line));
 
-        sprintf(line,"X%.4f Y%.4f\nM0\n",xmin,ymax);
+        sprintf(line,"X%.4f Y%.4f\nM0\n",fileXMin,fileYMax);
         FS_Write(fp,line,strlen(line));
 
-        sprintf(line,"X%.4f Y%.4f\nM0\n",xmin,ymin);
+        sprintf(line,"X%.4f Y%.4f\nM0\n",fileXMin,fileYMin);
         FS_Write(fp,line,strlen(line));
 
         FS_FClose(fp);

@@ -29,6 +29,7 @@ float inspectLength,inspectAngle;
 char selections[CONTROLPANEL_SELECTIONCOUNTMAX][CONTROLPANEL_SELECTIONWIDTH] = {};
 extern char filelist[CONTROLPANEL_SELECTIONCOUNTMAX][FILENAMEMAX];
 extern uint8_t fileSelectIndex;
+extern float fileXMin,fileXMax,fileYMin,fileYMax;
 
 char *stateString() {
     switch (sys.state) {
@@ -343,14 +344,20 @@ void hyattControlPanelDisplayFile() {
         strcpy(selections[0],"Load");
         strcpy(selections[1],"NW");
         strcpy(selections[2],"SW");
-        strcpy(selections[3],"Load Op");
+        strcpy(selections[3],"Op");
         strcpy(selections[4],"NE");
         strcpy(selections[5],"SE");
-        strcpy(selections[6],"From Op");
+        strcpy(selections[6],"Ops");
         strcpy(selections[7],"");
         strcpy(selections[8],"");
 
+        LCD_Clear();
+        LCD_SetCursor(0,0);     
+        LCD_PutString(filelist[i]);
+        LCD_SetCursor(0,1);     
+        LCD_PutString("perimeter scan");
         hyattFilePerimeter(filelist[i]);
+
         LCD_Clear();
         LCD_SetCursor(0,0);     LCD_PutString(filelist[i]);
 
@@ -367,6 +374,7 @@ void hyattControlPanelDisplayFile() {
 }
 
 void hyattControlPanelDisplayFileAction() {
+    char buf[100];
     int16_t i = abs(wheel0 - wheelDecoder_GetCounter()) % CONTROLPANEL_SELECTIONCOUNTMAX;
     int x,y,f;
     x = (i / 3) * 7;
@@ -379,15 +387,22 @@ void hyattControlPanelDisplayFileAction() {
                 hyattFileSend(filelist[i]);
                 break;
             case 1: // NW
+                sprintf(buf,"G1 F2500 X%f Y%f",fileXMin,fileYMax);
+                grblBlockSend(buf);
                 break;
             case 2: // SW
+                sprintf(buf,"G1 F2500 X%f Y%f",fileXMin,fileYMin);
+                grblBlockSend(buf);
                 break;
-
             case 3: // Load Op
                 break;
             case 4: // NE
+                sprintf(buf,"G1 F2500 X%f Y%f",fileXMax,fileYMax);
+                grblBlockSend(buf);
                 break;
             case 5: // SE
+                sprintf(buf,"G1 F2500 X%f Y%f",fileXMax,fileYMin);
+                grblBlockSend(buf);
                 break;
 
             case 6: // From Op
