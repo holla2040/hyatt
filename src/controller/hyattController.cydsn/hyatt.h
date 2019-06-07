@@ -239,8 +239,8 @@ void hyattSelectLoop();
 // file
 void hyattFileSenderInit();
 void hyattFileSenderLoop();
-void hyattFileSenderSend(char *filename);
-void hyattFileSenderCallback(uint8_t status_code);
+void hyattFileSend(char *filename);
+void hyattFileCallback(uint8_t status_code);
 void hyattFilelistGet();
 void hyattFilePerimeter(char *fn);
 #define FILESENDERSTATE_IDLE 'I'

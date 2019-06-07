@@ -290,7 +290,7 @@ uint8_t gc_execute_line(char *line)
             }
             break;
             case 20:
-                hyattFileSenderSend(INSERTFN);
+                hyattFileSend(INSERTFN);
                 break;
           default: FAIL(STATUS_GCODE_UNSUPPORTED_COMMAND); // [Unsupported M command]
         }

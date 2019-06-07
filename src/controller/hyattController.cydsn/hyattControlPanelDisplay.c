@@ -376,7 +376,7 @@ void hyattControlPanelDisplayFileAction() {
     if ((f & FEED_OVERRIDE_OFF) | !(f & FEED_OVERRIDE_BTN) | enterCount) {
         switch(i) {
             case 0: // load
-                hyattFileSenderSend(filelist[i]);
+                hyattFileSend(filelist[i]);
                 break;
             case 1: // NW
                 break;

@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "project.h"
 #include "hyatt.h"
 #include <FS.h>
@@ -8,8 +9,6 @@ char hyattFileBuffer[FILEBUFFERLEN];
 char *hyattFileBufferPtr;
 FS_FILE *file;
 
-
-float fileXMin,fileXMax,fileYMin,fileYMax;
 char filelist[CONTROLPANEL_SELECTIONCOUNTMAX][FILENAMEMAX];
 uint8_t fileSelectIndex;
 char fileoplist[CONTROLPANEL_SELECTIONCOUNTMAX][OPNAMEMAX];
@@ -42,12 +41,92 @@ void hyattFilelistGet() {
     }
     FS_FindClose(&fd);
     FS_Unmount("");
+}
 
+void findPattern(FS_FILE *fp, char c1, char c2) {
+    char c,lastc;
+    lastc = 0;
+    while (FS_Read(fp,&c,1)) {
+        if (c == '\r') continue;
+        if (lastc == c1 && c == c2)  {
+            break;
+        }
+        lastc = c;
+    }
 }
 
 void hyattFilePerimeter(char *fn) {
-    // fileXMin,fileXMax,fileYMin,fileYMax;
+    FS_FILE *fp;
+    char c,word[30],line[50];
+    char *wp;
+    float xmin,xmax,ymin,ymax,v;
 
+    xmin = 100000;
+    ymin = 100000;
+    xmax = -100000;
+    ymax = -100000;
+
+    FS_Mount("");
+    fp = FS_FOpen(fn, "r");
+    findPattern(fp,'\n','\n');
+
+    wp = word;
+    while (FS_Read(fp,&c,1)) {
+        if (c == '\r') continue;
+        // printf("%c",(char)c);
+        if (c > 96 && c < 123) {
+            c |= 0x20; // uppercase
+        }
+        if (c == ' ' || c == '\n') {
+            *wp = 0;
+            if (strlen(word) == 0) {
+                continue;
+            }
+
+            v = atof(&word[1]);
+            switch (word[0]) {
+                case 'X':
+                    if (v > xmax) xmax = v;
+                    if (v < xmin) xmin = v;
+                    break;
+                case 'Y':
+                    if (v > ymax) ymax = v;
+                    if (v < ymin) ymin = v;
+                    break;
+            }
+
+            wp = word;
+        } else {
+            *wp++ = c;
+        }
+    }
+
+    FS_FClose(fp);
+    fp = FS_FOpen("perim.nc", "w");
+    if (fp != 0) {
+        sprintf(line,"G1 F2500\n");
+        FS_Write(fp,line,strlen(line));
+
+        sprintf(line,"X%.4f Y%.4f\nM0\n",xmin,ymin);
+        FS_Write(fp,line,strlen(line));
+
+        sprintf(line,"X%.4f Y%.4f\nM0\n",xmax,ymin);
+        FS_Write(fp,line,strlen(line));
+
+        sprintf(line,"X%.4f Y%.4f\nM0\n",xmax,ymax);
+        FS_Write(fp,line,strlen(line));
+
+        sprintf(line,"X%.4f Y%.4f\nM0\n",xmin,ymax);
+        FS_Write(fp,line,strlen(line));
+
+        sprintf(line,"X%.4f Y%.4f\nM0\n",xmin,ymin);
+        FS_Write(fp,line,strlen(line));
+
+        FS_FClose(fp);
+        // hyattFileSend("perim.nc");
+    }
+
+    FS_Unmount("");
 }
 
 void hyattFileSenderInit() {
@@ -84,7 +163,7 @@ void hyattFileSenderLoop() {
    }
 }
 
-void hyattFileSenderSend(char *filename) {
+void hyattFileSend(char *filename) {
     FS_Mount("");
     file = FS_FOpen(filename, "r");
     if (file) {
@@ -94,101 +173,3 @@ void hyattFileSenderSend(char *filename) {
     }
 }
 
-/*
-
-old stuff
-void hyattSenderLoop() {
-    char c;
-    switch (senderState) {
-        case SENDERSTATE_READ:
-            while(bufferLen) {
-                bufferLen--;
-                c = *bufferPtr++;
-                if (c != '\r') {
-                    rx_handler(c);
-                    if (c == '\n') {
-                       senderState = SENDERSTATE_WAIT;
-                       return;
-                    }
-                }
-            }
-            if (bufferLen == 0) { // sent all buffer, read next file chunk
-                bufferLen = FS_Read(file,&buffer,BUFFERLEN);
-                if (bufferLen == 0) { // no more data in file
-                    FS_FClose(file);
-                    FS_Mount("");
-                    senderState = SENDERSTATE_IDLE;
-                    return;
-                }
-                bufferPtr = &buffer[0];
-            }
-            break;
-        case SENDERSTATE_WAIT:
-            break;
-    }
-}
-
-void hyattSenderSend(char *filename) {
-    FS_Mount("");
-    file = FS_FOpen(filename, "r");
-    if (file) {
-        bufferLen = FS_Read(file,&buffer,BUFFERLEN);
-        bufferPtr = &buffer[0];
-        senderState = SENDERSTATE_READ;
-    }
-}
-
-void hyattSenderCallback(uint8_t status_code) {
-    switch (status_code) {
-        case STATUS_OK:
-        case STATUS_GCODE_UNSUPPORTED_COMMAND:
-            if (senderState == SENDERSTATE_WAIT) {
-                senderState = SENDERSTATE_READ;
-            }
-            break;
-        case STATUS_OVERFLOW:
-        case STATUS_SOFT_LIMIT_ERROR:
-            break;
-    }
-}
-
-
-
-status_codes from report.h
-        case STATUS_OK:
-        case STATUS_EXPECTED_COMMAND_LETTER:
-        case STATUS_BAD_NUMBER_FORMAT:
-        case STATUS_INVALID_STATEMENT:
-        case STATUS_NEGATIVE_VALUE:
-        case STATUS_SETTING_DISABLED:
-        case STATUS_SETTING_STEP_PULSE_MIN:
-        case STATUS_SETTING_READ_FAIL:
-        case STATUS_IDLE_ERROR:
-        case STATUS_SYSTEM_GC_LOCK:
-        case STATUS_SOFT_LIMIT_ERROR:
-        case STATUS_OVERFLOW:
-        case STATUS_MAX_STEP_RATE_EXCEEDED:
-        case STATUS_CHECK_DOOR:
-        case STATUS_LINE_LENGTH_EXCEEDED:
-        case STATUS_TRAVEL_EXCEEDED:
-        case STATUS_INVALID_JOG_COMMAND:
-        case STATUS_GCODE_UNSUPPORTED_COMMAND:
-        case STATUS_GCODE_MODAL_GROUP_VIOLATION:
-        case STATUS_GCODE_UNDEFINED_FEED_RATE:
-        case STATUS_GCODE_COMMAND_VALUE_NOT_INTEGER:
-        case STATUS_GCODE_AXIS_COMMAND_CONFLICT:
-        case STATUS_GCODE_WORD_REPEATED:
-        case STATUS_GCODE_NO_AXIS_WORDS:
-        case STATUS_GCODE_INVALID_LINE_NUMBER:
-        case STATUS_GCODE_VALUE_WORD_MISSING:
-        case STATUS_GCODE_UNSUPPORTED_COORD_SYS:
-        case STATUS_GCODE_G53_INVALID_MOTION_MODE:
-        case STATUS_GCODE_AXIS_WORDS_EXIST:
-        case STATUS_GCODE_NO_AXIS_WORDS_IN_PLANE:
-        case STATUS_GCODE_INVALID_TARGET:
-        case STATUS_GCODE_ARC_RADIUS_ERROR:
-        case STATUS_GCODE_NO_OFFSETS_IN_PLANE:
-        case STATUS_GCODE_UNUSED_WORDS:
-        case STATUS_GCODE_G43_DYNAMIC_AXIS_ERROR:
-        case STATUS_GCODE_MAX_VALUE_EXCEEDED:
-*/
