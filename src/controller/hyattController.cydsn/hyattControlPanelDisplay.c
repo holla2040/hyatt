@@ -25,6 +25,7 @@ uint32_t hyattTimeoutDisplayUpdate;
 float inspectPoints[2][2];
 float inspectCirclePoints[3][2]; // x,y * 3
 float inspectLength,inspectAngle;
+uint8_t fileSelectedIndex;
 
 char selections[CONTROLPANEL_SELECTIONCOUNTMAX][CONTROLPANEL_SELECTIONWIDTH] = {};
 extern char filelist[CONTROLPANEL_SELECTIONCOUNTMAX][FILENAMEMAX];
@@ -341,6 +342,7 @@ void hyattControlPanelDisplayFile() {
     LCD_SetCursor(x,y);
     f = FEED_OVERRIDE_Read();
     if ((f & FEED_OVERRIDE_OFF) | !(f & FEED_OVERRIDE_BTN) | enterCount) {
+        fileSelectedIndex = i;
         strcpy(selections[0],"Load");   strcpy(selections[3],"Op"); strcpy(selections[6],"Ops");
         strcpy(selections[1],"Perim");  strcpy(selections[4],"NW"); strcpy(selections[7],"NE");
         strcpy(selections[2],"");       strcpy(selections[5],"SW"); strcpy(selections[8],"SE");
@@ -374,7 +376,7 @@ void hyattControlPanelDisplayFileAction() {
             // use menu layout from above
 
             case 0: 
-                hyattFileSend(filelist[i]);
+                hyattFileSend(filelist[fileSelectedIndex]);
                 break;
             case 3: 
                 break;
@@ -384,10 +386,10 @@ void hyattControlPanelDisplayFileAction() {
             case 1:
                 LCD_Clear();
                 LCD_SetCursor(0,0);     
-                LCD_PutString(filelist[i]);
+                LCD_PutString(filelist[fileSelectedIndex]);
                 LCD_SetCursor(0,1);     
                 LCD_PutString("perimeter scan");
-                hyattFilePerimeter(filelist[i]);
+                hyattFilePerimeter(filelist[fileSelectedIndex]);
                 hyattControlPanelState = CONTROLPANEL_SELECT_FILE_SETUP; // forces a file screen refresh
                 break;
             case 4: 
