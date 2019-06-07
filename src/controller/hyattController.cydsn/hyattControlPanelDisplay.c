@@ -415,6 +415,7 @@ void hyattControlPanelDisplayFileAction() {
         }
         enterCount = 0;
     }    
+    hyattZDisplayLoop();
 }
 
 /* ============ file ================ */
