@@ -309,7 +309,7 @@ void hyattControlPanelDisplayMacro() {
 /* ============ file ================ */
 void hyattControlPanelDisplayFileSetup() {
     LCD_Clear();
-    LCD_SetCursor(0,0);     LCD_PutString("File Ops");
+    LCD_SetCursor(0,0);     LCD_PutString("File");
 
     hyattFilelistGet();
     selectionsDisplay();
@@ -407,7 +407,7 @@ void hyattControlPanelDisplayFileAction() {
 
 void hyattControlPanelDisplayFileOperationSetup() {
     LCD_Clear();
-    LCD_SetCursor(0,0);     LCD_PutString("File Ops");
+    LCD_SetCursor(0,0);     LCD_PutString("File Op1");
 
     hyattFileOperationsGet(filelist[fileSelectedIndex]);
     selectionsDisplay();
@@ -430,9 +430,7 @@ void hyattControlPanelDisplayFileOperation() {
 
     if (enterCount) {
         switch(i) {
-            // using menu layout from above
             case 0: 
-                hyattFileSend(filelist[fileSelectedIndex]);
                 break;
             case 3: 
                 break;
@@ -440,36 +438,21 @@ void hyattControlPanelDisplayFileOperation() {
                 break;
 
             case 1:
-                sprintf(buf,"G1 F2500 X%f Y%f",fileXMin,fileYMax);
-                grblBlockSend(buf);
                 break;
             case 4: 
-                sprintf(buf,"G1 F2500 X%f Y%f",fileXMax,fileYMax);
-                grblBlockSend(buf);
                 break;
             case 7:
                 break;
 
             case 2:
-                sprintf(buf,"G1 F2500 X%f Y%f",fileXMin,fileYMin);
-                grblBlockSend(buf);
                 break;
             case 5:
-                sprintf(buf,"G1 F2500 X%f Y%f",fileXMax,fileYMin);
-                grblBlockSend(buf);
                 break;
             case 8: 
                 break;
         }
         enterCount = 0;
     }    
-
-// xxx
-    if (hyattTicks > hyattTimeoutDisplayUpdate) { // forces zdisplay update during movement
-        hyattCurrentPosition();
-        hyattZDisplayLoop();
-        hyattTimeoutDisplayUpdate = hyattTicks + DISPLAYUPDATECYCLEINTERVAL;
-    }
 }
 
 /* ============ file ================ */
