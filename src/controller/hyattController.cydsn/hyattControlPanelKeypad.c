@@ -136,6 +136,10 @@ void hyattControlPanelKeypadLoop() {
                             // hyattControlPanelState = CONTROLPANEL_SELECT_INSPECT_SETUP;
                             hyattControlPanelState = CONTROLPANEL_IDLE_SETUP;
                             break;
+                        case CONTROLPANEL_SELECT_FILE_ACTION:
+                            wheelDecoder_SetCounter(wheel0);
+                            hyattControlPanelState = CONTROLPANEL_IDLE_SETUP;
+                            break;
                         case CONTROLPANEL_SELECT_INSPECT:
                             wheelDecoder_SetCounter(wheel0);
                             hyattControlPanelState = CONTROLPANEL_IDLE_SETUP;

@@ -341,22 +341,10 @@ void hyattControlPanelDisplayFile() {
     LCD_SetCursor(x,y);
     f = FEED_OVERRIDE_Read();
     if ((f & FEED_OVERRIDE_OFF) | !(f & FEED_OVERRIDE_BTN) | enterCount) {
-        strcpy(selections[0],"Load");
-        strcpy(selections[1],"NW");
-        strcpy(selections[2],"SW");
-        strcpy(selections[3],"Op");
-        strcpy(selections[4],"NE");
-        strcpy(selections[5],"SE");
-        strcpy(selections[6],"Ops");
-        strcpy(selections[7],"");
-        strcpy(selections[8],"");
+        strcpy(selections[0],"Load");   strcpy(selections[3],"Op"); strcpy(selections[6],"Ops");
+        strcpy(selections[1],"Perim");  strcpy(selections[4],"NW"); strcpy(selections[7],"NE");
+        strcpy(selections[2],"");       strcpy(selections[5],"SW"); strcpy(selections[8],"SE");
 
-        LCD_Clear();
-        LCD_SetCursor(0,0);     
-        LCD_PutString(filelist[i]);
-        LCD_SetCursor(0,1);     
-        LCD_PutString("perimeter scan");
-        hyattFilePerimeter(filelist[i]);
 
         LCD_Clear();
         LCD_SetCursor(0,0);     LCD_PutString(filelist[i]);
@@ -383,31 +371,47 @@ void hyattControlPanelDisplayFileAction() {
     f = FEED_OVERRIDE_Read();
     if ((f & FEED_OVERRIDE_OFF) | !(f & FEED_OVERRIDE_BTN) | enterCount) {
         switch(i) {
-            case 0: // load
+            // use menu layout from above
+
+            case 0: 
                 hyattFileSend(filelist[i]);
                 break;
-            case 1: // NW
+            case 3: 
+                break;
+            case 6: 
+                break;
+
+            case 1:
+                LCD_Clear();
+                LCD_SetCursor(0,0);     
+                LCD_PutString(filelist[i]);
+                LCD_SetCursor(0,1);     
+                LCD_PutString("perimeter scan");
+                hyattFilePerimeter(filelist[i]);
+                hyattControlPanelState = CONTROLPANEL_SELECT_FILE_SETUP; // forces a file screen refresh
+                break;
+            case 4: 
                 sprintf(buf,"G1 F2500 X%f Y%f",fileXMin,fileYMax);
                 grblBlockSend(buf);
                 break;
-            case 2: // SW
-                sprintf(buf,"G1 F2500 X%f Y%f",fileXMin,fileYMin);
-                grblBlockSend(buf);
-                break;
-            case 3: // Load Op
-                break;
-            case 4: // NE
+            case 7:
                 sprintf(buf,"G1 F2500 X%f Y%f",fileXMax,fileYMax);
                 grblBlockSend(buf);
                 break;
-            case 5: // SE
+
+            case 2:
+                break;
+            case 5:
+                break;
+                sprintf(buf,"G1 F2500 X%f Y%f",fileXMin,fileYMin);
+                grblBlockSend(buf);
+                break;
+            case 8: 
                 sprintf(buf,"G1 F2500 X%f Y%f",fileXMax,fileYMin);
                 grblBlockSend(buf);
                 break;
-
-            case 6: // From Op
-                break;
         }
+        enterCount = 0;
     }    
 }
 
