@@ -376,7 +376,9 @@ void hyattControlPanelDisplayFileAction() {
                 break;
 
             case 1:
+                LCD_SetCursor(0,3);     LCD_PutString("scan ");
                 hyattFilePerimeter(filelist[fileSelectedIndex]);
+                LCD_SetCursor(0,3);     LCD_PutString("     ");
                 break;
             case 4: 
                 sprintf(buf,"G1 F2500 X%f Y%f",fileXMin,fileYMax);
