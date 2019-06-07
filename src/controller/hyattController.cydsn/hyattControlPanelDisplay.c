@@ -364,7 +364,6 @@ void hyattControlPanelDisplayFileAction() {
     y = (i % 3) + 1;
     LCD_SetCursor(x,y);
 
-// xxx
     if (enterCount) {
         switch(i) {
             // using menu layout from above
@@ -403,7 +402,9 @@ void hyattControlPanelDisplayFileAction() {
         enterCount = 0;
     }    
 
+// xxx
     if (hyattTicks > hyattTimeoutDisplayUpdate) { // forces zdisplay update during movement
+        hyattZDisplayUpdate = 0;
         hyattZDisplayLoop();
         hyattTimeoutDisplayUpdate = hyattTicks + DISPLAYUPDATECYCLEINTERVAL;
     }
