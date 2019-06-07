@@ -393,6 +393,7 @@ void hyattControlPanelDisplayFileAction() {
                 hyattFilePerimeter(filelist[fileSelectedIndex]);
                 hyattControlPanelDisplayFileSetup();
                 hyattControlPanelDisplayFile();
+                hyattControlPanelState = CONTROLPANEL_SELECT_FILE_ACTION;
                 break;
             case 4: 
                 sprintf(buf,"G1 F2500 X%f Y%f",fileXMin,fileYMax);

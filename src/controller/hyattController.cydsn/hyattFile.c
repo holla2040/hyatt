@@ -72,7 +72,7 @@ void hyattFilePerimeter(char *fn) {
     findPattern(fp,'\n','\n');
 
     wp = word;
-    while((hyattFileBufferLen = FS_Read(file,&hyattFileBuffer,FILEBUFFERLEN))) {
+    while((hyattFileBufferLen = FS_Read(fp,&hyattFileBuffer,FILEBUFFERLEN))) {
         for (uint16_t i = 0; i < hyattFileBufferLen; i++) {
             c = hyattFileBuffer[i];
             if (c == '\r') continue;
