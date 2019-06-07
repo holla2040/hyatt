@@ -72,34 +72,38 @@ void hyattFilePerimeter(char *fn) {
     findPattern(fp,'\n','\n');
 
     wp = word;
-    while (FS_Read(fp,&c,1)) {
-        if (c == '\r') continue;
-        // printf("%c",(char)c);
-        if (c > 96 && c < 123) {
-            c |= 0x20; // uppercase
-        }
-        if (c == ' ' || c == '\n') {
-            *wp = 0;
-            if (strlen(word) == 0) {
-                continue;
+    while((hyattFileBufferLen = FS_Read(file,&hyattFileBuffer,FILEBUFFERLEN))) {
+        for (uint16_t i = 0; i < hyattFileBufferLen; i++) {
+            c = hyattFileBuffer[i];
+            if (c == '\r') continue;
+            // printf("%c",(char)c);
+            if (c > 96 && c < 123) {
+                c |= 0x20; // uppercase
             }
+            if (c == ' ' || c == '\n') {
+                *wp = 0;
+                if (strlen(word) == 0) {
+                    continue;
+                }
 
-            v = atof(&word[1]);
-            switch (word[0]) {
-                case 'X':
-                    if (v > fileXMax) fileXMax = v;
-                    if (v < fileXMin) fileXMin = v;
-                    break;
-                case 'Y':
-                    if (v > fileYMax) fileYMax = v;
-                    if (v < fileYMin) fileYMin = v;
-                    break;
+                v = atof(&word[1]);
+                switch (word[0]) {
+                    case 'X':
+                        if (v > fileXMax) fileXMax = v;
+                        if (v < fileXMin) fileXMin = v;
+                        break;
+                    case 'Y':
+                        if (v > fileYMax) fileYMax = v;
+                        if (v < fileYMin) fileYMin = v;
+                        break;
+                }
+
+                wp = word;
+            } else {
+                *wp++ = c;
             }
-
-            wp = word;
-        } else {
-            *wp++ = c;
         }
+        hyattZDisplayLoop();
     }
 
     FS_FClose(fp);

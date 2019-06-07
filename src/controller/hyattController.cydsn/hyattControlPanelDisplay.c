@@ -391,7 +391,8 @@ void hyattControlPanelDisplayFileAction() {
                 LCD_SetCursor(0,1);     
                 LCD_PutString("perimeter scan");
                 hyattFilePerimeter(filelist[fileSelectedIndex]);
-                hyattControlPanelState = CONTROLPANEL_SELECT_FILE_SETUP; // forces a file screen refresh
+                hyattControlPanelDisplayFileSetup();
+                hyattControlPanelDisplayFile();
                 break;
             case 4: 
                 sprintf(buf,"G1 F2500 X%f Y%f",fileXMin,fileYMax);
@@ -419,6 +420,7 @@ void hyattControlPanelDisplayFileAction() {
     if (hyattTicks > hyattTimeoutDisplayUpdate) { // forces zdisplay update during movement
         sprintf(lastBlock,"%f,%f %f,%f",fileXMin,fileYMin,fileXMax,fileYMax);
         hyattZDisplayUpdate = 0;
+        hyattZDisplayLoop();
     }
 }
 
