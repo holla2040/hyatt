@@ -29,7 +29,6 @@ uint8_t fileSelectedIndex;
 
 char selections[CONTROLPANEL_SELECTIONCOUNTMAX][CONTROLPANEL_SELECTIONWIDTH] = {};
 extern char filelist[CONTROLPANEL_SELECTIONCOUNTMAX][FILENAMEMAX];
-extern uint8_t fileSelectIndex;
 extern float fileXMin,fileXMax,fileYMin,fileYMax;
 
 char *stateString() {
@@ -334,11 +333,14 @@ void hyattControlPanelDisplayFile() {
     if (enterCount) {
         fileSelectedIndex = i;
         strcpy(selections[0],"Load");   strcpy(selections[3],"Op"); strcpy(selections[6],"Ops");
-        strcpy(selections[1],"Perim");  strcpy(selections[4],"NW"); strcpy(selections[7],"NE");
+        strcpy(selections[1],"");       strcpy(selections[4],"NW"); strcpy(selections[7],"NE");
         strcpy(selections[2],"");       strcpy(selections[5],"SW"); strcpy(selections[8],"SE");
 
         LCD_Clear();
         LCD_SetCursor(0,0);     LCD_PutString(filelist[i]);
+        LCD_SetCursor(0,1);     LCD_PutString("scanning ");
+        hyattFilePerimeter(filelist[i]);
+        LCD_SetCursor(0,1);     LCD_PutString("         ");
 
         selectionsDisplay();
 
@@ -347,11 +349,6 @@ void hyattControlPanelDisplayFile() {
 
         wheel0 = wheelDecoder_GetCounter();
         enterCount = 0;
-        fileSelectIndex = i;
-        fileXMin = 0;
-        fileYMin = 0;
-        fileXMax = 0;
-        fileYMax = 0;
         hyattControlPanelState = CONTROLPANEL_SELECT_FILE_ACTION;
     }
 }
@@ -376,9 +373,6 @@ void hyattControlPanelDisplayFileAction() {
                 break;
 
             case 1:
-                LCD_SetCursor(0,3);     LCD_PutString("scan ");
-                hyattFilePerimeter(filelist[fileSelectedIndex]);
-                LCD_SetCursor(0,3);     LCD_PutString("     ");
                 break;
             case 4: 
                 sprintf(buf,"G1 F2500 X%f Y%f",fileXMin,fileYMax);
@@ -392,7 +386,6 @@ void hyattControlPanelDisplayFileAction() {
             case 2:
                 break;
             case 5:
-                break;
                 sprintf(buf,"G1 F2500 X%f Y%f",fileXMin,fileYMin);
                 grblBlockSend(buf);
                 break;
