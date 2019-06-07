@@ -224,13 +224,12 @@ void hyattControlPanelDisplayInspectSetup() {
 
 void hyattControlPanelDisplayInspect() {
     int16_t i = abs(wheel0 - wheelDecoder_GetCounter()) % CONTROLPANEL_SELECTIONCOUNTMAX;
-    int x,y,f;
+    int x,y;
     x = (i / 3) * 7;
     y = (i % 3) + 1;
     LCD_SetCursor(x,y);
 
-    f = FEED_OVERRIDE_Read();
-    if ((f & FEED_OVERRIDE_OFF) | !(f & FEED_OVERRIDE_BTN) | enterCount) {
+    if (enterCount) {
         hyattCurrentPosition();
         switch (i) {
             case 1: // point 1
@@ -283,13 +282,12 @@ void hyattControlPanelDisplayMacroSetup() {
 
 void hyattControlPanelDisplayMacro() {
     int16_t i = abs(wheel0 - wheelDecoder_GetCounter()) % CONTROLPANEL_SELECTIONCOUNTMAX;
-    int x,y,f;
+    int x,y;
     x = (i / 3) * 7;
     y = (i % 3) + 1;
     LCD_SetCursor(x,y);
 
-    f = FEED_OVERRIDE_Read();
-    if ((f & FEED_OVERRIDE_OFF) | !(f & FEED_OVERRIDE_BTN) | enterCount) {
+    if (enterCount) {
         LCD_NoBlink();
         LCD_Clear();
         LCD_SetCursor(0,0);
@@ -310,14 +308,6 @@ void hyattControlPanelDisplayMacro() {
 
 
 /* ============ file ================ */
-/* file action layout
-    All     Op      From Op
-    NW      NE
-    SW      SE
-*/
-
-
-
 void hyattControlPanelDisplayFileSetup() {
     LCD_Clear();
     LCD_SetCursor(0,0);     LCD_PutString("File Ops");
@@ -336,12 +326,12 @@ void hyattControlPanelDisplayFileSetup() {
 
 void hyattControlPanelDisplayFile() {
     int16_t i = abs(wheel0 - wheelDecoder_GetCounter()) % CONTROLPANEL_SELECTIONCOUNTMAX;
-    int x,y,f;
+    int x,y;
     x = (i / 3) * 7;
     y = (i % 3) + 1;
+
     LCD_SetCursor(x,y);
-    f = FEED_OVERRIDE_Read();
-    if ((f & FEED_OVERRIDE_OFF) | !(f & FEED_OVERRIDE_BTN) | enterCount) {
+    if (enterCount) {
         fileSelectedIndex = i;
         strcpy(selections[0],"Load");   strcpy(selections[3],"Op"); strcpy(selections[6],"Ops");
         strcpy(selections[1],"Perim");  strcpy(selections[4],"NW"); strcpy(selections[7],"NE");
@@ -356,22 +346,26 @@ void hyattControlPanelDisplayFile() {
         LCD_Blink();
 
         wheel0 = wheelDecoder_GetCounter();
-        hyattControlPanelState = CONTROLPANEL_SELECT_FILE_ACTION;
         enterCount = 0;
         fileSelectIndex = i;
+        fileXMin = 0;
+        fileYMin = 0;
+        fileXMax = 0;
+        fileYMax = 0;
+        hyattControlPanelState = CONTROLPANEL_SELECT_FILE_ACTION;
     }
 }
 
 void hyattControlPanelDisplayFileAction() {
-// xxx
-    char buf[100];
+    char buf[50];
     int16_t i = abs(wheel0 - wheelDecoder_GetCounter()) % CONTROLPANEL_SELECTIONCOUNTMAX;
-    int x,y,f;
+    int x,y;
     x = (i / 3) * 7;
     y = (i % 3) + 1;
     LCD_SetCursor(x,y);
-    f = FEED_OVERRIDE_Read();
-    if ((f & FEED_OVERRIDE_OFF) | !(f & FEED_OVERRIDE_BTN) | enterCount) {
+
+// xxx
+    if (enterCount) {
         switch(i) {
             // using menu layout from above
             case 0: 
@@ -408,9 +402,8 @@ void hyattControlPanelDisplayFileAction() {
         }
         enterCount = 0;
     }    
+
     if (hyattTicks > hyattTimeoutDisplayUpdate) { // forces zdisplay update during movement
-        sprintf(lastBlock,"%f,%f %f,%f",fileXMin,fileYMin,fileXMax,fileYMax);
-        hyattZDisplayUpdate = 0;
         hyattZDisplayLoop();
         hyattTimeoutDisplayUpdate = hyattTicks + DISPLAYUPDATECYCLEINTERVAL;
     }
