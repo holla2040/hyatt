@@ -332,9 +332,9 @@ void hyattControlPanelDisplayFile() {
     LCD_SetCursor(x,y);
     if (enterCount) {
         fileSelectedIndex = i;
-        strcpy(selections[0],"Load");   strcpy(selections[3],"Op"); strcpy(selections[6],"Ops");
-        strcpy(selections[1],"");       strcpy(selections[4],"NW"); strcpy(selections[7],"NE");
-        strcpy(selections[2],"");       strcpy(selections[5],"SW"); strcpy(selections[8],"SE");
+        strcpy(selections[0],"Load");  strcpy(selections[3],"");     strcpy(selections[6],"");
+        strcpy(selections[1],"NW");    strcpy(selections[4],"NE");   strcpy(selections[7],"");
+        strcpy(selections[2],"SW");    strcpy(selections[5],"SE");   strcpy(selections[8],"");
 
         LCD_Clear();
         LCD_SetCursor(0,0);     LCD_PutString(filelist[i]);
@@ -373,25 +373,25 @@ void hyattControlPanelDisplayFileAction() {
                 break;
 
             case 1:
-                break;
-            case 4: 
                 sprintf(buf,"G1 F2500 X%f Y%f",fileXMin,fileYMax);
                 grblBlockSend(buf);
                 break;
-            case 7:
+            case 4: 
                 sprintf(buf,"G1 F2500 X%f Y%f",fileXMax,fileYMax);
                 grblBlockSend(buf);
                 break;
+            case 7:
+                break;
 
             case 2:
-                break;
-            case 5:
                 sprintf(buf,"G1 F2500 X%f Y%f",fileXMin,fileYMin);
                 grblBlockSend(buf);
                 break;
-            case 8: 
+            case 5:
                 sprintf(buf,"G1 F2500 X%f Y%f",fileXMax,fileYMin);
                 grblBlockSend(buf);
+                break;
+            case 8: 
                 break;
         }
         enterCount = 0;
