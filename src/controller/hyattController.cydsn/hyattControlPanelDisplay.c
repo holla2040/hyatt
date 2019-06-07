@@ -422,7 +422,6 @@ void hyattControlPanelDisplayFileOperationSetup() {
 
 void hyattControlPanelDisplayFileOperation() {
     int16_t i = abs(wheel0 - wheelDecoder_GetCounter()) % CONTROLPANEL_SELECTIONCOUNTMAX;
-    char buf[50];
     int x,y;
     x = (i / 3) * 7;
     y = (i % 3) + 1;

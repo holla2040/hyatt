@@ -80,8 +80,9 @@ void hyattFileOperationsGet(char *fn) {
                 *lp = 0;
                 if (line[0] == '(' && line[strlen(line)-1] == ')') {
                     line[strlen(line)-1] = 0;
-                    strncpy(selections[selectionIndex++],&line[1],CONTROLPANEL_SELECTIONWIDTH-1);
+                    strncpy(selections[selectionIndex],&line[1],CONTROLPANEL_SELECTIONWIDTH-1);
                     if (selectionIndex >= CONTROLPANEL_SELECTIONCOUNTMAX) break;
+                    fileOpSeeks[selectionIndex++] = FS_GetFilePos(fp) - hyattFileBufferLen + i;
                 }
                 lp = line;
             } else {
