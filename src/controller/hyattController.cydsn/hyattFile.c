@@ -13,6 +13,7 @@ char filelist[CONTROLPANEL_SELECTIONCOUNTMAX][FILENAMEMAX];
 uint8_t fileSelectIndex;
 char fileoplist[CONTROLPANEL_SELECTIONCOUNTMAX][OPNAMEMAX];
 float fileXMin,fileXMax,fileYMin,fileYMax;
+uint32_t fileOpSeeks[CONTROLPANEL_SELECTIONCOUNTMAX];
 
 extern char selections[CONTROLPANEL_SELECTIONCOUNTMAX][CONTROLPANEL_SELECTIONWIDTH];
 
@@ -56,9 +57,45 @@ void findPattern(FS_FILE *fp, char c1, char c2) {
     }
 }
 
+void hyattFileOperationsGet(char *fn) {
+    FS_FILE *fp;
+    char c,*lp,line[100];
+    uint8_t i;
+
+    FS_Mount("");
+    fp = FS_FOpen(fn, "r");
+    findPattern(fp,'\n','\n'); // scan past header
+
+    selectionsClear();
+    lp = line;
+    i = 0;
+    while((hyattFileBufferLen = FS_Read(fp,&hyattFileBuffer,FILEBUFFERLEN))) {
+        for (uint16_t i = 0; i < hyattFileBufferLen; i++) {
+            c = hyattFileBuffer[i];
+            if (c == '\r') continue;
+            if (c > 96 && c < 123) {
+                c |= 0x20; // uppercase
+            }
+            if (line[0] == '(' && line[strlen(line)-2] == ')') {
+                lp = line;
+                line[strlen(line)-2] = 0;
+                strncpy(selections[i++],&line[1],CONTROLPANEL_SELECTIONWIDTH-1);
+                if (i >= CONTROLPANEL_SELECTIONCOUNTMAX) break;
+            } else {
+                *lp++ = c;
+            }
+        }
+        if (i >= CONTROLPANEL_SELECTIONCOUNTMAX) break;
+    }
+
+    FS_FClose(fp);
+    FS_Unmount("");
+}
+
+
 void hyattFilePerimeter(char *fn) {
     FS_FILE *fp;
-    char c,word[30],line[60];
+    char c,word[30];
     char *wp;
     float v;
 
@@ -69,7 +106,7 @@ void hyattFilePerimeter(char *fn) {
 
     FS_Mount("");
     fp = FS_FOpen(fn, "r");
-    findPattern(fp,'\n','\n');
+    findPattern(fp,'\n','\n'); // scan past header
 
     wp = word;
     while((hyattFileBufferLen = FS_Read(fp,&hyattFileBuffer,FILEBUFFERLEN))) {
@@ -108,6 +145,7 @@ void hyattFilePerimeter(char *fn) {
     }
 
     FS_FClose(fp);
+/*
     fp = FS_FOpen("perim.nc", "w");
     if (fp != 0) {
         sprintf(line,"G1 F2500\n");
@@ -131,6 +169,7 @@ void hyattFilePerimeter(char *fn) {
         FS_FClose(fp);
         // hyattFileSend("perim.nc");
     }
+*/
 
     FS_Unmount("");
 }

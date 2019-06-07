@@ -332,7 +332,7 @@ void hyattControlPanelDisplayFile() {
     LCD_SetCursor(x,y);
     if (enterCount) {
         fileSelectedIndex = i;
-        strcpy(selections[0],"Load");  strcpy(selections[3],"");     strcpy(selections[6],"");
+        strcpy(selections[0],"Load");  strcpy(selections[3],"Op 1"); strcpy(selections[6],"");
         strcpy(selections[1],"NW");    strcpy(selections[4],"NE");   strcpy(selections[7],"");
         strcpy(selections[2],"SW");    strcpy(selections[5],"SE");   strcpy(selections[8],"");
 
@@ -356,6 +356,73 @@ void hyattControlPanelDisplayFile() {
 void hyattControlPanelDisplayFileAction() {
     char buf[50];
     int16_t i = abs(wheel0 - wheelDecoder_GetCounter()) % CONTROLPANEL_SELECTIONCOUNTMAX;
+    int x,y;
+    x = (i / 3) * 7;
+    y = (i % 3) + 1;
+    LCD_SetCursor(x,y);
+
+    if (enterCount) {
+        switch(i) {
+            // using menu layout from above
+            case 0: 
+                hyattFileSend(filelist[fileSelectedIndex]);
+                hyattControlPanelState = CONTROLPANEL_SELECT_FILE_OPERATION_SETUP;
+                break;
+            case 3:  
+                break;
+            case 6: 
+                break;
+
+            case 1:
+                sprintf(buf,"G1 F2500 X%f Y%f",fileXMin,fileYMax);
+                grblBlockSend(buf);
+                break;
+            case 4: 
+                sprintf(buf,"G1 F2500 X%f Y%f",fileXMax,fileYMax);
+                grblBlockSend(buf);
+                break;
+            case 7:
+                break;
+
+            case 2:
+                sprintf(buf,"G1 F2500 X%f Y%f",fileXMin,fileYMin);
+                grblBlockSend(buf);
+                break;
+            case 5:
+                sprintf(buf,"G1 F2500 X%f Y%f",fileXMax,fileYMin);
+                grblBlockSend(buf);
+                break;
+            case 8: 
+                break;
+        }
+        enterCount = 0;
+    }    
+
+    if (hyattTicks > hyattTimeoutDisplayUpdate) { // forces zdisplay update during movement
+        hyattCurrentPosition();
+        hyattZDisplayLoop();
+        hyattTimeoutDisplayUpdate = hyattTicks + DISPLAYUPDATECYCLEINTERVAL;
+    }
+}
+
+void hyattControlPanelDisplayFileOperationSetup() {
+    LCD_Clear();
+    LCD_SetCursor(0,0);     LCD_PutString("File Ops");
+
+    hyattFileOperationsGet(filelist[fileSelectedIndex]);
+    selectionsDisplay();
+
+    LCD_SetCursor(0,1);
+    LCD_Blink();
+
+    wheel0 = wheelDecoder_GetCounter();
+    hyattControlPanelState = CONTROLPANEL_SELECT_FILE_OPERATION;
+    enterCount = 0;
+}
+
+void hyattControlPanelDisplayFileOperation() {
+    int16_t i = abs(wheel0 - wheelDecoder_GetCounter()) % CONTROLPANEL_SELECTIONCOUNTMAX;
+    char buf[50];
     int x,y;
     x = (i / 3) * 7;
     y = (i % 3) + 1;
@@ -509,6 +576,12 @@ void hyattControlPanelDisplayLoop() {
             break;
         case CONTROLPANEL_SELECT_FILE_ACTION:
             hyattControlPanelDisplayFileAction();
+            break;
+        case CONTROLPANEL_SELECT_FILE_OPERATION_SETUP:
+            hyattControlPanelDisplayFileOperationSetup();
+            break;
+        case CONTROLPANEL_SELECT_FILE_OPERATION:
+            hyattControlPanelDisplayFileOperation();
             break;
         case CONTROLPANEL_SELECT_INSPECT_SETUP:
             hyattControlPanelDisplayInspectSetup();
