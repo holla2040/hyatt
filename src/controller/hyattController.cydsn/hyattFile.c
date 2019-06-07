@@ -76,14 +76,15 @@ void hyattFileOperationsGet(char *fn) {
             if (c > 96 && c < 123) {
                 c |= 0x20; // uppercase
             }
-            if (line[0] == '(' && line[strlen(line)-2] == ')') {
-                lp = line;
-                line[strlen(line)-2] = 0;
-                strncpy(selections[i++],&line[1],CONTROLPANEL_SELECTIONWIDTH-1);
-                if (i >= CONTROLPANEL_SELECTIONCOUNTMAX) break;
-            } else {
-                *lp++ = c;
-            }
+           if (c == '\n') {
+                if (line[0] == '(' && line[strlen(line)-2] == ')') {
+                    line[strlen(line)-2] = 0;
+                    strncpy(selections[i++],&line[1],CONTROLPANEL_SELECTIONWIDTH-1);
+                    lp = line;
+                    if (i >= CONTROLPANEL_SELECTIONCOUNTMAX) break;
+                } else {
+                    *lp++ = c;
+                }
         }
         if (i >= CONTROLPANEL_SELECTIONCOUNTMAX) break;
     }
