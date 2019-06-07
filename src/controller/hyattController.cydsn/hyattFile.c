@@ -60,7 +60,7 @@ void findPattern(FS_FILE *fp, char c1, char c2) {
 void hyattFileOperationsGet(char *fn) {
     FS_FILE *fp;
     char c,*lp,line[100];
-    uint8_t i;
+    uint8_t selectionIndex;
 
     FS_Mount("");
     fp = FS_FOpen(fn, "r");
@@ -68,7 +68,7 @@ void hyattFileOperationsGet(char *fn) {
 
     selectionsClear();
     lp = line;
-    i = 0;
+    selectionIndex = 0;
     while((hyattFileBufferLen = FS_Read(fp,&hyattFileBuffer,FILEBUFFERLEN))) {
         for (uint16_t i = 0; i < hyattFileBufferLen; i++) {
             c = hyattFileBuffer[i];
@@ -77,16 +77,18 @@ void hyattFileOperationsGet(char *fn) {
                 c |= 0x20; // uppercase
             }
            if (c == '\n') {
-                if (line[0] == '(' && line[strlen(line)-2] == ')') {
-                    line[strlen(line)-2] = 0;
-                    strncpy(selections[i++],&line[1],CONTROLPANEL_SELECTIONWIDTH-1);
-                    lp = line;
-                    if (i >= CONTROLPANEL_SELECTIONCOUNTMAX) break;
-                } else {
-                    *lp++ = c;
+                *lp = 0;
+                if (line[0] == '(' && line[strlen(line)-1] == ')') {
+                    line[strlen(line)-1] = 0;
+                    strncpy(selections[selectionIndex++],&line[1],CONTROLPANEL_SELECTIONWIDTH-1);
+                    if (selectionIndex >= CONTROLPANEL_SELECTIONCOUNTMAX) break;
                 }
+                lp = line;
+            } else {
+                *lp++ = c;
+            }
         }
-        if (i >= CONTROLPANEL_SELECTIONCOUNTMAX) break;
+        if (selectionIndex >= CONTROLPANEL_SELECTIONCOUNTMAX) break;
     }
 
     FS_FClose(fp);
