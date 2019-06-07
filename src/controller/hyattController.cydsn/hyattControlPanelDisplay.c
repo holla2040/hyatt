@@ -406,7 +406,7 @@ void hyattControlPanelDisplayFileAction() {
 
 // xxx
     if (hyattTicks > hyattTimeoutDisplayUpdate) { // forces zdisplay update during movement
-        hyattZDisplayUpdate = 0;
+        hyattCurrentPosition();
         hyattZDisplayLoop();
         hyattTimeoutDisplayUpdate = hyattTicks + DISPLAYUPDATECYCLEINTERVAL;
     }
