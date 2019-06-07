@@ -58,7 +58,7 @@ void findPattern(FS_FILE *fp, char c1, char c2) {
 
 void hyattFilePerimeter(char *fn) {
     FS_FILE *fp;
-    char c,word[30],line[50];
+    char c,word[30],line[60];
     char *wp;
     float v;
 
@@ -103,8 +103,12 @@ void hyattFilePerimeter(char *fn) {
                 *wp++ = c;
             }
         }
-        sprintf(lastBlock,"%f,%f %f,%f",fileXMin,fileYMin,fileXMax,fileYMax);
-        hyattZDisplayLoop();
+        sprintf(line,"%f,%f",fileXMax,fileYMax);
+        LCD_SetCursor(20,2);     
+        LCD_PutString(line);
+        sprintf(line,"%f,%f",fileXMin,fileYMin);
+        LCD_SetCursor(0,2);     
+        LCD_PutString(line);
     }
 
     FS_FClose(fp);

@@ -374,8 +374,7 @@ void hyattControlPanelDisplayFileAction() {
     f = FEED_OVERRIDE_Read();
     if ((f & FEED_OVERRIDE_OFF) | !(f & FEED_OVERRIDE_BTN) | enterCount) {
         switch(i) {
-            // use menu layout from above
-
+            // using menu layout from above
             case 0: 
                 hyattFileSend(filelist[fileSelectedIndex]);
                 break;
@@ -422,6 +421,7 @@ void hyattControlPanelDisplayFileAction() {
         sprintf(lastBlock,"%f,%f %f,%f",fileXMin,fileYMin,fileXMax,fileYMax);
         hyattZDisplayUpdate = 0;
         hyattZDisplayLoop();
+        hyattTimeoutDisplayUpdate = hyattTicks + DISPLAYUPDATECYCLEINTERVAL;
     }
 }
 
