@@ -103,12 +103,8 @@ void hyattFilePerimeter(char *fn) {
                 *wp++ = c;
             }
         }
-        sprintf(line,"%f,%f",fileXMax,fileYMax);
-        LCD_SetCursor(20,2);     
-        LCD_PutString(line);
-        sprintf(line,"%f,%f",fileXMin,fileYMin);
-        LCD_SetCursor(0,2);     
-        LCD_PutString(line);
+        sprintf(lastBlock,"%.3f,%.3f %.3f,%.3f",fileXMin,fileYMin,fileXMax,fileYMax);
+        hyattZDisplaySet("st",lastBlock);
     }
 
     FS_FClose(fp);

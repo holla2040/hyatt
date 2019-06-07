@@ -347,7 +347,6 @@ void hyattControlPanelDisplayFile() {
         strcpy(selections[1],"Perim");  strcpy(selections[4],"NW"); strcpy(selections[7],"NE");
         strcpy(selections[2],"");       strcpy(selections[5],"SW"); strcpy(selections[8],"SE");
 
-
         LCD_Clear();
         LCD_SetCursor(0,0);     LCD_PutString(filelist[i]);
 
@@ -384,15 +383,7 @@ void hyattControlPanelDisplayFileAction() {
                 break;
 
             case 1:
-                LCD_Clear();
-                LCD_SetCursor(0,0);     
-                LCD_PutString(filelist[fileSelectedIndex]);
-                LCD_SetCursor(0,1);     
-                LCD_PutString("perimeter scan");
                 hyattFilePerimeter(filelist[fileSelectedIndex]);
-                hyattControlPanelDisplayFileSetup();
-                hyattControlPanelDisplayFile();
-                hyattControlPanelState = CONTROLPANEL_SELECT_FILE_ACTION;
                 break;
             case 4: 
                 sprintf(buf,"G1 F2500 X%f Y%f",fileXMin,fileYMax);
