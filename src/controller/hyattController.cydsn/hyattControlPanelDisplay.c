@@ -364,6 +364,7 @@ void hyattControlPanelDisplayFile() {
 }
 
 void hyattControlPanelDisplayFileAction() {
+// xxx
     char buf[100];
     int16_t i = abs(wheel0 - wheelDecoder_GetCounter()) % CONTROLPANEL_SELECTIONCOUNTMAX;
     int x,y,f;
@@ -415,7 +416,10 @@ void hyattControlPanelDisplayFileAction() {
         }
         enterCount = 0;
     }    
-    hyattZDisplayLoop();
+    if (hyattTicks > hyattTimeoutDisplayUpdate) { // forces zdisplay update during movement
+        sprintf(lastBlock,"%f,%f %f,%f",fileXMin,fileYMin,fileXMax,fileYMax);
+        hyattZDisplayUpdate = 0;
+    }
 }
 
 /* ============ file ================ */
