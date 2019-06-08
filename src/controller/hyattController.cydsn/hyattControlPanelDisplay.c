@@ -337,9 +337,9 @@ void hyattControlPanelDisplayFile() {
     LCD_SetCursor(x,y);
     if (enterCount) {
         fileSelectedIndex = i;
-        strcpy(selections[0],"Load");  strcpy(selections[3],"");     strcpy(selections[6],"Op -");
-        strcpy(selections[1],"NW");    strcpy(selections[4],"NE");   strcpy(selections[7],"Op 1");
-        strcpy(selections[2],"SW");    strcpy(selections[5],"SE");   strcpy(selections[8],"Op +");
+        strcpy(selections[0],"Load");  strcpy(selections[3],"");     strcpy(selections[6],"Before");
+        strcpy(selections[1],"NW");    strcpy(selections[4],"NE");   strcpy(selections[7],"Single");
+        strcpy(selections[2],"SW");    strcpy(selections[5],"SE");   strcpy(selections[8],"After");
 
         LCD_Clear();
         LCD_SetCursor(0,0);     LCD_PutString(filelist[i]);
