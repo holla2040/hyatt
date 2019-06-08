@@ -418,7 +418,18 @@ void hyattControlPanelDisplayFileAction() {
 
 void hyattControlPanelDisplayFileOperationSetup() {
     LCD_Clear();
-    LCD_SetCursor(0,0);     LCD_PutString("File Op1");
+    LCD_SetCursor(0,0);     
+    switch (operationType) {
+        case OPERATIONBEFORE:
+            LCD_PutString("File Operation Before");
+            break;
+        case OPERATIONSINGLE:
+            LCD_PutString("File Operation Single");
+            break;
+        case OPERATIONAFTER:
+            LCD_PutString("File Operation After");
+            break;
+    }
 
     hyattFileOperationsGet(filelist[fileSelectedIndex]);
     selectionsDisplay();
@@ -442,12 +453,15 @@ void hyattControlPanelDisplayFileOperationSelect() {
         switch (operationType) {
             case OPERATIONBEFORE:
                 hyattFileSend(filelist[fileSelectedIndex],0,fileOpSeeks[i]);
+                hyattControlPanelState = CONTROLPANEL_IDLE_SETUP;
                 break;
             case OPERATIONSINGLE:
                 hyattFileSend(filelist[fileSelectedIndex],fileOpSeeks[i],fileOpSeeks[i+1]);
+                hyattControlPanelState = CONTROLPANEL_IDLE_SETUP;
                 break;
             case OPERATIONAFTER:
-                hyattFileSend(filelist[fileSelectedIndex],fileOpSeeks[i],fileSize);
+                hyattFileSend(filelist[fileSelectedIndex],fileOpSeeks[i+1],fileSize);
+                hyattControlPanelState = CONTROLPANEL_IDLE_SETUP;
                 break;
         }
         enterCount = 0;
