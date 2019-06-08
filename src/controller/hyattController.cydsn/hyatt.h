@@ -118,6 +118,7 @@ enum name {
 #define CONTROLPANEL_MACROLABELWIDTH 7    
 #define CONTROLPANEL_INSPECTLABELWIDTH 7    
 int16_t wheel0;
+int16_t wheel0Select;
 
 /* LCD begin from babystep/LCD2004 */
 #define LCD_CLEARDISPLAY 0x01
@@ -241,7 +242,6 @@ void hyattSelectLoop();
 // file
 void hyattFileSenderInit();
 void hyattFileSenderLoop();
-void hyattFileSend(char *filename);
 void hyattFileSend(char *filename, uint32_t s, uint32_t e);
 void hyattFileCallback(uint8_t status_code);
 void hyattFilelistGet();

@@ -225,10 +225,6 @@ void hyattFileSenderLoop() {
    }
 }
 
-void hyattFileSend(char *filename) {
-    hyattFileSend(filename,0,fileSize);
-}
-
 void hyattFileSend(char *filename, uint32_t s, uint32_t e) {
     fileStart = s;
     fileEnd   = e;

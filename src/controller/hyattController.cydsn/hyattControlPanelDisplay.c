@@ -33,6 +33,8 @@ char selections[CONTROLPANEL_SELECTIONCOUNTMAX][CONTROLPANEL_SELECTIONWIDTH] = {
 extern char filelist[CONTROLPANEL_SELECTIONCOUNTMAX][FILENAMEMAX];
 extern float fileXMin,fileXMax,fileYMin,fileYMax;
 extern uint32_t fileSize;
+extern uint32_t fileOpSeeks[CONTROLPANEL_SELECTIONCOUNTMAX+1];
+
 
 char *stateString() {
     switch (sys.state) {
@@ -368,7 +370,7 @@ void hyattControlPanelDisplayFileAction() {
         switch(i) {
             // using menu layout from above
             case 0: 
-                hyattFileSend(filelist[fileSelectedIndex]);
+                hyattFileSend(filelist[fileSelectedIndex],0,fileSize);
                 break;
             case 3:  
                 break;
@@ -436,7 +438,7 @@ void hyattControlPanelDisplayFileOperationSelect() {
     LCD_SetCursor(x,y);
 
     if (enterCount) {
-        switch (operationSingle) {
+        switch (operationType) {
             case OPERATIONBEFORE:
                 hyattFileSend(filelist[fileSelectedIndex],0,fileOpSeeks[i]);
                 break;
@@ -560,7 +562,7 @@ void hyattControlPanelDisplayLoop() {
             hyattControlPanelDisplayFileOperationSetup();
             break;
         case CONTROLPANEL_SELECT_FILE_OPERATION_SELECT:
-            hyattControlPanelDisplayFileOperation();
+            hyattControlPanelDisplayFileOperationSelect();
             break;
         case CONTROLPANEL_SELECT_INSPECT_SETUP:
             hyattControlPanelDisplayInspectSetup();
@@ -573,134 +575,3 @@ void hyattControlPanelDisplayLoop() {
             break;
     }
 }
-
-/*
-void hyattControlPanelDisplayIdleOld() {
-    char buf[100];
-    if (hyattTicks > hyattTimeoutDisplaySlowUpdate) {
-        // if (sys.state == STATE_CYCLE) return;
-        
-        if (sys.state != STATE_CYCLE) {
-            LCD_SetCursor(11,1);
-            LCD_PutString(stateString());
-
-            LCD_SetCursor(19,0);
-            LCD_Write(watch[(++watchCount)%strlen(watch)]);
-
-            LCD_SetCursor(12,0);
-            sprintf(buf,"%d",54+gc_state.modal.coord_select);
-            LCD_PutString(buf);
-            sprintf(buf,"G%d",54+gc_state.modal.coord_select);
-            hyattZDisplaySet("c",buf);
-
-            LCD_SetCursor(15,0);
-            if (gc_state.modal.units) {
-                LCD_PutString("INCH");
-                hyattZDisplaySet("u","INCH");
-            } else {
-                LCD_PutString("MM  ");
-                hyattZDisplaySet("u","MM");
-            }
-
-            LCD_SetCursor(18,1);
-            if (gc_block.modal.spindle & SPINDLE_ENABLE_CW) {
-                LCD_PutString("S");
-                hyattZDisplaySet("s","SPINDLE");
-            } else {
-                LCD_PutString(" ");
-                hyattZDisplaySet("s","");
-            }
-
-            LCD_SetCursor(19,1);
-            if (gc_state.modal.coolant & COOLANT_MIST_ENABLE) {
-                LCD_PutString("A");
-                hyattZDisplaySet("a","AIR");
-            } else {
-                LCD_PutString(" ");
-                hyattZDisplaySet("a","");
-            }
-
-
-            sprintf(buf,"F%4d/%-3d%%",(uint16_t)gc_state.feed_rate,sys.f_override);
-            hyattZDisplaySet("f",buf);
-
-            LCD_SetCursor(0,3);
-            lastBlock[20] = 0; // clip lastBlock to display width
-            sprintf(buf,"%-20s",lastBlock);
-            LCD_PutString(buf);
-
-        LCD_SetCursor(12,2);
-        sprintf(buf,"%4d",(uint16_t)gc_state.feed_rate);
-        LCD_PutString(buf);
-
-        LCD_SetCursor(17,2);
-        sprintf(buf,"%-3d",sys.f_override);
-        LCD_PutString(buf);
-
-        }
-        hyattZDisplaySet("st",lastBlock);
-
-        hyattTimeoutDisplaySlowUpdate = hyattTicks + DISPLAYSLOWUPDATEINTERVAL;
-    }
-
-    if (hyattTicks > hyattTimeoutDisplayFastUpdate) {
-        uint8_t idx;
-        // if (sys.state == STATE_CYCLE) return;
-        int32_t current_position[N_AXIS]; // Copy current state of the system position variable
-        memcpy(current_position,sys_position,sizeof(sys_position));
-        float print_position[N_AXIS];
-        system_convert_array_steps_to_mpos(print_position,current_position);
-        float wco[N_AXIS];
-
-        if (bit_isfalse(settings.status_report_mask,BITFLAG_RT_STATUS_POSITION_TYPE) || (sys.report_wco_counter == 0) ) {
-            for (idx=0; idx< N_AXIS; idx++) {
-                // Apply work coordinate offsets and tool length offset to current position.
-                wco[idx] = gc_state.coord_system[idx]+gc_state.coord_offset[idx];
-                if (idx == TOOL_LENGTH_OFFSET_AXIS) { wco[idx] += gc_state.tool_length_offset; }
-                if (bit_isfalse(settings.status_report_mask,BITFLAG_RT_STATUS_POSITION_TYPE)) {
-                    print_position[idx] -= wco[idx];
-                }
-
-            }
-        }
-        hyattZDisplayCommand("ref_stop");
-        for (idx=0; idx< N_AXIS; idx++) {
-            char attr[2] = {0,0};
-            double v = print_position[idx];
-            LCD_SetCursor(1,idx);
-            if (bit_istrue(settings.flags,BITFLAG_REPORT_INCHES)) {
-                v *= INCH_PER_MM;
-            }
-            sprintf(buf,"%9.3f",v);
-            LCD_PutString(buf);
-            attr[0] = (char)('x'+idx);
-
-            hyattZDisplaySet(attr,buf);
-        }
-        hyattZDisplayCommand("ref_star");
-        hyattTimeoutDisplayFastUpdate = hyattTicks + DISPLAYFASTUPDATEINTERVAL;
-    }
-}
-*/
-/*
-        FS_FILE *file;
-        char buf[10];
-        LCD_NoBlink();
-        LCD_Clear();
-        LCD_SetCursor(0,0);
-        LCD_PutString("FILE");
-        LCD_SetCursor(5,0);
-        LCD_PutString(filelist[i]);
-        file = FS_FOpen(filelist[i], "r");
-        sprintf(buf,"%ld",FS_GetFileSize(file));
-        LCD_SetCursor(0,1);
-        LCD_PutString("SIZE");
-        LCD_SetCursor(5,1);
-        LCD_PutString(buf);
-        LCD_SetCursor(0,3);
-        LCD_PutString("File loaded");
-        CyDelay(2000);
-        wheelDecoder_SetCounter(wheel0);
-        hyattControlPanelState = CONTROLPANEL_IDLE_SETUP;
-*/
-
