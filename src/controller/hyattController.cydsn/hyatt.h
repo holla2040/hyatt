@@ -108,7 +108,7 @@ enum name {
   CONTROLPANEL_SELECT_FILE,
   CONTROLPANEL_SELECT_FILE_ACTION,
   CONTROLPANEL_SELECT_FILE_OPERATION_SETUP,
-  CONTROLPANEL_SELECT_FILE_OPERATION,
+  CONTROLPANEL_SELECT_FILE_OPERATION_SELECT,
   CONTROLPANEL_SELECT_INSPECT_SETUP,
   CONTROLPANEL_SELECT_INSPECT,
   CONTROLPANEL_SELECT_INSPECT_RESULT
@@ -242,10 +242,11 @@ void hyattSelectLoop();
 void hyattFileSenderInit();
 void hyattFileSenderLoop();
 void hyattFileSend(char *filename);
+void hyattFileSend(char *filename, uint32_t s, uint32_t e);
 void hyattFileCallback(uint8_t status_code);
 void hyattFilelistGet();
 void hyattFileOperationsGet();
-void hyattFilePerimeter(char *fn);
+void hyattFileScan(char *fn);
 #define FILESENDERSTATE_IDLE 'I'
 #define FILESENDERSTATE_SEND 'S'
 uint8_t hyattFileSenderState;

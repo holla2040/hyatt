@@ -8,14 +8,22 @@ uint16_t hyattFileBufferLen;
 char hyattFileBuffer[FILEBUFFERLEN];
 char *hyattFileBufferPtr;
 FS_FILE *file;
+uint32_t fileSize;
 
 char filelist[CONTROLPANEL_SELECTIONCOUNTMAX][FILENAMEMAX];
 uint8_t fileSelectIndex;
 char fileoplist[CONTROLPANEL_SELECTIONCOUNTMAX][OPNAMEMAX];
 float fileXMin,fileXMax,fileYMin,fileYMax;
-uint32_t fileOpSeeks[CONTROLPANEL_SELECTIONCOUNTMAX];
+uint32_t fileOpSeeks[CONTROLPANEL_SELECTIONCOUNTMAX+1];
 
 extern char selections[CONTROLPANEL_SELECTIONCOUNTMAX][CONTROLPANEL_SELECTIONWIDTH];
+uint32_t fileStart, fileEnd, fileIndex;
+
+void fileSeeksSet(uint32_t s) {
+    for (uint8_t i; i < (CONTROLPANEL_SELECTIONCOUNTMAX+1); i++) {
+        fileOpSeeks[i] = s;
+    }
+}
 
 void hyattFilelistGet() {
     uint8_t i = 0;
@@ -97,7 +105,7 @@ void hyattFileOperationsGet(char *fn) {
 }
 
 
-void hyattFilePerimeter(char *fn) {
+void hyattFileScan(char *fn) {
     FS_FILE *fp;
     char c,word[30];
     char *wp;
@@ -110,6 +118,8 @@ void hyattFilePerimeter(char *fn) {
 
     FS_Mount("");
     fp = FS_FOpen(fn, "r");
+    fileSize = FS_GetFileSize(file);
+    fileSeeksSet(fileSize);
     findPattern(fp,'\n','\n'); // scan past header
 
     wp = word;
@@ -190,7 +200,10 @@ void hyattFileSenderLoop() {
                 if (serial_get_rx_buffer_available() < 10 ) break; // parser flow control
                 hyattFileBufferLen--;
                 c = *hyattFileBufferPtr++;
-                rx_handler(c);
+                if ((fileIndex >= fileStart ) && (fileIndex <= fileEnd)) {
+                    rx_handler(c);
+                }
+                fileIndex++;
 
                // usb_uart_write(c);
                 
@@ -213,6 +226,13 @@ void hyattFileSenderLoop() {
 }
 
 void hyattFileSend(char *filename) {
+    hyattFileSend(filename,0,fileSize);
+}
+
+void hyattFileSend(char *filename, uint32_t s, uint32_t e) {
+    fileStart = s;
+    fileEnd   = e;
+    fileIndex = 0;
     FS_Mount("");
     file = FS_FOpen(filename, "r");
     if (file) {

@@ -26,10 +26,13 @@ float inspectPoints[2][2];
 float inspectCirclePoints[3][2]; // x,y * 3
 float inspectLength,inspectAngle;
 uint8_t fileSelectedIndex;
+uint8_t operationType;
+enum {OPERATIONBEFORE,OPERATIONSINGLE,OPERATIONAFTER};
 
 char selections[CONTROLPANEL_SELECTIONCOUNTMAX][CONTROLPANEL_SELECTIONWIDTH] = {};
 extern char filelist[CONTROLPANEL_SELECTIONCOUNTMAX][FILENAMEMAX];
 extern float fileXMin,fileXMax,fileYMin,fileYMax;
+extern uint32_t fileSize;
 
 char *stateString() {
     switch (sys.state) {
@@ -332,14 +335,14 @@ void hyattControlPanelDisplayFile() {
     LCD_SetCursor(x,y);
     if (enterCount) {
         fileSelectedIndex = i;
-        strcpy(selections[0],"Load");  strcpy(selections[3],"Op 1"); strcpy(selections[6],"");
-        strcpy(selections[1],"NW");    strcpy(selections[4],"NE");   strcpy(selections[7],"");
-        strcpy(selections[2],"SW");    strcpy(selections[5],"SE");   strcpy(selections[8],"");
+        strcpy(selections[0],"Load");  strcpy(selections[3],"");     strcpy(selections[6],"Op -");
+        strcpy(selections[1],"NW");    strcpy(selections[4],"NE");   strcpy(selections[7],"Op 1");
+        strcpy(selections[2],"SW");    strcpy(selections[5],"SE");   strcpy(selections[8],"Op +");
 
         LCD_Clear();
         LCD_SetCursor(0,0);     LCD_PutString(filelist[i]);
         LCD_SetCursor(0,1);     LCD_PutString("scanning ");
-        hyattFilePerimeter(filelist[i]);
+        hyattFileScan(filelist[i]);
         LCD_SetCursor(0,1);     LCD_PutString("         ");
 
         selectionsDisplay();
@@ -368,9 +371,10 @@ void hyattControlPanelDisplayFileAction() {
                 hyattFileSend(filelist[fileSelectedIndex]);
                 break;
             case 3:  
-                hyattControlPanelState = CONTROLPANEL_SELECT_FILE_OPERATION_SETUP;
                 break;
             case 6: 
+                operationType = OPERATIONBEFORE;
+                hyattControlPanelState = CONTROLPANEL_SELECT_FILE_OPERATION_SETUP;
                 break;
 
             case 1:
@@ -382,6 +386,8 @@ void hyattControlPanelDisplayFileAction() {
                 grblBlockSend(buf);
                 break;
             case 7:
+                operationType = OPERATIONSINGLE;
+                hyattControlPanelState = CONTROLPANEL_SELECT_FILE_OPERATION_SETUP;
                 break;
 
             case 2:
@@ -393,6 +399,8 @@ void hyattControlPanelDisplayFileAction() {
                 grblBlockSend(buf);
                 break;
             case 8: 
+                operationType = OPERATIONAFTER;
+                hyattControlPanelState = CONTROLPANEL_SELECT_FILE_OPERATION_SETUP;
                 break;
         }
         enterCount = 0;
@@ -416,11 +424,11 @@ void hyattControlPanelDisplayFileOperationSetup() {
     LCD_Blink();
 
     wheel0 = wheelDecoder_GetCounter();
-    hyattControlPanelState = CONTROLPANEL_SELECT_FILE_OPERATION;
+    hyattControlPanelState = CONTROLPANEL_SELECT_FILE_OPERATION_SELECT;
     enterCount = 0;
 }
 
-void hyattControlPanelDisplayFileOperation() {
+void hyattControlPanelDisplayFileOperationSelect() {
     int16_t i = abs(wheel0 - wheelDecoder_GetCounter()) % CONTROLPANEL_SELECTIONCOUNTMAX;
     int x,y;
     x = (i / 3) * 7;
@@ -428,26 +436,15 @@ void hyattControlPanelDisplayFileOperation() {
     LCD_SetCursor(x,y);
 
     if (enterCount) {
-        switch(i) {
-            case 0: 
+        switch (operationSingle) {
+            case OPERATIONBEFORE:
+                hyattFileSend(filelist[fileSelectedIndex],0,fileOpSeeks[i]);
                 break;
-            case 3: 
+            case OPERATIONSINGLE:
+                hyattFileSend(filelist[fileSelectedIndex],fileOpSeeks[i],fileOpSeeks[i+1]);
                 break;
-            case 6: 
-                break;
-
-            case 1:
-                break;
-            case 4: 
-                break;
-            case 7:
-                break;
-
-            case 2:
-                break;
-            case 5:
-                break;
-            case 8: 
+            case OPERATIONAFTER:
+                hyattFileSend(filelist[fileSelectedIndex],fileOpSeeks[i],fileSize);
                 break;
         }
         enterCount = 0;
@@ -562,7 +559,7 @@ void hyattControlPanelDisplayLoop() {
         case CONTROLPANEL_SELECT_FILE_OPERATION_SETUP:
             hyattControlPanelDisplayFileOperationSetup();
             break;
-        case CONTROLPANEL_SELECT_FILE_OPERATION:
+        case CONTROLPANEL_SELECT_FILE_OPERATION_SELECT:
             hyattControlPanelDisplayFileOperation();
             break;
         case CONTROLPANEL_SELECT_INSPECT_SETUP:
