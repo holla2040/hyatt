@@ -202,10 +202,10 @@ void hyattFileSenderLoop() {
                 c = *hyattFileBufferPtr++;
                 if ((fileIndex >= fileStart ) && (fileIndex <= fileEnd)) {
                     rx_handler(c);
+                    usb_uart_write(c);
                 }
                 fileIndex++;
 
-               // usb_uart_write(c);
                 
                 if ((c == '\n') || (c == '\r')) {
                     break;
