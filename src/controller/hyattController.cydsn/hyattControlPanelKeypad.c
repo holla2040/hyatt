@@ -182,10 +182,14 @@ void hyattControlPanelKeypadLoop() {
                         FS_Unmount("");
                         hyattFileSenderState = FILESENDERSTATE_WAIT;
                         hyattControlPanelState = CONTROLPANEL_SELECT_FILE_OPERATION_SELECT;
-                      // from mc_probe_cycle
-                      st_reset(); // Reset step segment buffer.
-                      plan_reset(); // Reset planner buffer. Zero planner positions. Ensure probing motion is cleared.
-                      plan_sync_position(); // Sync planner position to current machine position.
+// from mc_probe_cycle
+// Reset the stepper and planner buffers to remove the remainder of the probe motion.
+st_reset(); // Reset step segment buffer.
+plan_reset(); // Reset planner buffer. Zero planner positions. Ensure probing motion is cleared.
+plan_sync_position(); // Sync planner position to current machine position.
+serial_reset_read_buffer();
+
+
                     }
                     break;
             }

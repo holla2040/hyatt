@@ -374,6 +374,7 @@ void hyattControlPanelDisplayFileAction() {
             // using menu layout from above
             case 0: 
                 hyattFileSend(filelist[fileSelectedIndex],0,fileSize);
+                wheelDecoder_SetCounter(wheel0Select);
                 hyattControlPanelState = CONTROLPANEL_IDLE_SETUP;
                 break;
             case 3:  
