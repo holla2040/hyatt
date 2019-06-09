@@ -421,15 +421,17 @@ void hyattControlPanelDisplayFileOperationSetup() {
     LCD_SetCursor(0,0);     
     switch (operationType) {
         case OPERATIONBEFORE:
-            LCD_PutString("File Operation Before");
+            LCD_PutString("File Op Before");
             break;
         case OPERATIONSINGLE:
-            LCD_PutString("File Operation Single");
+            LCD_PutString("File Op Single");
             break;
         case OPERATIONAFTER:
-            LCD_PutString("File Operation After");
+            LCD_PutString("File Op After");
             break;
     }
+    LCD_SetCursor(0,1);  
+    LCD_PutString("scanning");
 
     hyattFileOperationsGet(filelist[fileSelectedIndex]);
     selectionsDisplay();

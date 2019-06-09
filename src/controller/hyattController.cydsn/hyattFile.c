@@ -118,9 +118,7 @@ void hyattFileScan(char *fn) {
 
     FS_Mount("");
     fp = FS_FOpen(fn, "r");
-    fileSize = FS_GetFileSize(file);
-    sprintf(word,"fsize = %ld\n",fileSize);
-    usb_uart_PutString(word);
+    fileSize = FS_GetFileSize(fp);
     fileSeeksSet(fileSize);
     findPattern(fp,'\n','\n'); // scan past header
 
@@ -233,10 +231,6 @@ void hyattFileSend(char *filename, uint32_t s, uint32_t e) {
     fileStart = s;
     fileEnd   = e;
     fileIndex = 0;
-
-    sprintf(word,"s = %ld, e = %ld\n",fileStart,fileEnd);
-    usb_uart_PutString(word);
-
     FS_Mount("");
     file = FS_FOpen(filename, "r");
     if (file) {
