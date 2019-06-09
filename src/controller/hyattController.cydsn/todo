@@ -1,7 +1,4 @@
 TODO
-    add zero all to macros
-    add go to home to macros
-    add job max find, check and move to to job confirmation screen
     add code for the PSoC not implemented yet comments in spindle control
     need more G0/1 G90/91 goodies on display
 
@@ -15,14 +12,6 @@ TODO
         center,radius of circle
         distance between to points
 
-
-    keypad cmm
-    X       Y       Z
-    x1      x10     x100
-    sel     enter   feature
-    skew    measure go  
-
-    feature rotates (point 1, point 2, circle 1, circle 2)
     measure does measurement then shows result
 
     can cmm get bu with lastBlock usage only?
