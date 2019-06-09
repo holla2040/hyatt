@@ -9,7 +9,7 @@ struct macro {
     
 struct macro macros[CONTROLPANEL_SELECTIONCOUNTMAX] = {
     // {"X0Y0Z1","X0Y0Z1G1F2500"},
-    {"X0Y0Z1","X0Y0Z1G0"},
+    {"X0Y0Z1","G28G91Z0\nG90GOX0Y0\nZ1"},
     {"HOME","$H"},
     {"G28","G28"},
     {"",""},

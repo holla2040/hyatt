@@ -133,7 +133,7 @@ void hyattControlPanelIRLoop(void) {
                         hyattFileSend(INSERTFN,0,1000000);
                         break;
                     case RC65X_KEYREPLAY:
-                        grblBlockSend("G28");
+                        grblBlockSend("G28G91Z0\nG90G28");
                         break;
                     default:
                         hyattControlPanelDisplayMDIKey(button);
