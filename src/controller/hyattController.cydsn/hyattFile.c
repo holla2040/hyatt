@@ -70,13 +70,20 @@ void hyattFileOperationsGet(char *fn) {
     char c,*lp,line[100];
     uint8_t selectionIndex;
 
+    selectionIndex = 0;
+
     FS_Mount("");
     fp = FS_FOpen(fn, "r");
     findPattern(fp,'\n','\n'); // scan past header
 
     selectionsClear();
+
+    // first mock in a 'header' op (fusion's cam can put multiple (???) in the header)
+    strcpy(selections[selectionIndex],"header");
+    fileOpSeeks[selectionIndex++] = 0; // using 0 will send the entire header, comments and all
+
+
     lp = line;
-    selectionIndex = 0;
     while((hyattFileBufferLen = FS_Read(fp,&hyattFileBuffer,FILEBUFFERLEN))) {
         for (uint16_t i = 0; i < hyattFileBufferLen; i++) {
             c = hyattFileBuffer[i];
@@ -218,6 +225,7 @@ void hyattFileSenderLoop() {
                     FS_FClose(file);
                     FS_Unmount("");
                     hyattFileSenderState = FILESENDERSTATE_IDLE;
+                    hyattControlPanelState = CONTROLPANEL_SELECT_FILE;
                     return;
                 }
                 hyattFileBufferPtr = &hyattFileBuffer[0];
@@ -227,7 +235,6 @@ void hyattFileSenderLoop() {
 }
 
 void hyattFileSend(char *filename, uint32_t s, uint32_t e) {
-    char word[30];
     fileStart = s;
     fileEnd   = e;
     fileIndex = 0;

@@ -69,7 +69,7 @@ int main()
     settings_init(); // Load Grbl settings from EEPROM
     stepper_init();
     system_init();
-    hyattInit();
+    // hyattInit(); done below
     
     memset(sys_position,0,sizeof(sys_position)); // Clear machine position
     sys_position[Z_AXIS] = -100; // allows Z to move off work piece if hard reset
