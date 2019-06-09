@@ -302,7 +302,7 @@ void hyattControlPanelDisplayMacro() {
         LCD_PutString(macros[i].block);
         LCD_SetCursor(0,3);
         LCD_PutString("Loaded");
-        CyDelay(2000);
+        CyDelay(200);
         wheelDecoder_SetCounter(wheel0);
         hyattControlPanelState = CONTROLPANEL_IDLE_SETUP;
         grblBlockSend(macros[i].block);
