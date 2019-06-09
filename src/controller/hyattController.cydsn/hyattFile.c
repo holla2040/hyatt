@@ -181,9 +181,6 @@ void hyattFileSenderLoop() {
                 hyattFileBufferLen--;
                 c = *hyattFileBufferPtr++;
                 if ((fileIndex >= fileStart ) && (fileIndex <= fileEnd)) {
-                    char buf[20];
-                    sprintf("buf","%c %d\n",c,c);
-                    usb_uart_PutString(buf);
                     rx_handler(c);
                 }
                 fileIndex++;
