@@ -210,6 +210,7 @@ extern uint8_t _backlightval;
 void hyattControlPanelDisplayInit();
 void hyattControlPanelDisplayLoop();
 void hyattControlPanelDisplayMDIKey(uint16_t key);
+void hyattControlPanelDisplayFileDisplay();
 
 // feed override
 void hyattControlPanelFeedOverrideInit();

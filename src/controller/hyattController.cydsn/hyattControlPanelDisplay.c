@@ -327,6 +327,26 @@ void hyattControlPanelDisplayFileSetup() {
     enterCount = 0;
 }
 
+void hyattControlPanelDisplayFileDisplay() {
+    strcpy(selections[0],"Load");  strcpy(selections[3],"");     strcpy(selections[6],"Before");
+    strcpy(selections[1],"NW");    strcpy(selections[4],"NE");   strcpy(selections[7],"Single");
+    strcpy(selections[2],"SW");    strcpy(selections[5],"SE");   strcpy(selections[8],"After");
+
+    LCD_Clear();
+    LCD_SetCursor(0,0);     LCD_PutString(filelist[fileSelectedIndex]);
+    LCD_SetCursor(0,1);     LCD_PutString("scanning ");
+    hyattFileScan(filelist[fileSelectedIndex]);
+    LCD_SetCursor(0,1);     LCD_PutString("         ");
+
+    selectionsDisplay();
+
+    LCD_SetCursor(0,1);
+    LCD_Blink();
+
+    wheel0 = wheelDecoder_GetCounter();
+    enterCount = 0;
+    hyattControlPanelState = CONTROLPANEL_SELECT_FILE_ACTION;
+}
 
 void hyattControlPanelDisplayFile() {
     int16_t i = abs(wheel0 - wheelDecoder_GetCounter()) % CONTROLPANEL_SELECTIONCOUNTMAX;
@@ -337,24 +357,7 @@ void hyattControlPanelDisplayFile() {
     LCD_SetCursor(x,y);
     if (enterCount) {
         fileSelectedIndex = i;
-        strcpy(selections[0],"Load");  strcpy(selections[3],"");     strcpy(selections[6],"Before");
-        strcpy(selections[1],"NW");    strcpy(selections[4],"NE");   strcpy(selections[7],"Single");
-        strcpy(selections[2],"SW");    strcpy(selections[5],"SE");   strcpy(selections[8],"After");
-
-        LCD_Clear();
-        LCD_SetCursor(0,0);     LCD_PutString(filelist[i]);
-        LCD_SetCursor(0,1);     LCD_PutString("scanning ");
-        hyattFileScan(filelist[i]);
-        LCD_SetCursor(0,1);     LCD_PutString("         ");
-
-        selectionsDisplay();
-
-        LCD_SetCursor(0,1);
-        LCD_Blink();
-
-        wheel0 = wheelDecoder_GetCounter();
-        enterCount = 0;
-        hyattControlPanelState = CONTROLPANEL_SELECT_FILE_ACTION;
+        hyattControlPanelDisplayFileDisplay();
     }
 }
 

@@ -205,10 +205,9 @@ void hyattFileSenderLoop() {
             break;
         case FILESENDERSTATE_WAIT:
             // file completely sent, just waiting for planning buffer to complete
-            if (sys.state == STATE_IDLE) {
-                enterCount = 1;
-                hyattControlPanelState = CONTROLPANEL_SELECT_FILE;
+            if (plan_get_current_block() == NULL) {
                 hyattFileSenderState = FILESENDERSTATE_IDLE;
+                hyattControlPanelDisplayFileDisplay();
             }
             break;
                 
