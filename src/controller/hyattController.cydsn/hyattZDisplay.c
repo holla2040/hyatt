@@ -16,7 +16,9 @@ void hyattZDisplayLoop() {
 
     if (hyattTicks > hyattZDisplayUpdate) {
         hyattZDisplayCommand("ref_stop");
-        sprintf(buf,"G%d",54+gc_state.modal.coord_select);
+        sprintf(buf,"G%d G%d G%d G%d",54+gc_state.modal.coord_select,gc_state.modal.units,gc_state.modal.motion,gc_state.modal.distance+90);
+
+
         hyattZDisplaySet("c",buf);
 
         if (gc_state.modal.units) {

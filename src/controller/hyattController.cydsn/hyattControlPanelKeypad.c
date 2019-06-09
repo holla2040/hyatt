@@ -105,6 +105,7 @@ void hyattControlPanelKeypadLoop() {
                     break;
                 case KEY_Z:
                     hyattAxisSelected = AXISSELECTED_Z;
+                    if (hyattWheelStepSize == WHEELSTEPSIZE_LARGE) hyattWheelStepSize = WHEELSTEPSIZE_MEDIUM;
                     break;
                 case KEY_SLOW:
                     hyattWheelStepSize = WHEELSTEPSIZE_SMALL;
@@ -114,6 +115,7 @@ void hyattControlPanelKeypadLoop() {
                     break;
                 case KEY_FAST:
                     hyattWheelStepSize = WHEELSTEPSIZE_LARGE;
+                    if (hyattAxisSelected == AXISSELECTED_Z) hyattWheelStepSize = WHEELSTEPSIZE_MEDIUM;
                     break;
 
 /*
