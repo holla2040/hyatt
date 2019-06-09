@@ -130,6 +130,8 @@ int main()
         // Print welcome message. Indicates an initialization has occured at power-up or with a reset.
         report_init_message();
         
+mc_homing_cycle(HOMING_CYCLE_ALL);
+
         // Start Grbl main loop. Processes program inputs and executes them.
         protocol_main_loop();
         //usb_uart_check();
