@@ -82,6 +82,8 @@ uint8_t serial_read()
 // this was pulled out of the ISR above so that any serial interface can call it
 void rx_handler(char c)
 {
+// usb_uart_write(c);
+
   uint8_t data = c;  //UDR0;
   uint8_t next_head;
   
