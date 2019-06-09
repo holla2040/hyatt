@@ -24,11 +24,7 @@ double wheelClickDistance() {
             case WHEELSTEPSIZE_MEDIUM:
                 return 0.1; // 1 wheel turn 10mm
             case WHEELSTEPSIZE_LARGE:
-                if (selectedAxisLetter() == 'Z') {
-                    return 0.25; // 1 wheel turn 25mm, z is fast
-                } else {
-                    return 1.0; // 1 wheel turn 100mm
-                }
+                return 1.0; // 1 wheel turn 100mm
         }
     } else {
         switch (hyattWheelStepSize) {
