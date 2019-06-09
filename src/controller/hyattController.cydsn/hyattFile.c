@@ -166,6 +166,69 @@ void hyattFileScan(char *fn) {
 
     FS_FClose(fp);
 
+    FS_Unmount("");
+}
+
+void hyattFileSenderInit() {
+    hyattFileSenderState = FILESENDERSTATE_IDLE;
+}
+
+void hyattFileSenderLoop() {
+    char c;
+    switch (hyattFileSenderState) {
+        case FILESENDERSTATE_SEND:
+            while(hyattFileBufferLen) {
+                if (serial_get_rx_buffer_available() < 10 ) break; // parser flow control
+                hyattFileBufferLen--;
+                c = *hyattFileBufferPtr++;
+                if ((fileIndex >= fileStart ) && (fileIndex <= fileEnd)) {
+                    rx_handler(c);
+                    usb_uart_write(c);
+                }
+                fileIndex++;
+                
+                if ((c == '\n') || (c == '\r')) {
+                    break;
+                 }
+            }
+            if (hyattFileBufferLen == 0) { // sent all buffer, read next file chunk
+                hyattFileBufferLen = FS_Read(file,&hyattFileBuffer,FILEBUFFERLEN);
+                if (hyattFileBufferLen == 0) { // no more data in file
+                    FS_FClose(file);
+                    FS_Unmount("");
+                    hyattFileSenderState = FILESENDERSTATE_WAIT;
+                    hyattControlPanelState = CONTROLPANEL_SELECT_FILE_OPERATION_SELECT;
+                    return;
+                }
+                hyattFileBufferPtr = &hyattFileBuffer[0];
+            }
+            break;
+        case FILESENDERSTATE_WAIT:
+            // file completely sent, just waiting for planning buffer to complete
+            if (sys.state == STATE_IDLE) {
+                enterCount = 1;
+                hyattControlPanelState = CONTROLPANEL_SELECT_FILE;
+                hyattFileSenderState = FILESENDERSTATE_IDLE;
+            }
+            break;
+                
+   }
+}
+
+void hyattFileSend(char *filename, uint32_t s, uint32_t e) {
+    fileStart = s;
+    fileEnd   = e;
+    fileIndex = 0;
+    FS_Mount("");
+    file = FS_FOpen(filename, "r");
+    if (file) {
+        hyattFileBufferLen = FS_Read(file,&hyattFileBuffer,FILEBUFFERLEN);
+        hyattFileBufferPtr = hyattFileBuffer;
+        hyattFileSenderState = FILESENDERSTATE_SEND;
+    }
+}
+
+
 /*
     fp = FS_FOpen("perim.nc", "w");
     if (fp != 0) {
@@ -191,58 +254,4 @@ void hyattFileScan(char *fn) {
         // hyattFileSend("perim.nc");
     }
 */
-
-    FS_Unmount("");
-}
-
-void hyattFileSenderInit() {
-    hyattFileSenderState = FILESENDERSTATE_IDLE;
-}
-
-void hyattFileSenderLoop() {
-    char c;
-    switch (hyattFileSenderState) {
-        case FILESENDERSTATE_SEND:
-            while(hyattFileBufferLen) {
-                if (serial_get_rx_buffer_available() < 10 ) break; // parser flow control
-                hyattFileBufferLen--;
-                c = *hyattFileBufferPtr++;
-                if ((fileIndex >= fileStart ) && (fileIndex <= fileEnd)) {
-                    rx_handler(c);
-                    usb_uart_write(c);
-                }
-                fileIndex++;
-
-                
-                if ((c == '\n') || (c == '\r')) {
-                    break;
-                 }
-            }
-            if (hyattFileBufferLen == 0) { // sent all buffer, read next file chunk
-                hyattFileBufferLen = FS_Read(file,&hyattFileBuffer,FILEBUFFERLEN);
-                if (hyattFileBufferLen == 0) { // no more data in file
-                    FS_FClose(file);
-                    FS_Unmount("");
-                    hyattFileSenderState = FILESENDERSTATE_IDLE;
-                    hyattControlPanelState = CONTROLPANEL_SELECT_FILE_OPERATION_SELECT;
-                    return;
-                }
-                hyattFileBufferPtr = &hyattFileBuffer[0];
-            }
-            break;
-   }
-}
-
-void hyattFileSend(char *filename, uint32_t s, uint32_t e) {
-    fileStart = s;
-    fileEnd   = e;
-    fileIndex = 0;
-    FS_Mount("");
-    file = FS_FOpen(filename, "r");
-    if (file) {
-        hyattFileBufferLen = FS_Read(file,&hyattFileBuffer,FILEBUFFERLEN);
-        hyattFileBufferPtr = hyattFileBuffer;
-        hyattFileSenderState = FILESENDERSTATE_SEND;
-    }
-}
 

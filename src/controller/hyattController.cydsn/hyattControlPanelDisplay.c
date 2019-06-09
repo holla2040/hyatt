@@ -554,7 +554,6 @@ void hyattControlPanelDisplayMDIKey(uint16_t key) {
 }
 /* ============ MDI ================ */
 
-
 void hyattControlPanelDisplayLoop() {
     switch (hyattControlPanelState) {
         case CONTROLPANEL_IDLE_SETUP:

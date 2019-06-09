@@ -249,6 +249,7 @@ void hyattFileOperationsGet();
 void hyattFileScan(char *fn);
 #define FILESENDERSTATE_IDLE 'I'
 #define FILESENDERSTATE_SEND 'S'
+#define FILESENDERSTATE_WAIT 'W'
 uint8_t hyattFileSenderState;
 #define FILEBUFFERLEN 512
 #define FILENAMEMAX 32
