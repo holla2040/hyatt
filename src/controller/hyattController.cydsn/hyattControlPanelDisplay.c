@@ -373,8 +373,8 @@ void hyattControlPanelDisplayFileAction() {
         switch(i) {
             // using menu layout from above
             case 0: 
-                hyattFileSend(filelist[fileSelectedIndex],0,fileSize);
                 wheelDecoder_SetCounter(wheel0Select);
+                hyattFileSend(filelist[fileSelectedIndex],0,fileSize);
                 hyattControlPanelState = CONTROLPANEL_IDLE_SETUP;
                 break;
             case 3:  
@@ -461,14 +461,17 @@ void hyattControlPanelDisplayFileOperationSelect() {
     if (enterCount) {
         switch (operationType) {
             case OPERATIONBEFORE:
+                wheelDecoder_SetCounter(wheel0Select);
                 hyattFileSend(filelist[fileSelectedIndex],0,fileOpSeeks[i]);
                 hyattControlPanelState = CONTROLPANEL_IDLE_SETUP;
                 break;
             case OPERATIONSINGLE:
+                wheelDecoder_SetCounter(wheel0Select);
                 hyattFileSend(filelist[fileSelectedIndex],fileOpSeeks[i],fileOpSeeks[i+1]);
                 hyattControlPanelState = CONTROLPANEL_IDLE_SETUP;
                 break;
             case OPERATIONAFTER:
+                wheelDecoder_SetCounter(wheel0Select);
                 hyattFileSend(filelist[fileSelectedIndex],fileOpSeeks[i+1],fileSize);
                 hyattControlPanelState = CONTROLPANEL_IDLE_SETUP;
                 break;
