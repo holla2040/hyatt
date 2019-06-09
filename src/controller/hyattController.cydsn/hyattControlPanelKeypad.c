@@ -3,6 +3,8 @@
 #include "hyatt.h"
 #include "serial.h"
 #include "grbl.h"
+#include <FS.h>
+extern FS_FILE *file;
 
 /* using bank=0 */
 
@@ -170,6 +172,19 @@ void hyattControlPanelKeypadLoop() {
                     keyIndicator = key & 0xFF88;
             }
         }
+        if (sys.state == STATE_HOLD) {
+            switch(key) {
+                case KEY_SELECT:
+                    if (hyattFileSenderState == FILESENDERSTATE_SEND) {
+                        FS_FClose(file);
+                        FS_Unmount("");
+                        hyattFileSenderState = FILESENDERSTATE_WAIT;
+                        hyattControlPanelState = CONTROLPANEL_SELECT_FILE_OPERATION_SELECT;
+                    }
+                    break;
+            }
+        }
+
         keyPending = 0;
     }
 

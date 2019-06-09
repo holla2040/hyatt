@@ -165,7 +165,6 @@ void hyattFileScan(char *fn) {
     }
 
     FS_FClose(fp);
-
     FS_Unmount("");
 }
 
