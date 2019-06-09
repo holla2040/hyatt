@@ -177,20 +177,21 @@ void hyattFileSenderLoop() {
     char c;
     switch (hyattFileSenderState) {
         case FILESENDERSTATE_SEND:
-            while(hyattFileBufferLen) {
-                if (serial_get_rx_buffer_available() < 10 ) break; // parser flow control
-                hyattFileBufferLen--;
+            do {
+                if (serial_get_rx_buffer_available() < 5 ) break; // parser flow control
+                // hyattFileBufferLen--; xxx
                 c = *hyattFileBufferPtr++;
                 if ((fileIndex >= fileStart ) && (fileIndex <= fileEnd)) {
                     rx_handler(c);
-                    usb_uart_write(c);
+                    // usb_uart_write(c); xxx
                 }
                 fileIndex++;
                 
-                if ((c == '\n') || (c == '\r')) {
+                // if ((c == '\n') || (c == '\r'))  xxx
+                if (c == '\n') {
                     break;
                  }
-            }
+            } while(hyattFileBufferLen--);
             if (hyattFileBufferLen == 0) { // sent all buffer, read next file chunk
                 hyattFileBufferLen = FS_Read(file,&hyattFileBuffer,FILEBUFFERLEN);
                 if (hyattFileBufferLen == 0) { // no more data in file
@@ -201,7 +202,7 @@ void hyattFileSenderLoop() {
                     return;
                 }
                 hyattFileBufferPtr = &hyattFileBuffer[0];
-            }
+            } 
             break;
         case FILESENDERSTATE_WAIT:
             // file completely sent, just waiting for planning buffer to complete
