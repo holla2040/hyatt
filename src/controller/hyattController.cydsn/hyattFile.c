@@ -82,7 +82,6 @@ void hyattFileOperationsGet(char *fn) {
     strcpy(selections[selectionIndex],"header");
     fileOpSeeks[selectionIndex++] = 0; // using 0 will send the entire header, comments and all
 
-
     lp = line;
     while((hyattFileBufferLen = FS_Read(fp,&hyattFileBuffer,FILEBUFFERLEN))) {
         for (uint16_t i = 0; i < hyattFileBufferLen; i++) {
@@ -225,7 +224,7 @@ void hyattFileSenderLoop() {
                     FS_FClose(file);
                     FS_Unmount("");
                     hyattFileSenderState = FILESENDERSTATE_IDLE;
-                    hyattControlPanelState = CONTROLPANEL_SELECT_FILE;
+                    hyattControlPanelState = CONTROLPANEL_SELECT_FILE_OPERATION_SELECT;
                     return;
                 }
                 hyattFileBufferPtr = &hyattFileBuffer[0];

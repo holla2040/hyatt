@@ -434,6 +434,9 @@ void hyattControlPanelDisplayFileOperationSetup() {
     LCD_PutString("scanning");
 
     hyattFileOperationsGet(filelist[fileSelectedIndex]);
+    LCD_SetCursor(0,1);  
+    LCD_PutString("        ");
+
     selectionsDisplay();
 
     LCD_SetCursor(0,1);
