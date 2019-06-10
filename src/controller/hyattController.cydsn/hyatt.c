@@ -53,6 +53,14 @@ void hyattInit() {
 }
 
 void hyattLoop() {
+// nextion flashing    
+    /*
+    char c;
+    if ((c = uartZDisplay_GetChar()) != 0) {
+        usb_uart_write(c);
+    }
+*/
+    
     hyattControlPanelLoop();
     hyattZDisplayLoop();
     hyattFileSenderLoop();
@@ -61,6 +69,7 @@ void hyattLoop() {
         // system_set_exec_state_flag(EXEC_STATUS_REPORT);
         timeoutStatusUpdate = hyattTicks + STATUSUPDATEINTERVAL;
     }
+   
 }
 
 void grblBlockSend(char *block) {

@@ -57,7 +57,8 @@ void usb_uart_check(){
                 {                    
                     /* Send the data to Grbl */
                     for (int i = 0; i < count; i++) {
-                        rx_handler(buffer[i]);
+                        uartZDisplay_PutChar(buffer[i]);  // nextion flashing
+                        //rx_handler(buffer[i]);
                     }
                 }
             }
