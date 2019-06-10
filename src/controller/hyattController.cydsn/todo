@@ -3,21 +3,77 @@ TODO
 
     channel- is rotating letter selector F,M,$, etc
 
-    hard limit move off
-        figure a way to move off limited Y at startup
-
     G92 X$33 Y$34 using lazer pointer , NO use GxL20 thing
 
     create new measurement screen
         center,radius of circle
         distance between to points
 
-    measure does measurement then shows result
-
     can cmm get bu with lastBlock usage only?
 
-    result
-    F1 locX, locY
-    F2 locX, locY, radius
-    disX, disY, disZ
-    skew ang    
+
+inspect (CMM)
+    2 point
+        line
+            measure
+                l,mid
+            ops
+                p1,p2,mid,follow
+
+        rect aligned to axis 
+            measure
+                w,h,center
+            ops
+                NW  N   NE
+                W   +   E
+                SW  S   SE
+                follow
+    
+            file
+                follow outline
+                    inside
+                    outside
+
+    3 point
+        circle
+            measure
+                r,d,center
+            ops
+                NW  N   NE
+                W   +   E
+                SW  S   SE
+                follow
+
+            file
+                follow outline
+                    inside
+                    outside
+
+        rect with rotation
+            measure
+                w,h,center,rotation
+            ops
+                NW  N   NE
+                W   +   E
+                SW  S   SE
+                follow
+
+            file
+                follow outline
+                    inside
+                    outside
+
+
+save points to G Code file
+    look into tool compensation
+    (header)
+    G21 G90 F1000
+
+    (points)
+    X???? Y????
+    X???? Y????
+    X???? Y????
+
+    
+    
+    
