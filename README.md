@@ -19,6 +19,8 @@ Operator Interface
 * SDCard reader- PSoC SPI EmFile library
 * Wireless CNC pendant - DirecTV remote control - my custom IR decoder using PSoC digital logic
 
+[Hyatt Openbeam Workbee 1010 Settings](settings.txt)
+
 PCB board, 100x100mm 2 layer, mixed through and smt parts
 
 

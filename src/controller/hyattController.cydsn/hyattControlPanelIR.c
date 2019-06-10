@@ -79,6 +79,18 @@ void hyattControlPanelIRLoop(void) {
                 grblBlockSend("$X");
             }
         }
+        if (button == RC65X_KEYPAUSE) {
+            LCD_Clear();
+            LCD_SetCursor(0,0); 
+            if (settings.flags&BITFLAG_HARD_LIMIT_ENABLE) {
+                settings.flags &= ~BITFLAG_HARD_LIMIT_ENABLE;
+                LCD_PutString("hard limit disabled");
+            } else {
+                settings.flags |= BITFLAG_HARD_LIMIT_ENABLE;
+                LCD_PutString("hard limit enabled");
+            }
+            limits_init(); // Re-init to immediately change. NOTE: Nice to have but could be problematic later.
+        }
         
         if (sys.state == STATE_CYCLE) {
             if (button == RC65X_KEYSTOP) {
