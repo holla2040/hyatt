@@ -1,10 +1,10 @@
 TODO
     add code for the PSoC not implemented yet comments in spindle control
-    need more G0/1 G90/91 goodies on display
 
     channel- is rotating letter selector F,M,$, etc
 
-    figure a way to move off limited Y at startup
+    hard limit move off
+        figure a way to move off limited Y at startup
 
     G92 X$33 Y$34 using lazer pointer , NO use GxL20 thing
 

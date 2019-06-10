@@ -195,7 +195,6 @@ void hyattFileSenderLoop() {
                     FS_FClose(file);
                     FS_Unmount("");
                     hyattFileSenderState = FILESENDERSTATE_WAIT;
-                    hyattControlPanelState = CONTROLPANEL_SELECT_FILE_OPERATION_SELECT;
                     return;
                 }
                 hyattFileBufferPtr = &hyattFileBuffer[0];

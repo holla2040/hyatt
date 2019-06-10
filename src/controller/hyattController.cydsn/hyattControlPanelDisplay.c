@@ -206,7 +206,7 @@ void hyattControlPanelDisplayIdle() {
 void inspectsLoad() {
     // selections should be all "       ", no
     selectionsClear();
-    for (int i = 0; i < CONTROLPANEL_SELECTIONCOUNTMAX; i++) {
+    for (uint8_t i = 0; i < CONTROLPANEL_SELECTIONCOUNTMAX; i++) {
         if (strlen(inspects[i].label)) strcpy(selections[i],inspects[i].label);
     }
 }
