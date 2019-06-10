@@ -20,7 +20,7 @@ extern char selections[CONTROLPANEL_SELECTIONCOUNTMAX][CONTROLPANEL_SELECTIONWID
 uint32_t fileStart, fileEnd, fileIndex;
 
 void fileSeeksSet(uint32_t s) {
-    for (uint8_t i; i < (CONTROLPANEL_SELECTIONCOUNTMAX+1); i++) {
+    for (uint8_t i = 0; i < (CONTROLPANEL_SELECTIONCOUNTMAX+1); i++) {
         fileOpSeeks[i] = s;
     }
 }
