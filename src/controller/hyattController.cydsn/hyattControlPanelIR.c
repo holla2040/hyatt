@@ -90,6 +90,8 @@ void hyattControlPanelIRLoop(void) {
                 LCD_PutString("hard limit enabled");
             }
             limits_init(); // Re-init to immediately change. NOTE: Nice to have but could be problematic later.
+            CyDelay(2000);
+
         }
         
         if (sys.state == STATE_CYCLE) {
