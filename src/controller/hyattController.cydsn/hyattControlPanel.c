@@ -51,10 +51,19 @@ void hyattControlPanelInit() {
         LCD_SetCursor(0,3);     LCD_PutString("Jog Wheel");
         CyDelay(200);
     }
+
     hyattControlPanelIRInit();
     if (hyattControlPanelDisplayExists) {   
         LCD_SetCursor(10,0);     LCD_PutString("Infrared");
+        CyDelay(200);
     }
+
+    if (settings.flags&BITFLAG_HARD_LIMIT_ENABLE) {
+        LCD_SetCursor(10,3);     LCD_PutString("hwLimits 1");
+    } else {
+        LCD_SetCursor(10,3);     LCD_PutString("hwLimits 0");
+    }
+
     CyDelay(1000);
 
     timeoutStateUpdate = 0;
