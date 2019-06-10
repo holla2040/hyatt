@@ -10,6 +10,7 @@
 */
 
 #include "grbl.h"
+#include "hyatt.h"
 
 /* ==========================================
 *  Initialize the USB UART.
@@ -57,8 +58,11 @@ void usb_uart_check(){
                 {                    
                     /* Send the data to Grbl */
                     for (int i = 0; i < count; i++) {
-                        uartZDisplay_PutChar(buffer[i]);  // nextion flashing
-                        //rx_handler(buffer[i]);
+#ifdef NEXTION
+                        uartZDisplay_PutChar(buffer[i]);
+#else
+                        rx_handler(buffer[i]);
+#endif
                     }
                 }
             }

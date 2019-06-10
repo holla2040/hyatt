@@ -16,16 +16,20 @@ void hyattZDisplayLoop() {
 
     if (hyattTicks > hyattZDisplayUpdate) {
         hyattZDisplayCommand("ref_stop");
-        sprintf(buf,"G%d G%d G%d G%d",54+gc_state.modal.coord_select,20+gc_state.modal.units,gc_state.modal.motion,gc_state.modal.distance+90);
 
+        sprintf(buf,"%s %s %s",gc_state.modal.units?"Inch":"MM  ",gc_state.modal.motion?"Linear":"Rapid ",gc_state.modal.distance?"Incremental":"Absolute");
+        hyattZDisplaySet("u",buf);
+        
+        sprintf(buf,"G%d  G%d     G%d        G%d",21-gc_state.modal.units,gc_state.modal.motion,gc_state.modal.distance+90,54+gc_state.modal.coord_select);
         hyattZDisplaySet("c",buf);
 
+/*      
         if (gc_state.modal.units) {
             hyattZDisplaySet("u","INCH");
         } else {
             hyattZDisplaySet("u","MM");
         }
-
+*/
         if (gc_block.modal.spindle & SPINDLE_ENABLE_CW) {
             hyattZDisplaySet("s","SPINDLE");
         } else {

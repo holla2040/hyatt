@@ -3,6 +3,8 @@
 
 #include <stdint.h>
 #include "grbl.h"
+    
+// #define NEXTION
 
 float x,y,z;
 
