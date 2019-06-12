@@ -12,7 +12,7 @@ struct macro macros[CONTROLPANEL_SELECTIONCOUNTMAX] = {
     {"X0Y0Z1","G28G91Z0\nX0Y0G0G90\nZ1"},
     {"HOME","$H"},
     {"G28","G28G91Z0\nG28"},
-    {"",""},
+    {"TCX0Y0","G10L20P1X0Y0"},
     {"",""},
     {"G28Set","G28.1"},
     {"G54","G54"},
