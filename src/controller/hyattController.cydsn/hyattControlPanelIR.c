@@ -149,6 +149,9 @@ void hyattControlPanelIRLoop(void) {
                     case RC65X_KEYREPLAY:
                         grblBlockSend("G28G91Z0\nG90G28");
                         break;
+                    case RC65X_KEYADVANCE:
+                        grblBlockSend("G28G91Z0\nG90G23");
+                        break;
                     default:
                         hyattControlPanelDisplayMDIKey(button);
                 }

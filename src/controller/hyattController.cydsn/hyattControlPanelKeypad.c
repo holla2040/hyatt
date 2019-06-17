@@ -165,7 +165,9 @@ void hyattControlPanelKeypadLoop() {
                     unitToggle();
                     break;
                 case KEY_AXISZERO:
-                    axisZero();
+                    if (hyattControlPanelState == CONTROLPANEL_IDLE) {
+                        axisZero();
+                    }
                 break;
                 case KEY_SPINDLE:
                    (gc_block.modal.spindle == SPINDLE_DISABLE) ? grblBlockSend("M3"):grblBlockSend("M5");
