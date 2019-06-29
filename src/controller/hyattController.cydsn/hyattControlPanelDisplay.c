@@ -385,11 +385,11 @@ void hyattControlPanelDisplayFileAction() {
                 break;
 
             case 1:
-                sprintf(buf,"G1 F2500 X%f Y%f",fileXMin,fileYMax);
+                sprintf(buf,"G90G1F2500X%fY%f",fileXMin,fileYMax);
                 grblBlockSend(buf);
                 break;
             case 4: 
-                sprintf(buf,"G1 F2500 X%f Y%f",fileXMax,fileYMax);
+                sprintf(buf,"G90G1F2500X%fY%f",fileXMax,fileYMax);
                 grblBlockSend(buf);
                 break;
             case 7:
@@ -398,11 +398,11 @@ void hyattControlPanelDisplayFileAction() {
                 break;
 
             case 2:
-                sprintf(buf,"G1 F2500 X%f Y%f",fileXMin,fileYMin);
+                sprintf(buf,"G90G1F2500X%fY%f",fileXMin,fileYMin);
                 grblBlockSend(buf);
                 break;
             case 5:
-                sprintf(buf,"G1 F2500 X%f Y%f",fileXMax,fileYMin);
+                sprintf(buf,"G90G1F2500X%fY%f",fileXMax,fileYMin);
                 grblBlockSend(buf);
                 break;
             case 8: 
