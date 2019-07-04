@@ -276,4 +276,9 @@ void hyattZDisplaySet(char *attr,char *value);
 void hyattZDisplayCommand(char *command);
 uint32_t hyattZDisplayUpdate;
 
+// laser
+
+void laserZeroAxisXY();
+
+
 #endif

@@ -8,11 +8,11 @@ struct macro {
 };    
     
 struct macro macros[CONTROLPANEL_SELECTIONCOUNTMAX] = {
-    {"X0Y0","G53Z-3\nG54X0Y0G0G90"},
+    {"X0Y0","G53Z-3\nG54G0G90X0Y0"},
     {"HOME","$H"},
-    {"G28","G28G91Z0\nG28"},
+    {"G28","G53Z-3\nG0G28G91X0Y0"},
 
-    {"G30","G30G91Z0\nG30"}, 
+    {"G30","G53Z-3\nG0G30G91X0Y0"}, 
     {"",""},
     {"",""},
 
