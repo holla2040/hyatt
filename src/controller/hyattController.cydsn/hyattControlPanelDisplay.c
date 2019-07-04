@@ -343,9 +343,9 @@ void hyattControlPanelDisplayFunction() {
     LCD_SetCursor(x,y);
 
     if (enterCount) {
-        // code here
-
-        CyDelay(200);
+        if (functions[i].fPtr) {
+            (*functions[i].fPtr)();
+        }
         wheelDecoder_SetCounter(wheel0);
         hyattControlPanelState = CONTROLPANEL_IDLE_SETUP;
     }

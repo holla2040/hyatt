@@ -279,6 +279,7 @@ uint32_t hyattZDisplayUpdate;
 // laser
 
 void laserZeroAxisXY();
+void laserZeroOffsetSet();
 
 
 #endif

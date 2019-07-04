@@ -9,7 +9,7 @@ struct function {
     
 struct function functions[CONTROLPANEL_SELECTIONCOUNTMAX] = {
     {"L X0Y0",laserZeroAxisXY},
-    {"LasSet",},
+    {"LasSet",laserZeroOffsetSet},
     {"",},
 
     {"",},
