@@ -3,7 +3,7 @@
 #include "hyatt.h"
     
 struct inspect {
-    char label[CONTROLPANEL_MACROLABELWIDTH];
+    char label[CONTROLPANEL_LABELWIDTH];
 };    
     
 struct inspect inspects[CONTROLPANEL_SELECTIONCOUNTMAX] = {

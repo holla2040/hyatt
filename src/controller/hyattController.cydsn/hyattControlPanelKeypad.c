@@ -128,6 +128,7 @@ void hyattControlPanelKeypadLoop() {
 */
                 case KEY_SELECT:
                     switch (hyattControlPanelState) {
+                        // primary cycle loop
                         case CONTROLPANEL_IDLE:
                             wheel0Select = wheelDecoder_GetCounter();
                             hyattControlPanelState = CONTROLPANEL_SELECT_MACRO_SETUP;
@@ -136,11 +137,17 @@ void hyattControlPanelKeypadLoop() {
                             hyattControlPanelState = CONTROLPANEL_SELECT_FILE_SETUP;
                             break;
                         case CONTROLPANEL_SELECT_FILE:
-                            // hyattControlPanelState = CONTROLPANEL_SELECT_INSPECT_SETUP;
-
+                            hyattControlPanelState = CONTROLPANEL_SELECT_INSPECT_SETUP;
+                            break;
+                        case CONTROLPANEL_SELECT_INSPECT:
+                            hyattControlPanelState = CONTROLPANEL_SELECT_FUNCTION_SETUP;
+                            break;
+                        case CONTROLPANEL_SELECT_FUNCTION:
                             wheelDecoder_SetCounter(wheel0Select);
                             hyattControlPanelState = CONTROLPANEL_IDLE_SETUP;
                             break;
+
+                        //extras
                         case CONTROLPANEL_SELECT_FILE_ACTION:
                             wheelDecoder_SetCounter(wheel0Select);
                             hyattControlPanelState = CONTROLPANEL_IDLE_SETUP;
@@ -149,13 +156,10 @@ void hyattControlPanelKeypadLoop() {
                             wheelDecoder_SetCounter(wheel0Select);
                             hyattControlPanelState = CONTROLPANEL_IDLE_SETUP;
                             break;
-                        case CONTROLPANEL_SELECT_INSPECT:
-                            wheelDecoder_SetCounter(wheel0Select);
-                            hyattControlPanelState = CONTROLPANEL_IDLE_SETUP;
-                            break;
                         case CONTROLPANEL_SELECT_INSPECT_RESULT:
                             hyattControlPanelState = CONTROLPANEL_SELECT_INSPECT;
                             break;
+
                     }
                     break;
                 case KEY_ENTER:

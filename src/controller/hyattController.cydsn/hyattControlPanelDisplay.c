@@ -3,6 +3,7 @@
 #include "hyatt.h"
 #include "hyattMacro.h"
 #include "hyattInspect.h"
+#include "hyattFunction.h"
 #include "RC65X.h"
 
 #define DISPLAYUPDATEIDLEINTERVAL 100
@@ -310,6 +311,48 @@ void hyattControlPanelDisplayMacro() {
 }
 /* ============ macro end ================ */
 
+/* ============ function ================ */
+void functionsLoad() {
+    // selections should be all "       ", no
+    selectionsClear();
+    for (int i = 0; i < CONTROLPANEL_SELECTIONCOUNTMAX; i++) {
+        if (strlen(macros[i].label)) strcpy(selections[i],macros[i].label);
+    }
+}
+
+void hyattControlPanelDisplayFunctionSetup() {
+    LCD_Clear();
+    LCD_SetCursor(0,0);     LCD_PutString("Functions");
+
+    functionsLoad();
+    selectionsDisplay();
+
+    LCD_SetCursor(0,1);
+    LCD_Blink();
+
+    wheel0 = wheelDecoder_GetCounter();
+    hyattControlPanelState = CONTROLPANEL_SELECT_FUNCTION;
+    enterCount = 0;
+}
+
+void hyattControlPanelDisplayFunction() {
+    int16_t i = abs(wheel0 - wheelDecoder_GetCounter()) % CONTROLPANEL_SELECTIONCOUNTMAX;
+    int x,y;
+    x = (i / 3) * 7;
+    y = (i % 3) + 1;
+    LCD_SetCursor(x,y);
+
+    if (enterCount) {
+        // code here
+
+        CyDelay(200);
+        wheelDecoder_SetCounter(wheel0);
+        hyattControlPanelState = CONTROLPANEL_IDLE_SETUP;
+    }
+}
+/* ============ function end ================ */
+
+
 
 /* ============ file ================ */
 void hyattControlPanelDisplayFileSetup() {
@@ -574,6 +617,12 @@ void hyattControlPanelDisplayLoop() {
             break;
         case CONTROLPANEL_SELECT_MACRO:
             hyattControlPanelDisplayMacro();
+            break;
+        case CONTROLPANEL_SELECT_FUNCTION_SETUP:
+            hyattControlPanelDisplayFunctionSetup();
+            break;
+        case CONTROLPANEL_SELECT_FUNCTION:
+            hyattControlPanelDisplayFunction();
             break;
         case CONTROLPANEL_SELECT_FILE_SETUP:
             hyattControlPanelDisplayFileSetup();
