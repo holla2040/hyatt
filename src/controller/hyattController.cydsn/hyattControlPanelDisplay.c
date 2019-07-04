@@ -316,7 +316,7 @@ void functionsLoad() {
     // selections should be all "       ", no
     selectionsClear();
     for (int i = 0; i < CONTROLPANEL_SELECTIONCOUNTMAX; i++) {
-        if (strlen(macros[i].label)) strcpy(selections[i],macros[i].label);
+        if (strlen(functions[i].label)) strcpy(selections[i],functions[i].label);
     }
 }
 
