@@ -17,5 +17,10 @@ struct inspect inspects[CONTROLPANEL_SELECTIONCOUNTMAX] = {
     {"Go"},
     {"Clear"}
 };
+
+float inspectPoints[2][2];
+float inspectCirclePoints[3][2]; // x,y * 3
+float inspectLength,inspectAngle;
+
     
 #endif

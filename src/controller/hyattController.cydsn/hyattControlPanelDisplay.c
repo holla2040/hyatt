@@ -23,9 +23,6 @@ char buffer[400];
 char *bptr,*sptr;
 uint8_t secondHalf;
 uint32_t hyattTimeoutDisplayUpdate;
-float inspectPoints[2][2];
-float inspectCirclePoints[3][2]; // x,y * 3
-float inspectLength,inspectAngle;
 uint8_t fileSelectedIndex;
 uint8_t operationType;
 enum {OPERATIONBEFORE,OPERATIONSINGLE,OPERATIONAFTER};
