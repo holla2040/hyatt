@@ -212,27 +212,21 @@ void inspectsLoad() {
 void hyattControlPanelDisplayInspectSetup() {
     LCD_Clear();
     LCD_SetCursor(0,0); 
+    wheelDecoder_SetCounter(wheel0);
 
-    inspectsLoad();
-    selectionsDisplay();
-
-    LCD_SetCursor(0,0);
-    LCD_Blink();
-
-    wheel0 = wheelDecoder_GetCounter();
     hyattControlPanelState = CONTROLPANEL_SELECT_INSPECT;
     enterCount = 0;
 }
 
 void hyattControlPanelDisplayInspect() {
-    int16_t i = abs(wheel0 - wheelDecoder_GetCounter()) % CONTROLPANEL_SELECTIONCOUNTMAX;
-    int x,y;
-    x = (i / 3) * 7;
-    y = (i % 3) + 1;
-    LCD_SetCursor(x,y);
+    if (hyattTicks > hyattTimeoutDisplayUpdate) {
+        hyattCurrentPosition();
+        hyattZDisplayUpdate = 0;
+    }
 
     if (enterCount) {
         hyattCurrentPosition();
+/*
         switch (i) {
             case 1: // point 1
                 inspectPoints[0][0] = x;
@@ -245,10 +239,6 @@ void hyattControlPanelDisplayInspect() {
             case 3: // measure
                 break;
         };
-
-/*
-            CyDelay(2000);
-        wheelDecoder_SetCounter(wheel0);
 */
     }
 }
