@@ -289,8 +289,9 @@ uint8_t gc_execute_line(char *line)
               case 9: gc_block.modal.coolant = COOLANT_DISABLE; break;
             }
             break;
-            case 20:
-                hyattFileSend(INSERTFN,0,1000000);
+            case 50: // hyatt
+                // hyattFileSend(INSERTFN,0,1000000);
+                system_set_exec_state_flag(EXEC_FEED_HOLD);
                 break;
           default: FAIL(STATUS_GCODE_UNSUPPORTED_COMMAND); // [Unsupported M command]
         }
