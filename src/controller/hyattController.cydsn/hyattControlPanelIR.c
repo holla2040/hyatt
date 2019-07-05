@@ -116,9 +116,11 @@ void hyattControlPanelIRLoop(void) {
 
         if (sys.state == STATE_IDLE) {
                 switch (button) {
+/*
                     case RC65X_KEYPREVIOUS:
                         grblBlockSend("$H");
                         break;
+*/
                    case RC65X_KEYUP:
                         grblBlockSend("Y1G91G1F2500");
                         break;
@@ -143,14 +145,17 @@ void hyattControlPanelIRLoop(void) {
                     case RC65X_KEYRECORD:
                         axisZero();
                         break;
+/*
                     case RC65X_KEYPLAY:
                         hyattFileSend(INSERTFN,0,1000000);
                         break;
+*/
+
                     case RC65X_KEYREPLAY:
-                        grblBlockSend("G28G91Z0\nG90G28");
+                        grblBlockSend("G53Z-3\nG0G28G91X0Y0");
                         break;
                     case RC65X_KEYADVANCE:
-                        grblBlockSend("G28G91Z0\nG90G23");
+                        grblBlockSend("G53Z-3\nG0G30G91X0Y0");
                         break;
                     default:
                         hyattControlPanelDisplayMDIKey(button);

@@ -80,7 +80,9 @@ void grblBlockSend(char *block) {
 
 void axisZero() {
     char buf[50];
-    float offset;
+    float offset = 0.00;
+
+/*
     switch (hyattAxisSelected) {
         case AXISSELECTED_X:
             offset = settings.hyatt_zero_offset_x;
@@ -89,6 +91,8 @@ void axisZero() {
             offset = settings.hyatt_zero_offset_y;
             break;
     }
+*/
+
     sprintf(buf,"G10L20P%d%c%f",gc_state.modal.coord_select+1,selectedAxisLetter(),offset);
     grblBlockSend(buf);
 }

@@ -3,6 +3,7 @@
 #include "hyatt.h"
 #include "hyattMacro.h"
 #include "hyattInspect.h"
+#include "hyattFunction.h"
 #include "RC65X.h"
 
 #define DISPLAYUPDATEIDLEINTERVAL 100
@@ -22,9 +23,6 @@ char buffer[400];
 char *bptr,*sptr;
 uint8_t secondHalf;
 uint32_t hyattTimeoutDisplayUpdate;
-float inspectPoints[2][2];
-float inspectCirclePoints[3][2]; // x,y * 3
-float inspectLength,inspectAngle;
 uint8_t fileSelectedIndex;
 uint8_t operationType;
 enum {OPERATIONBEFORE,OPERATIONSINGLE,OPERATIONAFTER};
@@ -213,28 +211,23 @@ void inspectsLoad() {
 
 void hyattControlPanelDisplayInspectSetup() {
     LCD_Clear();
-    LCD_SetCursor(0,0); 
+    LCD_SetCursor(0,0);     LCD_PutString("Inspect");
+    wheelDecoder_SetCounter(wheel0);
 
-    inspectsLoad();
-    selectionsDisplay();
-
-    LCD_SetCursor(0,0);
-    LCD_Blink();
-
-    wheel0 = wheelDecoder_GetCounter();
     hyattControlPanelState = CONTROLPANEL_SELECT_INSPECT;
     enterCount = 0;
 }
 
 void hyattControlPanelDisplayInspect() {
-    int16_t i = abs(wheel0 - wheelDecoder_GetCounter()) % CONTROLPANEL_SELECTIONCOUNTMAX;
-    int x,y;
-    x = (i / 3) * 7;
-    y = (i % 3) + 1;
-    LCD_SetCursor(x,y);
+    if (hyattTicks > hyattTimeoutDisplayUpdate) {
+        hyattCurrentPosition();
+        hyattZDisplayUpdate = 0;
+        hyattTimeoutDisplayUpdate = hyattTicks + DISPLAYUPDATEIDLEINTERVAL;
+    }
 
     if (enterCount) {
         hyattCurrentPosition();
+/*
         switch (i) {
             case 1: // point 1
                 inspectPoints[0][0] = x;
@@ -247,10 +240,6 @@ void hyattControlPanelDisplayInspect() {
             case 3: // measure
                 break;
         };
-
-/*
-            CyDelay(2000);
-        wheelDecoder_SetCounter(wheel0);
 */
     }
 }
@@ -309,6 +298,48 @@ void hyattControlPanelDisplayMacro() {
     }
 }
 /* ============ macro end ================ */
+
+/* ============ function ================ */
+void functionsLoad() {
+    // selections should be all "       ", no
+    selectionsClear();
+    for (int i = 0; i < CONTROLPANEL_SELECTIONCOUNTMAX; i++) {
+        if (strlen(functions[i].label)) strcpy(selections[i],functions[i].label);
+    }
+}
+
+void hyattControlPanelDisplayFunctionSetup() {
+    LCD_Clear();
+    LCD_SetCursor(0,0);     LCD_PutString("Functions");
+
+    functionsLoad();
+    selectionsDisplay();
+
+    LCD_SetCursor(0,1);
+    LCD_Blink();
+
+    wheel0 = wheelDecoder_GetCounter();
+    hyattControlPanelState = CONTROLPANEL_SELECT_FUNCTION;
+    enterCount = 0;
+}
+
+void hyattControlPanelDisplayFunction() {
+    int16_t i = abs(wheel0 - wheelDecoder_GetCounter()) % CONTROLPANEL_SELECTIONCOUNTMAX;
+    int x,y;
+    x = (i / 3) * 7;
+    y = (i % 3) + 1;
+    LCD_SetCursor(x,y);
+
+    if (enterCount) {
+        if (functions[i].fPtr) {
+            (*functions[i].fPtr)();
+        }
+        wheelDecoder_SetCounter(wheel0);
+        hyattControlPanelState = CONTROLPANEL_IDLE_SETUP;
+    }
+}
+/* ============ function end ================ */
+
 
 
 /* ============ file ================ */
@@ -385,11 +416,11 @@ void hyattControlPanelDisplayFileAction() {
                 break;
 
             case 1:
-                sprintf(buf,"G1 F2500 X%f Y%f",fileXMin,fileYMax);
+                sprintf(buf,"G90G1F2500X%fY%f",fileXMin,fileYMax);
                 grblBlockSend(buf);
                 break;
             case 4: 
-                sprintf(buf,"G1 F2500 X%f Y%f",fileXMax,fileYMax);
+                sprintf(buf,"G90G1F2500X%fY%f",fileXMax,fileYMax);
                 grblBlockSend(buf);
                 break;
             case 7:
@@ -398,11 +429,11 @@ void hyattControlPanelDisplayFileAction() {
                 break;
 
             case 2:
-                sprintf(buf,"G1 F2500 X%f Y%f",fileXMin,fileYMin);
+                sprintf(buf,"G90G1F2500X%fY%f",fileXMin,fileYMin);
                 grblBlockSend(buf);
                 break;
             case 5:
-                sprintf(buf,"G1 F2500 X%f Y%f",fileXMax,fileYMin);
+                sprintf(buf,"G90G1F2500X%fY%f",fileXMax,fileYMin);
                 grblBlockSend(buf);
                 break;
             case 8: 
@@ -574,6 +605,12 @@ void hyattControlPanelDisplayLoop() {
             break;
         case CONTROLPANEL_SELECT_MACRO:
             hyattControlPanelDisplayMacro();
+            break;
+        case CONTROLPANEL_SELECT_FUNCTION_SETUP:
+            hyattControlPanelDisplayFunctionSetup();
+            break;
+        case CONTROLPANEL_SELECT_FUNCTION:
+            hyattControlPanelDisplayFunction();
             break;
         case CONTROLPANEL_SELECT_FILE_SETUP:
             hyattControlPanelDisplayFileSetup();

@@ -3,8 +3,6 @@ TODO
 
     channel- is rotating letter selector F,M,$, etc
 
-    G92 X$33 Y$34 using lazer pointer , NO use GxL20 thing
-
     create new measurement screen
         center,radius of circle
         distance between to points

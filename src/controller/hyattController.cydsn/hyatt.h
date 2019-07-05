@@ -113,12 +113,13 @@ enum name {
   CONTROLPANEL_SELECT_FILE_OPERATION_SELECT,
   CONTROLPANEL_SELECT_INSPECT_SETUP,
   CONTROLPANEL_SELECT_INSPECT,
-  CONTROLPANEL_SELECT_INSPECT_RESULT
+  CONTROLPANEL_SELECT_INSPECT_RESULT,
+  CONTROLPANEL_SELECT_FUNCTION_SETUP,
+  CONTROLPANEL_SELECT_FUNCTION
 };
 #define CONTROLPANEL_SELECTIONCOUNTMAX 9
 #define CONTROLPANEL_SELECTIONWIDTH 7
-#define CONTROLPANEL_MACROLABELWIDTH 7    
-#define CONTROLPANEL_INSPECTLABELWIDTH 7    
+#define CONTROLPANEL_LABELWIDTH 7    
 int16_t wheel0;
 int16_t wheel0Select;
 
@@ -274,5 +275,11 @@ void hyattZDisplayLoop();
 void hyattZDisplaySet(char *attr,char *value);
 void hyattZDisplayCommand(char *command);
 uint32_t hyattZDisplayUpdate;
+
+// laser
+
+void laserZeroAxisXY();
+void laserZeroOffsetSet();
+
 
 #endif
