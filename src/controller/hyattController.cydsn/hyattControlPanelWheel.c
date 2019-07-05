@@ -24,7 +24,7 @@ double wheelClickDistance() {
             case WHEELSTEPSIZE_MEDIUM:
                 return 0.1; // 1 wheel turn 10mm
             case WHEELSTEPSIZE_LARGE:
-                return 1.0; // 1 wheel turn 100mm
+                return 1.0; // 1.0 for  wheel turn 100mm
         }
     } else {
         switch (hyattWheelStepSize) {

@@ -211,7 +211,7 @@ void inspectsLoad() {
 
 void hyattControlPanelDisplayInspectSetup() {
     LCD_Clear();
-    LCD_SetCursor(0,0); 
+    LCD_SetCursor(0,0);     LCD_PutString("Inspect");
     wheelDecoder_SetCounter(wheel0);
 
     hyattControlPanelState = CONTROLPANEL_SELECT_INSPECT;
@@ -222,6 +222,7 @@ void hyattControlPanelDisplayInspect() {
     if (hyattTicks > hyattTimeoutDisplayUpdate) {
         hyattCurrentPosition();
         hyattZDisplayUpdate = 0;
+        hyattTimeoutDisplayUpdate = hyattTicks + DISPLAYUPDATEIDLEINTERVAL;
     }
 
     if (enterCount) {
