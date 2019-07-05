@@ -4,14 +4,14 @@ import sys, math
 
 l = len(sys.argv)
 
-xwidth      = 100.0
-ywidth      = 100.0
+xwidth      = 500.0
+ywidth      = 500.0
 zwidth      = 0.5
 bitdiameter = 25.4
 bitstepover = 20.0
-speed       = 1000
+speed       = 2000
 
-passes      = 2
+passes      = 3
 
 bitradius   = bitdiameter / 2.0
 yend        = ywidth - bitradius
