@@ -12,8 +12,8 @@ struct macro macros[CONTROLPANEL_SELECTIONCOUNTMAX] = {
     {"HOME","$H"},
     {"",""},
 
-    {"G28","G90G53Z-3\nG28G91X0Y0\nG90"},
-    {"G30","G90G53Z-3\nG30G91X0Y0\nG90"},
+    {"G28","G21G90G53Z-3\nG28G91X0Y0\nG90"},
+    {"G30","G21G90G53Z-3\nG30G91X0Y0\nG90"},
     {"",""},
 
     {"G28Set","G28.1"},
