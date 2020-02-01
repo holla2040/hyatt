@@ -44,6 +44,12 @@ Getting boards from [JLCPCB](https://jlcpcb.com/), $2 for 10 boards + $18 DHL US
 
 ---
 
+[![Watch the video](https://img.youtube.com/vi/vaoxWDlP-cQ/maxresdefault.jpg)](https://youtu.be/vaoxWDlP-cQ)
+
+[Watch more hyatt videos](https://www.youtube.com/user/holla2040/search?query=hyatt)
+
+---
+
 ![Dale Hyatt](images/DaleHyatt.jpg)
 
 Project named after Dale Hyatt, the one of the original K&F guitar amp cabinet makers. See "[The Sound Heard 'Round the World](https://www.halleonardbooks.com/product/viewproduct.action?itemid=332779 "Fender - The Sound Heard 'Round the World")", Richard Smith, p28. 
